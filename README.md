@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sizes
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+.m-none { margin: 0; }
+.p-none { padding: 0; }
+.m-t-none { margin-top: 0; }
+.p-t-none { padding-top: 0; }
+.m-r-none { margin-right: 0; }
+.p-r-none { padding-right: 0; }
+.m-b-none { margin-bottom: 0; }
+.p-b-none { padding-bottom: 0; }
+.m-l-none { margin-left: 0; }
+.p-l-none { padding-left: 0; }
+.m-xxs { margin: 0.125rem; }
+.p-xxs { padding: 0.125rem; }
+.m-t-xxs { margin-top: 0.125rem; }
+.p-t-xxs { padding-top: 0.125rem; }
+.m-r-xxs { margin-right: 0.125rem; }
+.p-r-xxs { padding-right: 0.125rem; }
+.m-b-xxs { margin-bottom: 0.125rem; }
+.p-b-xxs { padding-bottom: 0.125rem; }
+.m-l-xxs { margin-left: 0.125rem; }
+.p-l-xxs { padding-left: 0.125rem; }
+.m-xs { margin: 0.25rem; }
+.p-xs { padding: 0.25rem; }
+.m-t-xs { margin-top: 0.25rem; }
+.p-t-xs { padding-top: 0.25rem; }
+.m-r-xs { margin-right: 0.25rem; }
+.p-r-xs { padding-right: 0.25rem; }
+.m-b-xs { margin-bottom: 0.25rem; }
+.p-b-xs { padding-bottom: 0.25rem; }
+.m-l-xs { margin-left: 0.25rem; }
+.p-l-xs { padding-left: 0.25rem; }
+.m-sm { margin: 0.5rem; }
+.p-sm { padding: 0.5rem; }
+.m-t-sm { margin-top: 0.5rem; }
+.p-t-sm { padding-top: 0.5rem; }
+.m-r-sm { margin-right: 0.5rem; }
+.p-r-sm { padding-right: 0.5rem; }
+.m-b-sm { margin-bottom: 0.5rem; }
+.p-b-sm { padding-bottom: 0.5rem; }
+.m-l-sm { margin-left: 0.5rem; }
+.p-l-sm { padding-left: 0.5rem; }
+.m-md { margin: 1rem; }
+.p-md { padding: 1rem; }
+.m-t-md { margin-top: 1rem; }
+.p-t-md { padding-top: 1rem; }
+.m-r-md { margin-right: 1rem; }
+.p-r-md { padding-right: 1rem; }
+.m-b-md { margin-bottom: 1rem; }
+.p-b-md { padding-bottom: 1rem; }
+.m-l-md { margin-left: 1rem; }
+.p-l-md { padding-left: 1rem; }
+.m-lg { margin: 2rem; }
+.p-lg { padding: 2rem; }
+.m-t-lg { margin-top: 2rem; }
+.p-t-lg { padding-top: 2rem; }
+.m-r-lg { margin-right: 2rem; }
+.p-r-lg { padding-right: 2rem; }
+.m-b-lg { margin-bottom: 2rem; }
+.p-b-lg { padding-bottom: 2rem; }
+.m-l-lg { margin-left: 2rem; }
+.p-l-lg { padding-left: 2rem; }
+.m-xl { margin: 4rem; }
+.p-xl { padding: 4rem; }
+.m-t-xl { margin-top: 4rem; }
+.p-t-xl { padding-top: 4rem; }
+.m-r-xl { margin-right: 4rem; }
+.p-r-xl { padding-right: 4rem; }
+.m-b-xl { margin-bottom: 4rem; }
+.p-b-xl { padding-bottom: 4rem; }
+.m-l-xl { margin-left: 4rem; }
+.p-l-xl { padding-left: 4rem; }
+.m-xxl { margin: 8rem; }
+.p-xxl { padding: 8rem; }
+.m-t-xxl { margin-top: 8rem; }
+.p-t-xxl { padding-top: 8rem; }
+.m-r-xxl { margin-right: 8rem; }
+.p-r-xxl { padding-right: 8rem; }
+.m-b-xxl { margin-bottom: 8rem; }
+.p-b-xxl { padding-bottom: 8rem; }
+.m-l-xxl { margin-left: 8rem; }
+.p-l-xxl { padding-left: 8rem; }

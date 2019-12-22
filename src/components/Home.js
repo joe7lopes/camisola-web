@@ -1,16 +1,12 @@
-import React from 'react';
-import { ProductView } from './product';
+import React from "react";
+import { Container } from "react-bootstrap";
+import ProductCard from "./common/ProductCard";
 
 function Home() {
   return (
-    <div>
-      <div>home</div>
-      <div id="container" className="p-md">
-        <ProductView />
-        <ProductView />
-        <ProductView />
-      </div>
-    </div>
+    <Container>
+      <ProductCard />
+    </Container>
   );
 }
 

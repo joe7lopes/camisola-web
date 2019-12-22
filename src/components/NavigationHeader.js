@@ -1,24 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Navbar, Nav } from "react-bootstrap";
 
 function NavigationHeader() {
-  const clubs = ['Portugal', 'benfica', 'porto'];
-
   return (
-    <header>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {clubs.map(club => {
-          return (
-            <li key={club}>
-              <Link to={`/${club}`}>{club}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </header>
+    <Navbar
+      sticky="top"
+      fixed="top"
+      variant="light"
+      stybg="dark"
+      bg="light"
+      expand="lg"
+      role="navigation"
+      as="header"
+    >
+      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Portugal</Nav.Link>
+          <Nav.Link href="#link">Benfica</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 

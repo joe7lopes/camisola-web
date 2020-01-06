@@ -1,12 +1,26 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import ProductCard from "./common/ProductCard";
+import WhatsApp from "./WhatsApp";
+import ShippingMethodBanner from "./ShippingMethodBanner";
+import FacebookReviews from "./FacebookReviews";
+import Footer from "./Footer";
 
 function Home() {
   return (
-    <Container>
-      <ProductCard />
-    </Container>
+    <div>
+      <Row>
+        <Col>
+          <ProductCard />
+        </Col>
+        <Col xs={3}>
+          <WhatsApp />
+          <ShippingMethodBanner />
+          <FacebookReviews />
+        </Col>
+      </Row>
+      <Footer />
+    </div>
   );
 }
 

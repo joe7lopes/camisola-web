@@ -13,12 +13,16 @@ function NavigationHeader() {
       role="navigation"
       as="header"
     >
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <Navbar.Brand href="/">Camisola10</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Portugal</Nav.Link>
-          <Nav.Link href="#link">Benfica</Nav.Link>
+          <Nav.Link href="portugal">Portugal</Nav.Link>
+          <Nav.Link href="benfica">Benfica</Nav.Link>
+          <Nav.Link href="porto">Porto</Nav.Link>
+          <Nav.Link href="sporting">Sporting</Nav.Link>
+          <Nav.Link href="outros">Outros</Nav.Link>
+          <Nav.Link href="criancas">Crianças</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

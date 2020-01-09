@@ -1,6 +1,10 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Row } from "react-bootstrap";
 import ProductCard from "./common/ProductCard";
+
+type ClubPageProps = {
+  pageName: string;
+}
 
 const camisolas = () => {
   return [1, 2, 3, 4].map((e, index) => <ProductCard key={index} />);
@@ -14,7 +18,7 @@ const equipamentosCrianca = () => {
   return [1, 2, 3, 4].map((e, index) => <ProductCard key={index} />);
 };
 
-const ClubPage = ({ pageName }) => {
+const ClubPage: FunctionComponent<ClubPageProps> = ({ pageName }) => {
   return (
     <div>
       <div>{pageName}</div>

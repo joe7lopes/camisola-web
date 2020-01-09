@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-
+import {Link} from "react-router-dom";
+import {route} from '../config/routes';
 function NavigationHeader() {
   return (
     <Navbar
@@ -11,18 +12,17 @@ function NavigationHeader() {
       bg="light"
       expand="lg"
       role="navigation"
-      as="header"
-    >
-      <Navbar.Brand href="/">Camisola10</Navbar.Brand>
+      as="header">
+      <Navbar.Brand as="div">
+        <Link to={route.HOME}>Camisola10</Link>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="portugal">Portugal</Nav.Link>
-          <Nav.Link href="benfica">Benfica</Nav.Link>
-          <Nav.Link href="porto">Porto</Nav.Link>
-          <Nav.Link href="sporting">Sporting</Nav.Link>
-          <Nav.Link href="outros">Outros</Nav.Link>
-          <Nav.Link href="criancas">Crianças</Nav.Link>
+          {Object.keys(route).map(route => {
+            const routeName = route.toLowerCase();
+            return <Nav.Link as="div" key={route}><Link to={routeName}>{routeName}</Link></Nav.Link>
+          })}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

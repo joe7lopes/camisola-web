@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Card, Button, Row, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
 
 function ProductCard({ id, title, price, image }) {
   const history = useHistory();
@@ -9,10 +8,10 @@ function ProductCard({ id, title, price, image }) {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={image} />
-      <Card.Body>
+      
         <Card.Title>{title}</Card.Title>
-        <Card.Text>
-          <Row>
+        <Card.Body>
+          <Row id="text">
             <Col>{price}$</Col>
             <Col>
               <Button
@@ -24,8 +23,7 @@ function ProductCard({ id, title, price, image }) {
               </Button>
             </Col>
           </Row>
-        </Card.Text>
-      </Card.Body>
+        </Card.Body>
     </Card>
   );
 }
@@ -37,9 +35,3 @@ ProductCard.defaultProps = {
 };
 
 export default ProductCard;
-
-ProductCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string
-};

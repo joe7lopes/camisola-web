@@ -1,7 +1,7 @@
 export const route = {
     HOME: '/',
     PORTUGAL: '/portugal',
-    BENFICA: 'benfica',
+    BENFICA: '/benfica',
     PORTO: '/porto',
     SPORTING: '/sporting',
     OUTROS: '/outros',

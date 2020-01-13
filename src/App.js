@@ -24,6 +24,9 @@ function App() {
         <Route path="/product/:id">
           <ProductDetail />
         </Route>
+        <Route>
+          <h3>No match</h3>
+        </Route>
       </Switch>
     </Router>
   );

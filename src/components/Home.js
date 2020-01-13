@@ -1,10 +1,10 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
-import ProductCard from "./common/ProductCard";
-import WhatsApp from "./WhatsApp";
-import ShippingMethodBanner from "./ShippingMethodBanner";
-import FacebookReviews from "./FacebookReviews";
-import Footer from "./Footer";
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import ProductCard from './common/ProductCard';
+import WhatsApp from './WhatsApp';
+import ShippingMethodBanner from './ShippingMethodBanner';
+import FacebookReviews from './FacebookReviews';
+import Footer from './Footer';
 
 function Home() {
   return (

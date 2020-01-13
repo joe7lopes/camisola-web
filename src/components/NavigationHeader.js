@@ -1,7 +1,8 @@
-import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import {Link} from "react-router-dom";
-import {route} from '../config/routes';
+import React from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { route } from '../config/routes';
+
 function NavigationHeader() {
   return (
     <Navbar
@@ -19,9 +20,9 @@ function NavigationHeader() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          {Object.keys(route).map(route => {
-            const routeName = route.toLowerCase();
-            return <Nav.Link as="div" key={route}><Link to={routeName}>{routeName}</Link></Nav.Link>
+          {Object.keys(route).map((r) => {
+            const routeName = r.toLowerCase();
+            return <Nav.Link as="div" key={route}><Link to={routeName}>{routeName}</Link></Nav.Link>;
           })}
         </Nav>
       </Navbar.Collapse>

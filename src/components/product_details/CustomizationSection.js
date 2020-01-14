@@ -29,8 +29,14 @@ const CustomizationSection = () => (
         <Stamping />
       </Form.Group>
       <Form.Row>
-        <QuantitySelector />
-        <Button type="submit" block>Adicionar</Button>
+        <Col>
+          <QuantitySelector />
+        </Col>
+        <Col>
+          <Button type="submit" block style={{ height: '100%' }}>
+            Adicionar
+          </Button>
+        </Col>
       </Form.Row>
     </Form>
   </div>

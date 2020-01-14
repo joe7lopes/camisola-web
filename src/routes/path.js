@@ -1,4 +1,4 @@
-export const route = {
+export default {
   HOME: '/',
   PORTUGAL: '/portugal',
   BENFICA: '/benfica',

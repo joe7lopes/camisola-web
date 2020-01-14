@@ -1,35 +1,19 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import NavigationHeader from './components/NavigationHeader';
-import Home from './components/Home';
-import ClubPage from './components/ClubPage';
-import ProductDetail from './components/common/ProductDetail';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+import { Routes } from './routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.scss';
-import { route } from './config/routes';
 
-function App() {
-  const { HOME, BENFICA } = route;
+const App = () => {
+  const store = createStore(rootReducer);
 
   return (
-    <Router>
-      <NavigationHeader />
-      <Switch>
-        <Route exact path={HOME}>
-          <Home />
-        </Route>
-        <Route path={BENFICA}>
-          <ClubPage pageName="Benfica" />
-        </Route>
-        <Route path="/product/:id">
-          <ProductDetail />
-        </Route>
-        <Route>
-          <h3>No match</h3>
-        </Route>
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Routes/>
+    </Provider>
   );
-}
+};
 
 export default App;

@@ -52,4 +52,28 @@ $positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
   margin: 1rem 1rem 0 1rem;
 }
 
+.c-flex {
+  display: flex;
+}
+
+.c-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//Quantity Selector
+
+.c-quantity_selector {
+  display: flex;
+  border: 1px solid #ccc;
+  margin: 0 5px 0 5px;
+}
+
+.c-quantity_selector--button {
+  width: 2rem;
+  text-align: center;
+  border-left: 1px solid #ccc;
+}
+
 

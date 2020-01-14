@@ -22,7 +22,7 @@ function NavigationHeader() {
         <Nav className="mr-auto">
           {Object.keys(route).map((r) => {
             const routeName = r.toLowerCase();
-            return <Nav.Link as="div" key={route}><Link to={routeName}>{routeName}</Link></Nav.Link>;
+            return <Nav.Link as="div" key={routeName}><Link to={`/${routeName}`}>{routeName}</Link></Nav.Link>;
           })}
         </Nav>
       </Navbar.Collapse>

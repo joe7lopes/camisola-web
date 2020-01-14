@@ -1,13 +1,16 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
 
 function ProductDetail() {
   const { id } = useParams();
 
   return (
-    <div>
-      <div>product detail page of {id}</div>
-    </div>
+    <Row>
+      <Col>thumbnails</Col>
+      <Col>image full</Col>
+      <Col>comprar</Col>
+    </Row>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from './common/ProductCard';
+import ProductCard from './ProductCard';
 
 const ProductList = ({ title, products }) => (
   <div className="m-t-md m-b-md">

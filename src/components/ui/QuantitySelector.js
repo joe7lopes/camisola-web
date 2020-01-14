@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const QuantatySelector = () => (
-  <div className="c-quantity_selector">
-    <input type="text" readOnly style={{ border: 'none', width: '100%' }}/>
-    <div>
-      <div className="c-quantity_selector--button">+</div>
-      <div className="c-quantity_selector--button" style={{ borderTop: '1px solid #ccc' }}>-</div>
+const QuantatySelector = () => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleChange = (newQuantity) => {
+    if (newQuantity < 1) return;
+    setQuantity(newQuantity);
+  };
+
+  return (
+    <div className="c-quantity_selector">
+      <input
+        type="text"
+        readOnly
+        style={{ border: 'none', width: '100%', textAlign: 'center' }}
+        value={quantity}/>
+      <div>
+        <button
+          className="c-quantity-button"
+          type="button"
+          onClick={() => handleChange(quantity + 1)}>
+          +
+        </button>
+        <button
+          className="c-quantity-button"
+          type="button"
+          onClick={() => handleChange(quantity - 1)}>
+          -
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default QuantatySelector;

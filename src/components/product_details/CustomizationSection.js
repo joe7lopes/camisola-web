@@ -7,7 +7,7 @@ const CustomizationSection = () => (
   <div>
     <h1>product title</h1>
     <h4>30$</h4>
-    <Form>
+    <Form onSubmit={(e) => { e.preventDefault(); console.log('form submitted'); }}>
       <Form.Group controlId="exampleForm.ControlSelect1">
         <Form.Group>
           <Form.Row>
@@ -29,10 +29,10 @@ const CustomizationSection = () => (
         <Stamping />
       </Form.Group>
       <Form.Row>
-        <Col>
+        <Col xs={12} md={3}>
           <QuantitySelector />
         </Col>
-        <Col>
+        <Col xs={12} md={9}>
           <Button type="submit" block style={{ height: '100%' }}>
             Adicionar
           </Button>

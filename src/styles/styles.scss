@@ -69,10 +69,8 @@ $positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
   border: 1px solid #ccc;
 }
 
-.c-quantity_selector--button {
-  width: 2rem;
-  text-align: center;
-  border-left: 1px solid #ccc;
+.c-quantity-button {
+  width: 100%;
 }
 
 

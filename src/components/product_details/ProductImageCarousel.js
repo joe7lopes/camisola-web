@@ -9,6 +9,7 @@ const ProductImageCarousel = () => {
     setIndex(selectedIndex);
     setDirection(e.direction);
   };
+
   return (
     <Carousel touch activeIndex={index} direction={direction} onSelect={handleSelect}>
       <Carousel.Item>

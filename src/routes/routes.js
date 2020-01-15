@@ -12,7 +12,7 @@ import {
 import path from './path';
 
 const {
-  HOME, PORTUGAL, BENFICA, PORTO, SPORTING, ADMIN,
+  HOME, PORTUGAL, BENFICA, PORTO, SPORTING,
 } = path;
 
 const Routes = () => (

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Card, Button } from 'react-bootstrap';
+import {
+  Form, Card, Col, Button,
+} from 'react-bootstrap';
 import EditProduct from './EditProduct';
 import EditProductSize from './EditProductSize';
 import { size } from '../../config';
@@ -51,20 +53,26 @@ const AddNewProduct = () => {
     <div>
       <h3>Adicionar Produto</h3>
       <Form onSubmit={handleOnSubmit}>
-        <Form.Group>
-          <Form.Label column sm={2}>
-            Nome
-          </Form.Label>
-          <Form.Control type="text" placeholder="Nome do produto" />
-        </Form.Group>
-        {renderSizes()}
-        <div>
-          <Button onClick={handleOnAdd}>Adicionar tamanho</Button>
-        </div>
-        <input type="file" id="multi" onChange={handleFileUpload} multiple />
-        <Card>
-          <EditProduct images={images} />
-        </Card>
+        <Form.Row>
+        <Col>
+          <Form.Group>
+            <Form.Label column sm={2}>
+              Nome
+            </Form.Label>
+            <Form.Control type="text" placeholder="Nome do produto" />
+          </Form.Group>
+          {renderSizes()}
+          <div>
+            <Button onClick={handleOnAdd}>Adicionar tamanho</Button>
+          </div>
+        </Col>
+        <Col>
+          <input type="file" id="multi" onChange={handleFileUpload} multiple />
+          <Card>
+            <EditProduct images={images} />
+          </Card>
+        </Col>
+        </Form.Row>
         <Button type="submit" size="lg" className="m-t-lg">
           Salvar
         </Button>

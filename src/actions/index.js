@@ -1,1 +1,1 @@
-export { fetchSettings, saveSettings } from './settings';
+export { fetchSettings, fetchSettingsSuccess, saveSettings } from './settings';

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { fetchSettings } from '../../actions';
 
-function Settings({ fetchSizes }) {
+function Settings(props) {
   const addRow = () => {
-    fetchSizes();
+    props.fetchSettings();
   };
 
   return (
@@ -35,8 +36,6 @@ function Settings({ fetchSizes }) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchSizes: () => dispatch(fetchSettings),
-});
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchSettings }, dispatch);
 
-export default connect(null, { fetchSizes: mapDispatchToProps })(Settings);
+export default connect(null, mapDispatchToProps)(Settings);

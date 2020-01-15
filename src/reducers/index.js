@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import product from './product';
+import settings from './settings';
 
 export default combineReducers({
-  product,
+  settings,
 });

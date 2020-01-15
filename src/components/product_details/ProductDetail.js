@@ -1,11 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Row, Col, Image } from 'react-bootstrap';
 import CustomizationSection from './CustomizationSection';
 import ProductImageCarousel from './ProductImageCarousel';
 
 function ProductDetail() {
-  const { id } = useParams();
+  // const { id } = useParams();
 
   return (
     <Row className="c-body">

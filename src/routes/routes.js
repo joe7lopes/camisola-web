@@ -5,11 +5,12 @@ import {
   ClubPage,
   ProductDetail,
   Home,
+  AdminPannel,
 } from '../components';
 import path from './path';
 
 const {
-  HOME, PORTUGAL, BENFICA, PORTO, SPORTING,
+  HOME, PORTUGAL, BENFICA, PORTO, SPORTING, ADMIN,
 } = path;
 
 const Routes = () => (
@@ -30,6 +31,9 @@ const Routes = () => (
       </Route>
       <Route path={SPORTING}>
         <ClubPage />
+      </Route>
+      <Route path={ADMIN}>
+        <AdminPannel />
       </Route>
       <Route path="/product/:id">
         <ProductDetail />

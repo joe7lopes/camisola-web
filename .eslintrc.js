@@ -12,6 +12,8 @@ module.exports = {
     },
     rules: {
         "react/prop-types": 0,
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "no-use-before-define":["error", { "variables": false }],
+        "@typescript-eslint/no-use-before-define": "off"
     }
 };

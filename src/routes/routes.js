@@ -6,6 +6,8 @@ import {
   ProductDetail,
   Home,
   AdminPannel,
+  Settings,
+  NewProduct,
 } from '../components';
 import path from './path';
 
@@ -32,7 +34,13 @@ const Routes = () => (
       <Route path={SPORTING}>
         <ClubPage />
       </Route>
-      <Route path={ADMIN}>
+      <Route path="/admin/new-product">
+        <NewProduct />
+      </Route>
+      <Route path="/admin/settings">
+        <Settings />
+      </Route>
+      <Route path="/admin">
         <AdminPannel />
       </Route>
       <Route path="/product/:id">

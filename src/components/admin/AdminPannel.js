@@ -1,12 +1,19 @@
 import React from 'react';
-import AddNewProduct from './AddNewProduct';
+import { Link } from 'react-router-dom';
 
 const AdminPannel = () => {
   const title = 'AdminPannel';
   return (
     <div className="c-body">
       <h1>{title}</h1>
-      <AddNewProduct />
+      <ul>
+        <li>
+          <Link to="/admin/new-product">Novo produto</Link>
+        </li>
+        <li>
+          <Link to="/admin/settings">settings</Link>
+        </li>
+      </ul>
     </div>
   );
 };

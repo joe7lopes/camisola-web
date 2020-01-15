@@ -6,5 +6,4 @@ export default {
   SPORTING: '/sporting',
   OUTROS: '/outros',
   CRIANCAS: '/criancas',
-  ADMIN: '/admin',
 };

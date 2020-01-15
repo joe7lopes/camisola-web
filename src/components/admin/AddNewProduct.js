@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Form, Card, Col, Button,
-} from 'react-bootstrap';
-import EditProduct from './EditProduct';
-import EditProductSize from './EditProductSize';
+import { Form, Col, Button } from 'react-bootstrap';
+import PreviewImages from './PreviewImages';
+import NewProductSize from './NewProductSize';
 import { size } from '../../config';
 
 const AddNewProduct = () => {
@@ -13,6 +11,12 @@ const AddNewProduct = () => {
   }));
   const [sizes, setSizes] = useState(defaultSelectedSize);
   const [images, setImages] = useState([]);
+  const [defaultImage, setDefaultImage] = useState(null);
+
+  const handleOnDelete = (sizeToRemove) => {
+    const updatedSizes = sizes.filter((s) => s !== sizeToRemove);
+    setSizes(updatedSizes);
+  };
 
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -22,30 +26,27 @@ const AddNewProduct = () => {
       image: file,
       url: URL.createObjectURL(file),
     }));
-
+    setDefaultImage(selectedImages[0]);
     setImages([...images, ...selectedImages]);
   };
 
-  const handleOnDelete = (sizeToRemove) => {
-    const updatedSizes = sizes.filter((s) => s !== sizeToRemove);
-    setSizes(updatedSizes);
+  const handleOnDeleteImage = (img) => {
+    const newImages = images.filter((image) => image !== img);
+    setImages(newImages);
   };
 
-  const renderSizes = () => sizes.map((s, i) => (
-      <EditProductSize
-        key={i}
-        size={s.size}
-        price={s.price}
-        handleOnChange={(e) => console.log(e)}
-        handleOnDelete={() => handleOnDelete(s)}
-      />
-  ));
-
-  const handleOnAdd = () => {};
+  const handleDefaultImageChanged = (img) => {
+    setDefaultImage(img);
+  };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const newProduct = { size, images };
+    const imagesToSave = images.filter((i) => i !== defaultImage);
+    const formattedImages = [
+      ...imagesToSave,
+      { ...defaultImage, isDefault: true },
+    ];
+    const newProduct = { size, images: formattedImages };
     console.log('final save', newProduct);
   };
 
@@ -54,24 +55,29 @@ const AddNewProduct = () => {
       <h3>Adicionar Produto</h3>
       <Form onSubmit={handleOnSubmit}>
         <Form.Row>
-        <Col>
-          <Form.Group>
-            <Form.Label column sm={2}>
-              Nome
-            </Form.Label>
-            <Form.Control type="text" placeholder="Nome do produto" />
-          </Form.Group>
-          {renderSizes()}
-          <div>
-            <Button onClick={handleOnAdd}>Adicionar tamanho</Button>
-          </div>
-        </Col>
-        <Col>
-          <input type="file" id="multi" onChange={handleFileUpload} multiple />
-          <Card>
-            <EditProduct images={images} />
-          </Card>
-        </Col>
+          <Col>
+            <Form.Group>
+              <Form.Label column sm={2}>
+                Nome
+              </Form.Label>
+              <Form.Control type="text" placeholder="Nome do produto" />
+            </Form.Group>
+            <NewProductSize
+              sizes={sizes}
+            />
+            <div>
+              <Button>Adicionar tamanho</Button>
+            </div>
+          </Col>
+          <Col>
+            <PreviewImages
+              images={images}
+              defaultImage={defaultImage}
+              handleFileUpload={handleFileUpload}
+              handleOnDeleteImage={handleOnDeleteImage}
+              handleDefaultImageChanged={handleDefaultImageChanged}
+            />
+          </Col>
         </Form.Row>
         <Button type="submit" size="lg" className="m-t-lg">
           Salvar

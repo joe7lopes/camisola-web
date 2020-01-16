@@ -1,5 +1,4 @@
 export default {
-  HOME: '/',
   PORTUGAL: '/portugal',
   BENFICA: '/benfica',
   PORTO: '/porto',

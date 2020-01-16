@@ -12,14 +12,14 @@ import {
 import path from './path';
 
 const {
-  HOME, PORTUGAL, BENFICA, PORTO, SPORTING,
+  PORTUGAL, BENFICA, PORTO, SPORTING,
 } = path;
 
 const Routes = () => (
   <Router>
     <NavigationHeader />
     <Switch>
-      <Route exact path={HOME}>
+      <Route exact path={'/'}>
         <Home />
       </Route>
       <Route path={PORTUGAL}>

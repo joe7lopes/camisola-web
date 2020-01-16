@@ -14,7 +14,7 @@ const NavigationHeader = () => (
       role="navigation"
       as="header">
       <Navbar.Brand as="div">
-        <Link to={path.HOME}>Camisola10</Link>
+        <Link to='/'>Camisola10</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -29,8 +29,7 @@ function Sizes({ sizes, saveSizes }) {
   };
 
   return (
-    <div className="c-body">
-      <h1>Settings page</h1>
+    <div>
       <h3>Tamanhos</h3>
       <Table striped bordered hover size="sm">
         <thead>

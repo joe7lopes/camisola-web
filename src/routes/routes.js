@@ -19,33 +19,15 @@ const Routes = () => (
   <Router>
     <NavigationHeader />
     <Switch>
-      <Route exact path={'/'}>
-        <Home />
-      </Route>
-      <Route path={PORTUGAL}>
-        <ClubPage />
-      </Route>
-      <Route path={BENFICA}>
-        <ClubPage />
-      </Route>
-      <Route path={PORTO}>
-        <ClubPage />
-      </Route>
-      <Route path={SPORTING}>
-        <ClubPage />
-      </Route>
-      <Route path="/admin/new-product">
-        <NewProduct />
-      </Route>
-      <Route path="/admin/settings">
-        <Settings />
-      </Route>
-      <Route path="/admin">
-        <AdminPannel />
-      </Route>
-      <Route path="/product/:id">
-        <ProductDetail />
-      </Route>
+      <Route exact path={'/'} component={Home} />
+      <Route path={PORTUGAL} component={ClubPage} />
+      <Route path={BENFICA} component={ClubPage} />
+      <Route path={PORTO} component={ClubPage} />
+      <Route path={SPORTING} component={ClubPage} />
+      <Route path="/admin/new-product" component={NewProduct} />
+      <Route path="/admin/settings" component={Settings}/>
+      <Route path="/admin" component={AdminPannel}/>
+      <Route path="/product/:id" component={ProductDetail}/>
       <Route>
         <h3>No match</h3>
       </Route>

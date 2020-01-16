@@ -1,10 +1,9 @@
-import { FETCH_SETTINGS_SUCCESS } from '../actions/actionTypes';
+import { FETCH_SETTINGS, _FULFILLED } from '../actions/actionTypes';
 
 export default (state = {}, { type, payload }) => {
   switch (type) {
-    case FETCH_SETTINGS_SUCCESS: {
-      const { sizes } = payload;
-      return { ...state, sizes };
+    case FETCH_SETTINGS + _FULFILLED: {
+      return { ...state, sizes: payload };
     }
     default:
       return state;

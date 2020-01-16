@@ -2,8 +2,7 @@ import {
   put, takeLatest,
 } from 'redux-saga/effects';
 
-import { FETCH_SETTINGS, FETCH_SETTINGS_SUCCESS } from '../actions/actionTypes';
-import { fetchSettingsSuccess } from '../actions';
+import { FETCH_SETTINGS, _FULFILLED } from '../actions/actionTypes';
 
 export function* watchfetchSettings() {
   yield takeLatest(FETCH_SETTINGS, fetchSettings);
@@ -11,6 +10,6 @@ export function* watchfetchSettings() {
 
 
 function* fetchSettings() {
-  const settings = { sizes: ['L', 'M'] };
-  yield put(fetchSettingsSuccess(settings));
+  const settings = ['L', 'M'];
+  yield put({ type: FETCH_SETTINGS + _FULFILLED, payload: settings });
 }

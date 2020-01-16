@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Form, Col, Button } from 'react-bootstrap';
 import PreviewImages from './PreviewImages';
 import NewProductSize from './NewProductSize';
-import { size } from '../../config';
 
 const AddNewProduct = () => {
-  const defaultSelectedSize = Object.keys(size).map((s) => ({
+  const defaultSelectedSize = ['X,S'].map((s) => ({
     size: s,
     price: 35,
   }));
@@ -46,7 +46,7 @@ const AddNewProduct = () => {
       ...imagesToSave,
       { ...defaultImage, isDefault: true },
     ];
-    const newProduct = { size, images: formattedImages };
+    const newProduct = { sizes, images: formattedImages };
     console.log('final save', newProduct);
   };
 
@@ -87,4 +87,4 @@ const AddNewProduct = () => {
   );
 };
 
-export default AddNewProduct;
+export default connect(null, null)(AddNewProduct);

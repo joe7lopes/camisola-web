@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import path from '../routes/path';
+import path from '../../routes/path';
 
 const NavigationHeader = () => (
     <Navbar

@@ -2,21 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Form, Col, Button } from 'react-bootstrap';
 import PreviewImages from './PreviewImages';
-import NewProductSize from './NewProductSize';
+import ProductPrice from './ProductPrice';
 
-const AddNewProduct = () => {
-  const defaultSelectedSize = ['X,S'].map((s) => ({
-    size: s,
-    price: 35,
-  }));
-  const [sizes, setSizes] = useState(defaultSelectedSize);
+const AddNewProduct = ({ sizes }) => {
+  const [priceSize, setPriceSizes] = useState(convertSizes(sizes));
   const [images, setImages] = useState([]);
-  const [defaultImage, setDefaultImage] = useState(null);
-
-  const handleOnDelete = (sizeToRemove) => {
-    const updatedSizes = sizes.filter((s) => s !== sizeToRemove);
-    setSizes(updatedSizes);
-  };
 
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -26,32 +16,50 @@ const AddNewProduct = () => {
       image: file,
       url: URL.createObjectURL(file),
     }));
-    setDefaultImage(selectedImages[0]);
     setImages([...images, ...selectedImages]);
   };
 
   const handleOnDeleteImage = (img) => {
     const newImages = images.filter((image) => image !== img);
+    console.log(newImages.length);
     setImages(newImages);
   };
 
   const handleDefaultImageChanged = (img) => {
-    setDefaultImage(img);
+    const newImages = images.map((i) => {
+      if (i === img) {
+        return { ...img, isDefault: true };
+      }
+      return { ...i, isDefault: false };
+    });
+    setImages(newImages);
   };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const imagesToSave = images.filter((i) => i !== defaultImage);
-    const formattedImages = [
-      ...imagesToSave,
-      { ...defaultImage, isDefault: true },
-    ];
-    const newProduct = { sizes, images: formattedImages };
+    // const index = images.indexOf(defaultImage);
+    // const imagesCopy = [...images];
+    // imagesCopy[index].isDefault = true;
+    const newProduct = { priceSize, images };
     console.log('final save', newProduct);
   };
 
+  const handleOnPriceChanged = (newPrice, index) => {
+    const priceToUpdate = { ...priceSize[index] };
+    priceToUpdate.price = newPrice;
+
+    const newPriceSizes = [...priceSize];
+    newPriceSizes[index] = priceToUpdate;
+
+    setPriceSizes(newPriceSizes);
+  };
+
+  const handleOnPriceSizeDelete = (priceToDelete) => {
+    setPriceSizes(priceSize.filter((p) => p !== priceToDelete));
+  };
+
   return (
-    <div>
+    <div className="c-body">
       <h3>Adicionar Produto</h3>
       <Form onSubmit={handleOnSubmit}>
         <Form.Row>
@@ -62,17 +70,15 @@ const AddNewProduct = () => {
               </Form.Label>
               <Form.Control type="text" placeholder="Nome do produto" />
             </Form.Group>
-            <NewProductSize
-              sizes={sizes}
+            <ProductPrice
+            priceSize={priceSize}
+            handleOnPriceChanged={handleOnPriceChanged}
+            handleOnDelete={handleOnPriceSizeDelete}
             />
-            <div>
-              <Button>Adicionar tamanho</Button>
-            </div>
           </Col>
           <Col>
             <PreviewImages
               images={images}
-              defaultImage={defaultImage}
               handleFileUpload={handleFileUpload}
               handleOnDeleteImage={handleOnDeleteImage}
               handleDefaultImageChanged={handleDefaultImageChanged}
@@ -87,4 +93,10 @@ const AddNewProduct = () => {
   );
 };
 
-export default connect(null, null)(AddNewProduct);
+const convertSizes = (sizes) => sizes.map((size) => ({ size, price: 35 }));
+
+const mapStateToProps = ({ settings }) => ({
+  sizes: settings.sizes,
+});
+
+export default connect(mapStateToProps, null)(AddNewProduct);

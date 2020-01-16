@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form, Row, Col, Button,
 } from 'react-bootstrap';
 
-function EditProductSize({ sizes, handleOnDelete }) {
-  const [price, setPrice] = useState('');
-  console.log(sizes);
+function ProductPrice({ priceSize, handleOnPriceChanged, handleOnDelete }) {
   return (
     <div>
-      {sizes.map((size) => (
-        <Row key={size.size}>
+      {priceSize.map((pz, i) => (
+        <Row key={pz.size}>
           <Col>
             <Form.Group>
               <Form.Label>Tamanho</Form.Label>
-              <Form.Control type="text" value={size.size} readOnly />
+              <Form.Control type="text" value={pz.size} readOnly />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group>
               <Form.Label>Preco</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="35.5"
-                onChange={(e) => setPrice(e.target.value)}
-                value={price}
+                value={pz.price}
+                min={0}
+                onChange={(e) => handleOnPriceChanged(Number(e.target.value), i)}
               />
             </Form.Group>
           </Col>
           <Col>
-            <Button variant="danger" onClick={handleOnDelete}>
+            <Button style={{ marginTop: '2rem' }} variant="danger" onClick={() => handleOnDelete(pz)}>
               x
             </Button>
           </Col>
@@ -38,4 +37,4 @@ function EditProductSize({ sizes, handleOnDelete }) {
   );
 }
 
-export default EditProductSize;
+export default ProductPrice;

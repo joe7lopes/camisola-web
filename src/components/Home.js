@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 function Home() {
   return (
-    <div>
+    <div className="c-body">
       <Row>
         <Col>
           <ProductCard />

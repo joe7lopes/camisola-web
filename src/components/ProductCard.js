@@ -21,7 +21,7 @@ function ProductCard({
               <Button
                 variant="primary"
                 block
-                onClick={() => history.push(`/product/${id}`)}
+                onClick={() => history.push(`/products/${id}`)}
               >
                 Ver
               </Button>

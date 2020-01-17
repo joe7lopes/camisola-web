@@ -16,7 +16,7 @@ function PersonalDetails({
     <Card>
       <Card.Body>
         <Row>
-          <Col>
+          <Col sm={12} md={6}>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text>Nome</InputGroup.Text>
@@ -24,7 +24,7 @@ function PersonalDetails({
               <FormControl ref={firstNameRef} placeholder="Nome..." />
             </InputGroup>
           </Col>
-          <Col>
+          <Col sm={12} md={6}>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text>Apelido</InputGroup.Text>
@@ -56,15 +56,15 @@ function PersonalDetails({
           <FormControl ref={addressRef} placeholder="Morada" />
         </InputGroup>
         <Row>
-          <Col>
-            <InputGroup>
+          <Col sm={12} md={6}>
+            <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">Localidade</InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl ref={locationRef} placeholder="Lisboa" />
             </InputGroup>
           </Col>
-          <Col>
+          <Col sm={12} md={6}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">

@@ -2,10 +2,11 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { savePersonalData as savePersonalDataAction } from '../../actions';
 import PersonalDetails from './PersonalDetails';
 import ChangePassword from './ChangePassword';
 
-function AccountDetails() {
+function AccountDetails({ savePersonalData }) {
   const firstNameRef = React.createRef();
   const lastNameRef = React.createRef();
   const emailRef = React.createRef();
@@ -25,7 +26,7 @@ function AccountDetails() {
       postalCode: getRefValue(postalCodeRef),
     };
 
-    console.log('personal details', personalDetails);
+    savePersonalData(personalDetails);
   };
 
   return (
@@ -40,15 +41,15 @@ function AccountDetails() {
         postalCodeRef={postalCodeRef}
         />
       <ChangePassword />
-      <Button className="m-t-lg" onClick={handleOnSave}>Guardar</Button>
+      <Button className="m-t-lg m-b-lg" onClick={handleOnSave}>Guardar</Button>
     </div>
   );
 }
 
 const getRefValue = (ref) => ref.current.value;
 
-// const actionCreators = { savePersonalData: saveSizesAction };
+const actionCreators = { savePersonalData: savePersonalDataAction };
 
-// const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(null, null)(AccountDetails);
+export default connect(null, mapDispatchToProps)(AccountDetails);

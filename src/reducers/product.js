@@ -16,4 +16,3 @@ const product = (state = [], action) => {
   }
 };
 export default product;
-

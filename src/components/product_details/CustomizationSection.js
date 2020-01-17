@@ -28,12 +28,12 @@ const CustomizationSection = () => (
         </Form.Group>
         <Stamping />
       </Form.Group>
-      <Form.Row>
+      <Form.Row className="">
         <Col xs={12} md={3}>
           <QuantitySelector />
         </Col>
         <Col xs={12} md={9}>
-          <Button type="submit" block style={{ height: '100%' }}>
+          <Button className="m-b-md" type="submit" block style={{ height: '100%' }}>
             Adicionar
           </Button>
         </Col>

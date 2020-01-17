@@ -20,10 +20,11 @@ const Stamping = () => (
         </Col>
         <Col xs={12} md={9}>
           <Form.Control
-            type="number"
+            type="text"
             placeholder="Numero a estampar"
             min="1"
             max="2"
+            maxLength="2"
           />
         </Col>
       </Form.Row>

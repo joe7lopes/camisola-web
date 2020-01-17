@@ -8,11 +8,20 @@ import {
   AdminPannel,
   Settings,
   NewProduct,
+  UserAccount,
 } from '../components';
 import path from './path';
 
 const {
-  PORTUGAL, BENFICA, PORTO, SPORTING,
+  PORTUGAL,
+  BENFICA,
+  PORTO,
+  SPORTING,
+  ACCOUNT,
+  CREATE_PRODUCT,
+  SETTINGS,
+  ADMIN,
+  PRODUCT_DETAILS,
 } = path;
 
 const Routes = () => (
@@ -24,10 +33,11 @@ const Routes = () => (
       <Route path={BENFICA} component={ClubPage} />
       <Route path={PORTO} component={ClubPage} />
       <Route path={SPORTING} component={ClubPage} />
-      <Route path="/admin/new-product" component={NewProduct} />
-      <Route path="/admin/settings" component={Settings}/>
-      <Route path="/admin" component={AdminPannel}/>
-      <Route path="/product/:id" component={ProductDetail}/>
+      <Route path={ACCOUNT} component={UserAccount} />
+      <Route path={CREATE_PRODUCT} component={NewProduct} />
+      <Route path={SETTINGS} component={Settings} />
+      <Route path={ADMIN} component={AdminPannel} />
+      <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route>
         <h3>No match</h3>
       </Route>

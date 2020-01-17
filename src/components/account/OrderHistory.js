@@ -8,8 +8,7 @@ const headers = ['# Encomenda', 'Data', 'Estado', 'Total', ''];
 function OrderHistory() {
   return (
     <div>
-      <h3>Encomendas</h3>
-      <Table responsive hover className="m-t-md">
+      <Table responsive hover>
         <thead>
           <tr>
            {renderTableHeaders()}

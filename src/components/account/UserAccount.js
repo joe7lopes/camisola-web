@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, ListGroup } from 'react-bootstrap';
+import path from '../../routes/path';
 import ProfileImage from './ProfileImage';
 import OrderHistory from './OrderHistory';
-import path from '../../routes/path';
+import AccountDetails from './AccountDetails';
 
 const ENCOMENDAS = 'Encomendas';
 const ACCOUNT_DETAILS = 'Detalhes da conta';
@@ -11,7 +12,7 @@ const LOGOUT = 'Sair';
 const tabs = [ENCOMENDAS, ACCOUNT_DETAILS, LOGOUT];
 
 export function UserAccount() {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState(tabs[1]);
 
   return (
     <div className="c-body">
@@ -42,7 +43,7 @@ const renderComponent = (activeTab) => {
     case ENCOMENDAS:
       return <OrderHistory />;
     case ACCOUNT_DETAILS:
-      return <ProfileImage />;
+      return <AccountDetails />;
     case LOGOUT:
       return <Redirect to={path.HOME} />;
     default:

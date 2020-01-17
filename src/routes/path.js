@@ -10,5 +10,6 @@ export default {
   ADMIN: '/admin',
   CREATE_PRODUCT: '/admin/new-product',
   SETTINGS: '/admin/settings',
-  PRODUCT_DETAILS: '/product/:id',
+  PRODUCT_DETAILS: '/products/:id',
+  ORDER_SUMMARY: '/orders/:id',
 };

@@ -9,7 +9,7 @@ function ProfileImage() {
       <Card.Body>
         <Row>
           <Col>
-            <FaRegUser size={80} color="#ccc" />
+            <FaRegUser size={60} color="#ccc" />
           </Col>
           <Col>
             <div>user name</div>

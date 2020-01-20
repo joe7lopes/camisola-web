@@ -1,42 +1,30 @@
-$sizeUnit: rem;
-$marginKey: 'm';
-$paddingKey: 'p';
-$separator: '-';
-$sizes: (
-  ('none', 0),
-  ('xxs', 0.125),
-  ('xs', 0.25),
-  ('sm', 0.5),
-  ('md', 1),
-  ('lg', 2),
-  ('xl', 4),
-  ('xxl', 8)
-);
-$positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
+@import './colors.scss';
 
-@function sizeValue($key, $value) {
-  @return if($key == 'none', 0, $value + $sizeUnit);
+body {
+  background: $background-color;
+  font-family: Montserrat, -apple-system, Helvetica Neue, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #40354e;
 }
 
-@each $size in $sizes {
-  $sizeKey: nth($size, 1);
-  $sizeValue: nth($size, 2);
-  .#{$marginKey}#{$separator}#{$sizeKey} {
-    margin: sizeValue($sizeKey, $sizeValue);
+h4 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.c-action-button {
+  background-color: $action-color;
+  border-color: $action-color;
+  &:hover {
+    background-color: $action-hover-color;
+    border-color: $action-color;
+    
   }
-  .#{$paddingKey}#{$separator}#{$sizeKey} {
-    padding: sizeValue($sizeKey, $sizeValue);
-  }
-  @each $position in $positions {
-    $posKey: nth($position, 1);
-    $posValue: nth($position, 2);
-    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
-      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
-    }
-    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
-      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
-    }
-  }
+}
+
+.c-text-bold {
+  font-weight: 600;
 }
 
 .c-category-container {
@@ -77,4 +65,8 @@ $positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
   color: #ccc;
 }
 
+//IMAGES
 
+.c-thumbnail {
+  max-width: 100%;
+}

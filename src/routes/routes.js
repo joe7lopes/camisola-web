@@ -10,6 +10,7 @@ import {
   NewProduct,
   UserAccount,
   OrderSummary,
+  Cart,
 } from '../components';
 import path from './path';
 
@@ -24,6 +25,7 @@ const {
   ADMIN,
   PRODUCT_DETAILS,
   ORDER_SUMMARY,
+  CART,
 } = path;
 
 const Routes = () => (
@@ -41,6 +43,7 @@ const Routes = () => (
       <Route path={ADMIN} component={AdminPannel} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route path={ORDER_SUMMARY} component={OrderSummary} />
+      <Route path={CART} component={Cart} />
       <Route>
         <h3>No match</h3>
       </Route>

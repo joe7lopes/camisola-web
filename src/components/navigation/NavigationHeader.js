@@ -28,6 +28,7 @@ const NavigationHeader = () => (
     <Navbar.Brand as="div">
       <Link to="/">
         <img
+        alt="home"
           style={{ height: '6rem' }}
           src="https://camisola10.com/wp-content/uploads/2018/10/LogoWidth200.png"
         />

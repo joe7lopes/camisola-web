@@ -12,4 +12,5 @@ export default {
   SETTINGS: '/admin/settings',
   PRODUCT_DETAILS: '/products/:id',
   ORDER_SUMMARY: '/orders/:id',
+  CART: '/cart',
 };

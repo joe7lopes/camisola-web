@@ -1,43 +1,31 @@
 import React from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Stamping from './Stamping';
-import QuantitySelector from '../ui';
+import ProductSizeSelector from './ProductSizeSelector';
+import ActionButton from '../ui/ActionButton';
 
 const CustomizationSection = () => (
-  <div>
-    <h1>product title</h1>
-    <h4>30$</h4>
-    <Form onSubmit={(e) => { e.preventDefault(); console.log('form submitted'); }}>
-      <Form.Group controlId="exampleForm.ControlSelect1">
-        <Form.Group>
-          <Form.Row>
-            <Col xs={12} md={3}>
-              <Form.Label>Tamanho</Form.Label>
-            </Col>
-            <Col xs={12} md={9}>
-              <Form.Control as="select" isInvalid={false}>
-                <option value="default">Escolha um tamanho</option>
-                <option value="s">S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XXL</option>
-              </Form.Control>
-            </Col>
-          </Form.Row>
-        </Form.Group>
-        <Stamping />
+  <div style={{}}>
+    <h4>Everybirdy Pattern Graphic T-Shirt</h4>
+    <h4 className="m-t-lg">€27.68</h4>
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log('form submitted');
+      }}
+    >
+      <Form.Group>
+        <Form.Label>Tamanho</Form.Label>
+        <div>
+          <ProductSizeSelector />
+        </div>
       </Form.Group>
-      <Form.Row className="">
-        <Col xs={12} md={3}>
-          <QuantitySelector />
-        </Col>
-        <Col xs={12} md={9}>
-          <Button className="m-b-md" type="submit" block style={{ height: '100%' }}>
-            Adicionar
-          </Button>
-        </Col>
-      </Form.Row>
+      <Stamping />
+        <ActionButton
+          className="m-b-md"
+          type="submit">
+          Add to cart
+        </ActionButton>
     </Form>
   </div>
 );

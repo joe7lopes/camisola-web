@@ -1,41 +1,23 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-  Card, Button, Row, Col,
-} from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 function ProductCard({
-  id, title, price, image,
+  id, name, price, image,
 }) {
   const history = useHistory();
-
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card
+      style={{ width: '18rem', cursor: 'pointer' }}
+      onClick={() => history.push(`/products/${id}`)}
+    >
       <Card.Img variant="top" src={image} />
-
-        <Card.Title>{title}</Card.Title>
-        <Card.Body>
-          <Row id="text">
-            <Col>{price}$</Col>
-            <Col>
-              <Button
-                variant="primary"
-                block
-                onClick={() => history.push(`/products/${id}`)}
-              >
-                Ver
-              </Button>
-            </Col>
-          </Row>
-        </Card.Body>
+      <Card.Body>
+        {name}
+        <h5>€{price}</h5>
+      </Card.Body>
     </Card>
   );
 }
-
-ProductCard.defaultProps = {
-  image:
-    'https://camisola10.com/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-30-at-17.10.27.jpeg',
-  id: 123,
-};
 
 export default ProductCard;

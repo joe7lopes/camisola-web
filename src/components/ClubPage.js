@@ -1,12 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ProductList from './ProductList';
 
-const ClubPage = () => (
+const ClubPage = ({ camisolas }) => (
   <div className="c-body">
-    <ProductList title="Camisolas" products={[1, 2, 3, 4]} />
-    <ProductList title="Fatos de treino" products={[1, 2, 3, 4]} />
-    <ProductList title="Equipamentos de Crianca" products={[1, 2, 3, 4]} />
+    <ProductList title="Camisolas" products={camisolas} />
+    <ProductList title="Fatos de treino" products={camisolas} />
+    <ProductList title="Equipamentos de Crianca" products={camisolas} />
   </div>
 );
 
-export default ClubPage;
+const mapStateToProps = ({ products }) => ({
+  camisolas: [products[0]], // later filter by category
+
+});
+
+export default connect(mapStateToProps)(ClubPage);

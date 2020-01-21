@@ -6,5 +6,6 @@ export {
 } from './settings';
 
 export { savePersonalData, savePersonalDataFulfilled } from './account';
+export { fetchProducts, fetchProductsFulfilled } from './products';
 
 export * from './actionTypes';

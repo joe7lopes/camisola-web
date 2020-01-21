@@ -7,7 +7,7 @@ import ProductPrice from './ProductPrice';
 const AddNewProduct = ({ sizes }) => {
   const [priceSize, setPriceSizes] = useState(convertSizes(sizes));
   const [images, setImages] = useState([]);
-
+  const nameRef = React.createRef();
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
 
@@ -21,7 +21,6 @@ const AddNewProduct = ({ sizes }) => {
 
   const handleOnDeleteImage = (img) => {
     const newImages = images.filter((image) => image !== img);
-    console.log(newImages.length);
     setImages(newImages);
   };
 
@@ -37,9 +36,6 @@ const AddNewProduct = ({ sizes }) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    // const index = images.indexOf(defaultImage);
-    // const imagesCopy = [...images];
-    // imagesCopy[index].isDefault = true;
     const newProduct = { priceSize, images };
     console.log('final save', newProduct);
   };
@@ -68,7 +64,7 @@ const AddNewProduct = ({ sizes }) => {
               <Form.Label column sm={2}>
                 Nome
               </Form.Label>
-              <Form.Control type="text" placeholder="Nome do produto" />
+              <Form.Control type="text" ref={nameRef}placeholder="Nome do produto" />
             </Form.Group>
             <ProductPrice
             priceSize={priceSize}

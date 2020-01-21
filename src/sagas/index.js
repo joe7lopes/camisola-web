@@ -1,11 +1,13 @@
 import { all, fork } from 'redux-saga/effects';
 
-import { watchfetchSettings, watchSaveSizes } from './settigs';
+import { watchFetchSettings, watchSaveSizes } from './settigs';
 import { watchSavePersonalData } from './account';
+import { watchFetchProducts } from './products';
 
 export default function* rootSaga() {
   yield all([
-    fork(watchfetchSettings),
+    fork(watchFetchProducts),
+    fork(watchFetchSettings),
     fork(watchSaveSizes),
     fork(watchSavePersonalData),
   ]);

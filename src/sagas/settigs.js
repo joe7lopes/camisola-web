@@ -31,7 +31,7 @@ function* saveNewSizes(sizes) {
  * +++Watchers+++
  */
 
-export function* watchfetchSettings() {
+export function* watchFetchSettings() {
   yield takeLatest(FETCH_SETTINGS, fetchSettings);
 }
 

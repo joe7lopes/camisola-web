@@ -13,8 +13,15 @@ function* fetchProducts() {
     {
       id: '1',
       categories: ['benfica'],
-      name: 'camisola slb very long text 2020 bla bla',
-      availableSizes: [],
+      name: 'Camisola slb very long text 2020 bla bla',
+      availableSizes: [
+        { size: 'S', price: 1 },
+        { size: 'M', price: 2 },
+        { size: 'L', price: 3 },
+        { size: 'XL', price: 4 },
+      ],
+      defaultPrice: 35,
+      isCustomizable: true,
       images: [{
         name: 'img1',
         url: 'https://camisola10.com/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-30-at-17.10.27.jpeg',

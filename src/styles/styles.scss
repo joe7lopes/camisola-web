@@ -3,41 +3,15 @@
 body {
   background: $background-color;
   font-family: Montserrat, -apple-system, Helvetica Neue, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: #40354e;
 }
 
-h4 {
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-
-.c-action-button {
-  background-color: $action-color;
-  border-color: $action-color;
-  &:hover {
-    background-color: $action-hover-color;
-    border-color: $action-color;
-    
-  }
-}
-
-.c-text-bold {
-  font-weight: 600;
-}
-
-.c-category-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.c-category-product {
-  padding: 0.5rem;
-}
+// LAYOUT
 
 .c-body {
-  margin: 1rem 1rem 0 1rem;
+  padding: 0.5rem;
 }
 
 .c-flex {
@@ -50,19 +24,54 @@ h4 {
   justify-content: center;
 }
 
-//Quantity Selector
-
-.c-quantity_selector {
-  display: flex;
-  border: 1px solid #ccc;
+.c-full-width {
+  width: 100%
 }
 
-.c-quantity-button {
-  width: 100%;
+.c-no-padding {
+  padding: 0 !important
+}
+
+//TEXT
+h4 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.c-text-bold {
+  font-weight: 600;
+}
+
+.c-label {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .c-text-mutted {
   color: #ccc;
+}
+
+.c-text-sm {
+  font-size: 0.8rem;
+}
+
+.c-action-button {
+  background-color: $action-color;
+  border-color: $action-color;
+  &:hover {
+    background-color: $action-hover-color;
+    border-color: $action-color;
+    
+  }
+}
+
+.c-category-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-category-product {
+  padding: 0.5rem;
 }
 
 //IMAGES

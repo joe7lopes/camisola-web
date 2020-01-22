@@ -6,10 +6,16 @@ export default function ActionButton({
   className,
   type = 'button',
   onClick,
+  disabled,
 }) {
   const buttonClass = `${className}`;
   return (
-    <Button className={buttonClass} type={type} onClick={onClick}>
+    <Button
+      className={buttonClass}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </Button>
   );

@@ -4,38 +4,40 @@ import { Row, Col } from 'react-bootstrap';
 import CustomizationSection from './CustomizationSection';
 
 function ProductDetail({ product }) {
+  const { images } = product;
+  // TODO move to selectors
+  const thumbnails = images.filter((img) => !img.isDefault);
+  const defaultImg = images.find((img) => img.isDefault);
   return (
-    <Row >
+    <Row className="c-body">
       <Col xs={12} md={2} className="d-none d-sm-block">
-        <img
+        {thumbnails.map((t) => (
+          <img key={t.name}
           className="c-thumbnail m-b-sm"
-          alt="img"
-          src="https://camisola10.com/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-30-at-17.10.27.jpeg"
+          alt={t.name}
+          src={t.url}
         />
+        ))}
+
+      </Col>
+      <Col xs={12} md={5} className="p-l-xs p-r-xs">
         <img
           className="c-thumbnail"
-          alt="img"
-          src="https://camisola10.com/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-30-at-17.10.27.jpeg"
-        />
-      </Col>
-      <Col xs={12} md={5}>
-      <img
-          className="c-thumbnail"
-          alt="img"
-          src="https://camisola10.com/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-30-at-17.10.27.jpeg"
+          alt={defaultImg.name}
+          src={defaultImg.url}
         />
       </Col>
 
-      <Col xs={12} md={5}>
-
-        <CustomizationSection />
+      <Col xs={12} md={5} className="c-no-padding">
+        <CustomizationSection product={product} />
       </Col>
     </Row>
   );
 }
 
-const mapStateToProps = (state) => ({
-  product: { name: 'silly' },
+const mapStateToProps = (state, props) => ({
+  product: state.products.find((p) => p.id === props.match.params.id),
+
 });
 
 export default connect(mapStateToProps, null)(ProductDetail);

@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Form } from 'react-bootstrap';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import ActionButton from '../ui/ActionButton';
+import { IProduct } from '../../interfaces';
 
-function CustomizationSection({ product }) {
+interface ICustomizationSectionProps {
+  product: IProduct
+}
+
+function CustomizationSection({ product }: ICustomizationSectionProps) {
   const availableSizes = product.availableSizes.map((as) => as.size);
   const [price, setPrice] = useState(product.defaultPrice);
-  const [selectedSize, setSelectedSize] = useState();
-  const [stampingName, setStampingName] = useState();
+  const [selectedSize, setSelectedSize] = useState<string>();
+  const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const extraCost = 12;
 
-  const handleOnSizeChanged = (size) => {
+  const handleOnSizeChanged = (size: string) => {
     setSelectedSize(size);
   };
 
-  const handleOnNameChanged = (e) => {
+  const handleOnNameChanged = (e: any) => {
     setStampingName(e.target.value);
   };
 
-  const handleOnNumberChanged = (e) => {
+  const handleOnNumberChanged = (e: any) => {
     setStampingNumber(e.target.value);
   };
 
@@ -41,13 +45,12 @@ function CustomizationSection({ product }) {
   }, [selectedSize, stampingName, stampingNumber, product.defaultPrice, product.availableSizes]);
 
   useEffect(() => {
-    console.log('executed');
     if (selectedSize) {
       setAddButtonDisabled(false);
     }
   }, [selectedSize]);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault();
 
     const formData = {
@@ -75,15 +78,15 @@ function CustomizationSection({ product }) {
         </Form.Group>
         {product.isCustomizable && (
           <Stamping
-            name={stampingName}
-            number={stampingNumber}
             onNameChange={handleOnNameChanged}
             onNumberChange={handleOnNumberChanged}
           />
         )}
-        <ActionButton type="submit" disabled={addButtonDisabled}>
+        <Button
+          type="submit"
+          disabled={addButtonDisabled}>
           Add to cart
-        </ActionButton>
+        </Button>
       </Form>
     </div>
   );

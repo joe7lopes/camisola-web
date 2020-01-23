@@ -6,7 +6,7 @@ interface IStamptingProps {
   onNumberChange: React.FormEventHandler<HTMLInputElement>
 }
 
-const Stamping = ({ onNameChange, onNumberChange }: IStamptingProps) => (
+export const Stamping = ({ onNameChange, onNumberChange }: IStamptingProps) => (
   <React.Fragment>
     <div className="m-b-sm c-text-sm">(opcional estampagem +12€)</div>
     <Form.Group>

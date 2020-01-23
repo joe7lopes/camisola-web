@@ -6,7 +6,7 @@ import './styles';
 import store from './store';
 import 'typeface-montserrat';
 
-const App = () => (
+export const App = () => (
     <Provider store={store}>
       <Routes/>
     </Provider>

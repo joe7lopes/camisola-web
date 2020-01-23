@@ -12,13 +12,13 @@ function ProductDetail({ product }) {
     <Row className="c-body">
       <Col xs={12} md={2} className="d-none d-sm-block">
         {thumbnails.map((t) => (
-          <img key={t.name}
-          className="c-thumbnail m-b-sm"
-          alt={t.name}
-          src={t.url}
-        />
+          <img
+            key={t.name}
+            className="c-thumbnail m-b-sm"
+            alt={t.name}
+            src={t.url}
+          />
         ))}
-
       </Col>
       <Col xs={12} md={5} className="p-l-xs p-r-xs">
         <img
@@ -29,7 +29,13 @@ function ProductDetail({ product }) {
       </Col>
 
       <Col xs={12} md={5} className="c-no-padding">
-        <CustomizationSection product={product} />
+        <CustomizationSection
+          availableSizes={product.availableSizes}
+          defaultPrice={product.defaultPrice}
+          id={product.id}
+          name={product.name}
+          isCustomizable={product.isCustomizable}
+        />
       </Col>
     </Row>
   );
@@ -37,7 +43,6 @@ function ProductDetail({ product }) {
 
 const mapStateToProps = (state, props) => ({
   product: state.products.find((p) => p.id === props.match.params.id),
-
 });
 
 export default connect(mapStateToProps, null)(ProductDetail);

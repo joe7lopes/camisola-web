@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import { IProduct } from '../../interfaces';
+import { IProduct, IAvailableSizes } from '../../interfaces';
 
-interface IProps {
-  product: IProduct
-}
-
-function CustomizationSection({ product }: IProps) {
-  const availableSizes = product.availableSizes.map((as) => as.size);
-  const [price, setPrice] = useState(product.defaultPrice);
+export function CustomizationSection({ availableSizes, defaultPrice, id, name, isCustomizable }: IProduct) {
+  const sizes = availableSizes.map((as) => as.size);
+  const [price, setPrice] = useState(defaultPrice);
   const [selectedSize, setSelectedSize] = useState<string>();
   const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
@@ -31,10 +27,10 @@ function CustomizationSection({ product }: IProps) {
 
   useEffect(() => {
     const getCurrentSelectedSizePrice = () => {
-      const selectedSizePrice = product.availableSizes.find(
+      const selectedSizePrice = availableSizes.find(
         (av) => av.size === selectedSize,
       );
-      return selectedSizePrice ? selectedSizePrice.price : product.defaultPrice;
+      return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
     };
 
     const getExtras = () => (stampingName || stampingNumber ? extraCost : 0);
@@ -42,7 +38,7 @@ function CustomizationSection({ product }: IProps) {
     const extras = getExtras();
     const finalPrice = selectedSizePrice + extras;
     setPrice(finalPrice);
-  }, [selectedSize, stampingName, stampingNumber, product.defaultPrice, product.availableSizes]);
+  }, [selectedSize, stampingName, stampingNumber, defaultPrice, availableSizes]);
 
   useEffect(() => {
     if (selectedSize) {
@@ -54,7 +50,7 @@ function CustomizationSection({ product }: IProps) {
     e.preventDefault();
 
     const formData = {
-      productId: product.id,
+      productId: id,
       stampingName,
       stampingNumber,
       selectedSize,
@@ -64,19 +60,19 @@ function CustomizationSection({ product }: IProps) {
 
   return (
     <div className="c-customization-container">
-      <h4>{product.name}</h4>
-      <h4 className="m-t-lg m-b-md">{`€ ${price}`}</h4>
+      <h4>{name}</h4>
+      <h4 className="m-t-lg m-b-md" data-test="price">{`€ ${price}`}</h4>
       <Form onSubmit={handleFormSubmit}>
         <Form.Group>
           <Form.Label className="c-label">Tamanho</Form.Label>
           <div>
             <ProductSizeSelector
-              availableSizes={availableSizes}
+              availableSizes={sizes}
               onSizeChanged={handleOnSizeChanged}
             />
           </div>
         </Form.Group>
-        {product.isCustomizable && (
+        {isCustomizable && (
           <Stamping
             onNameChange={handleOnNameChanged}
             onNumberChange={handleOnNumberChanged}

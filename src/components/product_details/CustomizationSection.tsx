@@ -4,11 +4,11 @@ import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
 import { IProduct } from '../../interfaces';
 
-interface ICustomizationSectionProps {
+interface IProps {
   product: IProduct
 }
 
-function CustomizationSection({ product }: ICustomizationSectionProps) {
+function CustomizationSection({ product }: IProps) {
   const availableSizes = product.availableSizes.map((as) => as.size);
   const [price, setPrice] = useState(product.defaultPrice);
   const [selectedSize, setSelectedSize] = useState<string>();

@@ -1,17 +1,34 @@
-import { ADD_TO_CART_FULFILLED } from '../actions/actionTypes';
+import { ADD_TO_CART_FULFILLED, REMOVE_CART_ITEM } from '../actions/actionTypes';
 import { ICartAction } from '../actions';
-import { ICart } from '../types';
+import { ICart, ICartItem } from '../types';
 
 const INITIAL_STATE: ICart = {
   items: [],
+  total: 0
 };
 
 const cart = (state = INITIAL_STATE, { type, payload }: ICartAction) => {
   switch (type) {
-    case ADD_TO_CART_FULFILLED:
-      return { ...state, items:[...state.items, payload] };
+    case ADD_TO_CART_FULFILLED:{
+      const items = [...state.items, payload];
+      const total = calculateTotal(items);
+      return { ...state, items, total };
+    }
+    case REMOVE_CART_ITEM:{
+      const items = state.items.filter(i=> i !== payload);
+      const total = calculateTotal(items)
+      return {...state, items, total}
+    }
     default:
       return state;
   }
 };
+
+const calculateTotal = (items: ICartItem[]) => {
+  return items.reduce((acc: number, b: ICartItem) => {
+    return acc + b.price
+  }, 0);
+}
+
 export default cart;
+

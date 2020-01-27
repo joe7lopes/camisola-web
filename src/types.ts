@@ -30,16 +30,17 @@ export interface IProduct {
 
 
 //CART
-export interface ICartProduct {
+export interface ICartItem {
     product: IProduct,
     selectedSize: IAvailableSize,
     stampingName?: string,
     stampingNumber?: number,
-    price?: number
+    price: number
 }
 
 export interface ICart {
-    items: ICartProduct[]
+    items: ICartItem[]
+    total: number
 }
 
 

@@ -6,11 +6,12 @@ import { useHistory } from "react-router-dom";
 import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import { IProduct, ICartProduct, IRootState } from '../../types';
+import { IProduct, ICartItem } from '../../types';
+import path from '../../routes/path';
 
 interface IProps {
   product: IProduct,
-  addToCart: (item: ICartProduct) => void
+  addToCart: (item: ICartItem) => void
 }
 
 export function CustomizationSection({ product, addToCart, ...props }: IProps) {
@@ -21,6 +22,7 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
   const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
+  const history = useHistory();
   
   const extraCost = 12;
 
@@ -51,11 +53,11 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
       product,
       selectedSize: availableSizes.filter(s => s.size === selectedSize)[0],
       stampingName,
-      stampingNumber
+      stampingNumber,
+      price
     });
 
-
-
+    history.push(path.CART)
   };
 
   return (
@@ -88,13 +90,7 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
   );
 }
 
-const mapStateToProps = (state: IRootState, props: any) => {
-  console.log("props", props.match);
-  return {
-
-  }
-}
 const actionCreators = { addToCart: addToCartAction };
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomizationSection);
+export default connect(null, mapDispatchToProps)(CustomizationSection);

@@ -2,7 +2,6 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import logger from 'redux-logger';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 import { FETCH_SETTINGS, FETCH_PRODUCTS } from '../actions/actionTypes';
@@ -11,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   compose(
-    applyMiddleware(sagaMiddleware, logger),
+    applyMiddleware(sagaMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );

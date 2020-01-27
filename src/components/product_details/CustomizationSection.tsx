@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { bindActionCreators, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import { IProduct, IAvailableSizes } from '../../interfaces';
+import { IProduct, ICartProduct } from '../../types';
 
-export function CustomizationSection({ availableSizes, defaultPrice, id, name, isCustomizable }: IProduct) {
+interface IProps {
+  product: IProduct,
+  addToCart: (item: ICartProduct) => void
+}
+
+export function CustomizationSection({ product, addToCart }: IProps) {
+  const { availableSizes, defaultPrice, name, isCustomizable } = product;
   const sizes = availableSizes.map((as) => as.size);
   const [price, setPrice] = useState(defaultPrice);
   const [selectedSize, setSelectedSize] = useState<string>();
@@ -12,18 +21,6 @@ export function CustomizationSection({ availableSizes, defaultPrice, id, name, i
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const extraCost = 12;
-
-  const handleOnSizeChanged = (size: string) => {
-    setSelectedSize(size);
-  };
-
-  const handleOnNameChanged = (e: any) => {
-    setStampingName(e.target.value);
-  };
-
-  const handleOnNumberChanged = (e: any) => {
-    setStampingNumber(e.target.value);
-  };
 
   useEffect(() => {
     const getCurrentSelectedSizePrice = () => {
@@ -49,13 +46,13 @@ export function CustomizationSection({ availableSizes, defaultPrice, id, name, i
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
 
-    const formData = {
-      productId: id,
+    addToCart({
+      product,
+      selectedSize: availableSizes.filter(s => s.size === selectedSize)[0],
       stampingName,
-      stampingNumber,
-      selectedSize,
-    };
-    console.log('form submitted', formData);
+      stampingNumber
+    });
+
   };
 
   return (
@@ -68,14 +65,14 @@ export function CustomizationSection({ availableSizes, defaultPrice, id, name, i
           <div>
             <ProductSizeSelector
               availableSizes={sizes}
-              onSizeChanged={handleOnSizeChanged}
+              onSizeChanged={(size: string) => setSelectedSize(size)}
             />
           </div>
         </Form.Group>
         {isCustomizable && (
           <Stamping
-            onNameChange={handleOnNameChanged}
-            onNumberChange={handleOnNumberChanged}
+            onNameChange={(e: any) => setStampingName(e.target.value)}
+            onNumberChange={(e: any) => setStampingNumber(e.target.value)}
           />
         )}
         <Button
@@ -88,4 +85,7 @@ export function CustomizationSection({ availableSizes, defaultPrice, id, name, i
   );
 }
 
-export default CustomizationSection;
+const actionCreators = { addToCart: addToCartAction };
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
+
+export default connect(null, mapDispatchToProps)(CustomizationSection);

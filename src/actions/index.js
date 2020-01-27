@@ -1,11 +1,5 @@
-export {
-  fetchSettings,
-  fetchSettingsFulfilled,
-  saveSizes,
-  saveSizesFulfilled,
-} from './settings';
-
-export { savePersonalData, savePersonalDataFulfilled } from './account';
-export { fetchProducts, fetchProductsFulfilled } from './products';
-
 export * from './actionTypes';
+export * from './settings';
+export * from './account';
+export * from './products';
+export * from './cart';

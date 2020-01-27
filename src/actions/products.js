@@ -1,5 +1,6 @@
 import {
-  FETCH_PRODUCTS, FETCH_PRODUCTS_FULFILLED,
+  FETCH_PRODUCTS,
+  FETCH_PRODUCTS_FULFILLED,
 } from './actionTypes';
 
 export const fetchProducts = () => ({

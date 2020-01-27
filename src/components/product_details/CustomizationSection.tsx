@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import { IProduct, ICartProduct } from '../../types';
+import { IProduct, ICartProduct, IRootState } from '../../types';
 
 interface IProps {
   product: IProduct,
   addToCart: (item: ICartProduct) => void
 }
 
-export function CustomizationSection({ product, addToCart }: IProps) {
+export function CustomizationSection({ product, addToCart, ...props }: IProps) {
   const { availableSizes, defaultPrice, name, isCustomizable } = product;
   const sizes = availableSizes.map((as) => as.size);
   const [price, setPrice] = useState(defaultPrice);
@@ -45,13 +45,14 @@ export function CustomizationSection({ product, addToCart }: IProps) {
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-
     addToCart({
       product,
       selectedSize: availableSizes.filter(s => s.size === selectedSize)[0],
       stampingName,
       stampingNumber
     });
+
+
 
   };
 
@@ -85,7 +86,13 @@ export function CustomizationSection({ product, addToCart }: IProps) {
   );
 }
 
+const mapStateToProps = (state: IRootState) => {
+  console.log(state);
+  return {
+
+  }
+}
 const actionCreators = { addToCart: addToCartAction };
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(null, mapDispatchToProps)(CustomizationSection);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomizationSection);

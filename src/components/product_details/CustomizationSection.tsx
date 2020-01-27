@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
@@ -20,6 +21,7 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
   const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
+  
   const extraCost = 12;
 
   useEffect(() => {
@@ -86,8 +88,8 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
   );
 }
 
-const mapStateToProps = (state: IRootState) => {
-  console.log(state);
+const mapStateToProps = (state: IRootState, props: any) => {
+  console.log("props", props.match);
   return {
 
   }

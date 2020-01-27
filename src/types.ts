@@ -8,7 +8,8 @@ export interface IAvailableSize {
 }
 
 export interface ISettings {
-    sizes: IAvailableSize
+    sizes: string[],
+    stampingExtraCost: number
 }
 
 export interface IImage {

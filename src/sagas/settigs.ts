@@ -10,21 +10,25 @@ import {
 import {
   fetchSettingsFulfilled,
   saveSizesFulfilled,
+  ISaveSizesAction,
 } from '../actions';
+
+import {ISettings} from '../types';
 
 /*
  * +++Executers+++
  */
 
 function* fetchSettings() {
-  const settings = {
+  const settings: ISettings = {
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    stampingExtraCost: 12
   };
   yield put(fetchSettingsFulfilled(settings));
 }
 
-function* saveNewSizes(sizes) {
-  yield put(saveSizesFulfilled(sizes));
+function* saveNewSizes(sizes: ISaveSizesAction) {
+  yield put(saveSizesFulfilled(sizes.payload));
 }
 
 /*

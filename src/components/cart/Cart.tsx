@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Row, Form } from 'react-bootstrap';
 import { Dispatch, bindActionCreators } from 'redux';
-import { IRootState, ICartItem } from '../types';
-import { removeCartItem } from '../actions';
+import { IRootState, ICartItem } from '../../types';
+import { removeCartItem } from '../../actions';
+import ShipmentAddress from './ShipmentAddress';
 
 interface IProps {
   items: ICartItem[]
@@ -13,7 +14,6 @@ interface IProps {
 }
 
 function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
-
 
   const renderCartItems = () => items.map((item, i) => (
     <tr key={i}>
@@ -47,7 +47,7 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
           <tbody>
             <tr>
               <th>Sub-total</th>
-              <td>{subTotal}</td>
+              <td>{subTotal} €</td>
             </tr>
             <tr>
               <th>Envio</th>
@@ -55,12 +55,20 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
             </tr>
             <tr>
               <th>Total da compra</th>
-              <td>{`${subTotal + shipmentCost} €`}</td>
+              <td>{subTotal + shipmentCost} €</td>
             </tr>
           </tbody>
         </Table>
       </div>
-      <Button>Finalizar compra</Button>
+      <Row>
+        <h3>preencha automaticamente com o seu?</h3><Button>Login</Button>
+      </Row>
+      
+
+      <Form>
+      <ShipmentAddress/>
+        <Button>Finalizar compra</Button>
+      </Form>
     </div>
   );
 }

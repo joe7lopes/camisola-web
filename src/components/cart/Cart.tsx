@@ -66,7 +66,7 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
         </div>
           <ShipmentAddress />
           <Button 
-          className="m-t-md m-b-lg m-l-xs" 
+          className="m-t-md m-b-lg m-l-lg" 
           size="lg" onClick={submit}>Finalizar compra</Button>
       </div>
     </>

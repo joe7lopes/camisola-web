@@ -19,7 +19,6 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
     <tr key={i}>
       <td>Thumbnail + product description</td>
       <td>{`${item.price} €`}</td>
-      <td>quantity selector</td>
       <td>{`${item.price} €`}</td>
       <td>
         <Button variant="danger" onClick={() => removeItem(item)}>X</Button>
@@ -27,22 +26,22 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
     </tr>
   ));
 
+  const submit = () => {
+  }
+
   return (
-    <div className="c-body">
-      <h3>Cart</h3>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Preço</th>
-            <th>Quantidate</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>{renderCartItems()}</tbody>
-      </Table>
-      <div>
+    <>
+      <div className="c-container">
+        <Table striped bordered hover responsive>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Preço</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>{renderCartItems()}</tbody>
+        </Table>
         <Table striped bordered hover>
           <tbody>
             <tr>
@@ -60,16 +59,17 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
           </tbody>
         </Table>
       </div>
-      <Row>
-        <h3>preencha automaticamente com o seu?</h3><Button>Login</Button>
-      </Row>
-      
-
-      <Form>
-      <ShipmentAddress/>
-        <Button>Finalizar compra</Button>
-      </Form>
-    </div>
+      <div>
+        <div className="c-flex m-l-lg m-t-lg m-b-md">
+          <h3>Preencha automaticamente com o seu</h3>
+          <Button className="m-l-md">Login</Button>
+        </div>
+          <ShipmentAddress />
+          <Button 
+          className="m-t-md m-b-lg m-l-xs" 
+          size="lg" onClick={submit}>Finalizar compra</Button>
+      </div>
+    </>
   );
 }
 

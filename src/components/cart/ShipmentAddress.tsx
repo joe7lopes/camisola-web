@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col, Card, InputGroup, FormControl, Form} from 'react-bootstrap';
 
 const ShipmentAddress = () => (
-    <Card>
+    <Card className="m-xs">
       <Card.Body>
         <Row>
           <Col sm={12} md={6}>

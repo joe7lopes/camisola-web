@@ -10,8 +10,12 @@ body {
 
 // LAYOUT
 
-.c-body {
-  padding: 0.5rem;
+.c-container {
+  margin: 0.25rem;
+  background-color: $container-color;
+  padding: 1rem;
+  border-radius: .25rem;
+  border: 1px solid rgba(0,0,0,.125);
 }
 
 .c-flex {

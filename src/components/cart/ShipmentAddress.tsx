@@ -10,7 +10,7 @@ const ShipmentAddress = () => (
               <InputGroup.Prepend>
                 <InputGroup.Text>Nome</InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl placeholder="Nome..." />
+              <FormControl name="firstName" placeholder="Nome..." />
             </InputGroup>
           </Col>
           <Col sm={12} md={6}>
@@ -18,7 +18,7 @@ const ShipmentAddress = () => (
               <InputGroup.Prepend>
                 <InputGroup.Text>Apelido</InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl placeholder="Apelido..." />
+              <FormControl name="lastName" placeholder="Apelido..." />
             </InputGroup>
           </Col>
         </Row>
@@ -27,22 +27,22 @@ const ShipmentAddress = () => (
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl placeholder="exemplo@mail.com" />
+          <FormControl name="email" placeholder="exemplo@mail.com" />
         </InputGroup>
 
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
-            <InputGroup.Text id="basic-addon1">Telefone</InputGroup.Text>
+            <InputGroup.Text id="basic-addon1">Telefone/ whatsApp</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl placeholder="91xxx" />
+          <FormControl name="phone" placeholder="91xxx" />
         </InputGroup>
 
-        <span className="c-text-mutted">(Morada de envio padrão)</span>
+        <span className="c-text-mutted">(Morada de envio)</span>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="label-address">Morada</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl placeholder="Morada" />
+          <FormControl name="address" placeholder="Morada" />
         </InputGroup>
         <Row>
           <Col sm={12} md={6}>
@@ -50,7 +50,7 @@ const ShipmentAddress = () => (
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">Localidade</InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl placeholder="Lisboa" />
+              <FormControl name="city" placeholder="Lisboa" />
             </InputGroup>
           </Col>
           <Col sm={12} md={6}>
@@ -60,11 +60,11 @@ const ShipmentAddress = () => (
                   Codigo Postal
                 </InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl placeholder="1000-004" />
+              <FormControl name="postCode" placeholder="1000-004" />
             </InputGroup>
           </Col>
         </Row>
-      <Form.Check type="checkbox" label="Crie conta, habilite-se a ganhar um vale de desconto." />
+      <Form.Check type="checkbox" name="createAccount" label="Crie conta, habilite-se a ganhar um vale de desconto." />
       </Card.Body>
     </Card>
 )

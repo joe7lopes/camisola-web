@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Button, Row, Form } from 'react-bootstrap';
+import { Table, Button, Form } from 'react-bootstrap';
 import { Dispatch, bindActionCreators } from 'redux';
 import { IRootState, ICartItem } from '../../types';
 import { removeCartItem } from '../../actions';
@@ -26,7 +26,12 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
     </tr>
   ));
 
-  const submit = () => {
+  const submit = (e: any) => {
+    e.preventDefault();
+    const values = [...e.currentTarget.elements]
+      .filter(e => e.name)
+      .map(e => ({ [e.name]: e.value }))
+    console.log(values);
   }
 
   return (
@@ -64,10 +69,12 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
           <h3>Preencha automaticamente com o seu</h3>
           <Button className="m-l-md">Login</Button>
         </div>
+        <Form onSubmit={submit}>
           <ShipmentAddress />
-          <Button 
-          className="m-t-md m-b-lg m-l-lg" 
-          size="lg" onClick={submit}>Finalizar compra</Button>
+          <Button
+            className="m-t-md m-b-lg m-l-lg"
+            size="lg" type="submit">Finalizar compra</Button>
+        </Form>
       </div>
     </>
   );

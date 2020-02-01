@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Table, Button, Form } from 'react-bootstrap';
 import { Dispatch, bindActionCreators } from 'redux';
@@ -14,6 +14,7 @@ interface IProps {
 }
 
 function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
+  const [validated, setValidated] = useState(false);
 
   const renderCartItems = () => items.map((item, i) => (
     <tr key={i}>
@@ -26,12 +27,17 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
     </tr>
   ));
 
-  const submit = (e: any) => {
-    e.preventDefault();
-    const values = [...e.currentTarget.elements]
-      .filter(e => e.name)
-      .map(e => ({ [e.name]: e.value }))
-    console.log(values);
+  const submit = (event: any) => {
+    const form = event.currentTarget;
+    event.preventDefault();
+    if (form.checkValidity() === true) {
+      const values = [...form.elements]
+        .filter(el => el.name)
+        .map(el => ({ [el.name]: el.value }))
+      console.log(values);
+    }
+
+    setValidated(true);
   }
 
   return (
@@ -69,7 +75,7 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
           <h3>Preencha automaticamente com o seu</h3>
           <Button className="m-l-md">Login</Button>
         </div>
-        <Form onSubmit={submit}>
+        <Form onSubmit={submit} noValidate validated={validated}>
           <ShipmentAddress />
           <Button
             className="m-t-md m-b-lg m-l-lg"

@@ -11,8 +11,8 @@ import {
   UserAccount,
   OrderSummary,
   Cart,
-  OrderReceived,
 } from '../components';
+
 import path from './path';
 
 const {
@@ -26,7 +26,6 @@ const {
   ADMIN,
   PRODUCT_DETAILS,
   ORDER_SUMMARY,
-  ORDER_RECEIVED,
   CART,
 } = path;
 
@@ -46,7 +45,6 @@ const Routes = () => (
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route path={ORDER_SUMMARY} component={OrderSummary} />
       <Route path={CART} component={Cart} />
-      <Route path={ORDER_RECEIVED} component={OrderReceived} />
       <Route>
         <h3>No match</h3>
       </Route>

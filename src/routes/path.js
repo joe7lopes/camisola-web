@@ -13,4 +13,5 @@ export default {
   PRODUCT_DETAILS: '/products/:id',
   ORDER_SUMMARY: '/orders/:id',
   CART: '/cart',
+  ORDER_RECEIVED: '/order-received',
 };

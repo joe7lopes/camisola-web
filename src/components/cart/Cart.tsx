@@ -77,6 +77,7 @@ function Cart({ items, subTotal, shipmentCost, removeItem }: IProps) {
         </div>
         <Form onSubmit={submit} noValidate validated={validated}>
           <ShipmentAddress />
+          <div>Notas adicionais</div>
           <Button
             className="m-t-md m-b-lg m-l-lg"
             size="lg" type="submit">Finalizar compra</Button>

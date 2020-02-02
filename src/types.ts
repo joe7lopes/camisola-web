@@ -51,6 +51,18 @@ export interface IRootState {
 
 //ORDER
 
+export interface IOrder {
+    orderId?: string,
+    items: ICartItem[],
+    shippingAddress: IShippingAddress
+}
+
+export enum OrderStatus {
+    RECEIVED,
+    PROCESSING,
+    SHIPPED,
+}
+
 export interface IShippingAddress {
     firstName: string,
     lastName: string,

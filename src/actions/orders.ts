@@ -1,11 +1,5 @@
-import { PLACE_ORDER, PLACE_ORDER_FULFILLED, PLACE_ORDER_REJECTED } from './actionTypes';
-import { ICartItem , IShippingAddress} from '../types';
-
-interface IOrder {
-    orderId?: string,
-    items: ICartItem,
-    shippingAddress: IShippingAddress
-}
+import { PLACE_ORDER, PLACE_ORDER_FULFILLED, PLACE_ORDER_REJECTED, PLACE_ORDER_PENDING } from './actionTypes';
+import { IOrder} from '../types';
 
 export interface IPlaceOrderAction {
   type: string,
@@ -15,6 +9,10 @@ export interface IPlaceOrderAction {
 export const placeOrder = (order: IOrder) => ({
   type: PLACE_ORDER,
   payload: order,
+});
+
+export const placeOrderPending = () => ({
+  type: PLACE_ORDER_PENDING,
 });
 
 export const placeOrderFulfilled = (order: IOrder) => ({

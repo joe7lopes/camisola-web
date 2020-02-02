@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ShipmentAddress from './ShipmentAddress';
 import CartItems from './CartItems';
+import { bindActionCreators, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { placeOrder as placeOrderAction } from '../../actions';
+import { IOrder, IShippingAddress, ICartItem, IRootState } from '../../types';
 
-function Cart() {
+interface IProps {
+  items: ICartItem[],
+  placeOrder: (order: IOrder) => void
+}
+
+function Cart({ placeOrder, items }: IProps) {
   const [validated, setValidated] = useState(false);
 
   const submit = (event: any) => {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity() === true) {
-      const values = [...form.elements]
-        .filter(el => el.name)
-        .map(el => ({ [el.name]: el.value }))
 
-        
-      console.log(values);
+      const shippingAddress: any = [...form.elements]
+        .filter(el => el.name)
+        .reduce((acc, curr) => ({ ...acc, [curr.name]: curr.value }), {})
+
+      const order = { items, shippingAddress }
+      placeOrder(order)
     }
 
     setValidated(true);
@@ -43,5 +53,10 @@ function Cart() {
   );
 }
 
+const mapStateToProps = ({ cart }: IRootState) => ({
+  items: cart.items
+});
 
-export default Cart;
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ placeOrder: placeOrderAction }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

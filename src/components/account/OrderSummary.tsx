@@ -1,7 +1,13 @@
 import React from 'react';
 
+
+
 function OrderSummary() {
-  return (<div>OrderSummary</div>);
+  return (
+    <div>
+      <h1>OrderSummary</h1>
+    </div>
+  );
 }
 
 export default OrderSummary;

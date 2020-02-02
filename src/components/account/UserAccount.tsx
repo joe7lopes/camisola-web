@@ -21,7 +21,17 @@ export function UserAccount() {
       <Row className="m-t-lg">
         <Col sm={4} className="m-b-lg">
           <ProfileImage />
-          <ListGroup className="m-t-md">{renderTabs(activeTab, setActiveTab)}</ListGroup>
+          <ListGroup className="m-t-md">
+            {Object.values(Tab).map((tab) => (
+                <ListGroup.Item
+                  key={tab}
+                  action
+                  active={activeTab === tab}
+                  onClick={() => setActiveTab(tab)}>
+                  {tab}
+                </ListGroup.Item>
+              ))}
+          </ListGroup>
         </Col>
         <Col>{renderComponent(activeTab)}</Col>
       </Row>
@@ -29,17 +39,7 @@ export function UserAccount() {
   );
 }
 
-const renderTabs = (activeTab: Tab, setActiveTab: any) => Object.values(Tab).map((tab) => (
-  <ListGroup.Item
-    key={tab}
-    action
-    active={activeTab === tab}
-    onClick={() => setActiveTab(tab)}>
-    {tab}
-  </ListGroup.Item>
-));
-
-const renderComponent = (activeTab:Tab) => {
+const renderComponent = (activeTab: Tab) => {
   debugger;
   switch (activeTab) {
     case Tab.ORDERS:

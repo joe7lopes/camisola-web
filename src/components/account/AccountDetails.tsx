@@ -6,15 +6,10 @@ import { savePersonalData as savePersonalDataAction } from '../../actions';
 import PersonalDetails from './PersonalDetails';
 import ChangePassword from './ChangePassword';
 
-interface IProps {
-  savePersonalData: () => void
-}
-
-const AccountDetails = ({ savePersonalData }: IProps) => {
+const AccountDetails = () => {
 
   const handleOnSave = () => {
 
-    // savePersonalData(personalDetails);
   };
 
   return (

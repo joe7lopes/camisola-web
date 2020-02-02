@@ -40,7 +40,6 @@ export function UserAccount() {
 }
 
 const renderComponent = (activeTab: Tab) => {
-  debugger;
   switch (activeTab) {
     case Tab.ORDERS:
       return <OrderHistory />;

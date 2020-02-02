@@ -1,14 +1,14 @@
 import {
   SAVE_PERSONAL_DATA, SAVE_PERSONAL_DATA_FULFILLED,
 } from './actionTypes';
+import { IUserData } from '../types';
 
-export const savePersonalData = (personalData) => ({
+export const savePersonalData = (personalData:IUserData) => ({
   type: SAVE_PERSONAL_DATA,
   payload: personalData,
 });
 
-
-export const savePersonalDataFulfilled = (savedPersonalData) => ({
+//todo type
+export const savePersonalDataFulfilled = () => ({
   type: SAVE_PERSONAL_DATA_FULFILLED,
-  payload: savedPersonalData,
 });

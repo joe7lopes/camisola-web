@@ -1,9 +1,13 @@
 import { SAVE_PERSONAL_DATA_FULFILLED } from '../actions/actionTypes';
 
-const account = (state = {}, { type, payload }) => {
+interface IProps {
+  type: string,
+  payload: any
+}
+
+const account = (state = {}, { type, payload }: IProps) => {
   switch (type) {
     case SAVE_PERSONAL_DATA_FULFILLED:
-      debugger;
       return { ...state, personalDetails: payload };
 
     default:

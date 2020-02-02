@@ -6,13 +6,14 @@ import ProfileImage from './ProfileImage';
 import OrderHistory from './OrderHistory';
 import AccountDetails from './AccountDetails';
 
-const ENCOMENDAS = 'Encomendas';
-const ACCOUNT_DETAILS = 'Detalhes da conta';
-const LOGOUT = 'Sair';
-const tabs = [ENCOMENDAS, ACCOUNT_DETAILS, LOGOUT];
+enum Tab {
+  ORDERS = 'Encomendas',
+  ACCOUNT_DETAILS = 'Detalhes da conta',
+  LOGOUT = 'Sair'
+}
 
 export function UserAccount() {
-  const [activeTab, setActiveTab] = useState(tabs[1]);
+  const [activeTab, setActiveTab] = useState(Tab.ORDERS);
 
   return (
     <div className="c-body">
@@ -28,7 +29,7 @@ export function UserAccount() {
   );
 }
 
-const renderTabs = (activeTab, setActiveTab) => tabs.map((tab) => (
+const renderTabs = (activeTab: Tab, setActiveTab: any) => Object.values(Tab).map((tab) => (
   <ListGroup.Item
     key={tab}
     action
@@ -38,13 +39,14 @@ const renderTabs = (activeTab, setActiveTab) => tabs.map((tab) => (
   </ListGroup.Item>
 ));
 
-const renderComponent = (activeTab) => {
+const renderComponent = (activeTab:Tab) => {
+  debugger;
   switch (activeTab) {
-    case ENCOMENDAS:
+    case Tab.ORDERS:
       return <OrderHistory />;
-    case ACCOUNT_DETAILS:
+    case Tab.ACCOUNT_DETAILS:
       return <AccountDetails />;
-    case LOGOUT:
+    case Tab.LOGOUT:
       return <Redirect to={path.HOME} />;
     default:
       return null;

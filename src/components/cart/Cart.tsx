@@ -13,6 +13,8 @@ function Cart() {
       const values = [...form.elements]
         .filter(el => el.name)
         .map(el => ({ [el.name]: el.value }))
+
+        
       console.log(values);
     }
 

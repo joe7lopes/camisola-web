@@ -43,9 +43,20 @@ export interface ICart {
     total: number
 }
 
-
 export interface IRootState {
     account: IAccount,
     products:IProduct[],
     cart: ICart,
+}
+
+//ORDER
+
+export interface IShippingAddress {
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    address: string,
+    city: string,
+    postCode: string
 }

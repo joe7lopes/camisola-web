@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ShipmentAddress from './ShipmentAddress';
 import CartItems from './CartItems';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import CartHOC from './CartHOC';
 import { placeOrder as placeOrderAction } from '../../actions';
-import { IOrder, IShippingAddress, ICartItem, IRootState } from '../../types';
+import { IOrder, ICartItem, IRootState } from '../../types';
 
-interface IProps {
+export interface IProps {
   items: ICartItem[],
-  placeOrder: (order: IOrder) => void
+  placeOrder: (order: IOrder) => void,
+  showThankYouPage: boolean,
 }
 
-function Cart({ placeOrder, items }: IProps) {
+const Cart = ({ placeOrder, items, showThankYouPage }: IProps) => {
   const [validated, setValidated] = useState(false);
 
   const submit = (event: any) => {
@@ -29,6 +31,10 @@ function Cart({ placeOrder, items }: IProps) {
     }
 
     setValidated(true);
+  }
+
+  if(showThankYouPage){
+    return <div>thank you</div>
   }
 
   return (
@@ -53,10 +59,12 @@ function Cart({ placeOrder, items }: IProps) {
   );
 }
 
-const mapStateToProps = ({ cart }: IRootState) => ({
-  items: cart.items
+const mapStateToProps = ({ cart, ui }: IRootState) => ({
+  items: cart.items,
+  showThankYouPage: ui.orderReceived.visible
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ placeOrder: placeOrderAction }, dispatch)
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ placeOrder: placeOrderAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+// export default CartHOC(Cart);

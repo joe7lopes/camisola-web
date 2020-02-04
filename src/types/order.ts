@@ -3,7 +3,8 @@ import {ICartItem} from './types';
 export interface IOrder {
     orderId?: string,
     items: ICartItem[],
-    shippingAddress: IShippingAddress
+    shippingAddress: IShippingAddress,
+    createdAt?: Date
 }
 
 export enum OrderStatus {

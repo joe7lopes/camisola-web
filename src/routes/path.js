@@ -11,7 +11,7 @@ export default {
   CREATE_PRODUCT: '/admin/new-product',
   SETTINGS: '/admin/settings',
   PRODUCT_DETAILS: '/products/:id',
-  ORDER_SUMMARY: '/orders/:id',
+  ORDER_SUMMARY: (orderId) => `/orders/${orderId}`,
   CART: '/cart',
   ORDER_RECEIVED: '/order-received',
 };

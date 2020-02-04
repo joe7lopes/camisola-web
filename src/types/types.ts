@@ -49,4 +49,12 @@ export interface IRootState {
     account: IAccount,
     products:IProduct[],
     cart: ICart,
+    ui: IUIState
+}
+
+export interface IUIState {
+    orderReceived: {
+        visible: boolean,
+        order: IOrder
+    }
 }

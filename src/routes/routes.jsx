@@ -43,7 +43,7 @@ const Routes = () => (
       <Route path={SETTINGS} component={Settings} />
       <Route path={ADMIN} component={AdminPannel} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
-      <Route path={ORDER_SUMMARY} component={OrderSummary} />
+      <Route path={ORDER_SUMMARY(':id')} component={OrderSummary} />
       <Route path={CART} component={Cart} />
       <Route>
         <h3>No match</h3>

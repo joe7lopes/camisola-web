@@ -2,16 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import path from '../../routes/path';
+import { IRootState, IOrder } from '../../types';
+import { connect } from 'react-redux';
 
 const headers = ['# Encomenda', 'Data', 'Estado', 'Total', ''];
 
-function OrderHistory() {
+interface IProps {
+  orders: IOrder[]
+}
+
+const OrderHistory = ({orders}: IProps) => {
   return (
     <div>
       <Table responsive hover>
         <thead>
           <tr>
-           {renderTableHeaders()}
+            {headers.map((h) => <th key={h}>{h}</th>)}
           </tr>
         </thead>
         <tbody>
@@ -21,7 +27,7 @@ function OrderHistory() {
             <td>Em processamento</td>
             <td>40</td>
             <td>
-                <Link to={path.ORDER_SUMMARY}>Detalhes</Link>
+              <Link to={path.ORDER_SUMMARY}>Detalhes</Link>
             </td>
           </tr>
         </tbody>
@@ -30,6 +36,8 @@ function OrderHistory() {
   );
 }
 
-const renderTableHeaders = () => headers.map((h) => <th key={h}>{h}</th>);
+const mapStateToProps = ({ account }: IRootState) => ({
+  orders: account.orders
+});
 
-export default OrderHistory;
+export default connect(mapStateToProps)(OrderHistory);

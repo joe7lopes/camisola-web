@@ -8,7 +8,7 @@ import {
   AdminPannel,
   Settings,
   NewProduct,
-  UserAccount,
+  Account,
   OrderSummary,
   Cart,
 } from '../components';
@@ -38,7 +38,7 @@ const Routes = () => (
       <Route path={BENFICA} component={ClubPage} />
       <Route path={PORTO} component={ClubPage} />
       <Route path={SPORTING} component={ClubPage} />
-      <Route path={ACCOUNT} component={UserAccount} />
+      <Route path={ACCOUNT} component={Account} />
       <Route path={CREATE_PRODUCT} component={NewProduct} />
       <Route path={SETTINGS} component={Settings} />
       <Route path={ADMIN} component={AdminPannel} />

@@ -12,7 +12,7 @@ enum Tab {
   LOGOUT = 'Sair'
 }
 
-export function UserAccount() {
+const Account = () => {
   const [activeTab, setActiveTab] = useState(Tab.ORDERS);
 
   return (
@@ -52,4 +52,4 @@ const renderComponent = (activeTab: Tab) => {
   }
 };
 
-export default UserAccount;
+export default Account;

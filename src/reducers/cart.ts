@@ -1,4 +1,4 @@
-import { ADD_TO_CART_FULFILLED, REMOVE_CART_ITEM } from '../actions/actionTypes';
+import { ADD_TO_CART_FULFILLED, REMOVE_CART_ITEM, RESET_CART } from '../actions/actionTypes';
 import { ICartAction } from '../actions';
 import { ICart, ICartItem } from '../types';
 
@@ -9,16 +9,19 @@ const INITIAL_STATE: ICart = {
 
 const cart = (state = INITIAL_STATE, { type, payload }: ICartAction) => {
   switch (type) {
-    case ADD_TO_CART_FULFILLED:{
+    case ADD_TO_CART_FULFILLED: {
       const items = [...state.items, payload];
       const total = calculateTotal(items);
       return { ...state, items, total };
     }
-    case REMOVE_CART_ITEM:{
-      const items = state.items.filter(i=> i !== payload);
+    case REMOVE_CART_ITEM: {
+      const items = state.items.filter(i => i !== payload);
       const total = calculateTotal(items)
-      return {...state, items, total}
+      return { ...state, items, total }
     }
+    case RESET_CART:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

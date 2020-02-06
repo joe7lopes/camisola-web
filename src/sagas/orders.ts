@@ -2,7 +2,13 @@ import {
     put, takeLatest, delay,
 } from 'redux-saga/effects';
 
-import { PLACE_ORDER, IPlaceOrderAction, placeOrderPending, placeOrderFulfilled } from '../actions';
+import {
+    PLACE_ORDER,
+    IPlaceOrderAction,
+    placeOrderPending,
+    placeOrderFulfilled,
+    resetCart
+} from '../actions';
 
 /*
 * +++Executers+++
@@ -11,8 +17,9 @@ import { PLACE_ORDER, IPlaceOrderAction, placeOrderPending, placeOrderFulfilled 
 function* placeOrder(order: IPlaceOrderAction) {
     yield put(placeOrderPending());
     yield delay(3000)
-    
+
     yield put(placeOrderFulfilled(order.payload));
+    yield put(resetCart())
 }
 
 /*

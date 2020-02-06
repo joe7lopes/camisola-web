@@ -10,15 +10,26 @@ import {
     resetCart
 } from '../actions';
 
+import history from '../routes/history';
+import path from '../routes/path';
+import { IOrder } from '../types';
 /*
 * +++Executers+++
 */
 
-function* placeOrder(order: IPlaceOrderAction) {
+function* placeOrder({payload}: IPlaceOrderAction) {
     yield put(placeOrderPending());
     yield delay(3000)
 
-    yield put(placeOrderFulfilled(order.payload));
+    const order:IOrder = {
+        orderId: '#123',
+        items:payload.items,
+        shippingAddress: payload.shippingAddress,
+        createdAt: new Date()
+    } 
+
+    yield put(placeOrderFulfilled(order));
+    history.push(path.ORDER_SUMMARY(order.orderId))
     yield put(resetCart())
 }
 

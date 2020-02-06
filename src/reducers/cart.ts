@@ -34,4 +34,3 @@ const calculateTotal = (items: ICartItem[]) => {
 }
 
 export default cart;
-

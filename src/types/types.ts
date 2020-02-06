@@ -53,7 +53,7 @@ export interface IRootState {
 }
 
 export interface IUIState {
-    orderReceived: {
+    orderSummary: {
         visible: boolean,
         order: IOrder
     }

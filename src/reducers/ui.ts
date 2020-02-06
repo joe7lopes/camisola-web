@@ -6,19 +6,19 @@ interface IProps {
 }
 
 const INITIAL_STATE = {
-    orderReceived: {
+    orderSummary: {
         visible: false,
     }
 }
 export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     switch (type) {
         case PLACE_ORDER_FULFILLED:
-            const updatedOrderReceived = {
-                ...state.orderReceived,
+            const updatedorderSummary = {
+                ...state.orderSummary,
                 visible: true,
                 order: payload
             }
-            return { ...state, orderReceived: updatedOrderReceived }
+            return { ...state, orderSummary: updatedorderSummary }
         default:
             return state;
     }

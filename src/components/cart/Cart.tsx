@@ -5,22 +5,17 @@ import { IRootState, ICartItem } from '../../types';
 
 type IProps = {
     items: ICartItem[],
-    showThankYouPage: boolean,
 }
 const EmptyCart = () => (<div>empty cart</div>);
 
-const Cart: React.FC<IProps> = ({ items, showThankYouPage }) => {
-
-    return (
-        <>
-            {items.length > 0 ? <CartContent /> : <EmptyCart /> }
-        </>
-    )
-}
+const Cart: React.FC<IProps> = ({ items }) => (
+    <>
+        {items.length > 0 ? <CartContent /> : <EmptyCart />}
+    </>
+)
 
 const mapStateToProps = ({ cart, ui }: IRootState) => ({
     items: cart.items,
-    showThankYouPage: ui.orderReceived.visible
 })
 
 export default connect(mapStateToProps)(Cart);

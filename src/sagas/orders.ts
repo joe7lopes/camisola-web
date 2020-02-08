@@ -22,7 +22,7 @@ function* placeOrder({payload}: IPlaceOrderAction) {
     yield delay(3000)
 
     const order:IOrder = {
-        orderId: '#123',
+        orderId: '123',
         items:payload.items,
         shippingAddress: payload.shippingAddress,
         createdAt: new Date()

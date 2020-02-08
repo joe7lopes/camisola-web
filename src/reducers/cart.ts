@@ -15,7 +15,7 @@ const cart = (state = INITIAL_STATE, { type, payload }: ICartAction) => {
       return { ...state, items, total };
     }
     case REMOVE_CART_ITEM: {
-      const items = state.items.filter(i => i !== payload);
+      const items = state.items.filter(item => item !== payload);
       const total = calculateTotal(items)
       return { ...state, items, total }
     }

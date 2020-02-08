@@ -1,7 +1,6 @@
 import React from 'react';
 import {InputGroup, FormControl, Row, Col} from 'react-bootstrap';
 
-
 interface IProps {
     readonly?: boolean
 }

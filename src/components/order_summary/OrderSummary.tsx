@@ -6,7 +6,10 @@ import { ShippingAddress } from '../ui';
 const OrderSummary = (order: IOrder) => {
   return (
     <div>
-      <h3>Encomenda #8976 criada a Janeiro 16, 2020 e está actualmente no estado Cancelada.</h3>
+      <h3>Obrigado pela sua compra</h3>
+      <h3>A sua Encomenda #8976 foi criada a Janeiro 16, 2020 e está actualmente a ser processada.</h3>
+      <h4>Se tiver alguma duvida na hesite em contactar.</h4>
+
       <div className="c-container">
         <Table striped bordered hover responsive>
           <thead>
@@ -42,13 +45,14 @@ const OrderSummary = (order: IOrder) => {
         </Table>
         <div>
         </div>
+        <Card>
+          <Card.Body>
+            <div className="m-b-sm">Morada de envio</div>
+            <ShippingAddress readonly />
+          </Card.Body>
+        </Card>
       </div>
-      <Card>
-        <Card.Body>
-          <div className="m-b-sm">Morada de envio</div>
-          <ShippingAddress readonly/>
-        </Card.Body>
-      </Card>
+
     </div>
   );
 }

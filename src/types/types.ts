@@ -39,22 +39,3 @@ export interface ICartItem {
     stampingNumber?: number,
     price: number
 }
-
-export interface ICart {
-    items: ICartItem[]
-    total: number
-}
-
-export interface IRootState {
-    account: IAccount,
-    products:IProduct[],
-    cart: ICart,
-    ui: IUIState
-}
-
-export interface IUIState {
-    orderSummary: {
-        visible: boolean,
-        order: IOrder
-    }
-}

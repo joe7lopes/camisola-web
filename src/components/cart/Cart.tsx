@@ -10,7 +10,7 @@ const EmptyCart = () => (<div>empty cart</div>);
 
 const Cart: React.FC<IProps> = ({ items }) => (
     <>
-        {items.length > 0 ? <CartContent /> : <EmptyCart />}
+        {true ? <CartContent /> : <EmptyCart />}
     </>
 )
 

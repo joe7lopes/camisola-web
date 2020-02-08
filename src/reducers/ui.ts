@@ -6,18 +6,12 @@ interface IProps {
 }
 
 const INITIAL_STATE = {
-    orderSummary: {
-        order: {}
-    }
+    
 }
 export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     switch (type) {
         case PLACE_ORDER_FULFILLED:
-            const updatedorderSummary = {
-                ...state.orderSummary,
-                order: payload
-            }
-            return { ...state, orderSummary: updatedorderSummary }
+            return state;
         default:
             return state;
     }

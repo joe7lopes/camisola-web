@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import history from './history';
 import {
   NavigationHeader,
   ClubPage,
@@ -31,7 +30,7 @@ const {
 } = path;
 
 const Routes = () => (
-  <Router history={history}>
+  <Router>
     <NavigationHeader />
     <Switch>
       <Route exact path={'/'} component={Home} />

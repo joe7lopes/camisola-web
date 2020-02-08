@@ -10,9 +10,8 @@ import {
     resetCart
 } from '../actions';
 
-import history from '../routes/history';
-import path from '../routes/path';
 import { IOrder } from '../types';
+
 /*
 * +++Executers+++
 */
@@ -29,7 +28,6 @@ function* placeOrder({payload}: IPlaceOrderAction) {
     } 
 
     yield put(placeOrderFulfilled(order));
-    history.push(path.ORDER_SUMMARY(order.orderId))
     yield put(resetCart())
 }
 

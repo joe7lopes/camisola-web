@@ -7,7 +7,7 @@ interface IProps {
 
 const INITIAL_STATE = {
     orderSummary: {
-        visible: false,
+        order: {}
     }
 }
 export default (state = INITIAL_STATE, { type, payload }: IProps) => {
@@ -15,7 +15,6 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
         case PLACE_ORDER_FULFILLED:
             const updatedorderSummary = {
                 ...state.orderSummary,
-                visible: true,
                 order: payload
             }
             return { ...state, orderSummary: updatedorderSummary }

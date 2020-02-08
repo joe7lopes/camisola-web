@@ -27,7 +27,7 @@ const OrderHistory = ({orders}: IProps) => {
             <td>Em processamento</td>
             <td>40</td>
             <td>
-              <Link to={path.ORDER_SUMMARY}>Detalhes</Link>
+              <Link to={path.ORDER_SUMMARY(1)}>Detalhes</Link>
             </td>
           </tr>
         </tbody>

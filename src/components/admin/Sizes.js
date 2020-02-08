@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { saveSizes as saveSizesAction } from '../../actions';
 
-function Sizes({ sizes, saveSizes }) {
+const Sizes = ({ sizes, saveSizes }) => {
   const [availableSizes, setAvailableSizes] = useState(sizes);
 
   const handleOnValueChange = (event, index) => {
@@ -67,7 +67,7 @@ function Sizes({ sizes, saveSizes }) {
       </Button>
     </div>
   );
-}
+};
 
 const mapStateToProps = ({ settings }) => ({
   sizes: settings.sizes,

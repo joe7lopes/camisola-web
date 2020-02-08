@@ -1,7 +1,9 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Card } from 'react-bootstrap';
+import { IOrder } from '../../types';
+import { ShippingAddress } from '../ui';
 
-const OrderSummary = () => {
+const OrderSummary = (order: IOrder) => {
   return (
     <div>
       <h3>Encomenda #8976 criada a Janeiro 16, 2020 e está actualmente no estado Cancelada.</h3>
@@ -39,9 +41,14 @@ const OrderSummary = () => {
           </tbody>
         </Table>
         <div>
-          morada de envio ...
         </div>
       </div>
+      <Card>
+        <Card.Body>
+          <div className="m-b-sm">Morada de envio</div>
+          <ShippingAddress readonly/>
+        </Card.Body>
+      </Card>
     </div>
   );
 }

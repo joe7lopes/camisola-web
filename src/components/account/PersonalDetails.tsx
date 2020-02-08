@@ -2,6 +2,7 @@ import React from 'react';
 import {
   InputGroup, FormControl, Card, Row, Col,
 } from 'react-bootstrap';
+import { ShippingAddress } from '../ui';
 
 interface IProps {
   firstName?: string,
@@ -60,32 +61,7 @@ function PersonalDetails({
         </InputGroup>
 
         <span className="c-text-mutted">(Morada de envio padrão)</span>
-        <InputGroup className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="label-address">Morada</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl placeholder="Morada" />
-        </InputGroup>
-        <Row>
-          <Col sm={12} md={6}>
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">Localidade</InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl placeholder="Lisboa" />
-            </InputGroup>
-          </Col>
-          <Col sm={12} md={6}>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">
-                  Codigo Postal
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl placeholder="1000-004" />
-            </InputGroup>
-          </Col>
-        </Row>
+        <ShippingAddress />
       </Card.Body>
     </Card>
   );

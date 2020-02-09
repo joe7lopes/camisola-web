@@ -1,13 +1,21 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import defaultshirt from '../assets/defaultshirt.png';
 
-const ProductCard = ({
-  id, name, price, image,
-}) => {
+interface IProps {
+  id: string,
+  name: string,
+  price: number,
+  image?: string,
+  className?: string
+}
+
+const ProductCard = ({ id, name, price, image=defaultshirt, className }: IProps) => {
   const history = useHistory();
   return (
     <Card
+      className={className}
       style={{ width: '18rem', cursor: 'pointer' }}
       onClick={() => history.push(`/products/${id}`)}
     >

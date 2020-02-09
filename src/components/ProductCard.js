@@ -2,9 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
-function ProductCard({
+const ProductCard = ({
   id, name, price, image,
-}) {
+}) => {
   const history = useHistory();
   return (
     <Card
@@ -18,6 +18,6 @@ function ProductCard({
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default ProductCard;

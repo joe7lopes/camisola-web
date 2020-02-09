@@ -10,10 +10,10 @@ function Home() {
   return (
     <div className="c-body">
       <Row>
-        <Col>
-          <ProductCard />
+        <Col className="c-container">
+          <div>something</div>
         </Col>
-        <Col xs={3}>
+        <Col xs={3} className="c-container">
           <WhatsApp />
           <ShippingMethodBanner />
           <FacebookReviews />

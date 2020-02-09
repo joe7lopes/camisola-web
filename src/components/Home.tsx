@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 function Home() {
   return (
-    <div className="c-body">
+    <div>
       <Row>
         <Col className="c-container">
           <div>something</div>

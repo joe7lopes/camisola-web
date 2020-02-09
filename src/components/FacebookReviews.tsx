@@ -1,7 +1,7 @@
 import React from 'react';
 
 function FacebookReviews() {
-  return <div>facebook reviews</div>;
+  return <div>Opinião dos clientes</div>;
 }
 
 export default FacebookReviews;

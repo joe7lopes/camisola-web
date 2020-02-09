@@ -1,5 +1,5 @@
 import React from 'react';
-import cttImage from '../assets/cttCorreios.png';
+import cttImage from '../../assets/cttCorreios.png';
 
 const ShippingMethodBanner = () => (
     <div className="m-b-sm">

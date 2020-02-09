@@ -1,7 +1,7 @@
 export { default as NavigationHeader } from './navigation/NavigationHeader';
-export { default as Home } from './Home';
+export { Home } from './home';
+export { Account, OrderSummary } from './account';
 export { default as ClubPage } from './ClubPage';
 export { default as ProductDetail } from './product_details';
 export { AdminPannel, NewProduct, Settings } from './admin';
-export { Account, OrderSummary } from './account';
 export { Cart } from './cart';

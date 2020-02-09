@@ -14,8 +14,8 @@ body {
   margin: 0.25rem;
   background-color: $container-color;
   padding: 1rem;
-  border-radius: .25rem;
-  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .c-flex {
@@ -29,11 +29,11 @@ body {
 }
 
 .c-full-width {
-  width: 100%
+  width: 100%;
 }
 
 .c-no-padding {
-  padding: 0 !important
+  padding: 0 !important;
 }
 
 //TEXT
@@ -65,7 +65,6 @@ h4 {
   &:hover {
     background-color: $action-hover-color;
     border-color: $action-color;
-    
   }
 }
 

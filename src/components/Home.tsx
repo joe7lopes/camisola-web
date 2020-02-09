@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import ProductCard from './ProductCard';
 import WhatsApp from './WhatsApp';
 import ShippingMethodBanner from './ShippingMethodBanner';
 import FacebookReviews from './FacebookReviews';
@@ -13,8 +12,8 @@ function Home() {
         <Col className="c-container">
           <div>something</div>
         </Col>
-        <Col xs={3} className="c-container">
-          <WhatsApp />
+        <Col md={3} className="c-container">
+          <WhatsApp className="m-b-sm"/>
           <ShippingMethodBanner />
           <FacebookReviews />
         </Col>

@@ -16,7 +16,7 @@ export interface ISettings {
 
 export interface IImage {
     name: string,
-    url: string
+    url: string,
     isDefault?: boolean
 }
 
@@ -29,7 +29,6 @@ export interface IProduct {
     isCustomizable: boolean
     defaultPrice: number
 }
-
 
 //CART
 export interface ICartItem {

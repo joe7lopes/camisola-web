@@ -1,6 +1,11 @@
 import { FETCH_PRODUCTS_FULFILLED } from '../actions';
 
-export default (state = [], { type, payload }) => {
+interface IProps {
+  type: string,
+  payload: any
+}
+
+export default (state = [], { type, payload }: IProps) => {
   switch (type) {
     case FETCH_PRODUCTS_FULFILLED:
       return payload;

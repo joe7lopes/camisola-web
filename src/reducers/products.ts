@@ -1,8 +1,9 @@
 import { FETCH_PRODUCTS_FULFILLED } from '../actions';
+import { IProduct } from '../types';
 
 interface IProps {
   type: string,
-  payload: any
+  payload: IProduct[]
 }
 
 export default (state = [], { type, payload }: IProps) => {

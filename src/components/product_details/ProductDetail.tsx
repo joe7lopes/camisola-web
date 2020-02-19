@@ -41,7 +41,7 @@ function ProductDetail({ product }: IProps) {
 }
 
 const mapStateToProps = (state: IRootState, props: any) => ({
-  product: state.products.find((p) => p.id === props.match.params.id),
+  product: state.products.find((p) => p.pid === props.match.params.id),
 });
 
 

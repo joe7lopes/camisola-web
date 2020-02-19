@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import {
-  put, takeLatest,
+  put, takeLatest, call
 } from 'redux-saga/effects';
-
-import { FETCH_PRODUCTS, fetchProductsFulfilled, fetchProductsPending } from '../actions';
-import { products } from '../static_data';
+import axios from 'axios';
+import { FETCH_PRODUCTS, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected } from '../actions';
+// import { products } from '../static_data';
 
 /*
  * +++Watchers+++
@@ -21,5 +21,12 @@ export function* watchFetchProducts() {
 
 function* fetchProducts() {
   yield put(fetchProductsPending());
-  yield put(fetchProductsFulfilled(products));
+  try {
+    const { data } = yield call(api, 'products')
+    yield put(fetchProductsFulfilled(data));
+  } catch (err) {
+    yield put(fetchProductsRejected(err));
+  }
 }
+
+const api = (url: string) => axios.get(url)

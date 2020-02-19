@@ -21,4 +21,5 @@ export interface IUIState {
         visible: boolean,
         order: IOrder
     }
+    isFetchingProducts?: boolean
 }

@@ -21,7 +21,7 @@ export interface IImage {
 }
 
 export interface IProduct {
-    id: string,
+    pid: string,
     name: string,
     categories: string[],
     availableSizes: IAvailableSize[]

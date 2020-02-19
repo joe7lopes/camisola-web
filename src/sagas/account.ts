@@ -2,7 +2,10 @@ import {
   put, takeLatest,
 } from 'redux-saga/effects';
 
-import { SAVE_PERSONAL_DATA, savePersonalDataFulfilled } from '../actions';
+import {
+  SAVE_PERSONAL_DATA,
+  savePersonalDataFulfilled
+} from '../actions';
 
 /*
  * +++Watchers+++

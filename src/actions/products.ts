@@ -3,6 +3,9 @@ import {
   FETCH_PRODUCTS_FULFILLED,
   FETCH_PRODUCTS_PENDING,
   FETCH_PRODUCTS_REJECTED,
+  CREATE_PRODUCT,
+  CREATE_PRODUCT_PENDING,
+  CREATE_PRODUCT_FULFILLED,
 } from './actionTypes';
 import { IProduct } from '../types';
 
@@ -22,4 +25,23 @@ export const fetchProductsFulfilled = (products: IProduct[]) => ({
 export const fetchProductsRejected = (err: string) => ({
   type: FETCH_PRODUCTS_REJECTED,
   payload: err,
+});
+
+export const createProduct = (product: IProduct) => ({
+  type: CREATE_PRODUCT,
+  payload: product
+});
+
+export const createProductPending = () => ({
+  type: CREATE_PRODUCT_PENDING,
+});
+
+export const createProductFulfilled = (product: IProduct) => ({
+  type: CREATE_PRODUCT_FULFILLED,
+  payload: product
+});
+
+export const createProductRejected= (err: string) => ({
+  type: CREATE_PRODUCT_FULFILLED,
+  payload: err
 });

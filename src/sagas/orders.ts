@@ -12,6 +12,16 @@ import {
 
 import { IOrder } from '../types';
 
+
+
+/*
+ * +++Watchers+++
+ */
+
+export function* watchPlaceOrder() {
+    yield takeLatest(PLACE_ORDER, placeOrder);
+}
+
 /*
 * +++Executers+++
 */
@@ -29,12 +39,4 @@ function* placeOrder({payload}: IPlaceOrderAction) {
 
     yield put(placeOrderFulfilled(order));
     yield put(resetCart())
-}
-
-/*
- * +++Watchers+++
- */
-
-export function* watchPlaceOrder() {
-    yield takeLatest(PLACE_ORDER, placeOrder);
 }

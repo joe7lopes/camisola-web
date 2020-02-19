@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { getBenficaProducts, getPortoProducts, getHomePageProducts } from '../../store/selectors';
+import { getBenficaProducts, getPortoProducts } from '../../store/selectors';
 import WhatsApp from './WhatsApp';
 import ShippingMethodBanner from './ShippingMethodBanner';
 import FacebookReviews from './FacebookReviews';
@@ -30,6 +30,5 @@ const Home = () => {
     </div>
   )
 };
-
 
 export default Home;

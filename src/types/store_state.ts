@@ -14,9 +14,15 @@ export interface IRootState {
     products: IProduct[],
     cart: ICartState,
     ui: IUIState
+    settings: ISettings
 }
 
-export interface IUIState {
+interface ISettings {
+    sizes: string[],
+    stampingExtraCost: number
+}
+
+interface IUIState {
     orderSummary: {
         visible: boolean,
         order: IOrder

@@ -1,3 +1,5 @@
+import { IOrder } from ".";
+
 export interface IUserData {
     firstName: string,
     lastName: string,
@@ -6,4 +8,8 @@ export interface IUserData {
     address: string,
     city: string,
     postCode: string
+}
+
+export interface IAccount {
+    orders: IOrder[]
 }

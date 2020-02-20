@@ -1,5 +1,8 @@
 import {
-  FETCH_SETTINGS, FETCH_SETTINGS_FULFILLED, SAVE_SIZES, SAVE_SIZES_FULFILLED,
+  FETCH_SETTINGS,
+  FETCH_SETTINGS_FULFILLED,
+  SAVE_SIZES,
+  SAVE_SIZES_FULFILLED,
 } from './actionTypes';
 
 import { ISettings } from '../types';
@@ -15,11 +18,11 @@ export const fetchSettingsFulfilled = (settings: ISettings) => ({
 
 
 export interface ISaveSizesAction {
-  type: string,
-  payload: string[]
+    type: string,
+    payload: string[]
 }
 
-export const saveSizes = (sizes:string[]) => ({
+export const saveSizes = (sizes: string[]) => ({
   type: SAVE_SIZES,
   payload: sizes,
 });

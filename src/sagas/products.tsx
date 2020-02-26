@@ -13,7 +13,7 @@ import {
   createProductRejected,
   createProductFulfilled,
 } from '../actions';
-import { IProduct } from '../types';
+import { ICreateProduct } from '../types';
 import api from './api';
 // import { products } from '../static_data';
 
@@ -31,12 +31,12 @@ function* fetchProducts() {
   }
 }
 
-export interface ICreateProduct {
+export interface ICreateProductAction {
   type: string,
-  payload: IProduct
+  payload: ICreateProduct
 }
 
-function* createProductExec({ payload }: ICreateProduct) {
+function* createProductExec({ payload }: ICreateProductAction) {
   yield put(createProductPending());
   try {
     const { data } = yield call(api.post, '/products', payload);

@@ -15,7 +15,7 @@ import {
 } from '../components';
 
 import path from './path';
-import { fetchSettings } from '../actions';
+import { fetchProducts, fetchSettings } from '../actions';
 
 const {
   PORTUGAL,
@@ -36,6 +36,7 @@ const Routes = () => {
 
   useEffect(() => {
     dispatch(fetchSettings());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return (

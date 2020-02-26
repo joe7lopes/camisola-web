@@ -44,11 +44,11 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
       return { ...state, settings: newSettings };
     }
     case FETCH_PRODUCTS_PENDING:
-      return { ...state, isFetchingProducts: true };
+      return { ...state, products: { ...state.products, isFetchingProducts: true } };
     case FETCH_PRODUCTS_FULFILLED:
-      return { ...state, isFetchingProducts: false };
+      return { ...state, products: { ...state.products, isFetchingProducts: false } };
     case FETCH_PRODUCTS_REJECTED:
-      return { ...state, isFetchingProducts: false, error: payload };
+      return { ...state, products: { ...state.products, isFetchingProducts: false, error: payload } };
     case PLACE_ORDER_FULFILLED:
       return state;
     default:

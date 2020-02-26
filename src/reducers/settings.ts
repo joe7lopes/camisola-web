@@ -6,7 +6,14 @@ interface IProps {
   payload: ISettings
 }
 
-export default (state = {}, { type, payload }: IProps) => {
+const INITIAL_STATE: ISettings = {
+  sizes: [],
+  productCategories: [],
+  stampingExtraCost: 0,
+  productDefaultPrice: 0,
+};
+
+export default (state = INITIAL_STATE, { type, payload }: IProps) => {
   switch (type) {
     case FETCH_SETTINGS_FULFILLED:
       return payload;

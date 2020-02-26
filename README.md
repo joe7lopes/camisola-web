@@ -1,4 +1,4 @@
-## Sizes
+## EditableGrid
 
 .m-none { margin: 0; }
 .p-none { padding: 0; }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
@@ -14,32 +14,34 @@ interface IProps {
   addToCart: (item: ICartItem) => void
 }
 
-export function CustomizationSection({ product, addToCart, ...props }: IProps) {
-  const { availableSizes, defaultPrice, name, isCustomizable } = product;
-  const sizes = availableSizes.map((as) => as.size);
+export function CustomizationSection({ product, addToCart }: IProps) {
+  const {
+    sizes, defaultPrice, name, isCustomizable,
+  } = product;
+
   const [price, setPrice] = useState(defaultPrice);
   const [selectedSize, setSelectedSize] = useState<string>();
   const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const history = useHistory();
-  
+
   const extraCost = 12;
 
-  useEffect(() => {
-    const getCurrentSelectedSizePrice = () => {
-      const selectedSizePrice = availableSizes.find(
-        (av) => av.size === selectedSize,
-      );
-      return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
-    };
-
-    const getExtras = () => (stampingName || stampingNumber ? extraCost : 0);
-    const selectedSizePrice = getCurrentSelectedSizePrice();
-    const extras = getExtras();
-    const finalPrice = selectedSizePrice + extras;
-    setPrice(finalPrice);
-  }, [selectedSize, stampingName, stampingNumber, defaultPrice, availableSizes]);
+  // useEffect(() => {
+  //   const getCurrentSelectedSizePrice = () => {
+  //     const selectedSizePrice = availableSizes.find(
+  //       (av) => av.size === selectedSize,
+  //     );
+  //     return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
+  //   };
+  //
+  //   const getExtras = () => (stampingName || stampingNumber ? extraCost : 0);
+  //   const selectedSizePrice = getCurrentSelectedSizePrice();
+  //   const extras = getExtras();
+  //   const finalPrice = selectedSizePrice + extras;
+  //   setPrice(finalPrice);
+  // }, [selectedSize, stampingName, stampingNumber, defaultPrice, availableSizes]);
 
   useEffect(() => {
     if (selectedSize) {
@@ -51,15 +53,14 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
     e.preventDefault();
     addToCart({
       product,
-      selectedSize: availableSizes.filter(s => s.size === selectedSize)[0],
+      selectedSize: sizes.filter((s) => s.size === selectedSize)[0],
       stampingName,
       stampingNumber,
-      price
+      price,
     });
 
-    history.push(path.CART)
+    history.push(path.CART);
   };
-
   return (
     <div className="c-customization-container">
       <h4>{name}</h4>
@@ -69,7 +70,7 @@ export function CustomizationSection({ product, addToCart, ...props }: IProps) {
           <Form.Label className="c-label">Tamanho</Form.Label>
           <div>
             <ProductSizeSelector
-              availableSizes={sizes}
+              availableSizes={sizes.map((as) => as.size)}
               onSizeChanged={(size: string) => setSelectedSize(size)}
             />
           </div>

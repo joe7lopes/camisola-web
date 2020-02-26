@@ -8,9 +8,9 @@ interface IProps {
   product: IProduct
 }
 
-function ProductDetail({ product }: IProps) {
+const ProductDetail = ({ product }: IProps) => {
   const { images } = product;
-  // TODO move to selectors
+
   const thumbnails = images.filter((img) => !img.isDefault);
   const defaultImg = images.find((img) => img.isDefault) || { name: '', url: '' };
   return (
@@ -38,7 +38,7 @@ function ProductDetail({ product }: IProps) {
       </Col>
     </Row>
   );
-}
+};
 
 const mapStateToProps = (state: IRootState, props: any) => ({
   product: state.products.find((p) => p.pid === props.match.params.id),

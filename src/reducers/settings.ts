@@ -1,16 +1,17 @@
-import { FETCH_SETTINGS_FULFILLED, SAVE_SIZES_FULFILLED } from '../actions/actionTypes';
+import { FETCH_SETTINGS_FULFILLED, UPDATE_SETTINGS_FULFILLED } from '../actions';
+import { ISettings } from '../types';
 
 interface IProps {
   type: string,
-  payload: any
+  payload: ISettings
 }
 
 export default (state = {}, { type, payload }: IProps) => {
   switch (type) {
     case FETCH_SETTINGS_FULFILLED:
       return payload;
-    case SAVE_SIZES_FULFILLED:
-      return { ...state, sizes: payload };
+    case UPDATE_SETTINGS_FULFILLED:
+      return payload;
     default:
       return state;
   }

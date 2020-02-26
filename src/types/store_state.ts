@@ -1,7 +1,23 @@
-import { ICartItem, IOrder, IProduct, IAccount } from './index';
+import {
+  ICartItem,
+  IOrder,
+  IProduct,
+  IAccount,
+  ISettings,
+} from './index';
+
+export interface IUIState {
+    products:{
+        isFetchingProducts?: boolean,
+    },
+    settings: {
+        isUpdatingSettings?: boolean,
+        isFetchingSettings:boolean
+    },
+}
 
 export interface ICartState {
-    items: ICartItem[]
+    items: ICartItem[],
     total: number,
     isOrderPlacedLoading: boolean,
     isOrderPlacedSuccess: boolean,
@@ -13,19 +29,6 @@ export interface IRootState {
     account: IAccount,
     products: IProduct[],
     cart: ICartState,
-    ui: IUIState
-    settings: ISettings
-}
-
-interface ISettings {
-    sizes: string[],
-    stampingExtraCost: number
-}
-
-interface IUIState {
-    orderSummary: {
-        visible: boolean,
-        order: IOrder
-    }
-    isFetchingProducts?: boolean
+    settings: ISettings,
+    ui: IUIState,
 }

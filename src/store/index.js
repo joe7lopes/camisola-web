@@ -4,7 +4,6 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
-import { FETCH_SETTINGS, FETCH_PRODUCTS } from '../actions/actionTypes';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -16,9 +15,5 @@ const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
-
-// TODO: move to proper place.
-store.dispatch({ type: FETCH_SETTINGS });
-store.dispatch({ type: FETCH_PRODUCTS });
 
 export default store;

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import {
   NavigationHeader,
   ClubPage,
@@ -14,6 +15,7 @@ import {
 } from '../components';
 
 import path from './path';
+import { fetchSettings } from '../actions';
 
 const {
   PORTUGAL,
@@ -29,7 +31,14 @@ const {
   CART,
 } = path;
 
-const Routes = () => (
+const Routes = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSettings());
+  }, [dispatch]);
+
+  return (
   <Router>
     <NavigationHeader />
     <Switch>
@@ -50,6 +59,7 @@ const Routes = () => (
       </Route>
     </Switch>
   </Router>
-);
+  );
+};
 
 export default Routes;

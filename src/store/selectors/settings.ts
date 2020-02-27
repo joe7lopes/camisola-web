@@ -17,3 +17,8 @@ export const getSettingsCategories = createSelector(
   [getSettings],
   (settings) => settings.productCategories,
 );
+
+export const getStampingExtraCost = createSelector(
+  [getSettings],
+  (settings) => settings.stampingExtraCost,
+);

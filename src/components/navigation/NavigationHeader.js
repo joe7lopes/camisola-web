@@ -17,7 +17,9 @@ headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
 const NavigationHeader = () => (
+  <div style={{ backgroundColor: 'white' }}>
   <Navbar
+    className="c-lock-width"
     sticky="top"
     fixed="top"
     bg="white"
@@ -53,6 +55,7 @@ const NavigationHeader = () => (
       </Navbar.Text>
     </Navbar.Collapse>
   </Navbar>
+  </div>
 );
 
 export default NavigationHeader;

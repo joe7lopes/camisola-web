@@ -9,9 +9,13 @@ body {
 }
 
 // LAYOUT
+.c-lock-width {
+  max-width: 1080px;
+}
 
 .c-body-layout {
   margin: 0.25rem 1.25rem 1.25rem;
+  @extend .c-lock-width;
 }
 
 .c-container {
@@ -19,8 +23,6 @@ body {
   padding: 1rem;
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  max-width: 1080px;
-
 }
 
 .c-flex {

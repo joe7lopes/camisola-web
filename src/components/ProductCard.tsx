@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Card, Image } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import defaultshirt from '../assets/defaultshirt.png';
 
 interface IProps {

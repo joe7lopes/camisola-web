@@ -3,18 +3,20 @@ import { Form, Button } from 'react-bootstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getStampingExtraCost } from '../../store/selectors';
 import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import { IProduct, ICartItem } from '../../types';
+import { IProduct, ICartItem, IRootState } from '../../types';
 import path from '../../routes/path';
 
 interface IProps {
   product: IProduct,
-  addToCart: (item: ICartItem) => void
+  addToCart: (item: ICartItem) => void,
+  extraCost: number
 }
 
-export function CustomizationSection({ product, addToCart }: IProps) {
+export function CustomizationSection({ product, addToCart, extraCost }: IProps) {
   const {
     sizes, defaultPrice, name, isCustomizable,
   } = product;
@@ -26,8 +28,6 @@ export function CustomizationSection({ product, addToCart }: IProps) {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const history = useHistory();
 
-  const extraCost = 12;
-
   useEffect(() => {
     const getCurrentSelectedSizePrice = () => {
       const selectedSizePrice = sizes.find(
@@ -36,12 +36,11 @@ export function CustomizationSection({ product, addToCart }: IProps) {
       return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
     };
 
-    const getExtras = () => (stampingName || stampingNumber ? extraCost : 0);
     const selectedSizePrice = getCurrentSelectedSizePrice();
-    const extras = getExtras();
+    const extras = (stampingName || stampingNumber) ? extraCost : 0;
     const finalPrice = selectedSizePrice + extras;
     setPrice(finalPrice);
-  }, [selectedSize, stampingName, stampingNumber, defaultPrice, sizes]);
+  }, [selectedSize, stampingName, stampingNumber, defaultPrice, sizes, extraCost]);
 
   useEffect(() => {
     if (selectedSize) {
@@ -91,7 +90,11 @@ export function CustomizationSection({ product, addToCart }: IProps) {
   );
 }
 
+const mapStateToProps = (state:IRootState) => ({
+  extraCost: getStampingExtraCost(state),
+});
+
 const actionCreators = { addToCart: addToCartAction };
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(null, mapDispatchToProps)(CustomizationSection);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomizationSection);

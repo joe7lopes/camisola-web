@@ -10,6 +10,14 @@ export interface IProductSize {
     price: number
 }
 
+export enum Category {
+    BENFICA = 'benfica',
+    PORTO = 'porto',
+    SPORTING = 'sporting',
+    CAMISOLAS = 'camisolas',
+    FATOS_DE_TREINO= 'fatos_de_treino'
+}
+
 export interface IProductCategory {
     name: string,
     displayName: string

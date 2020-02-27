@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import { IProduct, IImage } from '../types';
+import {getDefaultImage} from "./utils";
 
 interface IProps {
   title: string,
@@ -16,18 +17,13 @@ const ProductList = ({ title, products }: IProps) => (
           <ProductCard
             id={p.pid}
             name={p.name}
-            price={35}
-            image={getDefaultImageUrl(p.images)}
+            price={p.defaultPrice}
+            image={getDefaultImage(p.images)}
           />
         </div>
       ))}
     </div>
   </div>
 );
-
-const getDefaultImageUrl = (images: IImage[]) => {
-  const defaultImage = images.filter((i) => i.isDefault)[0];
-  return defaultImage.url;
-};
 
 export default ProductList;

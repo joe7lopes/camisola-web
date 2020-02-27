@@ -28,20 +28,20 @@ export function CustomizationSection({ product, addToCart }: IProps) {
 
   const extraCost = 12;
 
-  // useEffect(() => {
-  //   const getCurrentSelectedSizePrice = () => {
-  //     const selectedSizePrice = availableSizes.find(
-  //       (av) => av.size === selectedSize,
-  //     );
-  //     return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
-  //   };
-  //
-  //   const getExtras = () => (stampingName || stampingNumber ? extraCost : 0);
-  //   const selectedSizePrice = getCurrentSelectedSizePrice();
-  //   const extras = getExtras();
-  //   const finalPrice = selectedSizePrice + extras;
-  //   setPrice(finalPrice);
-  // }, [selectedSize, stampingName, stampingNumber, defaultPrice, availableSizes]);
+  useEffect(() => {
+    const getCurrentSelectedSizePrice = () => {
+      const selectedSizePrice = sizes.find(
+        (av) => av.size === selectedSize,
+      );
+      return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
+    };
+
+    const getExtras = () => (stampingName || stampingNumber ? extraCost : 0);
+    const selectedSizePrice = getCurrentSelectedSizePrice();
+    const extras = getExtras();
+    const finalPrice = selectedSizePrice + extras;
+    setPrice(finalPrice);
+  }, [selectedSize, stampingName, stampingNumber, defaultPrice, sizes]);
 
   useEffect(() => {
     if (selectedSize) {

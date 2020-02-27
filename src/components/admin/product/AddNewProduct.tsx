@@ -69,11 +69,17 @@ const AddNewProduct = () => {
       .filter((c) => c.checked)
       .map((c) => ({ name: c.name, displayName: c.displayName }));
 
+    const hasDefaultImage = images.filter((img) => img.isDefault).length > 0;
+    const imagesToSave = images;
+    if (!hasDefaultImage) {
+      imagesToSave[0].isDefault = true;
+    }
+
     const newProduct: ICreateProduct = {
       name: productName,
       categories: newCategories,
       sizes: availableSizes,
-      images,
+      images: imagesToSave,
       isCustomizable,
       defaultPrice,
     };

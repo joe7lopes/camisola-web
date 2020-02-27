@@ -42,6 +42,7 @@ const Routes = () => {
   return (
   <Router>
     <NavigationHeader />
+    <div className="c-body-layout">
     <Switch>
       <Route exact path={'/'} component={Home} />
       <Route path={PORTUGAL} component={ClubPage} />
@@ -59,6 +60,7 @@ const Routes = () => {
         <h3>No match</h3>
       </Route>
     </Switch>
+    </div>
   </Router>
   );
 };

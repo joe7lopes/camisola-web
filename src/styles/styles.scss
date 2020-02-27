@@ -10,22 +10,16 @@ body {
 
 // LAYOUT
 
+.c-body-layout {
+  margin: 0.25rem 1.25rem 1.25rem;
+}
+
 .c-container {
-  margin: 0.25rem;
   background-color: $container-color;
   padding: 1rem;
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
 
-  &--left {
-    @extend .c-container;
-    margin-left: 1.25rem;
-  }
-
-  &--right {
-    @extend .c-container;
-    margin-right: 1.25rem;
-  }
 }
 
 .c-flex {
@@ -46,28 +40,6 @@ body {
   padding: 0 !important;
 }
 
-//TEXT
-h4 {
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-
-.c-text-bold {
-  font-weight: 600;
-}
-
-.c-label {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.c-text-mutted {
-  color: #ccc;
-}
-
-.c-text-sm {
-  font-size: 0.8rem;
-}
 
 .c-action-button {
   background-color: $action-color;

@@ -3,7 +3,7 @@ import { Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { isFetchingProducts } from '../../store/selectors';
 import ProductCard from '../ProductCard';
-import { IProduct } from '../../types';
+import { IImage, IProduct } from '../../types';
 
 interface IProps {
     sectionName: string,
@@ -16,21 +16,24 @@ const ProductCarousel = ({ sectionName, products }: IProps) => {
   if (!isLoading && products.length < 1) return <div>Nao ha produtos</div>;
   return (
         <div>
-            <h3>{sectionName}</h3>
-            <div>
+            <h3 className="m-b-md">{sectionName}</h3>
                 <Row>
                     {products.map((p) => <ProductCard
                         key={p.pid}
                         id={p.pid}
                         name={p.name}
                         price={p.defaultPrice}
-                        image={p.images[0] ? p.images[0].file : undefined}
-                        className="m-l-sm m-b-sm"
+                        image={getDefaultImage(p.images) }
+                        className="m-l-sm m-b-lg"
                     />)}
                 </Row>
-            </div>
         </div>
   );
 };
 
 export default ProductCarousel;
+
+const getDefaultImage = (images: IImage[]) => {
+  const image = images.filter((img) => img.isDefault);
+  return image[0] ? image[0].file : undefined;
+};

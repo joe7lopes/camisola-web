@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 import defaultshirt from '../assets/defaultshirt.png';
 
 interface IProps {
@@ -18,10 +18,10 @@ const ProductCard = ({
   return (
     <Card
       className={className}
-      style={{ width: '18rem', cursor: 'pointer' }}
+      style={{ width: '14rem', cursor: 'pointer' }}
       onClick={() => history.push(`/products/${id}`)}
     >
-      <Card.Img variant="top" src={image} />
+      <Card.Img variant="top" src={image} style={{ height: '10rem' }}/>
       <Card.Body>
         {name}
         <h5>€{price}</h5>

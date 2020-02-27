@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import {isFetchingProducts} from '../../store/selectors';
+import { isFetchingProducts } from '../../store/selectors';
 import ProductCard from '../ProductCard';
 import { IProduct } from '../../types';
 
@@ -16,19 +16,17 @@ const ProductCarousel = ({ sectionName, products }: IProps) => {
   if (!isLoading && products.length < 1) return <div>Nao ha produtos</div>;
   return (
         <div>
-            <div>
-                <h3>{sectionName}</h3>
-            </div>
+            <h3>{sectionName}</h3>
             <div>
                 <Row>
                     {products.map((p) => <ProductCard
-                            key={p.pid}
-                            id={p.pid}
-                            name={p.name}
-                            price={p.defaultPrice}
-                            image={p.images[0] ? p.images[0].url : undefined}
-                            className="m-l-sm"
-                        />)}
+                        key={p.pid}
+                        id={p.pid}
+                        name={p.name}
+                        price={p.defaultPrice}
+                        image={p.images[0] ? p.images[0].file : undefined}
+                        className="m-l-sm m-b-sm"
+                    />)}
                 </Row>
             </div>
         </div>

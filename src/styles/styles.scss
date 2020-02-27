@@ -16,6 +16,16 @@ body {
   padding: 1rem;
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
+
+  &--left {
+    @extend .c-container;
+    margin-left: 1.25rem;
+  }
+
+  &--right {
+    @extend .c-container;
+    margin-right: 1.25rem;
+  }
 }
 
 .c-flex {
@@ -62,6 +72,7 @@ h4 {
 .c-action-button {
   background-color: $action-color;
   border-color: $action-color;
+
   &:hover {
     background-color: $action-hover-color;
     border-color: $action-color;

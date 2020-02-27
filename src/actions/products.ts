@@ -5,7 +5,7 @@ import {
   FETCH_PRODUCTS_REJECTED,
   CREATE_PRODUCT,
   CREATE_PRODUCT_PENDING,
-  CREATE_PRODUCT_FULFILLED,
+  CREATE_PRODUCT_FULFILLED, CREATE_PRODUCT_REJECTED,
 } from './actionTypes';
 import { IProduct, ICreateProduct } from '../types';
 
@@ -42,6 +42,6 @@ export const createProductFulfilled = (product: IProduct) => ({
 });
 
 export const createProductRejected = (err: string) => ({
-  type: CREATE_PRODUCT_FULFILLED,
+  type: CREATE_PRODUCT_REJECTED,
   payload: err,
 });

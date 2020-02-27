@@ -11,7 +11,9 @@ interface IProps {
   className?: string
 }
 
-const ProductCard = ({ id, name, price, image=defaultshirt, className }: IProps) => {
+const ProductCard = ({
+  id, name, price, image = defaultshirt, className,
+}: IProps) => {
   const history = useHistory();
   return (
     <Card

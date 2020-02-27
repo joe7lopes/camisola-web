@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import {
-  put, takeLatest, call,
+  put, takeLatest, call, all,
 } from 'redux-saga/effects';
 
 import {
@@ -36,10 +36,22 @@ export interface ICreateProductAction {
   payload: ICreateProduct
 }
 
+const toBase64 = (file:any, img:any) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve({ ...img, file: reader.result });
+  reader.onerror = (error) => reject(error);
+});
+
+
 function* createProductExec({ payload }: ICreateProductAction) {
   yield put(createProductPending());
   try {
-    const { data } = yield call(api.post, '/products', payload);
+    const transformedImages = yield all(payload.images.map((img) => call(toBase64, img.file, img)));
+    const dataToSave = yield { ...payload, images: transformedImages };
+    console.log(dataToSave);
+
+    const { data } = yield call(api.post, '/products', dataToSave);
     yield put(createProductFulfilled(data));
   } catch (err) {
     yield put(createProductRejected(err));

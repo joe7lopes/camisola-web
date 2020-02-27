@@ -15,12 +15,12 @@ const Home = () => {
   return (
     <div>
       <Row>
-        <Col className="c-container">
+        <Col className="c-container--left">
           {benficaProducts.length > 0 && <ProductCarousel sectionName="Benfica" products={benficaProducts}/>}
           {portoProducts.length > 0 && <ProductCarousel sectionName="Porto" products={portoProducts}/>}
           {sportingProducts.length > 0 && <ProductCarousel sectionName="Sporting" products={sportingProducts}/>}
         </Col>
-        <Col md={3} className="c-container">
+        <Col md={3} className="c-container--right">
           <WhatsApp className="m-b-sm" />
           <ShippingMethodBanner />
           <FacebookReviews />

@@ -17,7 +17,7 @@ function PreviewImages({
           <Row>
             <Col>
               <Figure>
-                <Figure.Image width={256} src={img.url} />
+                <Figure.Image width={150} height={150} src={img.url} />
               </Figure>
             </Col>
             <Col>

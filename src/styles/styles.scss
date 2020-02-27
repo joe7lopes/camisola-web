@@ -19,6 +19,7 @@ body {
   padding: 1rem;
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  max-width: 1080px;
 
 }
 
@@ -64,6 +65,11 @@ body {
 
 .c-thumbnail {
   max-width: 100%;
+
+  &--big{
+    @extend .c-thumbnail;
+    height: 30rem;
+  }
 }
 
 .c-whatsapp {

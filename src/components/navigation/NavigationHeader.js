@@ -3,6 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
+import ShoppingCart from './ShoppingCart';
 
 const {
   PORTUGAL, BENFICA, SPORTING, PORTO, OUTROS, CRIANCAS,
@@ -49,6 +50,7 @@ const NavigationHeader = () => (
       </Nav>
     </Navbar.Collapse>
     <Navbar.Collapse className="justify-content-end">
+      <ShoppingCart />
       <Navbar.Text>
         <Link to={path.ACCOUNT}> USER NAME</Link>
         <Link to={path.HOME}> Login / Logout</Link>

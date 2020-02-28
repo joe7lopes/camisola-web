@@ -1,0 +1,15 @@
+@import "colors";
+
+.cart-items {
+  background: $action-color;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+  position: relative;
+  top: 12px;
+  left: 1.75rem;
+  font-weight: 600;
+  font-size: 13px;
+}

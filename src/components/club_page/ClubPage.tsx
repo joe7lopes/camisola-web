@@ -11,12 +11,14 @@ const ClubPage = () => {
   const products = useSelector(getAllProducts);
   const clubProducts = filterProducts(club, products);
   const camisolas = filterProducts(Category.CAMISOLAS, clubProducts);
+  const fatosDeTreino = filterProducts(Category.FATOS_DE_TREINO, clubProducts);
+  const equipamentosCrianca = filterProducts(Category.EQUIPAMENTOS_CRIANCA, clubProducts);
 
   return (
         <div className="c-body">
             <ProductList title="Camisolas" products={camisolas}/>
-            <ProductList title="Fatos de treino" products={camisolas}/>
-            <ProductList title="Equipamentos de Crianca" products={camisolas}/>
+            <ProductList title="Fatos de treino" products={fatosDeTreino}/>
+            <ProductList title="Equipamentos de Crianca" products={equipamentosCrianca}/>
         </div>
   );
 };
@@ -24,7 +26,6 @@ const ClubPage = () => {
 export default ClubPage;
 
 
-const filterProducts = (category:string, products:IProduct[]) => {
-  const found = products.filter((p) => p.categories.filter((c) => c.name === category).length > 0);
-  return found;
-};
+const filterProducts = (category:string, products:IProduct[]) => products
+  .filter((p) => p.categories
+    .filter((c) => c.name === category).length > 0);

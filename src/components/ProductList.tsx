@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-import { IProduct, IImage } from '../types';
-import {getDefaultImage} from "./utils";
+import { IProduct } from '../types';
+import { getDefaultImage } from './utils';
 
 interface IProps {
   title: string,

@@ -15,7 +15,8 @@ export enum Category {
     PORTO = 'porto',
     SPORTING = 'sporting',
     CAMISOLAS = 'camisolas',
-    FATOS_DE_TREINO= 'fatos_de_treino'
+    FATOS_DE_TREINO = 'fatos_de_treino',
+    EQUIPAMENTOS_CRIANCA = 'equipamento_crianca'
 }
 
 export interface IProductCategory {

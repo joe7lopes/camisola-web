@@ -1,4 +1,6 @@
-import { ICartAction, ADD_TO_CART_FULFILLED, REMOVE_CART_ITEM, RESET_CART, PLACE_ORDER_FULFILLED, PLACE_ORDER_PENDING, PLACE_ORDER_REJECTED } from '../actions';
+import {
+  ICartAction, ADD_TO_CART_FULFILLED, REMOVE_CART_ITEM, RESET_CART, PLACE_ORDER_FULFILLED, PLACE_ORDER_PENDING, PLACE_ORDER_REJECTED,
+} from '../actions';
 import { ICartState, ICartItem } from '../types';
 
 const INITIAL_STATE: ICartState = {
@@ -17,16 +19,18 @@ const cart = (state = INITIAL_STATE, { type, payload }: ICartAction) => {
       return { ...state, items, total };
     }
     case REMOVE_CART_ITEM: {
-      const items = state.items.filter(item => item !== payload);
-      const total = calculateTotal(items)
-      return { ...state, items, total }
+      const items = state.items.filter((item) => item !== payload);
+      const total = calculateTotal(items);
+      return { ...state, items, total };
     }
     case RESET_CART:
       return INITIAL_STATE;
     case PLACE_ORDER_PENDING:
       return { ...state, isOrderPlacedLoading: true };
     case PLACE_ORDER_FULFILLED:
-      return { ...state, isOrderPlacedLoading: false, isOrderPlacedSuccess: true, order: payload }
+      return {
+        ...state, isOrderPlacedLoading: false, isOrderPlacedSuccess: true, order: payload,
+      };
     case PLACE_ORDER_REJECTED:
       return { ...state, isOrderPlacedLoading: false, isOrderPlacedFailure: true };
     default:
@@ -34,10 +38,6 @@ const cart = (state = INITIAL_STATE, { type, payload }: ICartAction) => {
   }
 };
 
-const calculateTotal = (items: ICartItem[]) => {
-  return items.reduce((acc: number, b: ICartItem) => {
-    return acc + b.price
-  }, 0);
-}
+const calculateTotal = (items: ICartItem[]) => items.reduce((acc: number, b: ICartItem) => acc + b.price, 0);
 
 export default cart;

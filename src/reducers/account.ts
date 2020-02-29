@@ -1,4 +1,4 @@
-import { SAVE_PERSONAL_DATA_FULFILLED, PLACE_ORDER_FULFILLED } from '../actions/actionTypes';
+import { SAVE_PERSONAL_DATA_FULFILLED, PLACE_ORDER_FULFILLED } from '../actions';
 
 interface IProps {
   type: string,
@@ -6,16 +6,17 @@ interface IProps {
 }
 
 const INITIAL_STATE = {
-  orders: []
-}
+  orders: [],
+};
 
 const account = (state = INITIAL_STATE, { type, payload }: IProps) => {
   switch (type) {
     case SAVE_PERSONAL_DATA_FULFILLED:
       return { ...state, personalDetails: payload };
-    case PLACE_ORDER_FULFILLED:
+    case PLACE_ORDER_FULFILLED: {
       const updatedOrders = [...state.orders, payload];
-      return {...state, orders: updatedOrders}
+      return { ...state, orders: updatedOrders };
+    }
     default:
       return state;
   }

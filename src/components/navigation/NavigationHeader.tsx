@@ -17,6 +17,9 @@ headerLinks.set(OUTROS, 'Outros');
 headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+const keys:string[] = headerLinks.keys();
 const NavigationHeader = () => (
   <div style={{ backgroundColor: 'white' }}>
   <Navbar
@@ -40,13 +43,7 @@ const NavigationHeader = () => (
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        {[...headerLinks.keys()].map((link) => (
-          <NavigationLink
-            key={link}
-            displayName={headerLinks.get(link)}
-            destination={link}
-          />
-        ))}
+        {renderLinks(keys)}
       </Nav>
     </Navbar.Collapse>
     <Navbar.Collapse className="justify-content-end">
@@ -61,3 +58,11 @@ const NavigationHeader = () => (
 );
 
 export default NavigationHeader;
+
+const renderLinks = (headers:string[]) => [...headers].map((link) => (
+    <NavigationLink
+        key={link}
+        displayName={headerLinks.get(link)}
+        destination={link}
+    />
+));

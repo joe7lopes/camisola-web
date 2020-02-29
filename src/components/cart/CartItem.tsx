@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { removeCartItem } from '../../actions';
 import { ICartItem } from '../../types';
 import { Dispatch, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 interface IProps {
     item: ICartItem,

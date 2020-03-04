@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
 import ShoppingCart from './ShoppingCart';
+import LoginModal from '../auth/LoginModal';
 
 const {
   PORTUGAL, BENFICA, SPORTING, PORTO, OUTROS, CRIANCAS,
@@ -20,7 +21,10 @@ headerLinks.set(CRIANCAS, 'Crianças');
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const keys:string[] = headerLinks.keys();
-const NavigationHeader = () => (
+const NavigationHeader = () => {
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+
+  return (
   <div style={{ backgroundColor: 'white' }}>
   <Navbar
     className="c-lock-width"
@@ -50,12 +54,14 @@ const NavigationHeader = () => (
       <ShoppingCart />
       <Navbar.Text>
         <Link to={path.ACCOUNT}> USER NAME</Link>
-        <Link to={path.HOME}> Login / Logout</Link>
+        <LoginModal show={loginModalVisible} onHide={() => setLoginModalVisible(false)}/>
+        <div onClick={() => setLoginModalVisible(true)}> Login | registrar</div>
       </Navbar.Text>
     </Navbar.Collapse>
   </Navbar>
   </div>
-);
+  );
+};
 
 export default NavigationHeader;
 

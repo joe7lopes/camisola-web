@@ -37,15 +37,19 @@ const LoginModal = ({ show, onHide }: any) => {
         </Form>
   );
 
+
   return (
-        <Modal
-            show={show}
-            onHide={onHide}>
-            <Modal.Header closeButton/>
-            <Modal.Body>
-                {selectedTab === 0 ? renderLogin() : renderRegister()}
-            </Modal.Body>
-        </Modal>
+        <div>
+            <Modal
+                backdrop={false}
+                show={show}
+                onHide={onHide}>
+                <Modal.Header closeButton>ss</Modal.Header>
+                <Modal.Body>
+                    {selectedTab === 0 ? renderLogin() : renderRegister()}
+                </Modal.Body>
+            </Modal>
+        </div>
   );
 };
 

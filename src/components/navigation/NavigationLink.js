@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
-function NavigationLink({ displayName, destination }) {
+const NavigationLink = ({ displayName, destination }) => {
   return (
     <Nav.Link as="div">
       <NavLink
@@ -13,6 +13,6 @@ function NavigationLink({ displayName, destination }) {
       </NavLink>
     </Nav.Link>
   );
-}
+};
 
 export default NavigationLink;

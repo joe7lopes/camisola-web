@@ -20,55 +20,84 @@ headerLinks.set(CRIANCAS, 'Crianças');
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const keys:string[] = headerLinks.keys();
+const keys: string[] = headerLinks.keys();
 const NavigationHeader = () => {
   const [loginModalVisible, setLoginModalVisible] = useState(false);
 
-  return (
-  <div style={{ backgroundColor: 'white' }}>
-  <Navbar
-    className="c-lock-width"
-    sticky="top"
-    fixed="top"
-    bg="white"
-    expand="lg"
-    role="navigation"
-    as="header"
-  >
-    <Navbar.Brand as="div">
-      <Link to="/">
-        <img
-        alt="home"
-          style={{ height: '6rem' }}
-          src="https://camisola10.com/wp-content/uploads/2018/10/LogoWidth200.png"
+
+  const renderLinks = (headers: string[]) => [...headers].map((link) => (
+        <NavigationLink
+            key={link}
+            displayName={headerLinks.get(link)}
+            destination={link}
         />
-      </Link>
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto">
-        {renderLinks(keys)}
-      </Nav>
-    </Navbar.Collapse>
-    <Navbar.Collapse className="justify-content-end">
-      <ShoppingCart />
-      <Navbar.Text>
-        <Link to={path.ACCOUNT}> USER NAME</Link>
-        <LoginModal show={loginModalVisible} onHide={() => setLoginModalVisible(false)}/>
-        <div onClick={() => setLoginModalVisible(true)}> Login | registrar</div>
-      </Navbar.Text>
-    </Navbar.Collapse>
-  </Navbar>
-  </div>
+  ));
+
+
+  return (
+    <>
+            <div style={{ backgroundColor: 'white' }}>
+                <Navbar
+                    className="c-lock-width"
+                    sticky="top"
+                    fixed="top"
+                    bg="white"
+                    expand="lg"
+                    role="navigation"
+                    as="header"
+                >
+                    <Navbar.Brand as="div">
+                        <Link to="/">
+                            <img
+                                alt="home"
+                                style={{ height: '6rem' }}
+                                src="https://camisola10.com/wp-content/uploads/2018/10/LogoWidth200.png"
+                            />
+                        </Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle/>
+                    <Navbar.Collapse>
+                        <Nav className="mr-auto">
+                            {/* not working when modal opens {renderLinks(keys)} */}
+                            <NavigationLink
+                                displayName={headerLinks.get(PORTUGAL)}
+                                destination="/portugal"
+                            />
+                            <NavigationLink
+                                displayName={headerLinks.get(BENFICA)}
+                                destination="/benfica"
+                            />
+                            <NavigationLink
+                                displayName={headerLinks.get(PORTO)}
+                                destination="/porto"
+                            />
+                            <NavigationLink
+                                displayName={headerLinks.get(SPORTING)}
+                                destination="/sporting"
+                            />
+                            <NavigationLink
+                                displayName={headerLinks.get(CRIANCAS)}
+                                destination="/Crianças"
+                            />
+                            <NavigationLink
+                                displayName={headerLinks.get(OUTROS)}
+                                destination="/outros"
+                            />
+                        </Nav>
+
+                    </Navbar.Collapse>
+                    <Navbar.Collapse className="justify-content-end">
+                        <ShoppingCart/>
+                        <Navbar.Text>
+                            <Link to={path.ACCOUNT}> USER NAME</Link>
+                            <div onClick={() => setLoginModalVisible(true)}> Login | registrar</div>
+                        </Navbar.Text>
+                    </Navbar.Collapse>
+                </Navbar>
+            </div>
+            <LoginModal show={loginModalVisible} onHide={() => setLoginModalVisible(false)}/>
+    </>
   );
 };
 
 export default NavigationHeader;
-
-const renderLinks = (headers:string[]) => [...headers].map((link) => (
-    <NavigationLink
-        key={link}
-        displayName={headerLinks.get(link)}
-        destination={link}
-    />
-));

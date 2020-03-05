@@ -1,9 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import { createSelector } from 'reselect';
-import { Category, IRootState } from '../../types';
-import {
-  getAllProducts, getBenficaProducts, getPortoProducts, getSportingProducts,
-} from './products';
+import { IRootState } from '../../types';
 
 const getUI = (state: IRootState) => state.ui;
 

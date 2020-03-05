@@ -25,6 +25,7 @@ const INITIAL_STATE: IUIState = {
   settings: {
     isFetchingSettings: true,
   },
+
 };
 
 export default (state = INITIAL_STATE, { type, payload }: IProps) => {

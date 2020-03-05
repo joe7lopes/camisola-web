@@ -13,7 +13,7 @@ export interface IUIState {
     settings: {
         isUpdatingSettings?: boolean,
         isFetchingSettings:boolean
-    },
+    }
 }
 
 export interface ICartState {

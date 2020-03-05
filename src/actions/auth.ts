@@ -2,7 +2,7 @@ import {
   SIGN_IN,
   SIGN_IN_FULFILLED,
   SIGN_IN_PENDING,
-  SIGN_IN_REJECTED, SIGN_UP, SIGN_UP_FULFILLED,
+  SIGN_IN_REJECTED, SIGN_UP, SIGN_UP_FULFILLED, SIGN_UP_PENDING, SIGN_UP_REJECTED,
 } from './actionTypes';
 
 export interface ISignInData {
@@ -40,7 +40,7 @@ export const signUp = (data: any) => ({
 });
 
 export const signUpPending = () => ({
-  type: SIGN_UP,
+  type: SIGN_UP_PENDING,
 });
 
 export const signUpFulfilled = () => ({
@@ -48,6 +48,6 @@ export const signUpFulfilled = () => ({
 });
 
 export const signUpRejected = (err: string) => ({
-  type: SIGN_UP_FULFILLED,
+  type: SIGN_UP_REJECTED,
   payload: err,
 });

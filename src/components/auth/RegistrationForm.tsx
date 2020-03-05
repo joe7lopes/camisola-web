@@ -5,9 +5,9 @@ import { signUp } from '../../actions';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [repeatedPassword, setRepeatedPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatedPassword, setRepeatedPassword] = useState('');
 
   const handleSubmit = (e: any) => {
     e.preventDefault();

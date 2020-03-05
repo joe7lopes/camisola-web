@@ -89,8 +89,7 @@ const NavigationHeader = () => {
                     <Navbar.Collapse className="justify-content-end">
                         <ShoppingCart/>
                         <Navbar.Text>
-                            <Link to={path.ACCOUNT}> USER NAME</Link>
-                            <div onClick={() => setLoginModalVisible(true)}> Login | registrar</div>
+                            <div className="m-l-lg" onClick={() => setLoginModalVisible(true)}> Login | registrar</div>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>

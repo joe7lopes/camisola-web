@@ -1,4 +1,9 @@
-import { ADD_TO_CART, ADD_TO_CART_FULFILLED, REMOVE_CART_ITEM, RESET_CART } from './actionTypes';
+import {
+  ADD_TO_CART,
+  ADD_TO_CART_FULFILLED,
+  REMOVE_CART_ITEM,
+  RESET_CART,
+} from './actionTypes';
 import { ICartItem } from '../types';
 
 export interface ICartAction {
@@ -19,9 +24,9 @@ export const addToCartFulfilled = (product: ICartItem) => ({
 
 export const removeCartItem = (item: ICartItem) => ({
   type: REMOVE_CART_ITEM,
-  payload: item
-})
+  payload: item,
+});
 
 export const resetCart = () => ({
-  type: RESET_CART
-})
+  type: RESET_CART,
+});

@@ -2,8 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
-const NavigationLink = ({ displayName, destination }) => {
-  return (
+const NavigationLink = ({ displayName, destination }: any) => (
     <Nav.Link as="div">
       <NavLink
         style={{ paddingBottom: '8px', color: 'black' }}
@@ -12,7 +11,6 @@ const NavigationLink = ({ displayName, destination }) => {
         {displayName}
       </NavLink>
     </Nav.Link>
-  );
-};
+);
 
 export default NavigationLink;

@@ -7,12 +7,12 @@ import {
 } from './index';
 
 export interface IUIState {
-    products:{
+    products: {
         isFetchingProducts?: boolean,
     },
     settings: {
         isUpdatingSettings?: boolean,
-        isFetchingSettings:boolean
+        isFetchingSettings: boolean
     }
 }
 
@@ -23,6 +23,10 @@ export interface ICartState {
     isOrderPlacedSuccess: boolean,
     isOrderPlacedFailure: boolean,
     order?: IOrder
+}
+
+export interface IAuthState {
+    authToken: string
 }
 
 export interface IRootState {

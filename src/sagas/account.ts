@@ -4,16 +4,9 @@ import {
 
 import {
   SAVE_PERSONAL_DATA,
-  savePersonalDataFulfilled
+  savePersonalDataFulfilled,
 } from '../actions';
 
-/*
- * +++Watchers+++
- */
-
-export function* watchSavePersonalData() {
-  yield takeLatest(SAVE_PERSONAL_DATA, savePersonalData);
-}
 
 /*
  * +++Executers+++
@@ -23,3 +16,10 @@ function* savePersonalData() {
   yield put(savePersonalDataFulfilled());
 }
 
+/*
+ * +++Watchers+++
+ */
+
+export function* watchSavePersonalData() {
+  yield takeLatest(SAVE_PERSONAL_DATA, savePersonalData);
+}

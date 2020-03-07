@@ -13,7 +13,13 @@ export interface IUIState {
     settings: {
         isUpdatingSettings?: boolean,
         isFetchingSettings: boolean
+    },
+    auth:{
+        isSigningUp? :boolean,
+        isSigningIn? :boolean,
+        isResettingPassword? :boolean,
     }
+
 }
 
 export interface ICartState {
@@ -26,7 +32,10 @@ export interface ICartState {
 }
 
 export interface IAuthState {
-    authToken: string
+    authToken?: string,
+    signUpError?: string,
+    signInError?: string,
+    resetPasswordError?: string,
 }
 
 export interface IRootState {
@@ -35,4 +44,5 @@ export interface IRootState {
     cart: ICartState,
     settings: ISettings,
     ui: IUIState,
+    auth: IAuthState
 }

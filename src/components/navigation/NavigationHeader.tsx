@@ -20,18 +20,18 @@ headerLinks.set(CRIANCAS, 'Crianças');
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const keys: string[] = headerLinks.keys();
+// const keys: string[] = headerLinks.keys();
 const NavigationHeader = () => {
   const [loginModalVisible, setLoginModalVisible] = useState(false);
 
 
-  const renderLinks = (headers: string[]) => [...headers].map((link) => (
-        <NavigationLink
-            key={link}
-            displayName={headerLinks.get(link)}
-            destination={link}
-        />
-  ));
+  // const renderLinks = (headers: string[]) => [...headers].map((link) => (
+  //       <NavigationLink
+  //           key={link}
+  //           displayName={headerLinks.get(link)}
+  //           destination={link}
+  //       />
+  // ));
 
 
   return (

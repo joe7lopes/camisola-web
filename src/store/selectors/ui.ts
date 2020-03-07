@@ -22,3 +22,18 @@ export const isUpdatingSettings = createSelector(
   [getSettings],
   (settings) => settings.isUpdatingSettings,
 );
+
+export const isSigningUp = createSelector(
+  [getUI],
+  (ui) => ui.auth.isSigningUp,
+);
+
+export const isSigningIn = createSelector(
+  [getUI],
+  (ui) => ui.auth.isSigningIn,
+);
+
+export const isResettingPassword = createSelector(
+  [getUI],
+  (ui) => ui.auth.isResettingPassword,
+);

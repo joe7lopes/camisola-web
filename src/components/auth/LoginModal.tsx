@@ -1,27 +1,55 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-  Modal,
+    Modal,
 } from 'react-bootstrap';
 import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
+import ResetPassword from "./ResetPassword";
 
-const LoginModal = ({ show, onHide }: any) => {
-  const [selectedTab, setSelectedTab] = useState(0);
-  const message = selectedTab === 0 ? 'Aceda a sua conta' : 'Crie uma nova conta';
+enum Tab {
+    SIGN_IN,
+    SIGN_UP,
+    PASSWORD_RESET
 
-  return (
+}
+
+const headerMessage = (tab: Tab) => {
+    switch (tab) {
+        case Tab.SIGN_IN: return 'Aceda à sua conta';
+        case Tab.SIGN_UP: return 'Crie uma nova conta';
+        case Tab.PASSWORD_RESET: return 'Recuperar senha';
+    }
+};
+
+const LoginModal = ({show, onHide}: any) => {
+    const [selectedTab, setSelectedTab] = useState(Tab.SIGN_IN);
+
+    const renderComponent = (tab: Tab) => {
+        switch (tab) {
+            case Tab.SIGN_IN:
+                return <LoginForm
+                    handleShowRegistration={() => setSelectedTab(Tab.SIGN_UP)}
+                    handlePasswordRecovery={() => setSelectedTab(Tab.PASSWORD_RESET)}/>;
+            case Tab.SIGN_UP:
+                return <RegistrationForm/>;
+            case Tab.PASSWORD_RESET:
+                return <ResetPassword/>;
+            default:
+                return <LoginForm/>
+        }
+    };
+
+    return (
         <Modal
             show={show}
             onHide={onHide}
-            onExited={() => setSelectedTab(0)}>
-            <Modal.Header closeButton>{message}</Modal.Header>
+            onExited={() => setSelectedTab(Tab.SIGN_IN)}>
+            <Modal.Header closeButton>{headerMessage(selectedTab)}</Modal.Header>
             <Modal.Body>
-                {selectedTab === 0
-                  ? <LoginForm handleShowRegistration={() => setSelectedTab(1)}/>
-                  : <RegistrationForm/>}
+                {renderComponent(selectedTab)}
             </Modal.Body>
         </Modal>
-  );
+    );
 };
 
 export default LoginModal;

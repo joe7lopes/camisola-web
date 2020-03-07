@@ -1,18 +1,30 @@
 import {
+  RESET_PASSWORD, RESET_PASSWORD_FULFILLED, RESET_PASSWORD_PENDING, RESET_PASSWORD_REJECTED,
   SIGN_IN,
   SIGN_IN_FULFILLED,
   SIGN_IN_PENDING,
-  SIGN_IN_REJECTED, SIGN_UP, SIGN_UP_FULFILLED, SIGN_UP_PENDING, SIGN_UP_REJECTED,
+  SIGN_IN_REJECTED,
+  SIGN_UP,
+  SIGN_UP_FULFILLED,
+  SIGN_UP_PENDING,
+  SIGN_UP_REJECTED,
 } from './actionTypes';
 
 export interface ISignInData {
-  email: string,
-  password: string
+    email: string,
+    password: string
+}
+
+export interface ISignUpData {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
 }
 
 export interface ISignInAction {
-  type: string,
-  payload: ISignInData
+    type: string,
+    payload: ISignInData
 }
 
 export const signIn = (credentials: ISignInData) => ({
@@ -34,7 +46,7 @@ export const signInRejected = (error: string) => ({
   payload: error,
 });
 
-export const signUp = (data: any) => ({
+export const signUp = (data: ISignUpData) => ({
   type: SIGN_UP,
   payload: data,
 });
@@ -50,4 +62,23 @@ export const signUpFulfilled = () => ({
 export const signUpRejected = (err: string) => ({
   type: SIGN_UP_REJECTED,
   payload: err,
+});
+
+export const resetPassword = (email: string) => ({
+  type: RESET_PASSWORD,
+  payload: email,
+});
+
+export const resetPasswordPending = () => ({
+  type: RESET_PASSWORD_PENDING,
+});
+
+
+export const resetPasswordFulfilled = () => ({
+  type: RESET_PASSWORD_FULFILLED,
+});
+
+export const resetPasswordRejected = (error: string) => ({
+  type: RESET_PASSWORD_REJECTED,
+  payload: error,
 });

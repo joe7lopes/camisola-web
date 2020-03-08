@@ -43,6 +43,11 @@ export const SIGN_IN_PENDING = SIGN_IN + _PENDING;
 export const SIGN_IN_FULFILLED = SIGN_IN + _FULFILLED;
 export const SIGN_IN_REJECTED = SIGN_IN + _REJECTED;
 
+export const SIGN_OUT = 'SIGN_OUT';
+export const SIGN_OUT_PENDING = SIGN_OUT + _PENDING;
+export const SIGN_OUT_FULFILLED = SIGN_OUT + _FULFILLED;
+export const SIGN_OUT_REJECTED = SIGN_OUT + _REJECTED;
+
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_UP_PENDING = SIGN_UP + _PENDING;
 export const SIGN_UP_FULFILLED = SIGN_UP + _FULFILLED;

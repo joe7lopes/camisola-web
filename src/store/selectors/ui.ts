@@ -37,3 +37,8 @@ export const isResettingPassword = createSelector(
   [getUI],
   (ui) => ui.auth.isResettingPassword,
 );
+
+export const isLoginSuccess = createSelector(
+  [getUI],
+  (ui) => ui.auth.isSignInSuccess,
+);

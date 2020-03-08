@@ -3,7 +3,7 @@ import {
   SIGN_IN,
   SIGN_IN_FULFILLED,
   SIGN_IN_PENDING,
-  SIGN_IN_REJECTED,
+  SIGN_IN_REJECTED, SIGN_OUT, SIGN_OUT_FULFILLED, SIGN_OUT_PENDING,
   SIGN_UP,
   SIGN_UP_FULFILLED,
   SIGN_UP_PENDING,
@@ -44,6 +44,18 @@ export const signInFulfilled = (authToken: string) => ({
 export const signInRejected = (error: string) => ({
   type: SIGN_IN_REJECTED,
   payload: error,
+});
+
+export const signOut = () => ({
+  type: SIGN_OUT,
+});
+
+export const signOutPending = () => ({
+  type: SIGN_OUT_PENDING,
+});
+
+export const signOutFulfilled = () => ({
+  type: SIGN_OUT_FULFILLED,
 });
 
 export const signUp = (data: ISignUpData) => ({

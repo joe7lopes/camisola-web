@@ -29,7 +29,9 @@ const INITIAL_STATE: IUIState = {
   settings: {
     isFetchingSettings: true,
   },
-  auth: {},
+  auth: {
+    isSignInSuccess: false,
+  },
 
 };
 
@@ -70,7 +72,7 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case SIGN_IN_PENDING:
       return { ...state, auth: { isSigningIn: true } };
     case SIGN_IN_FULFILLED:
-      return { ...state, auth: { isSigningIn: false } };
+      return { ...state, auth: { isSigningIn: false, isSignInSuccess: true } };
     case SIGN_IN_REJECTED:
       return { ...state, auth: { isSigningIn: false } };
     case RESET_PASSWORD_PENDING:

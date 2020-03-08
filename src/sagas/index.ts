@@ -5,7 +5,7 @@ import { watchSavePersonalData } from './account';
 import { watchFetchProducts, watchCreateNewProduct } from './products';
 import { watchAddToCart } from './cart';
 import { watchPlaceOrder } from './orders';
-import { watchResetPassword, watchSignIn, watchSignUp } from './auth';
+import {watchResetPassword, watchSignIn, watchSignOut, watchSignUp} from './auth';
 
 export default function* rootSaga() {
   yield all([
@@ -17,6 +17,7 @@ export default function* rootSaga() {
     fork(watchAddToCart),
     fork(watchPlaceOrder),
     fork(watchSignIn),
+    fork(watchSignOut),
     fork(watchSignUp),
     fork(watchResetPassword),
   ]);

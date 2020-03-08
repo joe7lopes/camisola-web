@@ -5,11 +5,14 @@ import {
 import {
   SIGN_IN,
   SIGN_UP,
+  SIGN_OUT,
   RESET_PASSWORD,
   ISignInAction,
   signInRejected,
   signInFulfilled,
   signInPending,
+  signOutPending,
+  signOutFulfilled,
   signUpPending,
   signUpFulfilled,
   signUpRejected,
@@ -20,6 +23,7 @@ import {
 
 import api from './api';
 
+const USER_TOKEN = 'camisola10-u-token';
 /*
 * +++Executers+++
 */
@@ -27,11 +31,19 @@ import api from './api';
 function* signIn({ payload }: ISignInAction) {
   try {
     yield put(signInPending());
-    const { authToken } = yield call(api.post, '/auth/signin', payload);
-    yield put(signInFulfilled(authToken));
+    const { data } = yield call(api.post, '/auth/signin', payload);
+    localStorage.setItem(USER_TOKEN, data.authToken);
+    yield put(signInFulfilled(data));
   } catch (err) {
     yield put(signInRejected(err.response.data.error));
   }
+}
+
+function* signOut() {
+  yield put(signOutPending());
+  yield localStorage.removeItem(USER_TOKEN);
+  yield;
+  yield put(signOutFulfilled());
 }
 
 function* signUp({ payload }: any) {
@@ -60,6 +72,10 @@ function* resetPassword(action: any) {
 
 export function* watchSignIn() {
   yield takeLatest(SIGN_IN, signIn);
+}
+
+export function* watchSignOut() {
+  yield takeLatest(SIGN_OUT, signOut);
 }
 
 export function* watchSignUp() {

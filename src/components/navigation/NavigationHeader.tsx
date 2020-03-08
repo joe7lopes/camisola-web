@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
 import ShoppingCart from './ShoppingCart';
 import LoginModal from '../auth/LoginModal';
+import { getUser, isLoginSuccess } from '../../store/selectors';
 
 const {
   PORTUGAL, BENFICA, SPORTING, PORTO, OUTROS, CRIANCAS,
@@ -18,21 +20,25 @@ headerLinks.set(OUTROS, 'Outros');
 headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-// const keys: string[] = headerLinks.keys();
 const NavigationHeader = () => {
+  const user = useSelector(getUser);
+  const loginSuccess = useSelector(isLoginSuccess);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
 
 
-  // const renderLinks = (headers: string[]) => [...headers].map((link) => (
-  //       <NavigationLink
-  //           key={link}
-  //           displayName={headerLinks.get(link)}
-  //           destination={link}
-  //       />
-  // ));
+  useEffect(() => {
+    if (loginSuccess) {
+      setLoginModalVisible(false);
+    }
+  }, [loginSuccess]);
 
+
+  const renderLogin = () => {
+    if (user) {
+      return <Link to={path.ACCOUNT}><div className="m-l-lg">{user?.firstName}</div> </Link>;
+    }
+    return <div className="m-l-lg" onClick={() => setLoginModalVisible(true)}> Login | registrar</div>;
+  };
 
   return (
     <>
@@ -87,9 +93,9 @@ const NavigationHeader = () => {
 
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
-                        <ShoppingCart/>
+                        <ShoppingCart />
                         <Navbar.Text>
-                            <div className="m-l-lg" onClick={() => setLoginModalVisible(true)}> Login | registrar</div>
+                            {renderLogin()}
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>

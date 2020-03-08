@@ -17,3 +17,8 @@ export const getResetPasswordError = createSelector(
   [getAuth],
   (auth) => auth.resetPasswordError,
 );
+
+export const getUser = createSelector(
+  [getAuth],
+  (auth) => auth.user,
+);

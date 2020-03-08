@@ -5,6 +5,7 @@ import {
   IAccount,
   ISettings,
 } from './index';
+import {IUser} from "./auth";
 
 export interface IUIState {
     products: {
@@ -18,6 +19,7 @@ export interface IUIState {
         isSigningUp? :boolean,
         isSigningIn? :boolean,
         isResettingPassword? :boolean,
+        isSignInSuccess:boolean
     }
 
 }
@@ -36,6 +38,7 @@ export interface IAuthState {
     signUpError?: string,
     signInError?: string,
     resetPasswordError?: string,
+    user?: IUser
 }
 
 export interface IRootState {

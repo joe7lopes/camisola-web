@@ -19,8 +19,7 @@ const ProductCard = ({
     <Card
       className={className}
       style={{ width: '14rem', cursor: 'pointer' }}
-      onClick={() => history.push(`/products/${id}`)}
-    >
+      onClick={() => history.push(`/products/${id}`)}>
       <Card.Img variant="top" src={image} style={{ height: '10rem' }}/>
       <Card.Body>
         {name}

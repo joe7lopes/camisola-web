@@ -35,7 +35,7 @@ const CartContent: React.FC<IProps> = ({ placeOrder, items, showPlaceOrderLoadin
     if (form.checkValidity() === true) {
 
       const shippingAddress: any = [...form.elements]
-        .filter(el => el.name)
+        .filter((el) => el.name)
         .reduce((acc, curr) => ({ ...acc, [curr.name]: curr.value }), {})
 
       const order = { items, shippingAddress }

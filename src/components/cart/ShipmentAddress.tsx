@@ -37,7 +37,7 @@ const ShipmentAddress = () => (
           <FormControl name="phone" placeholder="91xxx" required/>
         </InputGroup>
 
-        <span className="c-text-mutted">(Morada de envio)</span>
+        <span className="c-text-muted">(Morada de envio)</span>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="label-address">Morada</InputGroup.Text>

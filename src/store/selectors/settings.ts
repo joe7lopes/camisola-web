@@ -22,3 +22,8 @@ export const getStampingExtraCost = createSelector(
   [getSettings],
   (settings) => settings.stampingExtraCost,
 );
+
+export const getShippingCost = createSelector(
+  [getSettings],
+  (settings) => 5,
+);

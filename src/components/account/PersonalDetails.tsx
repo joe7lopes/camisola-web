@@ -60,7 +60,7 @@ function PersonalDetails({
           <FormControl placeholder="91xxx" />
         </InputGroup>
 
-        <span className="c-text-mutted">(Morada de envio padrão)</span>
+        <span className="c-text-muted">(Morada de envio padrão)</span>
         <ShippingAddress />
       </Card.Body>
     </Card>

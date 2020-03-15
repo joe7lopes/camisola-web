@@ -1,52 +1,32 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
-import { IRootState, ICartItem } from '../../types';
-import { connect } from 'react-redux';
+import { getCartItems, getShippingCost, getCartTotal } from '../../store/selectors';
 
-interface IProps {
-    items: ICartItem[]
-    subTotal: number,
-    shipmentCost: number
-}
-
-const CartItems = ({ items, subTotal, shipmentCost }: IProps) => (
+const CartItems = () => {
+  const items = useSelector(getCartItems);
+  const shippingCost = useSelector(getShippingCost);
+  const total = useSelector(getCartTotal);
+  return (
     <>
-        <Table striped bordered hover responsive>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Preço</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>{items.map((item, i) => (
-                <CartItem key={i} item={item} />))}
-            </tbody>
-        </Table>
+        {items.map((item, i) => (
+            <CartItem key={i} item={item}/>))}
+
         <Table striped bordered hover>
             <tbody>
-                <tr>
-                    <th>Sub-total</th>
-                    <td>{subTotal} €</td>
-                </tr>
-                <tr>
-                    <th>Envio</th>
-                    <td>Taxa fixa: 5€ protes de envio</td>
-                </tr>
-                <tr>
-                    <th>Total da compra</th>
-                    <td>{subTotal + shipmentCost} €</td>
-                </tr>
+            <tr>
+                <th>Envio <span className="c-text-muted">(à cobrança)</span></th>
+                <td>Taxa fixa: {shippingCost}€</td>
+            </tr>
+            <tr>
+                <th>Total da compra</th>
+                <td>{total} €</td>
+            </tr>
             </tbody>
         </Table>
     </>
-)
+  );
+};
 
-const mapStateToProps = ({ cart }: IRootState) => ({
-    items: cart.items,
-    subTotal: cart.total,
-    shipmentCost: 5
-});
-
-export default connect(mapStateToProps)(CartItems);
+export default CartItems;

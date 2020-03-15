@@ -9,11 +9,12 @@ import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
 import { IProduct, ICartItem, IRootState } from '../../types';
 import path from '../../routes/path';
+import { getProductPriceBySize } from '../utils';
 
 interface IProps {
-  product: IProduct,
-  addToCart: (item: ICartItem) => void,
-  extraCost: number
+    product: IProduct,
+    addToCart: (item: ICartItem) => void,
+    extraCost: number
 }
 
 export function CustomizationSection({ product, addToCart, extraCost }: IProps) {
@@ -22,25 +23,18 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
   } = product;
 
   const [price, setPrice] = useState(defaultPrice);
-  const [selectedSize, setSelectedSize] = useState<string>();
+  const [selectedSize, setSelectedSize] = useState<string>(sizes[0].size);
   const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
-    const getCurrentSelectedSizePrice = () => {
-      const selectedSizePrice = sizes.find(
-        (av) => av.size === selectedSize,
-      );
-      return selectedSizePrice ? selectedSizePrice.price : defaultPrice;
-    };
-
-    const selectedSizePrice = getCurrentSelectedSizePrice();
+    const selectedSizePrice = getProductPriceBySize(product, selectedSize);
     const extras = (stampingName || stampingNumber) ? extraCost : 0;
     const finalPrice = selectedSizePrice + extras;
     setPrice(finalPrice);
-  }, [selectedSize, stampingName, stampingNumber, defaultPrice, sizes, extraCost]);
+  }, [selectedSize, stampingName, stampingNumber, defaultPrice, sizes, extraCost, product]);
 
   useEffect(() => {
     if (selectedSize) {
@@ -50,47 +44,49 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    addToCart({
+
+    const item: ICartItem = {
       product,
-      selectedSize: sizes.filter((s) => s.size === selectedSize)[0],
       stampingName,
       stampingNumber,
-      price,
-    });
+      size: selectedSize,
+    };
+
+    addToCart(item);
 
     history.push(path.CART);
   };
   return (
-    <div className="c-customization-container">
-      <h4>{name}</h4>
-      <h4 className="m-t-lg m-b-md" data-test="price">{`€ ${price}`}</h4>
-      <Form onSubmit={handleFormSubmit}>
-        <Form.Group>
-          <Form.Label className="c-label">Tamanho</Form.Label>
-          <div>
-            <ProductSizeSelector
-              availableSizes={sizes.map((as) => as.size)}
-              onSizeChanged={(size: string) => setSelectedSize(size)}
-            />
-          </div>
-        </Form.Group>
-        {isCustomizable && (
-          <Stamping
-            onNameChange={(e: any) => setStampingName(e.target.value)}
-            onNumberChange={(e: any) => setStampingNumber(e.target.value)}
-          />
-        )}
-        <Button
-          type="submit"
-          disabled={addButtonDisabled}>
-          Add to cart
-        </Button>
-      </Form>
-    </div>
+        <div className="c-customization-container">
+            <h4>{name}</h4>
+            <h4 className="m-t-lg m-b-md" data-test="price">{`€ ${price}`}</h4>
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Group>
+                    <Form.Label className="c-label">Tamanho</Form.Label>
+                    <div>
+                        <ProductSizeSelector
+                            availableSizes={sizes.map((as) => as.size)}
+                            onSizeChanged={(size: string) => setSelectedSize(size)}
+                        />
+                    </div>
+                </Form.Group>
+                {isCustomizable && (
+                    <Stamping
+                        onNameChange={(e: any) => setStampingName(e.target.value)}
+                        onNumberChange={(e: any) => setStampingNumber(e.target.value)}
+                    />
+                )}
+                <Button
+                    type="submit"
+                    disabled={addButtonDisabled}>
+                    Add to cart
+                </Button>
+            </Form>
+        </div>
   );
 }
 
-const mapStateToProps = (state:IRootState) => ({
+const mapStateToProps = (state: IRootState) => ({
   extraCost: getStampingExtraCost(state),
 });
 

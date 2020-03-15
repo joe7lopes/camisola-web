@@ -1,27 +1,49 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import {
+  Button, Col, Figure, Row,
+} from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeCartItem } from '../../actions';
 import { ICartItem } from '../../types';
-import { Dispatch, bindActionCreators } from 'redux';
+import { getStampingExtraCost } from '../../store/selectors';
+import { getDefaultImage, getProductPriceBySize } from '../utils';
 
 interface IProps {
     item: ICartItem,
-    removeItem: (item: ICartItem) => void
 }
 
-const CartItem = ({ item, removeItem }: IProps) => (
-    <tr>
-        <td>Thumbnail + product description</td>
-        <td>{`${item.price} €`}</td>
-        <td>{`${item.price} €`}</td>
-        <td>
-            <Button variant="danger" onClick={() => removeItem(item)}>X</Button>
-        </td>
-    </tr>
-)
+const CartItem = ({ item }: IProps) => {
+  const dispatch = useDispatch();
+  const stampingCost = useSelector(getStampingExtraCost);
+  const hasExtras = item.stampingName || item.stampingNumber;
+  return (
+        <Row className="m-b-md">
+            <Col xs md="auto">
+                <Figure>
+                    <Figure.Image
+                        width={171}
+                        height={180}
+                        src={getDefaultImage(item.product.images)}
+                    />
+                </Figure>
+            </Col>
+            <Col xs>
+                <div className="m-l-md">
+                    <div className="m-b-sm c-text-bold">{item.product.name}</div>
+                    <div>Preço {getProductPriceBySize(item.product, item.size)}€</div>
+                    <div className="m-b-sm">Tamanho: <span className="m-b-sm c-text-bold">{item.size}</span></div>
+                    {hasExtras && <div className="text-muted">Estampagem + {stampingCost} euros</div>}
+                    {item.stampingName && <div>Nome: <span className="c-text-bold">{item.stampingName}</span></div>}
+                    {item.stampingNumber
+                    && <div>Numero: <span className="c-text-bold">{item.stampingNumber}</span></div>}
 
+                </div>
+            </Col>
+            <Col xs={2} md="auto">
+                <Button variant="danger" onClick={() => dispatch(removeCartItem(item))}>X</Button>
+            </Col>
+        </Row>
+  );
+};
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ removeItem: removeCartItem }, dispatch);
-
-export default connect(null, mapDispatchToProps)(CartItem);
+export default CartItem;

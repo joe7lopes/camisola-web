@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
@@ -21,6 +21,7 @@ headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
 const NavigationHeader = () => {
+  const history = useHistory();
   const user = useSelector(getUser);
   const loginSuccess = useSelector(isLoginSuccess);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
@@ -29,6 +30,7 @@ const NavigationHeader = () => {
   useEffect(() => {
     if (loginSuccess) {
       setLoginModalVisible(false);
+      history.push(path.ACCOUNT);
     }
   }, [loginSuccess]);
 

@@ -16,9 +16,9 @@ const ClubPage = () => {
 
   return (
         <div className="c-body">
-            <ProductList title="Camisolas" products={camisolas}/>
-            <ProductList title="Fatos de treino" products={fatosDeTreino}/>
-            <ProductList title="Equipamentos de Crianca" products={equipamentosCrianca}/>
+            { camisolas.length > 0 && <ProductList title="Camisolas" products={camisolas}/>}
+            { fatosDeTreino.length > 0 && <ProductList title="Fatos de treino" products={fatosDeTreino}/>}
+            { equipamentosCrianca.length > 0 && <ProductList title="Equipamentos de Crianca" products={equipamentosCrianca}/>}
         </div>
   );
 };

@@ -8,11 +8,8 @@ type IProps = {
     items: ICartItem[],
 }
 
-const Cart: React.FC<IProps> = ({ items }) => (
-  <>
-        {items.length > 0 ? <CartContent/> : <EmptyCart/>}
-  </>
-);
+const Cart: React.FC<IProps> = ({ items }) => (items.length > 0 ? <CartContent/> : <EmptyCart/>);
+
 
 const mapStateToProps = ({ cart }: IRootState) => ({
   items: cart.items,

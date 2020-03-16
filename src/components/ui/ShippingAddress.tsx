@@ -1,17 +1,24 @@
 import React from 'react';
-import {InputGroup, FormControl, Row, Col} from 'react-bootstrap';
+import {
+  InputGroup, FormControl, Row, Col,
+} from 'react-bootstrap';
 
 interface IProps {
-    readonly?: boolean
+    readonly?: boolean,
+    street?: string,
+    city?: string,
+    postalCode?: string
 }
 
-const ShippingAddress = ({readonly = false}: IProps) => (
-    <>
+const ShippingAddress = ({
+  readonly = false, street, city, postalCode,
+}: IProps) => (
+  <>
         <InputGroup className="mb-3">
             <InputGroup.Prepend>
                 <InputGroup.Text id="label-address">Morada</InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl placeholder="Morada" disabled={readonly} />
+            <FormControl placeholder="Morada" name="street" disabled={readonly} value={street}/>
         </InputGroup>
         <Row>
             <Col sm={12} md={6}>
@@ -19,7 +26,7 @@ const ShippingAddress = ({readonly = false}: IProps) => (
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon1">Localidade</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl placeholder="Lisboa" disabled={readonly} />
+                    <FormControl placeholder="Lisboa" name="city" value={city} disabled={readonly} />
                 </InputGroup>
             </Col>
             <Col sm={12} md={6}>
@@ -29,11 +36,11 @@ const ShippingAddress = ({readonly = false}: IProps) => (
                             Codigo Postal
                 </InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl placeholder="1000-004" disabled={readonly} />
+                    <FormControl placeholder="1000-004" name="postalCode" value={postalCode} disabled={readonly} />
                 </InputGroup>
             </Col>
         </Row>
-    </>
-)
+  </>
+);
 
 export default ShippingAddress;

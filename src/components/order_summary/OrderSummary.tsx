@@ -3,8 +3,7 @@ import { Table, Card } from 'react-bootstrap';
 import { IOrder } from '../../types';
 import { ShippingAddress } from '../ui';
 
-const OrderSummary = (order: IOrder) => {
-  return (
+const OrderSummary = (order: IOrder) => (
     <div>
       <h3>Obrigado pela sua compra</h3>
       <h3>A sua Encomenda #8976 foi criada a Janeiro 16, 2020 e está actualmente a ser processada.</h3>
@@ -54,7 +53,6 @@ const OrderSummary = (order: IOrder) => {
       </div>
 
     </div>
-  );
-}
+);
 
 export default OrderSummary;

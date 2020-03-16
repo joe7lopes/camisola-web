@@ -4,24 +4,23 @@ import { connect } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { savePersonalData as savePersonalDataAction } from '../../actions';
 import PersonalDetails from './PersonalDetails';
-import ChangePassword from './ChangePassword';
 
 const AccountDetails = () => {
-
-  const handleOnSave = () => {
-
+  const handleOnSave = (e: any) => {
+    e.preventDefault();
+    const values = [...e.target.elements].map((el:any) => ({ [el.name]: el.value }));
+    console.log(values);
   };
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleOnSave}>
         <PersonalDetails />
-        <ChangePassword />
-        <Button type='submit' className="m-t-lg m-b-lg" onClick={handleOnSave}>Guardar</Button>
+        <Button type='submit' className="m-t-lg m-b-lg">Guardar</Button>
       </Form>
     </div>
   );
-}
+};
 
 const actionCreators = { savePersonalData: savePersonalDataAction };
 

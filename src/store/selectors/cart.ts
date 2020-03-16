@@ -15,6 +15,16 @@ export const getCartItems = createSelector(
   (cart) => cart.items,
 );
 
+export const showOrderCompleted = createSelector(
+  [getCart],
+  (cart) => cart.isOrderPlacedSuccess,
+);
+
+export const getCompletedOrder = createSelector(
+  [getCart],
+  (cart) => cart.order,
+);
+
 const hasExtraCosts = (item: ICartItem) => item.stampingNumber || item.stampingName;
 
 export const getCartTotal = createSelector(

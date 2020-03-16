@@ -66,13 +66,22 @@ body {
 //IMAGES
 
 .c-thumbnail {
-  max-width: 100%;
+  width: 100%;
 
+  &--small{
+    @extend .c-thumbnail;
+    max-height: 15rem;
+  }
   &--big{
     @extend .c-thumbnail;
-    height: 30rem;
+    max-height: 30rem;
+    @media only screen and (max-width: 768px) {
+      height: unset;
+    }
   }
 }
+
+
 
 .c-whatsapp {
   background-color: $whatsapp-green-color;

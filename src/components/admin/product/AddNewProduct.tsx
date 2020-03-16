@@ -144,7 +144,7 @@ const AddNewProduct = () => {
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text>Default price</InputGroup.Text>
+                        <InputGroup.Text>Preço a mostrar</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl type="number" value={`${defaultPrice}`} onChange={(e:any) => setDefaultPrice(e.target.value)}/>
                 </InputGroup>

@@ -2,8 +2,13 @@ import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../store/selectors';
+import { signOut } from '../../actions';
 
-function ProfileImage() {
+const ProfileImage = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
   return (
     <Card>
       <Card.Body>
@@ -12,13 +17,13 @@ function ProfileImage() {
             <FaRegUser size={60} color="#ccc" />
           </Col>
           <Col>
-            <div>user name</div>
-            <Link to="/"> Logout</Link>
+            <div>{user?.firstName} {user?.lastName}</div>
+            <Link to="/" onClick={() => dispatch(signOut())}> Logout</Link>
           </Col>
         </Row>
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default ProfileImage;

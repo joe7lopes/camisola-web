@@ -1,17 +1,21 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
-import { getCartItems, getShippingCost, getCartTotal } from '../../store/selectors';
+import { ICartItem } from '../../types';
 
-const CartItems = () => {
-  const items = useSelector(getCartItems);
-  const shippingCost = useSelector(getShippingCost);
-  const total = useSelector(getCartTotal);
-  return (
-    <>
+interface IProps {
+    readOnly?: boolean,
+    items: ICartItem[],
+    shippingCost: number,
+    total: number
+}
+
+const CartItems = ({
+  readOnly = false, items, shippingCost, total,
+}: IProps) => (
+  <>
         {items.map((item, i) => (
-            <CartItem key={i} item={item}/>))}
+            <CartItem key={i} item={item} readOnly={readOnly}/>))}
 
         <Table striped bordered hover>
             <tbody>
@@ -25,8 +29,7 @@ const CartItems = () => {
             </tr>
             </tbody>
         </Table>
-    </>
-  );
-};
+  </>
+);
 
 export default CartItems;

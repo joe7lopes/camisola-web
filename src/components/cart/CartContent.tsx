@@ -1,39 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
-import { bindActionCreators, Dispatch } from 'redux';
-import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ShipmentAddress from './ShipmentAddress';
 import CartItems from './CartItems';
-import { placeOrder as placeOrderAction } from '../../actions';
-import { IOrder, ICartItem, IRootState } from '../../types';
+import { placeOrder } from '../../actions';
 import OrderCompleted from './OrderCompleted';
+import {
+  getCartItems, getCartTotal, getShippingCost, isPlacingOrder,
+} from '../../store/selectors';
 
-export interface IProps {
-    items: ICartItem[],
-    placeOrder: (order: IOrder) => void,
-    showPlaceOrderLoading: boolean,
-    showOrderPlacedError: boolean,
-    orderId?: string
-}
-
-const CartContent: React.FC<IProps> = ({
-  placeOrder, items, showPlaceOrderLoading,
-  showOrderPlacedError,
-  orderId,
-}) => {
+const CartContent = () => {
+  const items = useSelector(getCartItems);
+  const shippingCost = useSelector(getShippingCost);
+  const total = useSelector(getCartTotal);
+  const showPlaceOrderLoading = useSelector(isPlacingOrder);
+  const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
 
   const submit = (event: any) => {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === true) {
+    if (form.checkValidity()) {
       const shippingAddress: any = [...form.elements]
         .filter((el) => el.name)
         .reduce((acc, curr) => ({ ...acc, [curr.name]: curr.value }), {});
 
       const order = { items, shippingAddress };
-      placeOrder(order);
+      dispatch(placeOrder(order));
     }
 
     setValidated(true);
@@ -43,7 +36,11 @@ const CartContent: React.FC<IProps> = ({
     <>
             <OrderCompleted/>
             <div className="c-container">
-                <CartItems/>
+                <CartItems
+                    items={items}
+                    shippingCost={shippingCost}
+                    total={total}
+                />
             </div>
             <div>
                 <div className="c-flex m-l-lg m-t-lg m-b-md">
@@ -82,13 +79,4 @@ const renderPlaceOrderButton = () => (
     </Button>
 );
 
-const mapStateToProps = ({ cart }: IRootState) => ({
-  items: cart.items,
-  showPlaceOrderLoading: cart.isOrderPlacedLoading,
-  showOrderPlacedError: cart.isOrderPlacedFailure,
-  orderId: cart.order?.orderId,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ placeOrder: placeOrderAction }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartContent);
+export default CartContent;

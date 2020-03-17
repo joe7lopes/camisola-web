@@ -45,10 +45,7 @@ const PersonalDetails = () => {
                 </InputGroup>
 
                 <span className="c-text-muted">(Morada de envio padrão)</span>
-                <ShippingAddress
-                    street={user?.address?.street}
-                    city={user?.address?.city}
-                    postalCode={user?.address?.postalCode}/>
+                <ShippingAddress />
             </Card.Body>
         </Card>
   );

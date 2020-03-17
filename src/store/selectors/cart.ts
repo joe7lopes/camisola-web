@@ -20,6 +20,11 @@ export const showOrderCompleted = createSelector(
   (cart) => cart.isOrderPlacedSuccess,
 );
 
+export const isPlacingOrder = createSelector(
+  [getCart],
+  (cart) => cart.isOrderPlacedLoading,
+);
+
 export const getCompletedOrder = createSelector(
   [getCart],
   (cart) => cart.order,

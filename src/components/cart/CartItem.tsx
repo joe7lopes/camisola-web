@@ -9,10 +9,11 @@ import { getStampingExtraCost } from '../../store/selectors';
 import { getDefaultImage, getProductPriceBySize } from '../utils';
 
 interface IProps {
+    readOnly: boolean,
     item: ICartItem,
 }
 
-const CartItem = ({ item }: IProps) => {
+const CartItem = ({ readOnly = false, item }: IProps) => {
   const dispatch = useDispatch();
   const stampingCost = useSelector(getStampingExtraCost);
   const hasExtras = item.stampingName || item.stampingNumber;
@@ -39,9 +40,9 @@ const CartItem = ({ item }: IProps) => {
 
                 </div>
             </Col>
-            <Col xs={2} md="auto">
+            {!readOnly && <Col xs={2} md="auto">
                 <Button variant="danger" onClick={() => dispatch(removeCartItem(item))}>X</Button>
-            </Col>
+            </Col>}
         </Row>
   );
 };

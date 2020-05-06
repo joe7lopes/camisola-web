@@ -11,7 +11,6 @@ import {
 import ProductPrice from './ProductPrice';
 import PreviewImages from './PreviewImages';
 
-
 interface ICategories {
     name: string,
     checked: boolean,
@@ -41,7 +40,7 @@ const AddNewProduct = () => {
       name: file.name,
       url: URL.createObjectURL(file),
       file,
-      isDefault: false,
+      default: false,
     }));
 
     setImages([...images, ...selectedImages]);
@@ -55,9 +54,9 @@ const AddNewProduct = () => {
   const handleDefaultImageChanged = (img: IImage) => {
     const newImages = images.map((i) => {
       if (i === img) {
-        return { ...img, isDefault: true };
+        return { ...img, default: true };
       }
-      return { ...i, isDefault: false };
+      return { ...i, default: false };
     });
     setImages(newImages);
   };
@@ -69,10 +68,10 @@ const AddNewProduct = () => {
       .filter((c) => c.checked)
       .map((c) => c.name);
 
-    const hasDefaultImage = images.filter((img) => img.isDefault).length > 0;
+    const hasDefaultImage = images.filter((img) => img.default).length > 0;
     const imagesToSave = images;
     if (images.length > 0 && !hasDefaultImage) {
-      imagesToSave[0].isDefault = true;
+      imagesToSave[0].default = true;
     }
 
     const newProduct: ICreateProduct = {

@@ -1,7 +1,7 @@
 export interface IImage {
     name: string,
     url: string,
-    isDefault: boolean,
+    default: boolean,
     file?:any
 }
 

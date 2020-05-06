@@ -11,7 +11,7 @@ import {
   updateSettingsRejected,
 } from '../actions';
 
-import { ISaveSizesAction, ISettings } from '../types';
+import {Category, ISaveSizesAction, ISettings} from '../types';
 import api from './api';
 
 /*
@@ -27,7 +27,17 @@ function* fetchSettings() {
       sizes: ['S', 'M', 'L', 'XL', 'XXL'],
       stampingExtraCost: 12,
       productDefaultPrice: 35,
-      productCategories: [{ name: 'benfica', displayName: 'Benfica' }],
+      productCategories: [
+        { name: 'portugal', displayName: 'Portugal' },
+        { name: Category.BENFICA, displayName: 'Benfica' },
+        { name: Category.PORTO, displayName: 'Porto' },
+        { name: Category.SPORTING, displayName: 'Sporting' },
+        { name: 'criancas', displayName: 'Crianças' },
+        { name: 'outros', displayName: 'Outros' },
+        { name: Category.CAMISOLAS, displayName: 'Camisolas' },
+        { name: Category.FATOS_DE_TREINO, displayName: 'Fatos de treino' },
+        { name: Category.EQUIPAMENTOS_CRIANCA, displayName: 'Equipamentos de Criança' },
+      ],
     };
     yield put(fetchSettingsFulfilled(data));
   } catch (err) {

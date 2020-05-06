@@ -17,5 +17,3 @@ export interface IUser {
     phone: string,
     role: IUserRole,
 }
-
-

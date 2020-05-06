@@ -13,9 +13,9 @@ const ProductList = ({ title, products }: IProps) => (
     <h3>{title}</h3>
     <div className="c-category-container">
       {products.map((p) => (
-        <div key={p.pid} className="c-category-product">
+        <div key={p.id} className="c-category-product">
           <ProductCard
-            id={p.pid}
+            id={p.id}
             name={p.name}
             price={p.defaultPrice}
             image={getDefaultImage(p.images)}

@@ -24,7 +24,7 @@ import api from './api';
 function* fetchProducts() {
   yield put(fetchProductsPending());
   try {
-    const { data } = yield call(api.get, '/products');
+    const { data } = yield call(api.get, '/api/products');
     yield put(fetchProductsFulfilled(data));
   } catch (err) {
     yield put(fetchProductsRejected(err));
@@ -51,7 +51,7 @@ function* createProductExec({ payload }: ICreateProductAction) {
     const dataToSave = yield { ...payload, images: transformedImages };
     console.log(dataToSave);
 
-    const { data } = yield call(api.post, '/products', dataToSave);
+    const { data } = yield call(api.post, '/api/products', dataToSave);
     yield put(createProductFulfilled(data));
   } catch (err) {
     yield put(createProductRejected(err));

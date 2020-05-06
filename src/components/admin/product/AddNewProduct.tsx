@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Form, Button, InputGroup, FormControl,
+  Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
 import { createProduct } from '../../../actions';
-import { getSettingsSizes, getSettingsCategories } from '../../../store/selectors';
+import { getSettingsCategories, getSettingsSizes } from '../../../store/selectors';
 import {
-  IImage, IProductSize, ICreateProduct, IProductCategory,
+  ICreateProduct, IImage, IProductCategory, IProductSize,
 } from '../../../types';
 import ProductPrice from './ProductPrice';
 import PreviewImages from './PreviewImages';
 
 
 interface ICategories {
-    name:string,
-    checked:boolean,
-    displayName:string
+    name: string,
+    checked: boolean,
+    displayName: string
 }
 
 const AddNewProduct = () => {
@@ -67,11 +67,11 @@ const AddNewProduct = () => {
 
     const newCategories = selectedCategories
       .filter((c) => c.checked)
-      .map((c) => ({ name: c.name, displayName: c.displayName }));
+      .map((c) => c.name);
 
     const hasDefaultImage = images.filter((img) => img.isDefault).length > 0;
     const imagesToSave = images;
-    if (!hasDefaultImage) {
+    if (images.length > 0 && !hasDefaultImage) {
       imagesToSave[0].isDefault = true;
     }
 
@@ -99,7 +99,7 @@ const AddNewProduct = () => {
     setAvailableSizes(availableSizes.filter((p) => p !== priceToDelete));
   };
 
-  const handleOnCategoryChanged = (index:number) => {
+  const handleOnCategoryChanged = (index: number) => {
     const newCategories = [...selectedCategories];
     newCategories[index].checked = !newCategories[index].checked;
     setSelectedCategories(newCategories);
@@ -109,23 +109,24 @@ const AddNewProduct = () => {
         <div className="c-body p-lg">
             <h3>Adicionar Produto</h3>
             <Form onSubmit={handleOnSubmit}>
-                        <Form.Group>
-                            <Form.Label column sm={2}>
-                                Nome
-                            </Form.Label>
-                            <Form.Control required type="text" placeholder="Nome do produto" onChange={(e:any) => setProductName(e.target.value)}/>
-                        </Form.Group>
-                        <ProductPrice
-                            priceSize={availableSizes}
-                            handleOnPriceChanged={handleOnPriceChanged}
-                            handleOnDelete={handleOnPriceSizeDelete}
-                        />
-                        <PreviewImages
-                            images={images}
-                            handleFileUpload={handleFileUpload}
-                            handleOnDeleteImage={handleOnDeleteImage}
-                            handleDefaultImageChanged={handleDefaultImageChanged}
-                        />
+                <Form.Group>
+                    <Form.Label column sm={2}>
+                        Nome
+                    </Form.Label>
+                    <Form.Control required type="text" placeholder="Nome do produto"
+                                  onChange={(e: any) => setProductName(e.target.value)}/>
+                </Form.Group>
+                <ProductPrice
+                    priceSize={availableSizes}
+                    handleOnPriceChanged={handleOnPriceChanged}
+                    handleOnDelete={handleOnPriceSizeDelete}
+                />
+                <PreviewImages
+                    images={images}
+                    handleFileUpload={handleFileUpload}
+                    handleOnDeleteImage={handleOnDeleteImage}
+                    handleDefaultImageChanged={handleDefaultImageChanged}
+                />
                 <h3 className="m-t-lg m-b-lg">categorias</h3>
                 {selectedCategories.map((c, i) => (
                     <div key={c.name}>
@@ -146,7 +147,8 @@ const AddNewProduct = () => {
                     <InputGroup.Prepend>
                         <InputGroup.Text>Preço a mostrar</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl type="number" value={`${defaultPrice}`} onChange={(e:any) => setDefaultPrice(e.target.value)}/>
+                    <FormControl type="number" value={`${defaultPrice}`}
+                                 onChange={(e: any) => setDefaultPrice(e.target.value)}/>
                 </InputGroup>
                 <Button type="submit" size="lg" className="m-t-lg">
                     Salvar
@@ -158,7 +160,7 @@ const AddNewProduct = () => {
 
 const convertSizes = (sizes: string[]) => sizes.map((size) => ({ size, price: 35 }));
 
-const convertCategories = (categories:IProductCategory[]) => categories
+const convertCategories = (categories: IProductCategory[]) => categories
   .map((c) => ({ ...c, checked: false }));
 
 export default AddNewProduct;

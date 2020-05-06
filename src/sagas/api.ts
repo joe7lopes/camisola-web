@@ -1,6 +1,10 @@
 import axios from 'axios';
 
 class Api {
+  constructor() {
+    axios.defaults.headers['Content-Type'] = 'application/json';
+  }
+
   get(url: string) {
     return axios.get(url);
   }

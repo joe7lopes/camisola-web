@@ -19,7 +19,7 @@ interface IProps {
 
 export function CustomizationSection({ product, addToCart, extraCost }: IProps) {
   const {
-    sizes, defaultPrice, name, isCustomizable,
+    sizes, defaultPrice, name, customizable,
   } = product;
 
   const [price, setPrice] = useState(defaultPrice);
@@ -34,7 +34,7 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
     const extras = (stampingName || stampingNumber) ? extraCost : 0;
     const finalPrice = selectedSizePrice + extras;
     setPrice(finalPrice);
-  }, [selectedSize, stampingName, stampingNumber, defaultPrice, sizes, extraCost, product]);
+  }, [selectedSize, stampingName, stampingNumber, sizes, extraCost, product]);
 
   useEffect(() => {
     if (selectedSize) {
@@ -70,7 +70,7 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
                         />
                     </div>
                 </Form.Group>
-                {isCustomizable && (
+                {customizable && (
                     <Stamping
                         onNameChange={(e: any) => setStampingName(e.target.value)}
                         onNumberChange={(e: any) => setStampingNumber(e.target.value)}

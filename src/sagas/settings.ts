@@ -1,19 +1,17 @@
-import {
-  put, takeLatest, call,
-} from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   FETCH_SETTINGS,
-  UPDATE_SETTINGS,
-  fetchSettingsPending,
   fetchSettingsFulfilled,
+  fetchSettingsPending,
+  fetchSettingsRejected,
+  UPDATE_SETTINGS,
   updateSettingsFulfilled,
   updateSettingsPending,
   updateSettingsRejected,
-  fetchSettingsRejected,
 } from '../actions';
 
-import { ISaveSizesAction } from '../types';
+import { ISaveSizesAction, ISettings } from '../types';
 import api from './api';
 
 /*
@@ -24,7 +22,13 @@ function* fetchSettings() {
   yield put(fetchSettingsPending());
 
   try {
-    const { data } = yield call(api.get, '/settings');
+    // const { data } = yield call(api.get, '/api/settings');
+    const data: ISettings = {
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      stampingExtraCost: 12,
+      productDefaultPrice: 35,
+      productCategories: [{ name: 'benfica', displayName: 'Benfica' }],
+    };
     yield put(fetchSettingsFulfilled(data));
   } catch (err) {
     yield put(fetchSettingsRejected(err));
@@ -34,7 +38,7 @@ function* fetchSettings() {
 function* updateSettingsExec({ payload }: ISaveSizesAction) {
   yield put(updateSettingsPending());
   try {
-    const { data } = yield call(api.put, '/settings', payload);
+    const { data } = yield call(api.put, '/api/settings', payload);
     yield put(updateSettingsFulfilled(data));
   } catch (err) {
     yield put(updateSettingsRejected(err));

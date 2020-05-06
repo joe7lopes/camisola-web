@@ -20,8 +20,8 @@ const ProductCarousel = ({ sectionName, products }: IProps) => {
             <h3 className="m-b-md">{sectionName}</h3>
                 <Row>
                     {products.map((p) => <ProductCard
-                        key={p.pid}
-                        id={p.pid}
+                        key={p.id}
+                        id={p.id}
                         name={p.name}
                         price={p.defaultPrice}
                         image={getDefaultImage(p.images) }

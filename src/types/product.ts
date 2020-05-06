@@ -25,18 +25,18 @@ export interface IProductCategory {
 }
 
 export interface IProduct {
-    pid: string,
+    id: string,
     name: string,
     categories: IProductCategory[],
     sizes: IProductSize[],
     images: IImage[],
-    isCustomizable: boolean,
+    customizable: boolean,
     defaultPrice: number
 }
 
 export interface ICreateProduct {
     name: string,
-    categories: IProductCategory[],
+    categories: string[],
     sizes: IProductSize[],
     images: IImage[],
     isCustomizable: boolean,

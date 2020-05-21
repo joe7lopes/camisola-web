@@ -22,3 +22,14 @@ export interface IShippingAddress {
     city: string,
     postCode: string
 }
+
+interface IOrderItem {
+    productId: string
+    sizeId: string
+    stampingName? : string
+    stampingNumber? : string
+}
+export interface IOrderRequest {
+    items: IOrderItem[],
+    shippingAddress: IShippingAddress,
+}

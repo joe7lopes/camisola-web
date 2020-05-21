@@ -1,5 +1,7 @@
 import React from 'react';
-import {Row, Col, Card, InputGroup, FormControl, Form} from 'react-bootstrap';
+import {
+  Row, Col, Card, InputGroup, FormControl, Form,
+} from 'react-bootstrap';
 
 const ShipmentAddress = () => (
     <Card className="m-xs">
@@ -64,9 +66,9 @@ const ShipmentAddress = () => (
             </InputGroup>
           </Col>
         </Row>
-      <Form.Check type="checkbox" name="createAccount" label="Crie conta, habilite-se a ganhar um vale de desconto." />
+      {/* <Form.Check type="checkbox" name="createAccount" label="Crie conta, habilite-se a ganhar um vale de desconto." /> */}
       </Card.Body>
     </Card>
-)
+);
 
 export default ShipmentAddress;

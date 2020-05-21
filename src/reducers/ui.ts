@@ -3,6 +3,9 @@ import {
   FETCH_PRODUCTS_REJECTED,
   FETCH_PRODUCTS_PENDING,
   FETCH_PRODUCTS_FULFILLED,
+  CREATE_PRODUCT_PENDING,
+  CREATE_PRODUCT_FULFILLED,
+  CREATE_PRODUCT_REJECTED,
   UPDATE_SETTINGS_PENDING,
   UPDATE_SETTINGS_FULFILLED,
   UPDATE_SETTINGS_REJECTED,
@@ -14,7 +17,10 @@ import {
   SIGN_UP_FULFILLED,
   SIGN_IN_PENDING,
   SIGN_IN_FULFILLED,
-  SIGN_IN_REJECTED, RESET_PASSWORD_PENDING, RESET_PASSWORD_FULFILLED, RESET_PASSWORD_REJECTED,
+  SIGN_IN_REJECTED,
+  RESET_PASSWORD_PENDING,
+  RESET_PASSWORD_FULFILLED,
+  RESET_PASSWORD_REJECTED,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -25,7 +31,9 @@ interface IProps {
 }
 
 const INITIAL_STATE: IUIState = {
-  products: {},
+  products: {
+    isSavingNewProduct: false,
+  },
   settings: {
     isFetchingSettings: true,
   },
@@ -61,6 +69,11 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
         products:
                     { ...state.products, isFetchingProducts: false, error: payload },
       };
+    case CREATE_PRODUCT_PENDING:
+      return { ...state, products: { ...state.products, isSavingNewProduct: true } };
+    case CREATE_PRODUCT_FULFILLED:
+    case CREATE_PRODUCT_REJECTED:
+      return { ...state, products: { ...state.products, isSavingNewProduct: false } };
     case PLACE_ORDER_FULFILLED:
       return state;
     case SIGN_UP_PENDING:

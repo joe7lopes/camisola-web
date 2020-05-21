@@ -7,17 +7,25 @@ interface IProps {
     className?: string,
     disabled?: boolean,
     type: any,
-    onClick?:any
+    onClick?:any,
+    size? : any
 }
 
 const LoadingButton = ({
-  isLoading, children, className, disabled, type, onClick,
+  isLoading,
+  children,
+  className,
+  disabled,
+  type,
+  onClick,
+  size = 'sm',
 }: IProps) => (
     <Button
         type={type}
         className={className}
         disabled={disabled}
-        onClick={onClick}>
+        onClick={onClick}
+        size={size}>
         {children}
         {isLoading && <Spinner
           className="m-l-sm"

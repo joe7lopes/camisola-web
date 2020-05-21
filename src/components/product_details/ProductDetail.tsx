@@ -20,7 +20,7 @@ const ProductDetail = ({ product }: IProps) => {
                       key={img.name}
                       className="c-thumbnail--small m-b-sm"
                       alt={img.name}
-                      src={img.file}
+                      src={img.url}
                       onClick={() => setIndex(i)}
                   />
               ))}
@@ -32,7 +32,7 @@ const ProductDetail = ({ product }: IProps) => {
                         <img
                             className="c-thumbnail--big"
                             alt={img.name}
-                            src={img.file}
+                            src={img.url}
                         />
                     </Carousel.Item>
                 ))}

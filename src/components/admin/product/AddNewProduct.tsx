@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Button, Form, FormControl, InputGroup,
-} from 'react-bootstrap';
+import { Form, FormControl, InputGroup } from 'react-bootstrap';
 import { createProduct } from '../../../actions';
-import { getSettingsCategories, getSettingsSizes } from '../../../store/selectors';
+import {getSettingsCategories, getSettingsSizes, isSavingNewProduct} from '../../../store/selectors';
 import {
-  ICreateProduct, IImage, IProductCategory, IProductSize,
+  ICreateProduct, ImageRequest, IProductCategory, IProductSize,
 } from '../../../types';
 import ProductPrice from './ProductPrice';
 import PreviewImages from './PreviewImages';
+import { LoadingButton } from '../../ui';
 
 interface ICategories {
     name: string,
@@ -20,10 +19,11 @@ interface ICategories {
 const AddNewProduct = () => {
   const sizes = useSelector(getSettingsSizes);
   const categories = useSelector(getSettingsCategories);
+  const isSaving = useSelector(isSavingNewProduct);
   const dispatch = useDispatch();
   const [availableSizes, setAvailableSizes] = useState<IProductSize[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ICategories[]>([]);
-  const [images, setImages] = useState<IImage[]>([]);
+  const [images, setImages] = useState<ImageRequest[]>([]);
   const [isCustomizable, setIsCustomizable] = useState(false);
   const [defaultPrice, setDefaultPrice] = useState(35);
   const [productName, setProductName] = useState('');
@@ -46,12 +46,12 @@ const AddNewProduct = () => {
     setImages([...images, ...selectedImages]);
   };
 
-  const handleOnDeleteImage = (img: IImage) => {
+  const handleOnDeleteImage = (img: ImageRequest) => {
     const newImages = images.filter((image) => image !== img);
     setImages(newImages);
   };
 
-  const handleDefaultImageChanged = (img: IImage) => {
+  const handleDefaultImageChanged = (img: ImageRequest) => {
     const newImages = images.map((i) => {
       if (i === img) {
         return { ...img, default: true };
@@ -131,7 +131,9 @@ const AddNewProduct = () => {
                     <div key={c.name}>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Checkbox checked={c.checked} onChange={() => handleOnCategoryChanged(i)}/>
+                                <InputGroup.Checkbox
+                                    checked={c.checked}
+                                    onChange={() => handleOnCategoryChanged(i)}/>
                             </InputGroup.Prepend>
                             <FormControl aria-label="Text input with checkbox" value={c.name} readOnly/>
                         </InputGroup>
@@ -140,7 +142,9 @@ const AddNewProduct = () => {
 
                 <InputGroup className="mb-3">
                     Produto estampavel ?
-                    <InputGroup.Checkbox checked={isCustomizable} onChange={() => setIsCustomizable(!isCustomizable)}/>
+                    <InputGroup.Checkbox
+                        checked={isCustomizable}
+                        onChange={() => setIsCustomizable(!isCustomizable)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
@@ -149,9 +153,14 @@ const AddNewProduct = () => {
                     <FormControl type="number" value={`${defaultPrice}`}
                                  onChange={(e: any) => setDefaultPrice(e.target.value)}/>
                 </InputGroup>
-                <Button type="submit" size="lg" className="m-t-lg">
+                <LoadingButton
+                    type="submit"
+                    className="m-t-lg"
+                    disabled={isSaving}
+                    isLoading={isSaving}
+                    size='lg'>
                     Salvar
-                </Button>
+                </LoadingButton>
             </Form>
         </div>
   );

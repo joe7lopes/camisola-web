@@ -2,7 +2,6 @@ export interface IImage {
     name: string,
     url: string,
     default: boolean,
-    file?:any
 }
 
 export interface IProductSize {
@@ -34,11 +33,17 @@ export interface IProduct {
     defaultPrice: number
 }
 
+export interface ImageRequest {
+    name: string,
+    file: string,
+    default: boolean,
+}
+
 export interface ICreateProduct {
     name: string,
     categories: string[],
     sizes: IProductSize[],
-    images: IImage[],
+    images: ImageRequest[],
     isCustomizable: boolean,
     defaultPrice: number
 }

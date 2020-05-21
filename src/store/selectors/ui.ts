@@ -13,6 +13,11 @@ export const isFetchingProducts = createSelector(
   (ui) => ui.products.isFetchingProducts,
 );
 
+export const isSavingNewProduct = createSelector(
+  [getUI],
+  (ui) => ui.products.isSavingNewProduct,
+);
+
 export const isFetchingSettings = createSelector(
   [getUI],
   (ui) => ui.settings.isFetchingSettings,

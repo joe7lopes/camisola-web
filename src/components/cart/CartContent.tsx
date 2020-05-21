@@ -49,7 +49,6 @@ const CartContent = () => {
                 </div>
                 <Form onSubmit={submit} noValidate validated={validated}>
                     <ShipmentAddress/>
-                    <div>Notas adicionais</div>
                     {showPlaceOrderLoading ? renderLoadingButton() : renderPlaceOrderButton()}
                 </Form>
             </div>

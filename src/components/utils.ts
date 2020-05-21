@@ -3,7 +3,7 @@ import { IImage, IProduct } from '../types';
 export const getDefaultImage = (images?: IImage[]) => {
   if (!images) return undefined;
   const image = images.filter((img) => img.default);
-  return image[0] ? image[0].file : undefined;
+  return image[0] ? image[0].url : undefined;
 };
 
 export const getProductPriceBySize = (product: IProduct, size: string) => {

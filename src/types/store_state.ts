@@ -1,25 +1,22 @@
 import {
-  ICartItem,
-  IOrder,
-  IProduct,
-  IAccount,
-  ISettings,
+  IAccount, ICartItem, IOrder, IProduct, ISettings,
 } from './index';
-import {IUser} from "./auth";
+import { IUser } from './auth';
 
 export interface IUIState {
     products: {
         isFetchingProducts?: boolean,
+        isSavingNewProduct: boolean
     },
     settings: {
         isUpdatingSettings?: boolean,
         isFetchingSettings: boolean
     },
-    auth:{
-        isSigningUp? :boolean,
-        isSigningIn? :boolean,
-        isResettingPassword? :boolean,
-        isSignInSuccess:boolean
+    auth: {
+        isSigningUp?: boolean,
+        isSigningIn?: boolean,
+        isResettingPassword?: boolean,
+        isSignInSuccess: boolean
     }
 
 }

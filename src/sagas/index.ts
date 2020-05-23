@@ -4,14 +4,20 @@ import { watchFetchSettings, watchUpdateSettings } from './settings';
 import { watchSavePersonalData } from './account';
 import { watchFetchProducts, watchCreateNewProduct } from './products';
 import { watchAddToCart } from './cart';
-import { watchPlaceOrder } from './orders';
-import {watchResetPassword, watchSignIn, watchSignOut, watchSignUp} from './auth';
+import { watchFetchOrders, watchPlaceOrder } from './orders';
+import {
+  watchResetPassword,
+  watchSignIn,
+  watchSignOut,
+  watchSignUp,
+} from './auth';
 
 export default function* rootSaga() {
   yield all([
     fork(watchFetchSettings),
     fork(watchUpdateSettings),
     fork(watchFetchProducts),
+    fork(watchFetchOrders),
     fork(watchCreateNewProduct),
     fork(watchSavePersonalData),
     fork(watchAddToCart),

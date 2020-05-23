@@ -20,7 +20,7 @@ import {
   SIGN_IN_REJECTED,
   RESET_PASSWORD_PENDING,
   RESET_PASSWORD_FULFILLED,
-  RESET_PASSWORD_REJECTED,
+  RESET_PASSWORD_REJECTED, FETCH_ORDERS_FULFILLED, FETCH_ORDERS_REJECTED, FETCH_ORDERS_PENDING,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -39,6 +39,9 @@ const INITIAL_STATE: IUIState = {
   },
   auth: {
     isSignInSuccess: false,
+  },
+  admin: {
+    isFetchingOrders: false,
   },
 
 };
@@ -94,6 +97,11 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
       return { ...state, auth: { isResettingPassword: false } };
     case RESET_PASSWORD_REJECTED:
       return { ...state, auth: { isResettingPassword: false } };
+    case FETCH_ORDERS_PENDING:
+      return { ...state, admin: { isFetchingOrders: true } };
+    case FETCH_ORDERS_FULFILLED:
+    case FETCH_ORDERS_REJECTED:
+      return { ...state, admin: { isFetchingOrders: false } };
     default:
       return state;
   }

@@ -1,12 +1,13 @@
-import {
-  put, takeLatest, call,
-} from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
-  PLACE_ORDER,
+  FETCH_ORDERS, fetchOrdersFulfilled,
+  fetchOrdersPending, fetchOrdersRejected,
   IPlaceOrderAction,
-  placeOrderPending,
+  PLACE_ORDER,
   placeOrderFulfilled,
+  placeOrderPending,
+  placeOrderRejected,
 } from '../actions';
 
 import api from './api';
@@ -15,6 +16,16 @@ import { ICreateOrderRequest } from '../types';
 /*
 * +++Executers+++
 */
+
+function* fetchOrders() {
+  yield put(fetchOrdersPending());
+  try {
+    const { data } = yield call(api.get, '/api/orders');
+    yield put(fetchOrdersFulfilled(data.orders));
+  } catch (error) {
+    yield put(fetchOrdersRejected(error));
+  }
+}
 
 function* placeOrder({ payload }: IPlaceOrderAction) {
   yield put(placeOrderPending());
@@ -30,14 +41,21 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
     shippingAddress: payload.shippingAddress,
   };
 
-  const { data } = yield call(api.post, '/api/orders', request);
-
-  yield put(placeOrderFulfilled(data.orderId));
+  try {
+    const { data } = yield call(api.post, '/api/orders', request);
+    yield put(placeOrderFulfilled(data.orderId));
+  } catch (error) {
+    yield put(placeOrderRejected(error));
+  }
 }
 
 /*
  * +++Watchers+++
  */
+
+export function* watchFetchOrders() {
+  yield takeLatest(FETCH_ORDERS, fetchOrders);
+}
 
 export function* watchPlaceOrder() {
   yield takeLatest(PLACE_ORDER, placeOrder);

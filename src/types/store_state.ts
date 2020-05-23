@@ -17,8 +17,10 @@ export interface IUIState {
         isSigningIn?: boolean,
         isResettingPassword?: boolean,
         isSignInSuccess: boolean
+    },
+    admin: {
+        isFetchingOrders?: boolean,
     }
-
 }
 
 export interface ICartState {
@@ -38,11 +40,16 @@ export interface IAuthState {
     user?: IUser
 }
 
+export interface IAdminState {
+    orders: []
+}
+
 export interface IRootState {
     account: IAccount,
     products: IProduct[],
     cart: ICartState,
     settings: ISettings,
     ui: IUIState,
-    auth: IAuthState
+    auth: IAuthState,
+    admin: IAdminState
 }

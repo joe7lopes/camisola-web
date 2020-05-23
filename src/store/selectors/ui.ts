@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { IRootState } from '../../types';
 
 const getUI = (state: IRootState) => state.ui;
+const getAdminUI = (state: IRootState) => state.ui.admin;
 
 const getSettings = createSelector(
   [getUI],
@@ -46,4 +47,9 @@ export const isResettingPassword = createSelector(
 export const isLoginSuccess = createSelector(
   [getUI],
   (ui) => ui.auth.isSignInSuccess,
+);
+
+export const isLoadingAdminOrders = createSelector(
+  [getAdminUI],
+  (ui) => ui.isFetchingOrders,
 );

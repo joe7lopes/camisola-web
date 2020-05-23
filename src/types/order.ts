@@ -20,7 +20,31 @@ export interface IOrderItem {
     stampingName? : string
     stampingNumber? : string
 }
+
 export interface ICreateOrderRequest {
     items: IOrderItem[],
     shippingAddress: IShippingAddress,
+}
+
+//FETCH
+
+interface IFetchOrdersItemResponse {
+    productId:string,
+    productName:string,
+    size:string,
+    stampingName:string,
+    stampingNumber:string,
+}
+
+export interface IOrder {
+    id: string,
+    items: IFetchOrdersItemResponse[],
+    shippingAddress: IShippingAddress,
+    createdAt: string,
+    status: OrderStatus
+    total: string
+}
+
+export interface IFetchOrdersResponse {
+    orders: IOrder[]
 }

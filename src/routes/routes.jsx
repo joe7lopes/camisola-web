@@ -12,6 +12,7 @@ import {
   Account,
   OrderSummary,
   Cart,
+  Orders,
 } from '../components';
 
 import path from './path';
@@ -26,6 +27,7 @@ const {
   CREATE_PRODUCT,
   SETTINGS,
   ADMIN,
+  ADMIN_ORDERS,
   PRODUCT_DETAILS,
   ORDER_SUMMARY,
   CART,
@@ -52,6 +54,7 @@ const Routes = () => {
       <Route path={ACCOUNT} component={Account} />
       <Route path={CREATE_PRODUCT} component={NewProduct} />
       <Route path={SETTINGS} component={Settings} />
+      <Route path={ADMIN_ORDERS} component={Orders} />
       <Route path={ADMIN} component={AdminPannel} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route path={ORDER_SUMMARY(':id')} component={OrderSummary} />

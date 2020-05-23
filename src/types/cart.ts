@@ -4,5 +4,5 @@ export interface ICartItem {
     product: IProduct,
     size: IProductSize,
     stampingName?: string,
-    stampingNumber?: number
+    stampingNumber?: string
 }

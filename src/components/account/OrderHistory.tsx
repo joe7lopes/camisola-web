@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
-import path from '../../routes/path';
-import { IRootState, IOrder } from '../../types';
 import { connect } from 'react-redux';
+import path from '../../routes/path';
+import { IRootState } from '../../types';
 
 const headers = ['# Encomenda', 'Data', 'Estado', 'Total', ''];
 
 interface IProps {
-  orders: IOrder[]
+  orders: any[]
 }
 
-const OrderHistory = ({orders}: IProps) => {
-  return (
+const OrderHistory = ({ orders }: IProps) => (
     <div>
       <Table responsive hover>
         <thead>
@@ -33,11 +32,10 @@ const OrderHistory = ({orders}: IProps) => {
         </tbody>
       </Table>
     </div>
-  );
-}
+);
 
 const mapStateToProps = ({ account }: IRootState) => ({
-  orders: account.orders
+  orders: account.orders,
 });
 
 export default connect(mapStateToProps)(OrderHistory);

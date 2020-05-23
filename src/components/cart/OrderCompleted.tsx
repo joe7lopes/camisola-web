@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
-import { getCompletedOrder, showOrderCompleted } from '../../store/selectors';
+import { getCompletedOrderId, showOrderCompleted } from '../../store/selectors';
 import { resetCart } from '../../actions';
 import path from '../../routes/path';
 
@@ -10,7 +10,7 @@ const OrderCompleted = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const visible = useSelector(showOrderCompleted);
-  const completedOrder = useSelector(getCompletedOrder);
+  const orderId = useSelector(getCompletedOrderId);
   const [showModal, setShowModal] = useState(visible);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const OrderCompleted = () => {
             </Modal.Header>
             <Modal.Body>
                 <p>
-                    A sua Encomenda <span className="c-text-bold">#{completedOrder?.orderId}</span> foi criada a Janeiro 16, 2020 e está actualmente a ser processada.
+                    A sua Encomenda <span className="c-text-bold">#{orderId}</span> foi criada e está actualmente a ser processada.
                 </p>
                 <p>Se tiver alguma duvida não hesite em contactar.</p>
                 <h5>Obrigado</h5>

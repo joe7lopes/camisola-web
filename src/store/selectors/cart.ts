@@ -24,9 +24,9 @@ export const isPlacingOrder = createSelector(
   (cart) => cart.isOrderPlacedLoading,
 );
 
-export const getCompletedOrder = createSelector(
+export const getCompletedOrderId = createSelector(
   [getCart],
-  (cart) => cart.order,
+  (cart) => cart.orderId,
 );
 
 const hasExtraCosts = (item: ICartItem) => item.stampingNumber || item.stampingName;

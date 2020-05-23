@@ -25,8 +25,7 @@ const CartContent = () => {
         .filter((el) => el.name)
         .reduce((acc, curr) => ({ ...acc, [curr.name]: curr.value }), {});
 
-      const order = { items, shippingAddress };
-      dispatch(placeOrder(order));
+      dispatch(placeOrder(items, shippingAddress));
     }
 
     setValidated(true);

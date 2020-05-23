@@ -1,12 +1,3 @@
-import { ICartItem } from "./cart";
-
-export interface IOrder {
-    orderId?: string,
-    items: ICartItem[],
-    shippingAddress: IShippingAddress,
-    createdAt?: Date
-}
-
 export enum OrderStatus {
     RECEIVED,
     PROCESSING,
@@ -23,13 +14,13 @@ export interface IShippingAddress {
     postCode: string
 }
 
-interface IOrderItem {
+export interface IOrderItem {
     productId: string
     sizeId: string
     stampingName? : string
     stampingNumber? : string
 }
-export interface IOrderRequest {
+export interface ICreateOrderRequest {
     items: IOrderItem[],
     shippingAddress: IShippingAddress,
 }

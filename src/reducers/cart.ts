@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, { type, payload }: ICartAction) => {
       return { ...state, isOrderPlacedLoading: true };
     case PLACE_ORDER_FULFILLED:
       return {
-        ...state, isOrderPlacedLoading: false, isOrderPlacedSuccess: true, order: payload,
+        ...state, isOrderPlacedLoading: false, isOrderPlacedSuccess: true, orderId: payload,
       };
     case PLACE_ORDER_REJECTED:
       return { ...state, isOrderPlacedLoading: false, isOrderPlacedFailure: true };

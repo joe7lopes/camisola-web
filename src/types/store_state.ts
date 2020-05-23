@@ -1,5 +1,5 @@
 import {
-  IAccount, ICartItem, IOrder, IProduct, ISettings,
+  IAccount, ICartItem, IProduct, ISettings,
 } from './index';
 import { IUser } from './auth';
 
@@ -27,7 +27,7 @@ export interface ICartState {
     isOrderPlacedLoading: boolean,
     isOrderPlacedSuccess: boolean,
     isOrderPlacedFailure: boolean,
-    order?: IOrder
+    orderId?: string
 }
 
 export interface IAuthState {

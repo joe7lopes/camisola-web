@@ -1,4 +1,3 @@
-import { IOrder } from ".";
 
 export interface IUserData {
     firstName: string,
@@ -11,5 +10,5 @@ export interface IUserData {
 }
 
 export interface IAccount {
-    orders: IOrder[]
+    orders: any[]
 }

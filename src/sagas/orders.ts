@@ -1,5 +1,5 @@
 import {
-  put, takeLatest, delay,
+  put, takeLatest, call,
 } from 'redux-saga/effects';
 
 import {
@@ -9,7 +9,8 @@ import {
   placeOrderFulfilled,
 } from '../actions';
 
-import {IOrder, IOrderRequest} from '../types';
+import api from './api';
+import { ICreateOrderRequest } from '../types';
 
 /*
 * +++Executers+++
@@ -17,24 +18,21 @@ import {IOrder, IOrderRequest} from '../types';
 
 function* placeOrder({ payload }: IPlaceOrderAction) {
   yield put(placeOrderPending());
-  yield delay(3000);
+  const items = payload.items.map((item) => ({
+    productId: item.product.id,
+    sizeId: item.size.id || '',
+    stampingName: item.stampingName,
+    stampingNumber: item.stampingNumber,
+  }));
 
-  // const order:IOrderRequest = {
-  //   items: payload.items,
-  //   shippingAddress: payload.shippingAddress,
-  //   createdAt: new Date(),
-  // };
-
-
-
-  const order:IOrder = {
-    orderId: '123',
-    items: payload.items,
+  const request: ICreateOrderRequest = {
+    items,
     shippingAddress: payload.shippingAddress,
-    createdAt: new Date(),
   };
 
-  yield put(placeOrderFulfilled(order));
+  const { data } = yield call(api.post, '/api/orders', request);
+
+  yield put(placeOrderFulfilled(data.orderId));
 }
 
 /*

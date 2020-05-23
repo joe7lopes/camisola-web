@@ -5,6 +5,7 @@ export interface IImage {
 }
 
 export interface IProductSize {
+    id?: string,
     size: string,
     price: number
 }

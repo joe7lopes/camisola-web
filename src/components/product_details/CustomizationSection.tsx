@@ -7,9 +7,10 @@ import { getStampingExtraCost } from '../../store/selectors';
 import { addToCart as addToCartAction } from '../../actions';
 import Stamping from './Stamping';
 import ProductSizeSelector from './ProductSizeSelector';
-import { IProduct, ICartItem, IRootState } from '../../types';
+import {
+  IProduct, ICartItem, IRootState, IProductSize,
+} from '../../types';
 import path from '../../routes/path';
-import { getProductPriceBySize } from '../utils';
 
 interface IProps {
     product: IProduct,
@@ -23,16 +24,15 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
   } = product;
 
   const [price, setPrice] = useState(defaultPrice);
-  const [selectedSize, setSelectedSize] = useState<string>(sizes[0].size);
+  const [selectedSize, setSelectedSize] = useState<IProductSize>(sizes[0]);
   const [stampingName, setStampingName] = useState<string>();
   const [stampingNumber, setStampingNumber] = useState();
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
-    const selectedSizePrice = getProductPriceBySize(product, selectedSize);
     const extras = (stampingName || stampingNumber) ? extraCost : 0;
-    const finalPrice = selectedSizePrice + extras;
+    const finalPrice = parseFloat(String(selectedSize.price)) + parseFloat(String(extras));
     setPrice(finalPrice);
   }, [selectedSize, stampingName, stampingNumber, sizes, extraCost, product]);
 
@@ -65,8 +65,8 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
                     <Form.Label className="c-label">Tamanho</Form.Label>
                     <div>
                         <ProductSizeSelector
-                            availableSizes={sizes.map((as) => as.size)}
-                            onSizeChanged={(size: string) => setSelectedSize(size)}
+                            availableSizes={sizes}
+                            onSizeChanged={setSelectedSize}
                         />
                     </div>
                 </Form.Group>

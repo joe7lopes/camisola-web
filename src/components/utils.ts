@@ -1,4 +1,4 @@
-import { IImage, IProduct } from '../types';
+import { IImage } from '../types';
 
 export const getDefaultImage = (images?: IImage[]) => {
   if (!images) return undefined;
@@ -6,8 +6,8 @@ export const getDefaultImage = (images?: IImage[]) => {
   return image[0] ? image[0].url : undefined;
 };
 
-export const getProductPriceBySize = (product: IProduct, size: string) => {
-  const selectedSizePrice = product.sizes
-    .find((av) => av.size === size);
-  return selectedSizePrice ? parseFloat(String(selectedSizePrice.price)) : parseFloat(String(product.defaultPrice));
-};
+// export const getProductPriceBySize = (product: IProduct, size: string) => {
+//   const selectedSizePrice = product.sizes
+//     .find((av) => av.size === size);
+//   return selectedSizePrice ? parseFloat(String(selectedSizePrice.price)) : parseFloat(String(product.defaultPrice));
+// };

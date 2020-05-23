@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeCartItem } from '../../actions';
 import { ICartItem } from '../../types';
 import { getStampingExtraCost } from '../../store/selectors';
-import { getDefaultImage, getProductPriceBySize } from '../utils';
+import { getDefaultImage } from '../utils';
 
 interface IProps {
     readOnly: boolean,
@@ -31,8 +31,8 @@ const CartItem = ({ readOnly = false, item }: IProps) => {
             <Col xs>
                 <div className="m-l-md">
                     <div className="m-b-sm c-text-bold">{item.product.name}</div>
-                    <div>Preço {getProductPriceBySize(item.product, item.size)}€</div>
-                    <div className="m-b-sm">Tamanho: <span className="m-b-sm c-text-bold">{item.size}</span></div>
+                    <div>Preço {item.size.price}€</div>
+                    <div className="m-b-sm">Tamanho: <span className="m-b-sm c-text-bold">{item.size.size}</span></div>
                     {hasExtras && <div className="text-muted">Estampagem + {stampingCost} euros</div>}
                     {item.stampingName && <div>Nome: <span className="c-text-bold">{item.stampingName}</span></div>}
                     {item.stampingNumber

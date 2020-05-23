@@ -9,16 +9,7 @@ import {
   placeOrderFulfilled,
 } from '../actions';
 
-import { IOrder } from '../types';
-
-
-/*
- * +++Watchers+++
- */
-
-export function* watchPlaceOrder() {
-  yield takeLatest(PLACE_ORDER, placeOrder);
-}
+import {IOrder, IOrderRequest} from '../types';
 
 /*
 * +++Executers+++
@@ -28,6 +19,14 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
   yield put(placeOrderPending());
   yield delay(3000);
 
+  // const order:IOrderRequest = {
+  //   items: payload.items,
+  //   shippingAddress: payload.shippingAddress,
+  //   createdAt: new Date(),
+  // };
+
+
+
   const order:IOrder = {
     orderId: '123',
     items: payload.items,
@@ -36,4 +35,12 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
   };
 
   yield put(placeOrderFulfilled(order));
+}
+
+/*
+ * +++Watchers+++
+ */
+
+export function* watchPlaceOrder() {
+  yield takeLatest(PLACE_ORDER, placeOrder);
 }

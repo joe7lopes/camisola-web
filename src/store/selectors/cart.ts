@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { ICartItem, IRootState } from '../../types';
 import { getShippingCost, getStampingExtraCost } from './settings';
-import { getProductPriceBySize } from '../../components/utils';
 
 const getCart = (state: IRootState) => state.cart;
 
@@ -35,7 +34,7 @@ const hasExtraCosts = (item: ICartItem) => item.stampingNumber || item.stampingN
 export const getCartTotal = createSelector(
   [getCart, getShippingCost, getStampingExtraCost],
   (cart, shippingCost, stampingExtraCost) => cart.items.reduce((acc, curr) => {
-    const productPrice = getProductPriceBySize(curr.product, curr.size);
+    const productPrice = parseFloat(String(curr.size.price));
     return hasExtraCosts(curr) ? acc + productPrice + stampingExtraCost : acc + productPrice;
   }, 0) + shippingCost,
 );

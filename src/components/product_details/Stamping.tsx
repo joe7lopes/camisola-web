@@ -8,7 +8,7 @@ interface IStamptingProps {
 
 export const Stamping = ({ onNameChange, onNumberChange }: IStamptingProps) => (
   <React.Fragment>
-    <div className="m-b-sm c-text-sm">(opcional estampagem +12€)</div>
+    <div className="m-b-sm c-text-sm">(estampagem opcional +12€)</div>
     <Form.Group>
       <Form.Label className="c-label">Nome</Form.Label>
       <Form.Control

@@ -1,9 +1,11 @@
-import { PLACE_ORDER, PLACE_ORDER_FULFILLED, PLACE_ORDER_REJECTED, PLACE_ORDER_PENDING } from './actionTypes';
-import { IOrder} from '../types';
+import {
+  PLACE_ORDER, PLACE_ORDER_FULFILLED, PLACE_ORDER_PENDING, PLACE_ORDER_REJECTED,
+} from './actionTypes';
+import { IOrder } from '../types';
 
 export interface IPlaceOrderAction {
-  type: string,
-  payload: IOrder
+    type: string,
+    payload: IOrder
 }
 
 export const placeOrder = (order: IOrder) => ({
@@ -22,5 +24,5 @@ export const placeOrderFulfilled = (order: IOrder) => ({
 
 export const placeOrderRejected = (order: IOrder) => ({
   type: PLACE_ORDER_REJECTED,
-  payload: order
-})
+  payload: order,
+});

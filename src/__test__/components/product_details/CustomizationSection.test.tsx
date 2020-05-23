@@ -4,15 +4,21 @@ import { CustomizationSection } from '../../../components/product_details/Custom
 // import { Stamping } from '../../../components/product_details/Stamping';
 
 describe('CustomizationSection', () => {
+  const props = {
+    product: {
+      sizes: [],
+    },
+  };
+
   it('should show default product price', () => {
-    const wrapper = createWrapper({ defaultPrice: 15 });
+    const wrapper = createWrapper(props);
     expect(wrapper.find("[data-test='price']").text()).toEqual('€ 15');
   });
 
 
-  it("should not show stamping section if product is not customizable", () => {
-    const wrapper = createWrapper({ isCustomizable: false });
-    expect(wrapper.find("Stamping").exists()).toEqual(false);
+  it('should not show stamping section if product is not customizable', () => {
+    const wrapper = createWrapper(props);
+    expect(wrapper.find('Stamping').exists()).toEqual(false);
   });
 
   // it('should calculate price with additional extra costs', () => {
@@ -22,10 +28,10 @@ describe('CustomizationSection', () => {
   // })
 });
 
-const createWrapper = (props: any) =>
-  shallow(
+const createWrapper = (props: any) => shallow(
     <CustomizationSection
-      defaultPrice={0}
-      isCustomizable={false}
-      availableSizes={[]} {...props} />
-  );
+        product={{}}
+        addToCart={jest.fn()}
+        extraCost={0}
+        {...props} />,
+);

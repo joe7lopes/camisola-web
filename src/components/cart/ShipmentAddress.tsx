@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, Card, InputGroup, FormControl, Form,
+  Row, Col, Card, InputGroup, FormControl,
 } from 'react-bootstrap';
 
 const ShipmentAddress = () => (

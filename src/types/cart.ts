@@ -1,8 +1,8 @@
-import { IProduct } from './product';
+import { IProduct, IProductSize } from './product';
 
 export interface ICartItem {
     product: IProduct,
-    size: string,
+    size: IProductSize,
     stampingName?: string,
     stampingNumber?: number
 }

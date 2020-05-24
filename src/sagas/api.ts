@@ -3,6 +3,8 @@ import axios from 'axios';
 class Api {
   constructor() {
     axios.defaults.headers['Content-Type'] = 'application/json';
+    axios.defaults.timeout = 4000;
+    axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   }
 
   get(url: string) {

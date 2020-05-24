@@ -1,13 +1,19 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
-  FETCH_ORDERS, fetchOrdersFulfilled,
-  fetchOrdersPending, fetchOrdersRejected,
+  FETCH_ORDERS, fetchOrders,
+  fetchOrdersFulfilled,
+  fetchOrdersPending,
+  fetchOrdersRejected,
   IPlaceOrderAction,
   PLACE_ORDER,
   placeOrderFulfilled,
   placeOrderPending,
   placeOrderRejected,
+  UPDATE_ORDER_STATUS,
+  updateOrderStatusFulfilled,
+  updateOrderStatusPending,
+  updateOrderStatusRejected,
 } from '../actions';
 
 import api from './api';
@@ -17,13 +23,25 @@ import { ICreateOrderRequest } from '../types';
 * +++Executers+++
 */
 
-function* fetchOrders() {
+function* fetchOrdersExec() {
   yield put(fetchOrdersPending());
   try {
     const { data } = yield call(api.get, '/api/orders');
     yield put(fetchOrdersFulfilled(data.orders));
   } catch (error) {
     yield put(fetchOrdersRejected(error));
+  }
+}
+
+function* updateOrderStatusExec(action: any) {
+  yield put(updateOrderStatusPending());
+  const { orderId, status } = action.payload;
+  try {
+    yield call(api.post, `/api/orders/${orderId}`, { status });
+    yield put(updateOrderStatusFulfilled());
+    yield put(fetchOrders());
+  } catch (error) {
+    yield put(updateOrderStatusRejected(error));
   }
 }
 
@@ -54,7 +72,11 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
  */
 
 export function* watchFetchOrders() {
-  yield takeLatest(FETCH_ORDERS, fetchOrders);
+  yield takeLatest(FETCH_ORDERS, fetchOrdersExec);
+}
+
+export function* watchUpdateOrderStatus() {
+  yield takeLatest(UPDATE_ORDER_STATUS, updateOrderStatusExec);
 }
 
 export function* watchPlaceOrder() {

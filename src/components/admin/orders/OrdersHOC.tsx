@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLoadingAdminOrders, getAdminOrders } from '../../../store/selectors';
+import { getAdminOrders, isLoadingAdminOrders } from '../../../store/selectors';
 import Orders from './Orders';
 import { fetchOrders } from '../../../actions';
 
@@ -15,7 +15,7 @@ const OrdersHOC = () => {
 
   if (isLoading) return <div>Loading orders...</div>;
   return (
-    <Orders orders={orders}/>
+        <Orders orders={orders}/>
   );
 };
 

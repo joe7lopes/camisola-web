@@ -1,0 +1,13 @@
+@import "colors";
+
+.received_order {
+  background-color: $order-status-received-color;
+}
+
+.processing_order {
+  background-color: $order-status-processing-color;
+}
+
+.shipped_order {
+  background-color: $order-status-shipped-color;
+}

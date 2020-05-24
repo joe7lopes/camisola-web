@@ -7,15 +7,39 @@ import {
   PLACE_ORDER_FULFILLED,
   PLACE_ORDER_PENDING,
   PLACE_ORDER_REJECTED,
+  UPDATE_ORDER_STATUS,
+  UPDATE_ORDER_STATUS_FULFILLED,
+  UPDATE_ORDER_STATUS_PENDING,
+  UPDATE_ORDER_STATUS_REJECTED,
 } from './actionTypes';
-import { ICartItem, IOrder, IShippingAddress } from '../types';
+import {
+  ICartItem, IOrder, IShippingAddress, OrderStatus,
+} from '../types';
+
+export const fetchOrders = () => ({
+  type: FETCH_ORDERS,
+});
+
+export const fetchOrdersPending = () => ({
+  type: FETCH_ORDERS_PENDING,
+});
+
+export const fetchOrdersFulfilled = (orders: IOrder[]) => ({
+  type: FETCH_ORDERS_FULFILLED,
+  payload: orders,
+});
+
+export const fetchOrdersRejected = (error: string) => ({
+  type: FETCH_ORDERS_REJECTED,
+  payload: error,
+});
 
 export interface IPlaceOrderAction {
-    type: string,
-    payload: {
-        items: ICartItem[],
-        shippingAddress: IShippingAddress
-    }
+  type: string,
+  payload: {
+    items: ICartItem[],
+    shippingAddress: IShippingAddress
+  }
 }
 
 export const placeOrder = (items: ICartItem[], shippingAddress: IShippingAddress) => ({
@@ -37,20 +61,20 @@ export const placeOrderRejected = (error: string) => ({
   payload: error,
 });
 
-export const fetchOrders = () => ({
-  type: FETCH_ORDERS,
+export const updateOrderStatus = (orderId: string, status: OrderStatus) => ({
+  type: UPDATE_ORDER_STATUS,
+  payload: { orderId, status },
 });
 
-export const fetchOrdersPending = () => ({
-  type: FETCH_ORDERS_PENDING,
+export const updateOrderStatusPending = () => ({
+  type: UPDATE_ORDER_STATUS_PENDING,
 });
 
-export const fetchOrdersFulfilled = (orders: IOrder[]) => ({
-  type: FETCH_ORDERS_FULFILLED,
-  payload: orders,
+export const updateOrderStatusFulfilled = () => ({
+  type: UPDATE_ORDER_STATUS_FULFILLED,
 });
 
-export const fetchOrdersRejected = (error: string) => ({
-  type: FETCH_ORDERS_REJECTED,
+export const updateOrderStatusRejected = (error: string) => ({
+  type: UPDATE_ORDER_STATUS_REJECTED,
   payload: error,
 });

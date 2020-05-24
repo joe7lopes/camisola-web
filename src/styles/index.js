@@ -5,3 +5,4 @@ export * from './_home.scss';
 export * from './_text.scss';
 export * from './_navigation.scss';
 export * from './_cart.scss';
+export * from './_admin_orders.scss';

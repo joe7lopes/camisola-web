@@ -24,8 +24,8 @@ const {
   PORTO,
   SPORTING,
   ACCOUNT,
-  CREATE_PRODUCT,
   SETTINGS,
+  CREATE_PRODUCT,
   ADMIN,
   ADMIN_ORDERS,
   PRODUCT_DETAILS,
@@ -47,18 +47,18 @@ const Routes = () => {
     <div className="c-body-layout">
     <Switch>
       <Route exact path={'/'} component={Home} />
-      <Route path={PORTUGAL} component={ClubPage} />
-      <Route path={BENFICA} component={ClubPage} />
-      <Route path={PORTO} component={ClubPage} />
-      <Route path={SPORTING} component={ClubPage} />
-      <Route path={ACCOUNT} component={Account} />
+      <Route exact path={PORTUGAL} component={ClubPage} />
+      <Route exact path={BENFICA} component={ClubPage} />
+      <Route exact path={PORTO} component={ClubPage} />
+      <Route exact path={SPORTING} component={ClubPage} />
+      <Route exact path={ACCOUNT} component={Account} />
       <Route path={CREATE_PRODUCT} component={NewProduct} />
       <Route path={SETTINGS} component={Settings} />
       <Route path={ADMIN_ORDERS} component={Orders} />
-      <Route path={ADMIN} component={AdminPannel} />
+      <Route exact path={ADMIN} component={AdminPannel} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route path={ORDER_SUMMARY(':id')} component={OrderSummary} />
-      <Route path={CART} component={Cart} />
+      <Route exact path={CART} component={Cart} />
       <Route>
         <h3>No match</h3>
       </Route>

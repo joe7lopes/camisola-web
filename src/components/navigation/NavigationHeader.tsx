@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+//import { useSelector } from 'react-redux';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
 import ShoppingCart from './ShoppingCart';
-import LoginModal from '../auth/LoginModal';
-import { getUser, isLoginSuccess } from '../../store/selectors';
+//import { getUser } from '../../store/selectors';
 
 const {
   PORTUGAL, BENFICA, SPORTING, PORTO, OUTROS, CRIANCAS,
@@ -21,26 +20,14 @@ headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
 const NavigationHeader = () => {
-  const history = useHistory();
-  const user = useSelector(getUser);
-  const loginSuccess = useSelector(isLoginSuccess);
-  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  // const user = useSelector(getUser);
 
-
-  useEffect(() => {
-    if (loginSuccess) {
-      setLoginModalVisible(false);
-      history.push(path.ACCOUNT);
-    }
-  }, [loginSuccess]);
-
-
-  const renderLogin = () => {
-    if (user) {
-      return <Link to={path.ACCOUNT}><div className="m-l-lg">{user?.firstName}</div> </Link>;
-    }
-    return <div className="m-l-lg" onClick={() => setLoginModalVisible(true)}> Login | registrar</div>;
-  };
+  // const renderLogin = () => {
+  //   if (user) {
+  //     return <Link to={path.ACCOUNT}><div className="m-l-lg">{user?.firstName}</div> </Link>;
+  //   }
+  //   return <div className="m-l-lg" onClick={() => setLoginModalVisible(true)}> Login | registrar</div>;
+  // };
 
   return (
     <>
@@ -97,12 +84,11 @@ const NavigationHeader = () => {
                     <Navbar.Collapse className="justify-content-end">
                         <ShoppingCart />
                         <Navbar.Text>
-                            {renderLogin()}
+                            {/*{renderLogin()}*/}
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
-            <LoginModal show={loginModalVisible} onHide={() => setLoginModalVisible(false)}/>
     </>
   );
 };

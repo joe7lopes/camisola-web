@@ -17,6 +17,8 @@ import {
 
 import path from './path';
 import { fetchProducts, fetchSettings } from '../actions';
+import AdminRoute from './AdminRoute';
+import LoginHOC from '../components/auth/LoginHOC';
 
 const {
   PORTUGAL,
@@ -31,6 +33,7 @@ const {
   PRODUCT_DETAILS,
   ORDER_SUMMARY,
   CART,
+  LOGIN
 } = path;
 
 const Routes = () => {
@@ -47,15 +50,16 @@ const Routes = () => {
     <div className="c-body-layout">
     <Switch>
       <Route exact path={'/'} component={Home} />
+      <Route exact path={LOGIN} component={LoginHOC} />
       <Route exact path={PORTUGAL} component={ClubPage} />
       <Route exact path={BENFICA} component={ClubPage} />
       <Route exact path={PORTO} component={ClubPage} />
       <Route exact path={SPORTING} component={ClubPage} />
       <Route exact path={ACCOUNT} component={Account} />
-      <Route path={CREATE_PRODUCT} component={NewProduct} />
-      <Route path={SETTINGS} component={Settings} />
-      <Route path={ADMIN_ORDERS} component={Orders} />
-      <Route exact path={ADMIN} component={AdminPannel} />
+      <AdminRoute path={CREATE_PRODUCT} component={NewProduct} />
+      <AdminRoute path={SETTINGS} component={Settings} />
+      <AdminRoute path={ADMIN_ORDERS} component={Orders} />
+      <AdminRoute exact path={ADMIN} component={AdminPannel} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route path={ORDER_SUMMARY(':id')} component={OrderSummary} />
       <Route exact path={CART} component={Cart} />

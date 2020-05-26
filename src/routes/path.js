@@ -15,4 +15,5 @@ export default {
   ORDER_SUMMARY: (orderId) => `/orders/${orderId}`,
   CART: '/cart',
   ORDER_RECEIVED: '/order-received',
+  LOGIN: '/login',
 };

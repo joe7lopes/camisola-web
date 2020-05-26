@@ -31,9 +31,9 @@ const USER_TOKEN = 'camisola10-u-token';
 function* signIn({ payload }: ISignInAction) {
   try {
     yield put(signInPending());
-    const { data } = yield call(api.post, '/auth/signin', payload);
-    localStorage.setItem(USER_TOKEN, data.authToken);
-    yield put(signInFulfilled(data));
+    // const { data } = yield call(api.post, '/auth/signin', payload);
+    // localStorage.setItem(USER_TOKEN, data.authToken);
+    yield put(signInFulfilled('21323'));
   } catch (err) {
     yield put(signInRejected(err.response.data.error));
   }
@@ -42,7 +42,6 @@ function* signIn({ payload }: ISignInAction) {
 function* signOut() {
   yield put(signOutPending());
   yield localStorage.removeItem(USER_TOKEN);
-  yield;
   yield put(signOutFulfilled());
 }
 

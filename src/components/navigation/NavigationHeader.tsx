@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-//import { useSelector } from 'react-redux';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
 import ShoppingCart from './ShoppingCart';
-//import { getUser } from '../../store/selectors';
 
 const {
   PORTUGAL, BENFICA, SPORTING, PORTO, OUTROS, CRIANCAS,

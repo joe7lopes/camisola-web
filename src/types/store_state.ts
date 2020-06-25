@@ -33,7 +33,7 @@ export interface ICartState {
 }
 
 export interface IAuthState {
-    authToken?: string,
+    token?: string,
     signUpError?: string,
     signInError?: string,
     resetPasswordError?: string,

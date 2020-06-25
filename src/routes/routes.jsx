@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, HashRouter as Router } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   NavigationHeader,
   ClubPage,
   ProductDetail,
   Home,
-  AdminPannel,
+  AdminPanel,
   Settings,
   NewProduct,
   Account,
@@ -33,7 +33,7 @@ const {
   PRODUCT_DETAILS,
   ORDER_SUMMARY,
   CART,
-  LOGIN
+  LOGIN,
 } = path;
 
 const Routes = () => {
@@ -59,7 +59,7 @@ const Routes = () => {
       <AdminRoute path={CREATE_PRODUCT} component={NewProduct} />
       <AdminRoute path={SETTINGS} component={Settings} />
       <AdminRoute path={ADMIN_ORDERS} component={Orders} />
-      <AdminRoute exact path={ADMIN} component={AdminPannel} />
+      <AdminRoute exact path={ADMIN} component={AdminPanel} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
       <Route path={ORDER_SUMMARY(':id')} component={OrderSummary} />
       <Route exact path={CART} component={Cart} />

@@ -12,7 +12,7 @@ const INITIAL_STATE: IAuthState = {};
 export default (state = INITIAL_STATE, { type, payload }: any) => {
   switch (type) {
     case SIGN_IN_FULFILLED:
-      return { ...state, user: payload.user };
+      return { ...state, token: payload.token };
     case SIGN_IN_REJECTED:
       return { ...state, signInError: payload };
     case SIGN_OUT_FULFILLED:

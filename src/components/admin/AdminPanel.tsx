@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import path from '../../routes/path';
 
-const AdminPannel = () => {
+const AdminPanel = () => {
   const title = 'AdminPannel';
   return (
         <div className="c-body">
@@ -22,4 +22,4 @@ const AdminPannel = () => {
   );
 };
 
-export default AdminPannel;
+export default AdminPanel;

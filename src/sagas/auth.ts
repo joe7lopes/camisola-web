@@ -31,9 +31,13 @@ const USER_TOKEN = 'camisola10-u-token';
 function* signIn({ payload }: ISignInAction) {
   try {
     yield put(signInPending());
-    // const { data } = yield call(api.post, '/auth/signin', payload);
-    // localStorage.setItem(USER_TOKEN, data.authToken);
-    yield put(signInFulfilled('21323'));
+    const { data } = yield call(api.post, '/api/users/sign-in', payload);
+    const { token } = data;
+    if (token) {
+      api.setAuth(data.token);
+      localStorage.setItem(USER_TOKEN, token);
+    }
+    yield put(signInFulfilled(token));
   } catch (err) {
     yield put(signInRejected(err.response.data.error));
   }
@@ -48,7 +52,7 @@ function* signOut() {
 function* signUp({ payload }: any) {
   try {
     yield put(signUpPending());
-    yield call(api.post, '/auth/signup', payload);
+    yield call(api.post, '/api/auth/signup', payload);
     yield put(signUpFulfilled());
   } catch (err) {
     yield put(signUpRejected(err.response.data.error));
@@ -58,7 +62,7 @@ function* signUp({ payload }: any) {
 function* resetPassword(action: any) {
   try {
     yield put(resetPasswordPending());
-    yield call(api.post, '/auth/reset', action.payload);
+    yield call(api.post, 'api/auth/reset', action.payload);
     yield put(resetPasswordFulfilled());
   } catch (err) {
     yield put(resetPasswordRejected(err.response.data.error));

@@ -36,9 +36,9 @@ export const signInPending = () => ({
   type: SIGN_IN_PENDING,
 });
 
-export const signInFulfilled = (authToken: string) => ({
+export const signInFulfilled = (token: string) => ({
   type: SIGN_IN_FULFILLED,
-  payload: authToken,
+  payload: token,
 });
 
 export const signInRejected = (error: string) => ({

@@ -8,6 +8,7 @@ import LoginModal from './LoginModal';
 const LoginHOC = () => {
   const [loginModalVisible, setLoginModalVisible] = useState(true);
   const loginSuccess = useSelector(isLoginSuccess);
+  // const unAuthorized = useSelector(isUnAuthorized);
   const history = useHistory();
 
   if (loginSuccess) {

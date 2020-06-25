@@ -1,13 +1,11 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { isLoginSuccess } from '../store/selectors';
 
 const AdminRoute = ({ component: Component, ...rest }) => {
-  const loginSuccess = useSelector(isLoginSuccess);
+  const token = localStorage.getItem('camisola10-u-token');
   return (
     <Route {...rest} render={(props) => (
-      loginSuccess
+      token
         ? <Component {...props}/>
         : <Redirect to={{
           pathname: '/login',

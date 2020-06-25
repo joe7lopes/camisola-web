@@ -24,7 +24,7 @@ import {
   FETCH_ORDERS_FULFILLED,
   FETCH_ORDERS_REJECTED,
   FETCH_ORDERS_PENDING,
-  UPDATE_ORDER_STATUS_PENDING, UPDATE_ORDER_STATUS_FULFILLED, UPDATE_ORDER_STATUS_REJECTED,
+  UPDATE_ORDER_STATUS_PENDING, UPDATE_ORDER_STATUS_FULFILLED, UPDATE_ORDER_STATUS_REJECTED, SIGN_OUT_FULFILLED,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -93,6 +93,8 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
       return { ...state, auth: { isSigningIn: true } };
     case SIGN_IN_FULFILLED:
       return { ...state, auth: { isSigningIn: false, isSignInSuccess: true } };
+    case SIGN_OUT_FULFILLED:
+      return { ...state, auth: { isSigningIn: false, isSignInSuccess: false } };
     case SIGN_IN_REJECTED:
       return { ...state, auth: { isSigningIn: false } };
     case RESET_PASSWORD_PENDING:

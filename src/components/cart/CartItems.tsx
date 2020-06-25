@@ -20,7 +20,7 @@ const CartItems = ({
         <Table striped bordered hover>
             <tbody>
             <tr>
-                <th>Envio <span className="c-text-muted">(à cobrança)</span></th>
+                <th>Envio <span className="c-text-muted">(à cobrança pelos CTT)</span></th>
                 <td>Taxa fixa: {shippingCost}€</td>
             </tr>
             <tr>

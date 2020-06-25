@@ -9,8 +9,6 @@ import {
   AdminPanel,
   Settings,
   NewProduct,
-  Account,
-  OrderSummary,
   Cart,
   Orders,
 } from '../components';
@@ -25,13 +23,12 @@ const {
   BENFICA,
   PORTO,
   SPORTING,
-  ACCOUNT,
   SETTINGS,
   CREATE_PRODUCT,
   ADMIN,
   ADMIN_ORDERS,
   PRODUCT_DETAILS,
-  ORDER_SUMMARY,
+  CRIANCAS,
   CART,
   LOGIN,
 } = path;
@@ -50,18 +47,17 @@ const Routes = () => {
     <div className="c-body-layout">
     <Switch>
       <Route exact path={'/'} component={Home} />
-      <Route exact path={LOGIN} component={LoginHOC} />
       <Route exact path={PORTUGAL} component={ClubPage} />
       <Route exact path={BENFICA} component={ClubPage} />
       <Route exact path={PORTO} component={ClubPage} />
       <Route exact path={SPORTING} component={ClubPage} />
-      <Route exact path={ACCOUNT} component={Account} />
+      <Route exact path={CRIANCAS} component={ClubPage} />
       <AdminRoute path={CREATE_PRODUCT} component={NewProduct} />
       <AdminRoute path={SETTINGS} component={Settings} />
       <AdminRoute path={ADMIN_ORDERS} component={Orders} />
       <AdminRoute exact path={ADMIN} component={AdminPanel} />
+      <Route exact path={LOGIN} component={LoginHOC} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />
-      <Route path={ORDER_SUMMARY(':id')} component={OrderSummary} />
       <Route exact path={CART} component={Cart} />
       <Route>
         <h3>No match</h3>

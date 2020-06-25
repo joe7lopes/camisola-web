@@ -6,7 +6,12 @@ import path from '../../routes/path';
 import ShoppingCart from './ShoppingCart';
 
 const {
-  PORTUGAL, BENFICA, SPORTING, PORTO, OUTROS, CRIANCAS,
+  PORTUGAL,
+  BENFICA,
+  SPORTING,
+  PORTO,
+  OUTROS,
+  CRIANCAS,
 } = path;
 const headerLinks = new Map();
 
@@ -17,17 +22,18 @@ headerLinks.set(OUTROS, 'Outros');
 headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
-const NavigationHeader = () => {
-  // const user = useSelector(getUser);
+const NavigationHeader = () =>
+// const user = useSelector(getUser);
 
-  // const renderLogin = () => {
-  //   if (user) {
-  //     return <Link to={path.ACCOUNT}><div className="m-l-lg">{user?.firstName}</div> </Link>;
-  //   }
-  //   return <div className="m-l-lg" onClick={() => setLoginModalVisible(true)}> Login | registrar</div>;
-  // };
+// const renderLogin = () => {
+//   if (user) {
+//     return <Link to={path.ACCOUNT}><div className="m-l-lg">{user?.firstName}</div> </Link>;
+//   }
+//   return <div className="m-l-lg"
+//   onClick={() => setLoginModalVisible(true)}> Login | registrar</div>;
+// };
 
-  return (
+  (
     <>
             <div style={{ backgroundColor: 'white' }}>
                 <Navbar
@@ -44,7 +50,7 @@ const NavigationHeader = () => {
                             <img
                                 alt="home"
                                 style={{ height: '6rem' }}
-                                src="https://camisola10.com/wp-content/uploads/2018/10/LogoWidth200.png"
+                                src="https://camisola-backend.s3-eu-west-1.amazonaws.com/LogoWidth200.png"
                             />
                         </Link>
                     </Navbar.Brand>
@@ -54,27 +60,27 @@ const NavigationHeader = () => {
                             {/* not working when modal opens {renderLinks(keys)} */}
                             <NavigationLink
                                 displayName={headerLinks.get(PORTUGAL)}
-                                destination="/portugal"
+                                destination={PORTUGAL}
                             />
                             <NavigationLink
                                 displayName={headerLinks.get(BENFICA)}
-                                destination="/benfica"
+                                destination={BENFICA}
                             />
                             <NavigationLink
                                 displayName={headerLinks.get(PORTO)}
-                                destination="/porto"
+                                destination={PORTO}
                             />
                             <NavigationLink
                                 displayName={headerLinks.get(SPORTING)}
-                                destination="/sporting"
+                                destination={SPORTING}
                             />
                             <NavigationLink
                                 displayName={headerLinks.get(CRIANCAS)}
-                                destination="/Crianças"
+                                destination={CRIANCAS}
                             />
                             <NavigationLink
                                 displayName={headerLinks.get(OUTROS)}
-                                destination="/outros"
+                                destination={OUTROS}
                             />
                         </Nav>
 
@@ -82,13 +88,11 @@ const NavigationHeader = () => {
                     <Navbar.Collapse className="justify-content-end">
                         <ShoppingCart />
                         <Navbar.Text>
-                            {/*{renderLogin()}*/}
+                            {/* {renderLogin()} */}
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
     </>
   );
-};
-
 export default NavigationHeader;

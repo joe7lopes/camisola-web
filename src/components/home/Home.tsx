@@ -7,6 +7,7 @@ import ShippingMethodBanner from './ShippingMethodBanner';
 import FacebookReviews from './FacebookReviews';
 import Footer from '../Footer';
 import ProductCarousel from './ProductCarousel';
+import ProductMiniatures from './ProductMiniatures';
 
 const Home = () => {
   const benficaProducts = useSelector(getBenficaProducts);
@@ -19,6 +20,7 @@ const Home = () => {
           {benficaProducts.length > 0 && <ProductCarousel sectionName="Benfica" products={benficaProducts}/>}
           {portoProducts.length > 0 && <ProductCarousel sectionName="Porto" products={portoProducts}/>}
           {sportingProducts.length > 0 && <ProductCarousel sectionName="Sporting" products={sportingProducts}/>}
+          <ProductMiniatures />
         </Col>
         <Col md={3} className="c-container m-l-sm">
           <WhatsApp className="m-b-sm" />

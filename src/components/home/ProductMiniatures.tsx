@@ -8,8 +8,7 @@ const ProductMiniatures = () => {
   const products = useSelector(getAllProducts);
 
   return (
-        <div>
-            <h1>duh</h1>
+        <div className="row">
             {products.map((p) => <ProductMiniatureCard
                 key={p.id}
                 id={p.id}

@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { Button, Form, Spinner } from 'react-bootstrap';
+import {
+  Alert, Button, Form, Spinner,
+} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import ShipmentAddress from './ShipmentAddress';
 import CartItems from './CartItems';
 import { placeOrder } from '../../actions';
 import OrderCompleted from './OrderCompleted';
 import {
-  getCartItems, getCartTotal, getShippingCost, isPlacingOrder,
+  getCartItems,
+  getCartTotal,
+  getShippingCost,
+  isPlacingOrder,
+  isPlacingRejected,
 } from '../../store/selectors';
 
 const CartContent = () => {
@@ -14,6 +20,7 @@ const CartContent = () => {
   const shippingCost = useSelector(getShippingCost);
   const total = useSelector(getCartTotal);
   const showPlaceOrderLoading = useSelector(isPlacingOrder);
+  const isPlancingOrderFailed = useSelector(isPlacingRejected);
   const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
 
@@ -48,6 +55,11 @@ const CartContent = () => {
                 </div>
                 <Form onSubmit={submit} noValidate validated={validated}>
                     <ShipmentAddress/>
+                    {isPlancingOrderFailed
+                    && <Alert variant="danger">
+                        Erro, não foi possivel registar a sua encomenda. Tente mais tarde.
+                    </Alert>
+                    }
                     {showPlaceOrderLoading ? renderLoadingButton() : renderPlaceOrderButton()}
                 </Form>
             </div>

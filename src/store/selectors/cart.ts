@@ -24,6 +24,11 @@ export const isPlacingOrder = createSelector(
   (cart) => cart.isOrderPlacedLoading,
 );
 
+export const isPlacingRejected = createSelector(
+  [getCart],
+  (cart) => cart.isOrderPlacedFailure,
+);
+
 export const getCompletedOrderId = createSelector(
   [getCart],
   (cart) => cart.orderId,

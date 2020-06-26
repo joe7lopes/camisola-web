@@ -6,17 +6,11 @@ import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-// eslint-disable-next-line consistent-return
-const additionalDevMiddleWare = () => {
-  if (process.env.NODE_ENV === 'development') {
-    return window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-  }
-};
 const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(sagaMiddleware),
-    additionalDevMiddleWare(),
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
 

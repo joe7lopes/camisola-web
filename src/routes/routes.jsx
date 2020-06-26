@@ -37,14 +37,14 @@ const Routes = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-  //  dispatch(fetchSettings());
-   // dispatch(fetchProducts());
+    dispatch(fetchSettings());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return (
   <Router>
-    {/*<NavigationHeader />*/}
-    {/*<div className="c-body-layout">*/}
+    <NavigationHeader />
+    <div className="c-body-layout">
     <Switch>
       <Route exact path={'/'} component={Home} />
       <Route exact path={PORTUGAL} component={ClubPage} />
@@ -63,7 +63,7 @@ const Routes = () => {
         <h3>No match</h3>
       </Route>
     </Switch>
-    {/*</div>*/}
+    </div>
   </Router>
   );
 };

@@ -15,21 +15,20 @@ const Home = () => {
   const sportingProducts = useSelector(getSportingProducts);
   return (
     <div>
-      <Row>sometig c10</Row>
-      {/*<Row>*/}
-      {/*  <Col className="c-container">*/}
-      {/*    {benficaProducts.length > 0 && <ProductCarousel sectionName="Benfica" products={benficaProducts}/>}*/}
-      {/*    {portoProducts.length > 0 && <ProductCarousel sectionName="Porto" products={portoProducts}/>}*/}
-      {/*    {sportingProducts.length > 0 && <ProductCarousel sectionName="Sporting" products={sportingProducts}/>}*/}
-      {/*    <ProductMiniatures />*/}
-      {/*  </Col>*/}
-      {/*  <Col md={3} className="c-container m-l-sm">*/}
-      {/*    <WhatsApp className="m-b-sm" />*/}
-      {/*    <ShippingMethodBanner />*/}
-      {/*    <FacebookReviews />*/}
-      {/*  </Col>*/}
-      {/*</Row>*/}
-      {/*<Footer />*/}
+      <Row>
+        <Col className="c-container">
+          {benficaProducts.length > 0 && <ProductCarousel sectionName="Benfica" products={benficaProducts}/>}
+          {portoProducts.length > 0 && <ProductCarousel sectionName="Porto" products={portoProducts}/>}
+          {sportingProducts.length > 0 && <ProductCarousel sectionName="Sporting" products={sportingProducts}/>}
+          <ProductMiniatures />
+        </Col>
+        <Col md={3} className="c-container m-l-sm">
+          <WhatsApp className="m-b-sm" />
+          <ShippingMethodBanner />
+          <FacebookReviews />
+        </Col>
+      </Row>
+      <Footer />
     </div>
   );
 };

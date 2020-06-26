@@ -8,7 +8,8 @@ import 'typeface-montserrat';
 
 export const App = () => (
     <Provider store={store}>
-      <Routes/>
+      {/*<Routes/>*/}
+      <div>routes not working</div>
     </Provider>
 );
 

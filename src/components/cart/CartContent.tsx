@@ -20,7 +20,7 @@ const CartContent = () => {
   const shippingCost = useSelector(getShippingCost);
   const total = useSelector(getCartTotal);
   const showPlaceOrderLoading = useSelector(isPlacingOrder);
-  const isPlancingOrderFailed = useSelector(isPlacingRejected);
+  const isPlacingOrderFailed = useSelector(isPlacingRejected);
   const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
 
@@ -55,7 +55,7 @@ const CartContent = () => {
                 {/*</div>*/}
                 <Form onSubmit={submit} noValidate validated={validated}>
                     <ShipmentAddress/>
-                    {isPlancingOrderFailed
+                    {isPlacingOrderFailed
                     && <Alert variant="danger">
                         Erro, não foi possivel registar a sua encomenda. Tente mais tarde.
                     </Alert>

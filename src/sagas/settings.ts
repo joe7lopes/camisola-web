@@ -24,7 +24,15 @@ function* fetchSettings() {
   try {
     // const { data } = yield call(api.get, '/api/settings');
     const data: ISettings = {
-      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL',
+        '1-2 anos',
+        '3-4 anos',
+        '5-6 anos',
+        '7-8 anos',
+        '9-10 anos',
+        '11-12 anos',
+        '13-14 anos',
+      ],
       stampingExtraCost: 12,
       productDefaultPrice: 35,
       productCategories: [

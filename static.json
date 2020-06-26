@@ -1,5 +1,7 @@
 {
   "proxies": {
+    "/api/": {
       "origin": "${REACT_APP_BACKEND_URL}"
+    }
   }
 }

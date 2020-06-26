@@ -1,9 +1,9 @@
 {
+  "root": "build/",
+  "routes": {
+    "/**": "index.html"
+  },
   "proxies": {
-    "root": "build/",
-    "routes": {
-      "/**": "index.html"
-    },
     "/api/": {
       "origin": "${REACT_APP_BACKEND_URL}"
     }

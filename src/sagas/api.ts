@@ -6,8 +6,7 @@ const USER_TOKEN = 'camisola10-u-token';
 class Api {
   constructor() {
     axios.defaults.headers['Content-Type'] = 'application/json';
-    axios.defaults.timeout = 4000;
-    axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
+    axios.defaults.timeout = 5000;
     const token = localStorage.getItem(USER_TOKEN);
     if (token) axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 

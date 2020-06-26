@@ -6,10 +6,14 @@ import './styles';
 import store from './store';
 import 'typeface-montserrat';
 
+// export const App = () => (
+//     <Provider store={store}>
+//       <Routes/>
+//     </Provider>
+// );
+
 export const App = () => (
-    <Provider store={store}>
-      <Routes/>
-    </Provider>
+    <div>hello from camisola10</div>
 );
 
 export default App;

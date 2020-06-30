@@ -17,6 +17,7 @@ import path from './path';
 import { fetchProducts, fetchSettings } from '../actions';
 import AdminRoute from './AdminRoute';
 import LoginHOC from '../components/auth/LoginHOC';
+import ScrollToTop from './ScrollToTop';
 
 const {
   PORTUGAL,
@@ -44,6 +45,7 @@ const Routes = () => {
   return (
   <Router>
     <NavigationHeader />
+    <ScrollToTop/>
     <div className="c-body-layout">
     <Switch>
       <Route exact path={'/'} component={Home} />

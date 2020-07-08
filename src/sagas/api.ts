@@ -34,6 +34,10 @@ class Api {
     return axios.put(url, data);
   }
 
+  delete(url:string) {
+    return axios.delete(url);
+  }
+
   setAuth(token: String) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
-import defaultshirt from '../assets/defaultshirt.png';
 
 interface IProps {
   id: string,
@@ -12,7 +11,7 @@ interface IProps {
 }
 
 const ProductCard = ({
-  id, name, price, image = defaultshirt, className,
+  id, name, price, image, className,
 }: IProps) => {
   const history = useHistory();
   return (

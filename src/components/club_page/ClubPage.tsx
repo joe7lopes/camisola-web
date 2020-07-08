@@ -28,4 +28,4 @@ export default ClubPage;
 
 const filterProducts = (category:string, products:IProduct[]) => products
   .filter((p) => p.categories
-    .filter((c) => c.name === category).length > 0);
+    .filter((c) => c === category).length > 0);

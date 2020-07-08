@@ -9,13 +9,13 @@ const AdminPanel = () => {
             <h1>{title}</h1>
             <ul>
                 <li>
-                    <Link to={path.CREATE_PRODUCT}>Novo produto</Link>
+                    <Link to={path.ADMIN_PRODUCTS}>Produtos</Link>
                 </li>
                 <li>
-                    <Link to={path.SETTINGS}>settings</Link>
+                    <Link to={path.SETTINGS}>Settings</Link>
                 </li>
                 <li>
-                    <Link to={path.ADMIN_ORDERS}>orders</Link>
+                    <Link to={path.ADMIN_ORDERS}>Orders</Link>
                 </li>
             </ul>
         </div>

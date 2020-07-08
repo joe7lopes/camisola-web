@@ -11,11 +11,11 @@ const ProductMiniatures = () => {
         <div className="row">
             {products.map((p) => <ProductMiniatureCard
                 key={p.id}
-                id={p.id}
                 name={p.name}
                 price={p.defaultPrice}
-                image={getDefaultImage(p.images) }
+                image={getDefaultImage(p.images)}
                 className="miniature_card m-l-sm m-b-lg"
+                destinationUrl={`/products/${p.id}`}
             />)}
         </div>
   );

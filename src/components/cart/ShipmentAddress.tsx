@@ -29,14 +29,14 @@ const ShipmentAddress = () => (
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl name="email" placeholder="exemplo@mail.com" required/>
+          <FormControl name="email" placeholder="email" required/>
         </InputGroup>
 
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Telefone/ whatsApp</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl name="phone" placeholder="91xxx" required/>
+          <FormControl name="phone" placeholder="Telefone" required/>
         </InputGroup>
 
         <span className="c-text-muted">(Morada de envio)</span>

@@ -13,6 +13,9 @@ import {
   Orders,
 } from '../components';
 
+import ProductList from '../components/admin/product/ProductList';
+import EditProduct from '../components/admin/product/EditProduct';
+
 import path from './path';
 import { fetchProducts, fetchSettings } from '../actions';
 import AdminRoute from './AdminRoute';
@@ -26,6 +29,8 @@ const {
   SPORTING,
   SETTINGS,
   CREATE_PRODUCT,
+  ADMIN_EDIT_PRODUCT,
+  ADMIN_PRODUCTS,
   ADMIN,
   ADMIN_ORDERS,
   PRODUCT_DETAILS,
@@ -55,6 +60,8 @@ const Routes = () => {
       <Route exact path={SPORTING} component={ClubPage} />
       <Route exact path={CRIANCAS} component={ClubPage} />
       <AdminRoute path={CREATE_PRODUCT} component={NewProduct} />
+      <AdminRoute path={ADMIN_EDIT_PRODUCT} component={EditProduct} />
+      <AdminRoute path={ADMIN_PRODUCTS} component={ProductList} />
       <AdminRoute path={SETTINGS} component={Settings} />
       <AdminRoute path={ADMIN_ORDERS} component={Orders} />
       <AdminRoute exact path={ADMIN} component={AdminPanel} />

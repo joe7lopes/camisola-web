@@ -24,7 +24,10 @@ import {
   FETCH_ORDERS_FULFILLED,
   FETCH_ORDERS_REJECTED,
   FETCH_ORDERS_PENDING,
-  UPDATE_ORDER_STATUS_PENDING, UPDATE_ORDER_STATUS_FULFILLED, UPDATE_ORDER_STATUS_REJECTED, SIGN_OUT_FULFILLED,
+  UPDATE_ORDER_STATUS_PENDING,
+  UPDATE_ORDER_STATUS_FULFILLED,
+  UPDATE_ORDER_STATUS_REJECTED,
+  SIGN_OUT_FULFILLED, UPDATE_PRODUCT_PENDING, UPDATE_PRODUCT_FULFILLED, UPDATE_PRODUCT_REJECTED,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -36,7 +39,6 @@ interface IProps {
 
 const INITIAL_STATE: IUIState = {
   products: {
-    isSavingNewProduct: false,
   },
   settings: {
     isFetchingSettings: true,
@@ -46,6 +48,9 @@ const INITIAL_STATE: IUIState = {
   },
   admin: {
     isFetchingOrders: false,
+    isSavingNewProduct: false,
+    isUpdatingProduct: false,
+    isProductUpdated: false,
   },
 
 };
@@ -67,20 +72,17 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
       return { ...state, settings: newSettings };
     }
     case FETCH_PRODUCTS_PENDING:
-      return { ...state, products: { ...state.products, isFetchingProducts: true } };
     case FETCH_PRODUCTS_FULFILLED:
-      return { ...state, products: { ...state.products, isFetchingProducts: false } };
     case FETCH_PRODUCTS_REJECTED:
-      return {
-        ...state,
-        products:
-                    { ...state.products, isFetchingProducts: false, error: payload },
-      };
+      return handleProducts(state, { type, payload });
     case CREATE_PRODUCT_PENDING:
-      return { ...state, products: { ...state.products, isSavingNewProduct: true } };
     case CREATE_PRODUCT_FULFILLED:
     case CREATE_PRODUCT_REJECTED:
-      return { ...state, products: { ...state.products, isSavingNewProduct: false } };
+    case UPDATE_PRODUCT_PENDING:
+    case UPDATE_PRODUCT_FULFILLED:
+    case UPDATE_PRODUCT_REJECTED:
+      return handleAdmin(state, { type, payload });
+
     case PLACE_ORDER_FULFILLED:
       return state;
     case SIGN_UP_PENDING:
@@ -113,6 +115,45 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case UPDATE_ORDER_STATUS_FULFILLED:
     case UPDATE_ORDER_STATUS_REJECTED:
       return { ...state, admin: { isUpdatingOrderStatus: false } };
+    default:
+      return state;
+  }
+};
+
+
+const handleProducts = (state: any, { type, payload }: any) => {
+  switch (type) {
+    case FETCH_PRODUCTS_PENDING:
+      return { ...state, products: { ...state.products, isFetchingProducts: true } };
+    case FETCH_PRODUCTS_FULFILLED:
+      return { ...state, products: { ...state.products, isFetchingProducts: false } };
+    case FETCH_PRODUCTS_REJECTED:
+      return {
+        ...state,
+        products:
+            { ...state.products, isFetchingProducts: false, error: payload },
+      };
+    default:
+      return state;
+  }
+};
+
+const handleAdmin = (state: any, { type, payload }: any) => {
+  switch (type) {
+    case CREATE_PRODUCT_PENDING:
+      return { ...state, admin: { ...state.admin, isSavingNewProduct: true } };
+    case CREATE_PRODUCT_FULFILLED:
+    case CREATE_PRODUCT_REJECTED:
+      return { ...state, admin: { ...state.admin, isSavingNewProduct: false } };
+    case UPDATE_PRODUCT_PENDING:
+      return { ...state, admin: { ...state.admin, isUpdatingProduct: true } };
+    case UPDATE_PRODUCT_FULFILLED:
+      return {
+        ...state,
+        admin: { ...state.admin, isUpdatingProduct: false, isProductUpdated: true },
+      };
+    case UPDATE_PRODUCT_REJECTED:
+      return { ...state, admin: { ...state.admin, isUpdatingProduct: false, error: payload } };
     default:
       return state;
   }

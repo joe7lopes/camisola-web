@@ -12,6 +12,16 @@ import {
   createProductPending,
   createProductRejected,
   createProductFulfilled,
+  UPDATE_PRODUCT,
+  updateProductPending,
+  updateProductFulfilled,
+  updateProductRejected,
+  DELETE_PRODUCT,
+  deleteProductPending,
+  deleteProductFulfilled,
+  deleteProductRejected,
+  CREATE_PRODUCT_FULFILLED,
+  UPDATE_PRODUCT_FULFILLED, DELETE_PRODUCT_FULFILLED,
 } from '../actions';
 import { ICreateProduct } from '../types';
 import api from './api';
@@ -49,12 +59,31 @@ function* createProductExec({ payload }: ICreateProductAction) {
   try {
     const transformedImages = yield all(payload.images.map((img) => call(toBase64, img.file, img)));
     const dataToSave = yield { ...payload, images: transformedImages };
-    console.log(dataToSave);
 
     const { data } = yield call(api.post, '/api/products', dataToSave);
     yield put(createProductFulfilled(data));
   } catch (err) {
     yield put(createProductRejected(err));
+  }
+}
+
+function* updateProductExec({ payload }:any) {
+  yield put(updateProductPending());
+  try {
+    const { data } = yield call(api.put, `/api/products/${payload.id}`, payload);
+    yield put(updateProductFulfilled(data));
+  } catch (err) {
+    yield put(updateProductRejected(err));
+  }
+}
+
+function* deleteProductExec({ payload }:any) {
+  yield put(deleteProductPending());
+  try {
+    const { data } = yield call(api.delete, `/api/products/${payload}`);
+    yield put(deleteProductFulfilled(data));
+  } catch (err) {
+    yield put(deleteProductRejected(err));
   }
 }
 
@@ -68,4 +97,20 @@ export function* watchFetchProducts() {
 
 export function* watchCreateNewProduct() {
   yield takeLatest(CREATE_PRODUCT, createProductExec);
+}
+
+export function* watchUpdateProduct() {
+  yield takeLatest(UPDATE_PRODUCT, updateProductExec);
+}
+
+export function* watchDeleteProduct() {
+  yield takeLatest(DELETE_PRODUCT, deleteProductExec);
+}
+
+export function* watchProductChanges() {
+  yield takeLatest([
+    CREATE_PRODUCT_FULFILLED,
+    UPDATE_PRODUCT_FULFILLED,
+    DELETE_PRODUCT_FULFILLED,
+  ], fetchProducts);
 }

@@ -6,7 +6,6 @@ import { IUser } from './auth';
 export interface IUIState {
     products: {
         isFetchingProducts?: boolean,
-        isSavingNewProduct: boolean
     },
     settings: {
         isUpdatingSettings?: boolean,
@@ -20,6 +19,10 @@ export interface IUIState {
     },
     admin: {
         isFetchingOrders?: boolean,
+        isSavingNewProduct: boolean,
+        isUpdatingProduct: boolean,
+        isProductUpdated: boolean,
+        error?: string
     }
 }
 

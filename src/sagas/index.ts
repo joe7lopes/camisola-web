@@ -1,10 +1,21 @@
 import { all, fork } from 'redux-saga/effects';
 
 import { watchFetchSettings, watchUpdateSettings } from './settings';
-import { watchSavePersonalData } from './account';
-import { watchFetchProducts, watchCreateNewProduct } from './products';
+import {
+  watchFetchProducts,
+  watchCreateNewProduct,
+  watchUpdateProduct,
+  watchDeleteProduct,
+  watchProductChanges,
+} from './products';
+
 import { watchAddToCart } from './cart';
-import { watchFetchOrders, watchPlaceOrder, watchUpdateOrderStatus } from './orders';
+import {
+  watchFetchOrders,
+  watchPlaceOrder,
+  watchUpdateOrderStatus,
+} from './orders';
+
 import {
   watchResetPassword,
   watchSignIn,
@@ -17,11 +28,13 @@ export default function* rootSaga() {
     fork(watchFetchSettings),
     fork(watchUpdateSettings),
     fork(watchFetchProducts),
+    fork(watchProductChanges),
+    fork(watchCreateNewProduct),
+    fork(watchUpdateProduct),
+    fork(watchDeleteProduct),
     fork(watchFetchOrders),
     fork(watchPlaceOrder),
     fork(watchUpdateOrderStatus),
-    fork(watchCreateNewProduct),
-    fork(watchSavePersonalData),
     fork(watchAddToCart),
     fork(watchSignIn),
     fork(watchSignOut),

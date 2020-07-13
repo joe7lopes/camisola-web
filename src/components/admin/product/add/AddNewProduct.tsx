@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, FormControl, InputGroup } from 'react-bootstrap';
-import { createProduct } from '../../../actions';
-import {getSettingsCategories, getSettingsSizes, isSavingNewProduct} from '../../../store/selectors';
+import { createProduct } from '../../../../actions';
+import {getSettingsCategories, getSettingsSizes, isSavingNewProduct} from '../../../../store/selectors';
 import {
   ICreateProduct, ImageRequest, IProductCategory, IProductSize,
-} from '../../../types';
+} from '../../../../types';
 import ProductPrice from './ProductPrice';
 import PreviewImages from './PreviewImages';
-import { LoadingButton } from '../../ui';
+import { LoadingButton } from '../../../ui';
 
 interface ICategories {
     name: string,

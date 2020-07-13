@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { FormControl, InputGroup, Form } from 'react-bootstrap';
-import { on } from 'cluster';
-import { getSettingsCategories } from '../../../store/selectors';
-import { IProductSize } from '../../../types';
+import { IProductSize } from '../../../../types';
 
 interface IProps {
     selectedSizes: IProductSize[],

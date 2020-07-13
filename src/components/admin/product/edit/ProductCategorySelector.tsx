@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FormControl, InputGroup } from 'react-bootstrap';
-import { getSettingsCategories } from '../../../store/selectors';
+import { getSettingsCategories } from '../../../../store/selectors';
 
 interface IProps {
     selectedCategories: string[],

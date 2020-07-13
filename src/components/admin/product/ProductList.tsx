@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../store/selectors';
 import path from '../../../routes/path';
 import ProductMiniatureCard from '../../ProductMiniatureCard';
-import EditProduct from './EditProduct';
+import EditProduct from './edit/EditProduct';
 import { IProduct } from '../../../types';
 import { getDefaultImage } from '../../utils';
 

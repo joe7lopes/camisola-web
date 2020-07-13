@@ -11,9 +11,15 @@ import {
   UPDATE_PRODUCT_PENDING,
   UPDATE_PRODUCT_FULFILLED,
   UPDATE_PRODUCT_REJECTED,
-  DELETE_PRODUCT, DELETE_PRODUCT_PENDING, DELETE_PRODUCT_FULFILLED,
+  DELETE_PRODUCT,
+  DELETE_PRODUCT_PENDING,
+  DELETE_PRODUCT_FULFILLED,
+  FETCH_IMAGES,
+  FETCH_IMAGES_PENDING,
+  FETCH_IMAGES_FULFILLED,
+  FETCH_IMAGES_REJECTED,
 } from './actionTypes';
-import { IProduct, ICreateProduct, IUpdateProduct } from '../types';
+import {IProduct, ICreateProduct, IUpdateProduct, IImage} from '../types';
 
 export const fetchProducts = () => ({
   type: FETCH_PRODUCTS,
@@ -87,5 +93,24 @@ export const deleteProductFulfilled = (productId: string) => ({
 
 export const deleteProductRejected = (error: string) => ({
   type: DELETE_PRODUCT_FULFILLED,
+  payload: error,
+});
+
+
+export const fetchImages = () => ({
+  type: FETCH_IMAGES,
+});
+
+export const fetchImagesPending = () => ({
+  type: FETCH_IMAGES_PENDING,
+});
+
+export const fetchImagesFulfilled = (images: IImage[]) => ({
+  type: FETCH_IMAGES_FULFILLED,
+  payload: images,
+});
+
+export const fetchImagesRejected = (error: string) => ({
+  type: FETCH_IMAGES_REJECTED,
   payload: error,
 });

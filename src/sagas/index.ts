@@ -7,6 +7,7 @@ import {
   watchUpdateProduct,
   watchDeleteProduct,
   watchProductChanges,
+  watchFetchImages,
 } from './products';
 
 import { watchAddToCart } from './cart';
@@ -27,6 +28,7 @@ export default function* rootSaga() {
   yield all([
     fork(watchFetchSettings),
     fork(watchUpdateSettings),
+    fork(watchFetchImages),
     fork(watchFetchProducts),
     fork(watchProductChanges),
     fork(watchCreateNewProduct),

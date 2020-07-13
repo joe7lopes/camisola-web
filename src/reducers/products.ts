@@ -1,4 +1,8 @@
-import { FETCH_PRODUCTS_FULFILLED, UPDATE_PRODUCT_FULFILLED } from '../actions';
+import {
+  FETCH_PRODUCTS_FULFILLED,
+  UPDATE_PRODUCT_FULFILLED,
+} from '../actions';
+
 import { IProduct } from '../types';
 
 interface IProps {

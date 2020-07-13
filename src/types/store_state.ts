@@ -1,5 +1,5 @@
 import {
-  IAccount, ICartItem, IProduct, ISettings,
+    IAccount, ICartItem, IImage, IProduct, ISettings,
 } from './index';
 import { IUser } from './auth';
 
@@ -44,7 +44,8 @@ export interface IAuthState {
 }
 
 export interface IAdminState {
-    orders: []
+    orders: [],
+    productImages: IImage[]
 }
 
 export interface IRootState {

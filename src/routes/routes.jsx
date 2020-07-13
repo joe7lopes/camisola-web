@@ -14,7 +14,7 @@ import {
 } from '../components';
 
 import ProductList from '../components/admin/product/ProductList';
-import EditProduct from '../components/admin/product/EditProduct';
+import EditProduct from '../components/admin/product/edit/EditProduct';
 
 import path from './path';
 import { fetchProducts, fetchSettings } from '../actions';

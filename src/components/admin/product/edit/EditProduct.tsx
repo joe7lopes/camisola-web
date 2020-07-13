@@ -3,13 +3,16 @@ import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { IProduct } from '../../../types';
-import { LoadingButton } from '../../ui';
-import { deleteProduct, updateProduct } from '../../../actions';
-import {getAdminUIError, getSettingsSizes, isUpdateProductSuccess, isUpdatingProduct} from '../../../store/selectors';
-import Alert, { AlertType } from '../../ui/Alert';
+import { IProduct } from '../../../../types';
+import { LoadingButton } from '../../../ui';
+import { deleteProduct, updateProduct } from '../../../../actions';
+import {
+  getAdminUIError, getSettingsSizes, isUpdateProductSuccess, isUpdatingProduct,
+} from '../../../../store/selectors';
+import Alert, { AlertType } from '../../../ui/Alert';
 import ProductCategorySelector from './ProductCategorySelector';
 import ProductSizeSelector from './ProductSizeSelector';
+import ProductImageSelector from "../ProductImageSelector";
 
 interface IProps {
     product: IProduct
@@ -68,10 +71,13 @@ const EditProduct = ({ product }: IProps) => {
                 <ProductCategorySelector
                     selectedCategories={product.categories}
                     onChange={(categories1) => setCategories(categories1)}/>
+                <h3 className="m-t-lg m-b-lg">Sizes</h3>
                 <ProductSizeSelector
                     availableSizes={availableSizes}
                     selectedSizes={product.sizes}
-                    onChange={(sizes1)=> setSizes(sizes1)}/>
+                    onChange={(sizes1) => setSizes(sizes1)}/>
+                <h3 className="m-t-lg m-b-lg">Images</h3>
+                <ProductImageSelector images={product.images} />
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox

@@ -21,15 +21,29 @@ import {
   deleteProductFulfilled,
   deleteProductRejected,
   CREATE_PRODUCT_FULFILLED,
-  UPDATE_PRODUCT_FULFILLED, DELETE_PRODUCT_FULFILLED,
+  UPDATE_PRODUCT_FULFILLED,
+  DELETE_PRODUCT_FULFILLED,
+  FETCH_IMAGES,
+  fetchImagesPending,
+  fetchImagesFulfilled,
+  fetchImagesRejected,
 } from '../actions';
 import { ICreateProduct } from '../types';
 import api from './api';
-// import { products } from '../static_data';
 
 /*
  * +++Executers+++
  */
+
+function* fetchImagesExec() {
+  yield put(fetchImagesPending());
+  try {
+    const { data } = yield call(api.get, '/api/products/images');
+    yield put(fetchImagesFulfilled(data));
+  } catch (err) {
+    yield put(fetchImagesRejected(err));
+  }
+}
 
 function* fetchProducts() {
   yield put(fetchProductsPending());
@@ -90,6 +104,10 @@ function* deleteProductExec({ payload }:any) {
 /*
  * +++Watchers+++
  */
+
+export function* watchFetchImages() {
+  yield takeLatest(FETCH_IMAGES, fetchImagesExec);
+}
 
 export function* watchFetchProducts() {
   yield takeLatest(FETCH_PRODUCTS, fetchProducts);

@@ -8,7 +8,7 @@ interface IProps {
     className?: string,
 }
 
-const PhotoSelectorCard = ({
+const PhotoCardSelector = ({
   imageUrl, checked, onChange, className,
 }: IProps) => (
     <div className={className} style={{ backgroundColor: 'white', width: '14rem', height: '16rem' }}>
@@ -21,4 +21,4 @@ const PhotoSelectorCard = ({
     </div>
 );
 
-export default PhotoSelectorCard;
+export default PhotoCardSelector;

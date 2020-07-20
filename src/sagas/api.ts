@@ -34,7 +34,8 @@ class Api {
     return axios.put(url, data);
   }
 
-  delete(url:string) {
+  delete(url:string, data?: any) {
+    if (data) return axios.delete(url, { data });
     return axios.delete(url);
   }
 

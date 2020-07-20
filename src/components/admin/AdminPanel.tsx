@@ -17,6 +17,9 @@ const AdminPanel = () => {
                 <li>
                     <Link to={path.ADMIN_ORDERS}>Orders</Link>
                 </li>
+                <li>
+                    <Link to={path.ADMIN_IMAGES}>Images</Link>
+                </li>
             </ul>
         </div>
   );

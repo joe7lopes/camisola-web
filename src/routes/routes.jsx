@@ -21,6 +21,7 @@ import { fetchProducts, fetchSettings } from '../actions';
 import AdminRoute from './AdminRoute';
 import LoginHOC from '../components/auth/LoginHOC';
 import ScrollToTop from './ScrollToTop';
+import {ImagesManager} from '../components/admin/images';
 
 const {
   PORTUGAL,
@@ -33,6 +34,7 @@ const {
   ADMIN_PRODUCTS,
   ADMIN,
   ADMIN_ORDERS,
+  ADMIN_IMAGES,
   PRODUCT_DETAILS,
   CRIANCAS,
   CART,
@@ -64,6 +66,7 @@ const Routes = () => {
       <AdminRoute path={ADMIN_PRODUCTS} component={ProductList} />
       <AdminRoute path={SETTINGS} component={Settings} />
       <AdminRoute path={ADMIN_ORDERS} component={Orders} />
+      <AdminRoute path={ADMIN_IMAGES} component={ImagesManager} />
       <AdminRoute exact path={ADMIN} component={AdminPanel} />
       <Route exact path={LOGIN} component={LoginHOC} />
       <Route path={PRODUCT_DETAILS} component={ProductDetail} />

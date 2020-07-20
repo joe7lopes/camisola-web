@@ -35,16 +35,6 @@ import api from './api';
  * +++Executers+++
  */
 
-function* fetchImagesExec() {
-  yield put(fetchImagesPending());
-  try {
-    const { data } = yield call(api.get, '/api/products/images');
-    yield put(fetchImagesFulfilled(data));
-  } catch (err) {
-    yield put(fetchImagesRejected(err));
-  }
-}
-
 function* fetchProducts() {
   yield put(fetchProductsPending());
   try {
@@ -104,10 +94,6 @@ function* deleteProductExec({ payload }:any) {
 /*
  * +++Watchers+++
  */
-
-export function* watchFetchImages() {
-  yield takeLatest(FETCH_IMAGES, fetchImagesExec);
-}
 
 export function* watchFetchProducts() {
   yield takeLatest(FETCH_PRODUCTS, fetchProducts);

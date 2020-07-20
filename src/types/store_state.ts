@@ -45,7 +45,7 @@ export interface IAuthState {
 
 export interface IAdminState {
     orders: [],
-    productImages: IImage[]
+    images: IImage[]
 }
 
 export interface IRootState {

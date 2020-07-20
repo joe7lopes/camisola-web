@@ -10,5 +10,5 @@ export const getAdminOrders = createSelector(
 
 export const getAllProductImages = createSelector(
   [adminState],
-  (admin) => admin.productImages,
+  (admin) => admin.images,
 );

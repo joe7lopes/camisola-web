@@ -13,6 +13,7 @@ export default {
   ADMIN_EDIT_PRODUCT: '/admin/edit-product/:id',
   SETTINGS: '/admin/settings',
   ADMIN_ORDERS: '/admin/orders',
+  ADMIN_IMAGES: '/admin/images',
   PRODUCT_DETAILS: '/products/:id',
   ORDER_SUMMARY: (orderId) => `/orders/${orderId}`,
   CART: '/cart',

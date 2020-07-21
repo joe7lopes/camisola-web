@@ -3,7 +3,7 @@ import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { IProduct } from '../../../../types';
+import { IProduct, IUpdateProduct } from '../../../../types';
 import { LoadingButton } from '../../../ui';
 import { deleteProduct, updateProduct } from '../../../../actions';
 import {
@@ -12,7 +12,7 @@ import {
 import Alert, { AlertType } from '../../../ui/Alert';
 import ProductCategorySelector from './ProductCategorySelector';
 import ProductSizeSelector from './ProductSizeSelector';
-import ProductImageSelector from "../ProductImageSelector";
+import ProductImagesManagerModal from '../ProductImagesManagerModal';
 
 interface IProps {
     product: IProduct
@@ -23,6 +23,8 @@ const EditProduct = ({ product }: IProps) => {
   const [defaultPrice, setDefaultPrice] = useState(product.defaultPrice);
   const [productName, setProductName] = useState(product.name);
   const [categories, setCategories] = useState(product.categories);
+  const [images, setImages] = useState(product.images);
+  const [imagesModalVisible, setImagesModalVisible] = useState(false);
   const [sizes, setSizes] = useState(product.sizes);
   const availableSizes = useSelector(getSettingsSizes);
   const isUpdating = useSelector(isUpdatingProduct);
@@ -33,11 +35,14 @@ const EditProduct = ({ product }: IProps) => {
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
 
-    const newProduct = {
+    const imageIds = images.map((img) => img.id);
+
+    const newProduct: IUpdateProduct = {
       id: product.id,
       name: productName,
       categories,
       sizes,
+      imageIds,
       isCustomizable,
       defaultPrice,
     };
@@ -76,8 +81,16 @@ const EditProduct = ({ product }: IProps) => {
                     availableSizes={availableSizes}
                     selectedSizes={product.sizes}
                     onChange={(sizes1) => setSizes(sizes1)}/>
-                <h3 className="m-t-lg m-b-lg">Images</h3>
-                <ProductImageSelector images={product.images} />
+                <Button
+                    className="m-t-lg m-b-lg"
+                    onClick={() => setImagesModalVisible(true)}>
+                    Images
+                </Button>
+                <ProductImagesManagerModal
+                    visible={imagesModalVisible}
+                    productImages={images}
+                    onSelect={setImages}
+                    onClose={() => setImagesModalVisible(false)}/>
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox

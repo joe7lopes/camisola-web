@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, FormControl, InputGroup } from 'react-bootstrap';
+import {Button, Form, FormControl, InputGroup} from 'react-bootstrap';
 import { createProduct } from '../../../../actions';
-import {getSettingsCategories, getSettingsSizes, isSavingNewProduct} from '../../../../store/selectors';
+import { getSettingsCategories, getSettingsSizes, isSavingNewProduct } from '../../../../store/selectors';
 import {
-  ICreateProduct, ImageRequest, IProductCategory, IProductSize,
+  ICreateProduct, IImage, IProductCategory, IProductSize,
 } from '../../../../types';
 import ProductPrice from './ProductPrice';
-import PreviewImages from './PreviewImages';
 import { LoadingButton } from '../../../ui';
+import ProductImagesManagerModal from '../ProductImagesManagerModal';
 
 interface ICategories {
     name: string,
@@ -23,43 +23,16 @@ const AddNewProduct = () => {
   const dispatch = useDispatch();
   const [availableSizes, setAvailableSizes] = useState<IProductSize[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ICategories[]>([]);
-  const [images, setImages] = useState<ImageRequest[]>([]);
+  const [images, setImages] = useState<IImage[]>([]);
   const [isCustomizable, setIsCustomizable] = useState(false);
   const [defaultPrice, setDefaultPrice] = useState(35);
   const [productName, setProductName] = useState('');
+  const [imagesModalVisible, setImagesModalVisible] = useState(false);
 
   useEffect(() => {
     setSelectedCategories(convertCategories(categories));
     setAvailableSizes(convertSizes(sizes));
   }, [categories, sizes]);
-
-
-  const handleFileUpload = (e: any) => {
-    const files = Array.from(e.target.files);
-    const selectedImages = files.map((file: any) => ({
-      name: file.name,
-      url: URL.createObjectURL(file),
-      file,
-      default: false,
-    }));
-
-    setImages([...images, ...selectedImages]);
-  };
-
-  const handleOnDeleteImage = (img: ImageRequest) => {
-    const newImages = images.filter((image) => image !== img);
-    setImages(newImages);
-  };
-
-  const handleDefaultImageChanged = (img: ImageRequest) => {
-    const newImages = images.map((i) => {
-      if (i === img) {
-        return { ...img, default: true };
-      }
-      return { ...i, default: false };
-    });
-    setImages(newImages);
-  };
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
@@ -68,17 +41,13 @@ const AddNewProduct = () => {
       .filter((c) => c.checked)
       .map((c) => c.name);
 
-    const hasDefaultImage = images.filter((img) => img.default).length > 0;
-    const imagesToSave = images;
-    if (images.length > 0 && !hasDefaultImage) {
-      imagesToSave[0].default = true;
-    }
+    const imageIds = images.map((img) => img.id);
 
     const newProduct: ICreateProduct = {
       name: productName,
       categories: newCategories,
       sizes: availableSizes,
-      images: imagesToSave,
+      images: imageIds,
       isCustomizable,
       defaultPrice,
     };
@@ -120,12 +89,15 @@ const AddNewProduct = () => {
                     handleOnPriceChanged={handleOnPriceChanged}
                     handleOnDelete={handleOnPriceSizeDelete}
                 />
-                <PreviewImages
-                    images={images}
-                    handleFileUpload={handleFileUpload}
-                    handleOnDeleteImage={handleOnDeleteImage}
-                    handleDefaultImageChanged={handleDefaultImageChanged}
-                />
+               <div>
+                   <Button onClick={() => setImagesModalVisible(true)}>show Images</Button>
+                   <ProductImagesManagerModal
+                       visible={imagesModalVisible}
+                       onClose={() => setImagesModalVisible(false)}
+                       productImages={images}
+                       onSelect={setImages}
+                   />
+               </div>
                 <h3 className="m-t-lg m-b-lg">categorias</h3>
                 {selectedCategories.map((c, i) => (
                     <div key={c.name}>

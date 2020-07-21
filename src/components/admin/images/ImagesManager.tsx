@@ -5,7 +5,7 @@ import PhotoCardSelector from '../../PhotoCardSelector';
 import { getAllProductImages } from '../../../store/selectors';
 import { fetchImages } from '../../../actions';
 import { IImage } from '../../../types';
-import {deleteImages, uploadImages} from '../../../actions/images';
+import { deleteImages, uploadImages } from '../../../actions/images';
 
 
 interface ISelectableImage extends IImage{
@@ -27,7 +27,7 @@ const ImagesManager = () => {
 
   useEffect(() => {
     dispatch(fetchImages());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setSelectedImages(transformImages(images));
@@ -56,7 +56,7 @@ const ImagesManager = () => {
   const onDelete = () => {
     const imageIds = selectedImages
       .filter((img) => img.checked)
-      .map((img) => img.name);
+      .map((img) => img.id);
     dispatch(deleteImages(imageIds));
   };
 

@@ -1,18 +1,19 @@
+import {all, call, put, takeLatest,} from 'redux-saga/effects';
 import {
-  all, call, put, takeLatest,
-} from 'redux-saga/effects';
-import {
-  CREATE_PRODUCT_FULFILLED, DELETE_IMAGES, DELETE_IMAGES_FULFILLED, DELETE_PRODUCT_FULFILLED,
+  DELETE_IMAGES,
+  DELETE_IMAGES_FULFILLED,
   FETCH_IMAGES,
   fetchImagesFulfilled,
   fetchImagesPending,
-  fetchImagesRejected, UPDATE_PRODUCT_FULFILLED,
-  UPLOAD_IMAGES, UPLOAD_IMAGES_FULFILLED,
+  fetchImagesRejected,
+  UPLOAD_IMAGES,
+  UPLOAD_IMAGES_FULFILLED,
 } from '../actions';
 import api from './api';
 import {
   deleteImagesFulfilled,
-  deleteImagesPending, deleteImagesRejected,
+  deleteImagesPending,
+  deleteImagesRejected,
   uploadImagesFulfilled,
   uploadImagesPending,
   uploadImagesRejected,

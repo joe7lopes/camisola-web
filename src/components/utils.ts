@@ -1,13 +1,8 @@
 import { IImage } from '../types';
 
-export const getDefaultImage = (images?: IImage[]) => {
-  if (!images) return undefined;
-  const image = images.filter((img) => img.default);
-  return image[0] ? image[0].url : undefined;
-};
+const defaultImageUrl = 'https://camisola-backend.s3-eu-west-1.amazonaws.com/defaultshirt.png';
 
-// export const getProductPriceBySize = (product: IProduct, size: string) => {
-//   const selectedSizePrice = product.sizes
-//     .find((av) => av.size === size);
-//   return selectedSizePrice ? parseFloat(String(selectedSizePrice.price)) : parseFloat(String(product.defaultPrice));
-// };
+export const getDefaultImage = (images?: IImage[]) => {
+  if (!images) return defaultImageUrl;
+  return images[0] ? images[0].url : defaultImageUrl;
+};

@@ -79,7 +79,7 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
                 <Button
                     type="submit"
                     disabled={addButtonDisabled}>
-                    Add to cart
+                    Adicionar ao carrinho
                 </Button>
             </Form>
         </div>

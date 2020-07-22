@@ -76,7 +76,7 @@ const ImagesManager = () => {
                     {selectedImages.map((img, i) => (
                         <PhotoCardSelector
                             className="m-l-sm m-b-sm"
-                            key={`${img.name + i}`}
+                            key={`${img.id + i}`}
                             imageUrl={img.url}
                             checked={img.checked}
                             onChange={() => onSelectPhoto(i)}/>

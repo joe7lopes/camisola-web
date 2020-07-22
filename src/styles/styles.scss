@@ -35,6 +35,11 @@ body {
   justify-content: center;
 }
 
+.c-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .c-full-width {
   width: 100%;
 }

@@ -34,7 +34,7 @@ function* fetchSettings() {
         '13-14 anos',
       ],
       stampingExtraCost: 12,
-      productDefaultPrice: 35,
+      productDefaultPrice: 30,
       productCategories: [
         { name: Category.PORTUGAL, displayName: 'Portugal' },
         { name: Category.BENFICA, displayName: 'Benfica' },

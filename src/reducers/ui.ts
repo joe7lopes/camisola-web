@@ -27,7 +27,13 @@ import {
   UPDATE_ORDER_STATUS_PENDING,
   UPDATE_ORDER_STATUS_FULFILLED,
   UPDATE_ORDER_STATUS_REJECTED,
-  SIGN_OUT_FULFILLED, UPDATE_PRODUCT_PENDING, UPDATE_PRODUCT_FULFILLED, UPDATE_PRODUCT_REJECTED,
+  SIGN_OUT_FULFILLED,
+  UPDATE_PRODUCT_PENDING,
+  UPDATE_PRODUCT_FULFILLED,
+  UPDATE_PRODUCT_REJECTED,
+  UPLOAD_IMAGES_FULFILLED,
+  UPLOAD_IMAGES_REJECTED,
+  UPLOAD_IMAGES_PENDING,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -51,6 +57,7 @@ const INITIAL_STATE: IUIState = {
     isSavingNewProduct: false,
     isUpdatingProduct: false,
     isProductUpdated: false,
+    isUploadingImages: false,
   },
 
 };
@@ -81,6 +88,9 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case UPDATE_PRODUCT_PENDING:
     case UPDATE_PRODUCT_FULFILLED:
     case UPDATE_PRODUCT_REJECTED:
+    case UPLOAD_IMAGES_PENDING:
+    case UPLOAD_IMAGES_FULFILLED:
+    case UPLOAD_IMAGES_REJECTED:
       return handleAdmin(state, { type, payload });
 
     case PLACE_ORDER_FULFILLED:
@@ -154,6 +164,12 @@ const handleAdmin = (state: any, { type, payload }: any) => {
       };
     case UPDATE_PRODUCT_REJECTED:
       return { ...state, admin: { ...state.admin, isUpdatingProduct: false, error: payload } };
+    case UPLOAD_IMAGES_PENDING:
+      return { ...state, admin: { ...state.admin, isUploadingImages: true } };
+    case UPLOAD_IMAGES_FULFILLED:
+      return { ...state, admin: { ...state.admin, isUploadingImages: false } };
+    case UPLOAD_IMAGES_REJECTED:
+      return { ...state, admin: { ...state.admin, isUploadingImages: false, error: payload } };
     default:
       return state;
   }

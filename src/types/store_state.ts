@@ -22,6 +22,7 @@ export interface IUIState {
         isSavingNewProduct: boolean,
         isUpdatingProduct: boolean,
         isProductUpdated: boolean,
+        isUploadingImages: boolean,
         error?: string
     }
 }

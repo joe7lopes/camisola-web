@@ -69,3 +69,8 @@ export const isLoadingAdminOrders = createSelector(
   [getAdminUI],
   (ui) => ui.isFetchingOrders,
 );
+
+export const isUploadingImages = createSelector(
+  [getAdminUI],
+  (ui) => ui.isUploadingImages,
+);

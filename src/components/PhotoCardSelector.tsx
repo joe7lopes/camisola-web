@@ -11,7 +11,7 @@ interface IProps {
 const PhotoCardSelector = ({
   imageUrl, checked, onChange, className,
 }: IProps) => (
-    <div className={className} style={{ backgroundColor: 'white', width: '14rem', height: '16rem' }}>
+    <div className={className} style={{ backgroundColor: 'white', width: '14rem' }}>
         <Image src={imageUrl} thumbnail/>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Form.Check type="checkbox"

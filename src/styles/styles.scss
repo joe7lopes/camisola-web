@@ -16,6 +16,10 @@ body {
 .c-body-layout {
   margin: 0.25rem 1.25rem 1.25rem;
   @extend .c-lock-width;
+
+  @media (max-width: 576px) {
+    margin: 0.25rem 0.25rem 0.25rem;
+  }
 }
 
 .c-container {
@@ -70,23 +74,42 @@ body {
 
 //IMAGES
 
-.c-thumbnail {
-  width: 100%;
+//.c-thumbnail {
+//  width: 100%;
+//
+//  &--small{
+//    @extend .c-thumbnail;
+//    max-height: 15rem;
+//  }
+//  &--big{
+//    @extend .c-thumbnail;
+//    max-height: 30rem;
+//    @media only screen and (max-width: 768px) {
+//      height: unset;
+//    }
+//  }
+//}
 
-  &--small{
-    @extend .c-thumbnail;
-    max-height: 15rem;
-  }
-  &--big{
-    @extend .c-thumbnail;
-    max-height: 30rem;
-    @media only screen and (max-width: 768px) {
-      height: unset;
-    }
-  }
+.c-thumbnail--small {
+  max-height: 14rem;
 }
 
+.c-thumbnail--big {
+  max-height: 28rem;
 
+}
+
+.carousel-indicators li {
+  background-color: black !important;
+  //border-color: #E0E0E0;
+}
+.carousel-control-prev-icon{
+  background-color: black !important;
+}
+
+.carousel-control-next-icon {
+  background-color: black !important;
+}
 
 .c-whatsapp {
   background-color: $whatsapp-green-color;

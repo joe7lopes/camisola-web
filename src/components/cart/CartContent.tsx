@@ -49,10 +49,6 @@ const CartContent = () => {
                 />
             </div>
             <div>
-                {/*<div className="c-flex m-l-lg m-t-lg m-b-md">*/}
-                {/*    <h3>Preencha automaticamente com o seu</h3>*/}
-                {/*    <Button className="m-l-md">Login</Button>*/}
-                {/*</div>*/}
                 <Form onSubmit={submit} noValidate validated={validated}>
                     <ShipmentAddress/>
                     {isPlacingOrderFailed

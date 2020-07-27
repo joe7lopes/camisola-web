@@ -25,7 +25,7 @@ const AddNewProduct = () => {
   const [selectedCategories, setSelectedCategories] = useState<ICategories[]>([]);
   const [images, setImages] = useState<IImage[]>([]);
   const [isCustomizable, setIsCustomizable] = useState(false);
-  const [defaultPrice, setDefaultPrice] = useState(35);
+  const [defaultPrice, setDefaultPrice] = useState(30);
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
 

@@ -19,7 +19,7 @@ function ProductPrice({ priceSize, handleOnPriceChanged, handleOnDelete }) {
               <Form.Label>Preco</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="35.5"
+                placeholder="30"
                 value={pz.price}
                 min={0}
                 onChange={(e) => handleOnPriceChanged(Number(e.target.value), i)}

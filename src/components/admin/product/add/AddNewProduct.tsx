@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Button, Form, FormControl, InputGroup} from 'react-bootstrap';
+import {
+  Button, Form, FormControl, InputGroup,
+} from 'react-bootstrap';
 import { createProduct } from '../../../../actions';
 import { getSettingsCategories, getSettingsSizes, isSavingNewProduct } from '../../../../store/selectors';
 import {
@@ -138,7 +140,7 @@ const AddNewProduct = () => {
   );
 };
 
-const convertSizes = (sizes: string[]) => sizes.map((size) => ({ size, price: 35 }));
+const convertSizes = (sizes: string[]) => sizes.map((size) => ({ size, price: 30 }));
 
 const convertCategories = (categories: IProductCategory[]) => categories
   .map((c) => ({ ...c, checked: false }));

@@ -20,7 +20,7 @@ const ProductSizeSelector = ({ selectedSizes, availableSizes, onChange }: IProps
     }
     return {
       size: availableSize,
-      price: 35,
+      price: 30,
       checked: false,
     };
   });

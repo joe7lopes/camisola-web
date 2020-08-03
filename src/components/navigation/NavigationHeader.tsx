@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import {Navbar, Nav, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
@@ -36,6 +36,7 @@ const NavigationHeader = () =>
   (
     <>
             <div style={{ backgroundColor: 'white' }}>
+                <Container>
                 <Navbar
                     className="c-lock-width"
                     sticky="top"
@@ -92,6 +93,7 @@ const NavigationHeader = () =>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>
+                </Container>
             </div>
     </>
   );

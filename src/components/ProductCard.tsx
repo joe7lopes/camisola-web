@@ -17,10 +17,9 @@ const ProductCard = ({
   return (
     <Card
       className={className}
-      style={{ width: '14rem', cursor: 'pointer' }}
       onClick={() => history.push(`/products/${id}`)}>
-      <Card.Img variant="top" src={image} style={{ }}/>
-      <Card.Body>
+      <Card.Img variant="top" src={image}/>
+      <Card.Body className="home_product_card__body">
         {name}
         <h5>€{price}</h5>
       </Card.Body>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, HashRouter as Router } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import {
   NavigationHeader,
   ClubPage,
@@ -21,7 +22,7 @@ import { fetchProducts, fetchSettings } from '../actions';
 import AdminRoute from './AdminRoute';
 import LoginHOC from '../components/auth/LoginHOC';
 import ScrollToTop from './ScrollToTop';
-import {ImagesManager} from '../components/admin/images';
+import { ImagesManager } from '../components/admin/images';
 
 const {
   PORTUGAL,
@@ -37,6 +38,7 @@ const {
   ADMIN_IMAGES,
   PRODUCT_DETAILS,
   CRIANCAS,
+  OUTROS,
   CART,
   LOGIN,
 } = path;
@@ -53,7 +55,7 @@ const Routes = () => {
   <Router>
     <NavigationHeader />
     <ScrollToTop/>
-    <div className="c-body-layout">
+    <Container fluid>
     <Switch>
       <Route exact path={'/'} component={Home} />
       <Route exact path={PORTUGAL} component={ClubPage} />
@@ -61,6 +63,7 @@ const Routes = () => {
       <Route exact path={PORTO} component={ClubPage} />
       <Route exact path={SPORTING} component={ClubPage} />
       <Route exact path={CRIANCAS} component={ClubPage} />
+      <Route exact path={OUTROS} component={ClubPage} />
       <AdminRoute path={CREATE_PRODUCT} component={NewProduct} />
       <AdminRoute path={ADMIN_EDIT_PRODUCT} component={EditProduct} />
       <AdminRoute path={ADMIN_PRODUCTS} component={ProductList} />
@@ -75,7 +78,7 @@ const Routes = () => {
         <h3>No match</h3>
       </Route>
     </Switch>
-    </div>
+    </Container>
   </Router>
   );
 };

@@ -15,17 +15,17 @@ const ClubPage = () => {
   const equipamentosCrianca = filterProducts(Category.EQUIPAMENTOS_CRIANCA, clubProducts);
 
   return (
-        <div className="c-body">
-            { camisolas.length > 0 && <ProductList title="Camisolas" products={camisolas}/>}
-            { fatosDeTreino.length > 0 && <ProductList title="Fatos de treino" products={fatosDeTreino}/>}
-            { equipamentosCrianca.length > 0 && <ProductList title="Equipamentos de Crianca" products={equipamentosCrianca}/>}
-        </div>
+    <>
+            {camisolas.length > 0 && <ProductList title="Camisolas" products={camisolas}/>}
+            {fatosDeTreino.length > 0 && <ProductList title="Fatos de treino" products={fatosDeTreino}/>}
+            {equipamentosCrianca.length > 0 && <ProductList title="Equipamentos de Crianca" products={equipamentosCrianca}/>}
+    </>
   );
 };
 
 export default ClubPage;
 
 
-const filterProducts = (category:string, products:IProduct[]) => products
+const filterProducts = (category: string, products: IProduct[]) => products
   .filter((p) => p.categories
     .filter((c) => c === category).length > 0);

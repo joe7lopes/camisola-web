@@ -1,4 +1,5 @@
 @import './colors.scss';
+@import './screen_sizes';
 
 body {
   background: $background-color;
@@ -17,7 +18,7 @@ body {
   margin: 0.25rem 1.25rem 1.25rem;
   @extend .c-lock-width;
 
-  @media (max-width: 576px) {
+  @media (max-width: $mobile_maxWith) {
     margin: 0.25rem 0.25rem 0.25rem;
   }
 }
@@ -62,33 +63,6 @@ body {
     border-color: $action-color;
   }
 }
-
-.c-category-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.c-category-product {
-  padding: 0.5rem;
-}
-
-//IMAGES
-
-//.c-thumbnail {
-//  width: 100%;
-//
-//  &--small{
-//    @extend .c-thumbnail;
-//    max-height: 15rem;
-//  }
-//  &--big{
-//    @extend .c-thumbnail;
-//    max-height: 30rem;
-//    @media only screen and (max-width: 768px) {
-//      height: unset;
-//    }
-//  }
-//}
 
 .c-thumbnail--small {
   max-height: 14rem;

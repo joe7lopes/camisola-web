@@ -25,6 +25,8 @@
     ]
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^21.0.0",
+    "@ckeditor/ckeditor5-react": "^2.1.0",
     "axios": "0.19.2",
     "bootstrap": "4.4.1",
     "eslint-import-resolver-typescript": "2.0.0",

@@ -14,6 +14,7 @@ const Images = ({ images }: IProps) => {
                 <div className="m-r-xs" style={{ maxHeight: '28rem', overflowY: 'scroll' }}>
                  {images.map((img, i) => (
                     <img className="m-b-xs"
+                         alt=""
                         style={{ height: '14rem', width: '100%' }}
                         key={img.name}
                         src={img.url}

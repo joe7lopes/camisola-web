@@ -26,14 +26,17 @@ const ProductDetail = ({ product }: IProps) => {
                 </Col>
             </Row>
 
-            <Row>
-                <div className="c-product-additional-notes-container">
-                    <div>Tempo de entrega Continente 2 a 3 dias úteis</div>
-                    <div>Ilhas: 4 a 5 dias úteis.</div>
-                    <div>Para dúvidas ou envios para o estrangeiro por favor contactar</div>
-                    <div>whatsApp + 351 919 255 684</div>
-                </div>
+            <Row className="c-product-additional-notes-container">
+                <div dangerouslySetInnerHTML={{ __html: product.description }} />
             </Row>
+        <Row>
+            <div className="c-product-additional-notes-container">
+                <div>Tempo de entrega Continente 2 a 3 dias úteis</div>
+                <div>Ilhas: 4 a 5 dias úteis.</div>
+                <div>Para dúvidas ou envios para o estrangeiro por favor contactar</div>
+                <div>whatsApp + 351 919 255 684</div>
+            </div>
+        </Row>
     </>
   );
 };

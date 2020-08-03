@@ -19,6 +19,7 @@ import { LoadingButton } from '../../../ui';
 import ProductImagesManagerModal from '../ProductImagesManagerModal';
 import Alert, { AlertType } from '../../../ui/Alert';
 import path from '../../../../routes/path';
+import RichText from '../../../ui/RichText';
 
 interface ICategories {
     name: string,
@@ -43,13 +44,12 @@ const AddNewProduct = () => {
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
 
-
   useEffect(() => {
     if (saveNewProductSuccess) {
       dispatch(resetProductCreation());
       history.push(path.ADMIN_PRODUCTS);
     }
-  }, [dispatch, saveNewProductSuccess]);
+  }, [dispatch, saveNewProductSuccess, history]);
 
 
   useEffect(() => {
@@ -135,10 +135,9 @@ const AddNewProduct = () => {
                         </InputGroup>
                     </div>
                 ))}
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Descriçao</Form.Label>
-                    <Form.Control as="textarea" rows="3" onChange={(e) => setDescription(e.currentTarget.value)} />
-                </Form.Group>
+                <RichText
+                    text={description}
+                    onChange={setDescription}/>
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox

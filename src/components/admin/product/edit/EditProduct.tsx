@@ -13,6 +13,7 @@ import Alert, { AlertType } from '../../../ui/Alert';
 import ProductCategorySelector from './ProductCategorySelector';
 import ProductSizeSelector from './ProductSizeSelector';
 import ProductImagesManagerModal from '../ProductImagesManagerModal';
+import RichText from '../../../ui/RichText';
 
 interface IProps {
     product: IProduct
@@ -95,11 +96,9 @@ const EditProduct = ({ product }: IProps) => {
                     onClose={() => setImagesModalVisible(false)}/>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Descriçao</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        rows="3"
-                        value={description}
-                        onChange={(e) => setDescription(e.currentTarget.value)} />
+                    <RichText
+                        text={description}
+                        onChange={setDescription}/>
                 </Form.Group>
                 <InputGroup className="mb-3">
                     Produto estampavel ?

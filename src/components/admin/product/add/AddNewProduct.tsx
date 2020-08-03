@@ -26,6 +26,7 @@ const AddNewProduct = () => {
   const [availableSizes, setAvailableSizes] = useState<IProductSize[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ICategories[]>([]);
   const [images, setImages] = useState<IImage[]>([]);
+  const [description, setDescription] = useState('');
   const [isCustomizable, setIsCustomizable] = useState(false);
   const [defaultPrice, setDefaultPrice] = useState(30);
   const [productName, setProductName] = useState('');
@@ -52,6 +53,7 @@ const AddNewProduct = () => {
       images: imageIds,
       isCustomizable,
       defaultPrice,
+      description,
     };
 
     dispatch(createProduct(newProduct));
@@ -113,7 +115,10 @@ const AddNewProduct = () => {
                         </InputGroup>
                     </div>
                 ))}
-
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Descriçao</Form.Label>
+                    <Form.Control as="textarea" rows="3" onChange={(e) => setDescription(e.currentTarget.value)} />
+                </Form.Group>
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox

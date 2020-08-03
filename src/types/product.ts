@@ -35,7 +35,8 @@ export interface IProduct {
     sizes: IProductSize[],
     images: IImage[],
     customizable: boolean,
-    defaultPrice: number
+    defaultPrice: number,
+    description: string
 }
 
 export interface ICreateProduct {
@@ -44,7 +45,8 @@ export interface ICreateProduct {
     sizes: IProductSize[],
     images: string[],
     isCustomizable: boolean,
-    defaultPrice: number
+    defaultPrice: number,
+    description: string
 }
 
 export interface IUpdateProduct {
@@ -54,5 +56,6 @@ export interface IUpdateProduct {
     sizes: IProductSize[],
     imageIds: string[],
     isCustomizable: boolean,
-    defaultPrice: number
+    defaultPrice: number,
+    description: string,
 }

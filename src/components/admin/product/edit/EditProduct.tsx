@@ -24,6 +24,7 @@ const EditProduct = ({ product }: IProps) => {
   const [productName, setProductName] = useState(product.name);
   const [categories, setCategories] = useState(product.categories);
   const [images, setImages] = useState(product.images);
+  const [description, setDescription] = useState(product.description);
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
   const [sizes, setSizes] = useState(product.sizes);
   const availableSizes = useSelector(getSettingsSizes);
@@ -45,6 +46,7 @@ const EditProduct = ({ product }: IProps) => {
       imageIds,
       isCustomizable,
       defaultPrice,
+      description,
     };
 
     dispatch(updateProduct(newProduct));
@@ -91,6 +93,14 @@ const EditProduct = ({ product }: IProps) => {
                     productImages={images}
                     onSelect={setImages}
                     onClose={() => setImagesModalVisible(false)}/>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Descriçao</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows="3"
+                        value={description}
+                        onChange={(e) => setDescription(e.currentTarget.value)} />
+                </Form.Group>
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox

@@ -33,7 +33,7 @@ import {
   UPDATE_PRODUCT_REJECTED,
   UPLOAD_IMAGES_FULFILLED,
   UPLOAD_IMAGES_REJECTED,
-  UPLOAD_IMAGES_PENDING,
+  UPLOAD_IMAGES_PENDING, RESET_PRODUCT_CREATION,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -58,6 +58,7 @@ const INITIAL_STATE: IUIState = {
     isUpdatingProduct: false,
     isProductUpdated: false,
     isUploadingImages: false,
+    isSavingNewProductSuccess: false,
   },
 
 };
@@ -75,7 +76,7 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case UPDATE_SETTINGS_FULFILLED:
       return { ...state, settings: { ...state.settings, isUpdatingSettings: false } };
     case UPDATE_SETTINGS_REJECTED: {
-      const newSettings = { ...state.settings, isUpdatingSettings: true, error: payload };
+      const newSettings = { ...state.settings, isUpdatingSettings: false, error: payload };
       return { ...state, settings: newSettings };
     }
     case FETCH_PRODUCTS_PENDING:
@@ -85,6 +86,7 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case CREATE_PRODUCT_PENDING:
     case CREATE_PRODUCT_FULFILLED:
     case CREATE_PRODUCT_REJECTED:
+    case RESET_PRODUCT_CREATION:
     case UPDATE_PRODUCT_PENDING:
     case UPDATE_PRODUCT_FULFILLED:
     case UPDATE_PRODUCT_REJECTED:
@@ -153,15 +155,19 @@ const handleAdmin = (state: any, { type, payload }: any) => {
     case CREATE_PRODUCT_PENDING:
       return { ...state, admin: { ...state.admin, isSavingNewProduct: true } };
     case CREATE_PRODUCT_FULFILLED:
+      // eslint-disable-next-line max-len
+      return { ...state, admin: { ...state.admin, isSavingNewProduct: false, isSavingNewProductSuccess: true } };
     case CREATE_PRODUCT_REJECTED:
-      return { ...state, admin: { ...state.admin, isSavingNewProduct: false } };
+      return { ...state, admin: { ...state.admin, isSavingNewProduct: false, error: payload } };
+    case RESET_PRODUCT_CREATION: {
+      // eslint-disable-next-line max-len
+      return { ...state, admin: { ...state.admin, isSavingNewProduct: false, isSavingNewProductSuccess: false, error: undefined } };
+    }
     case UPDATE_PRODUCT_PENDING:
       return { ...state, admin: { ...state.admin, isUpdatingProduct: true } };
     case UPDATE_PRODUCT_FULFILLED:
-      return {
-        ...state,
-        admin: { ...state.admin, isUpdatingProduct: false, isProductUpdated: true },
-      };
+      // eslint-disable-next-line max-len
+      return { ...state, admin: { ...state.admin, isUpdatingProduct: false, isProductUpdated: true } };
     case UPDATE_PRODUCT_REJECTED:
       return { ...state, admin: { ...state.admin, isUpdatingProduct: false, error: payload } };
     case UPLOAD_IMAGES_PENDING:

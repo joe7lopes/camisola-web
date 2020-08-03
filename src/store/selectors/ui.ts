@@ -19,6 +19,11 @@ export const isSavingNewProduct = createSelector(
   (ui) => ui.admin.isSavingNewProduct,
 );
 
+export const isSavedProductSuccess = createSelector(
+  [getUI],
+  (ui) => ui.admin.isSavingNewProductSuccess,
+);
+
 export const isUpdatingProduct = createSelector(
   [getUI],
   (ui) => ui.admin.isUpdatingProduct,
@@ -33,7 +38,6 @@ export const getAdminUIError = createSelector(
   [getUI],
   (ui) => ui.admin.error,
 );
-
 
 export const isFetchingSettings = createSelector(
   [getUI],

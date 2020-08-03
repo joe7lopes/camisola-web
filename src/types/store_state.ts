@@ -20,6 +20,7 @@ export interface IUIState {
     admin: {
         isFetchingOrders?: boolean,
         isSavingNewProduct: boolean,
+        isSavingNewProductSuccess: boolean,
         isUpdatingProduct: boolean,
         isProductUpdated: boolean,
         isUploadingImages: boolean,

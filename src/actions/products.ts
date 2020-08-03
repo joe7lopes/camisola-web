@@ -17,7 +17,7 @@ import {
   FETCH_IMAGES,
   FETCH_IMAGES_PENDING,
   FETCH_IMAGES_FULFILLED,
-  FETCH_IMAGES_REJECTED,
+  FETCH_IMAGES_REJECTED, RESET_PRODUCT_CREATION,
 } from './actionTypes';
 import {IProduct, ICreateProduct, IUpdateProduct, IImage} from '../types';
 
@@ -56,6 +56,10 @@ export const createProductFulfilled = (product: IProduct) => ({
 export const createProductRejected = (err: string) => ({
   type: CREATE_PRODUCT_REJECTED,
   payload: err,
+});
+
+export const resetProductCreation = () => ({
+  type: RESET_PRODUCT_CREATION,
 });
 
 export const updateProduct = (product: IUpdateProduct) => ({

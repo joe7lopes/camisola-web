@@ -12,24 +12,25 @@ const Images = ({ images }: IProps) => {
     <>
             <Col xs={12} sm={2} md={2} className="d-none d-sm-block c-thumbnails-container c-no-padding">
                 <div className="m-r-xs" style={{ maxHeight: '28rem', overflowY: 'scroll' }}>
-                 {images.map((img, i) => (
-                    <img className="m-b-xs"
-                         alt=""
-                        style={{ height: '14rem', width: '100%' }}
-                        key={img.name}
-                        src={img.url}
-                        onClick={() => setIndex(i)}
-                    />
-                 ))}
+                    {images.map((img, i) => (
+                        <div key={img.id} style={{ height: '14rem', textAlign: 'center'}} className="bg-white">
+                            <img className="m-b-xs"
+                                 alt=""
+                                 style={{ height: '100%', maxWidth: '100%' }}
+                                 src={img.url}
+                                 onClick={() => setIndex(i)}
+                            />
+                        </div>
+                    ))}
                 </div>
             </Col>
-            <Col xs={12} sm={5} md={5} className="c-no-padding">
+            <Col xs={12} sm={5} md={5} className="c-no-padding bg-white">
                 <Carousel activeIndex={index} onSelect={(i: number) => setIndex(i)}>
                     {images.map((img, i) => (
                         <Carousel.Item key={i} style={{ height: '28rem', textAlign: 'center' }}>
                             <img style={{ height: '100%', maxWidth: '100%' }}
-                                alt={img.name}
-                                src={img.url}
+                                 alt={img.name}
+                                 src={img.url}
                             />
                         </Carousel.Item>
                     ))}

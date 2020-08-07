@@ -35,7 +35,7 @@ const NavigationHeader = () =>
 
   (
     <>
-            <div style={{ backgroundColor: 'white' }}>
+            <div style={{ backgroundColor: 'white' }} className="m-b-xs">
                 <Container>
                 <Navbar
                     className="c-lock-width"

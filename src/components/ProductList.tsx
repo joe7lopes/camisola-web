@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import { IProduct } from '../types';
 import { getDefaultImage } from './utils';
-import {Container, Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 interface IProps {
     title: string,

@@ -1,3 +1,4 @@
+![CI](https://github.com/joe7lopes/camisola-web/workflows/CI/badge.svg)
 ## EditableGrid
 
 .m-none { margin: 0; }

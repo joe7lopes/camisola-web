@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Switch, Route, HashRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import {

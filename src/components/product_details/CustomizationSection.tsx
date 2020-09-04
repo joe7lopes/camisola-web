@@ -11,6 +11,7 @@ import {
   IProduct, ICartItem, IRootState, IProductSize,
 } from '../../types';
 import path from '../../routes/path';
+import {labels, sendButtonClickEvent} from "../../tracking/events";
 
 interface IProps {
     product: IProduct,
@@ -44,7 +45,7 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-
+    sendButtonClickEvent(labels.ADD_TO_CART);
     const item: ICartItem = {
       product,
       stampingName,

@@ -14,6 +14,7 @@ import {
   isPlacingOrder,
   isPlacingRejected,
 } from '../../store/selectors';
+import { labels, sendButtonClickEvent } from '../../tracking/events';
 
 const CartContent = () => {
   const items = useSelector(getCartItems);
@@ -32,6 +33,7 @@ const CartContent = () => {
         .filter((el) => el.name)
         .reduce((acc, curr) => ({ ...acc, [curr.name]: curr.value }), {});
 
+      sendButtonClickEvent(labels.ADD_TO_CART);
       dispatch(placeOrder(items, shippingAddress));
     }
 

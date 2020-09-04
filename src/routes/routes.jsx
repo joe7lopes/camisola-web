@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import ReactGA from 'react-ga';
+import {
+  Switch, Route, BrowserRouter as Router, useLocation,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import {
@@ -43,16 +46,9 @@ const {
   LOGIN,
 } = path;
 
-const Routes = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchSettings());
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  return (
+const Routes = () => (
   <Router>
+    <Init/>
     <NavigationHeader />
     <ScrollToTop/>
     <Container fluid>
@@ -80,7 +76,24 @@ const Routes = () => {
     </Switch>
     </Container>
   </Router>
-  );
-};
+);
 
 export default Routes;
+
+const Init = () => {
+  const trackingId = 'UA-125067015-3';
+  ReactGA.initialize(trackingId);
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSettings());
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  }, [location]);
+  return null;
+};

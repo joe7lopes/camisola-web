@@ -7,3 +7,5 @@ export * from './_text.scss';
 export * from './_navigation.scss';
 export * from './_cart.scss';
 export * from './_admin_orders.scss';
+export * from './_card.scss';
+export * from './_product_carousel.scss';

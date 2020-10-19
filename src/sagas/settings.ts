@@ -24,7 +24,7 @@ function* fetchSettings() {
   try {
     // const { data } = yield call(api.get, '/api/settings');
     const data: ISettings = {
-      sizes: ['S', 'M', 'L', 'XS', 'XL', 'XXL',
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL',
         '1-2 anos',
         '3-4 anos',
         '5-6 anos',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Row} from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { isFetchingProducts } from '../../store/selectors';
 import ProductCard from '../ProductCard';
@@ -20,19 +20,18 @@ const ProductCarousel = ({ sectionName, products, onShowMore }: IProps) => {
   return (
         <div>
             <Row className="m-b-md m-t-md">
-            <h3>{sectionName}</h3>
+                <h3>{sectionName}</h3>
                 <Button variant="link" onClick={onShowMore}>ver mais...</Button>
             </Row>
-                <Row className="home_product_carousel_content">
-                    {products.slice(0, numberOfProducts).map((p) => <ProductCard
-                        key={p.id}
-                        id={p.id}
-                        name={p.name}
-                        price={p.defaultPrice}
-                        image={getDefaultImage(p.images) }
-                        className="home_product_card"
-                    />)}
-                </Row>
+            <div className="carousel_container">
+                {products.slice(0, numberOfProducts).map((p) => <ProductCard
+                    key={p.id}
+                    id={p.id}
+                    name={p.name}
+                    price={p.defaultPrice}
+                    image={getDefaultImage(p.images)}
+                />)}
+            </div>
         </div>
   );
 };

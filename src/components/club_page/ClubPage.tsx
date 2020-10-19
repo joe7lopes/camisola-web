@@ -18,7 +18,7 @@ const ClubPage = () => {
     <>
             {camisolas.length > 0 && <ProductList title="Camisolas" products={camisolas}/>}
             {fatosDeTreino.length > 0 && <ProductList title="Fatos de treino" products={fatosDeTreino}/>}
-            {equipamentosCrianca.length > 0 && <ProductList title="Equipamentos de Crianca" products={equipamentosCrianca}/>}
+            {equipamentosCrianca.length > 0 && <ProductList title="Equipamentos de Criança" products={equipamentosCrianca}/>}
     </>
   );
 };

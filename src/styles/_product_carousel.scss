@@ -1,0 +1,7 @@
+@import './screen_sizes';
+
+.carousel_container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

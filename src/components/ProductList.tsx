@@ -1,8 +1,8 @@
 import React from 'react';
+import { Row } from 'react-bootstrap';
 import ProductCard from './ProductCard';
 import { IProduct } from '../types';
 import { getDefaultImage } from './utils';
-import { Row } from "react-bootstrap";
 
 interface IProps {
     title: string,
@@ -16,7 +16,6 @@ const ProductList = ({ title, products }: IProps) => (
             {products.map((p) => (
                 <ProductCard
                     key={p.id}
-                    className="home_product_card"
                     id={p.id}
                     name={p.name}
                     price={p.defaultPrice}

@@ -3,27 +3,27 @@ import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
 interface IProps {
-  id: string,
-  name: string,
-  price: number,
-  image?: string,
-  className?: string
+    id: string,
+    name: string,
+    price: number,
+    image?: string,
 }
 
 const ProductCard = ({
-  id, name, price, image, className,
+  id, name, price, image,
 }: IProps) => {
   const history = useHistory();
   return (
-    <Card
-      className={className}
-      onClick={() => history.push(`/products/${id}`)}>
-      <Card.Img variant="top" src={image}/>
-      <Card.Body className="home_product_card__body">
-        {name}
-        <h5>€{price}</h5>
-      </Card.Body>
-    </Card>
+        <Card className="product_card"
+              onClick={() => history.push(`/products/${id}`)}>
+            <div className="product_card_imageContainer">
+                <img src={image} alt={name}/>
+            </div>
+            <Card.Body>
+                {name}
+                <h5>€{price}</h5>
+            </Card.Body>
+        </Card>
   );
 };
 

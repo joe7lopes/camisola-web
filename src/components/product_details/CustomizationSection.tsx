@@ -74,7 +74,7 @@ export function CustomizationSection({ product, addToCart, extraCost }: IProps) 
                 {customizable && (
                     <Stamping
                         onNameChange={(e: any) => setStampingName(e.target.value)}
-                        onNumberChange={(e: any) => setStampingNumber(e.target.value)}
+                        onNumberChange={(value) => setStampingNumber(value)}
                     />
                 )}
                 <Button

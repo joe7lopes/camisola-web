@@ -29,7 +29,7 @@ const ShipmentAddress = () => (
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl name="email" placeholder="email" required/>
+          <FormControl name="email" placeholder="email"/>
         </InputGroup>
 
         <InputGroup className="mb-3">

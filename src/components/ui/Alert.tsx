@@ -1,25 +1,17 @@
 import React from 'react';
-import { Alert as AlertB } from 'react-bootstrap';
+import MuiAlert from '@material-ui/lab/Alert';
 
 export enum AlertType {
-    ERROR="danger",
-    SUCCESS="success"
+    ERROR="error",
+    SUCCESS="success",
+    WARNING="warning",
+    INFO="info",
 }
 
 interface IProps {
     type: AlertType,
-    errorMessage: string,
-    successMessage: string,
-    className?: string
 }
 
-const Alert = ({
-  type, errorMessage, successMessage, className,
-}: IProps) => (
-        <AlertB className={className} variant={type}>
-            { type === AlertType.ERROR && errorMessage}
-            { type === AlertType.SUCCESS && successMessage}
-        </AlertB>
-);
+const Alert: React.FunctionComponent<IProps> = (props: IProps) => <MuiAlert elevation={6} variant="filled" severity={props.type} {...props} />;
 
 export default Alert;

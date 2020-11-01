@@ -48,7 +48,7 @@ function* uploadImagesExec({ payload }: any) {
     yield call(api.post, '/api/images', dataToSave);
     yield put(uploadImagesFulfilled());
   } catch (err) {
-    yield put(uploadImagesRejected(err));
+    yield put(uploadImagesRejected(`Erro ao submeter imagem : ${err}`));
   }
 }
 

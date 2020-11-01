@@ -43,6 +43,12 @@ interface IProps {
     payload: any
 }
 
+const imageManagerInitialState = {
+  loading: false,
+  data: undefined,
+  error: undefined
+};
+
 const INITIAL_STATE: IUIState = {
   products: {
   },
@@ -57,9 +63,9 @@ const INITIAL_STATE: IUIState = {
     isSavingNewProduct: false,
     isUpdatingProduct: false,
     isProductUpdated: false,
-    isUploadingImages: false,
     isSavingNewProductSuccess: false,
   },
+  imageManager: imageManagerInitialState,
 
 };
 
@@ -90,11 +96,12 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case UPDATE_PRODUCT_PENDING:
     case UPDATE_PRODUCT_FULFILLED:
     case UPDATE_PRODUCT_REJECTED:
+      return handleAdmin(state, { type, payload });
+
     case UPLOAD_IMAGES_PENDING:
     case UPLOAD_IMAGES_FULFILLED:
     case UPLOAD_IMAGES_REJECTED:
-      return handleAdmin(state, { type, payload });
-
+      return handleImageManager(state, { type, payload });
     case PLACE_ORDER_FULFILLED:
       return state;
     case SIGN_UP_PENDING:
@@ -161,7 +168,12 @@ const handleAdmin = (state: any, { type, payload }: any) => {
       return { ...state, admin: { ...state.admin, isSavingNewProduct: false, error: payload } };
     case RESET_PRODUCT_CREATION: {
       // eslint-disable-next-line max-len
-      return { ...state, admin: { ...state.admin, isSavingNewProduct: false, isSavingNewProductSuccess: false, error: undefined } };
+      return {
+        ...state,
+        admin: {
+          ...state.admin, isSavingNewProduct: false, isSavingNewProductSuccess: false, error: undefined,
+        },
+      };
     }
     case UPDATE_PRODUCT_PENDING:
       return { ...state, admin: { ...state.admin, isUpdatingProduct: true } };
@@ -170,12 +182,19 @@ const handleAdmin = (state: any, { type, payload }: any) => {
       return { ...state, admin: { ...state.admin, isUpdatingProduct: false, isProductUpdated: true } };
     case UPDATE_PRODUCT_REJECTED:
       return { ...state, admin: { ...state.admin, isUpdatingProduct: false, error: payload } };
+    default:
+      return state;
+  }
+};
+
+const handleImageManager = (state: any, { type, payload }: any) => {
+  switch (type) {
     case UPLOAD_IMAGES_PENDING:
-      return { ...state, admin: { ...state.admin, isUploadingImages: true } };
+      return { ...state, imageManager: { ...imageManagerInitialState, loading: true } };
     case UPLOAD_IMAGES_FULFILLED:
-      return { ...state, admin: { ...state.admin, isUploadingImages: false } };
+      return { ...state, imageManager: { ...imageManagerInitialState, data: true } };
     case UPLOAD_IMAGES_REJECTED:
-      return { ...state, admin: { ...state.admin, isUploadingImages: false, error: payload } };
+      return { ...state, imageManager: { ...imageManagerInitialState, error: payload } };
     default:
       return state;
   }

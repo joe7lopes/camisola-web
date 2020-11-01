@@ -1,7 +1,13 @@
 import {
-    IAccount, ICartItem, IImage, IProduct, ISettings,
+  IAccount, ICartItem, IImage, IProduct, ISettings,
 } from './index';
 import { IUser } from './auth';
+
+interface IRequest {
+    loading: boolean,
+    data?: any,
+    error?: any
+}
 
 export interface IUIState {
     products: {
@@ -23,9 +29,9 @@ export interface IUIState {
         isSavingNewProductSuccess: boolean,
         isUpdatingProduct: boolean,
         isProductUpdated: boolean,
-        isUploadingImages: boolean,
         error?: string
-    }
+    },
+    imageManager:IRequest
 }
 
 export interface ICartState {

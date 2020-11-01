@@ -151,13 +151,10 @@ const AddNewProduct = () => {
                     <FormControl type="number" value={`${defaultPrice}`}
                                  onChange={(e: any) => setDefaultPrice(e.target.value)}/>
                 </InputGroup>
-                {error
-                && <Alert
-                    className="m-t-md"
-                    type={AlertType.ERROR}
-                    errorMessage={`Error updating product ${error}`}
-                    successMessage="Product Updated"/>
-                }
+                {(error || saveNewProductSuccess)
+                && <Alert type={error ? AlertType.ERROR : AlertType.SUCCESS}>
+                    {error ? `Error ao criar product ${error}` : 'Produto guardado'}
+                </Alert>}
                 <LoadingButton
                     type="submit"
                     className="m-t-lg"

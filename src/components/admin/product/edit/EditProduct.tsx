@@ -121,13 +121,9 @@ const EditProduct = ({ product }: IProps) => {
                     size='lg'>
                     Update
                 </LoadingButton>
-                {(error || success)
-                && <Alert
-                    className="m-t-md"
-                    type={error ? AlertType.ERROR : AlertType.SUCCESS}
-                    errorMessage={`Error updating product ${error}`}
-                    successMessage="Product Updated"/>
-                }
+                {(error || success) && <Alert type={error ? AlertType.ERROR : AlertType.SUCCESS}>
+                    {error ? `Error updating product ${error}` : 'Produto actualizado'}
+                </Alert>}
             </Form>
         </div>
   );

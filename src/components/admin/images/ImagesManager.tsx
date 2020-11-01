@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Snackbar } from '@material-ui/core';
 import PhotoCardSelector from '../../PhotoCardSelector';
-import {getAllProductImages, isUploadingImages} from '../../../store/selectors';
+import { getAllProductImages, imageManager } from '../../../store/selectors';
 import { fetchImages } from '../../../actions';
 import { IImage } from '../../../types';
 import { deleteImages, uploadImages } from '../../../actions/images';
+import Alert, { AlertType } from '../../ui/Alert';
 
 
 interface ISelectableImage extends IImage{
@@ -20,11 +22,19 @@ const transformImages = (imagesArg: IImage[]) => imagesArg.map((img) => ({
 
 const ImagesManager = () => {
   const images = useSelector(getAllProductImages);
-  const disableUploadButton = useSelector(isUploadingImages);
+  const request = useSelector(imageManager);
   const dispatch = useDispatch();
   const [selectedImages, setSelectedImages] = useState<ISelectableImage[]>([]);
   const [imagesToUpload, setImagesToUpload] = useState();
+  const [open, setOpen] = React.useState(false);
 
+
+  useEffect(() => {
+    if (request.error || request.data) {
+
+      setOpen(true);
+    }
+  }, [request]);
 
   useEffect(() => {
     dispatch(fetchImages());
@@ -71,9 +81,18 @@ const ImagesManager = () => {
                         onChange={handleFileUpload}
                         multiple/>
                     <Button
-                        disabled={disableUploadButton}
+                        disabled={request.loading
+                        || (imagesToUpload === undefined || imagesToUpload.leading > 0)}
                         onClick={onUpload}>Upload Image</Button>
                 </div>
+
+                <Snackbar open={open} autoHideDuration={4000} onClose={() => setOpen(false)}>
+                    <Alert type={request.data ? AlertType.SUCCESS : AlertType.ERROR}>
+                        {request.data ? 'Imagem guardada com sucesso!' : request.error}
+                    </Alert>
+                </Snackbar>
+
+
                 <div className="col col-11 row m-b-md">
                     {selectedImages.map((img, i) => (
                         <PhotoCardSelector

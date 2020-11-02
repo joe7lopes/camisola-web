@@ -41,27 +41,25 @@ const OrderDetails = ({ order }: IProps) => {
             </Col>
             <Col>
                 <div>
-                    Update status to:
-                    <div className="row">
+                    <div>Actualizar status:</div>
                         <Button
                             size="sm"
                             className="received_order"
                             onClick={() => updateOrder(order.id, OrderStatus.RECEIVED)}>
-                            Received
+                            Recebida
                         </Button>
                         <Button
                             size="sm"
                             className="m-l-sm processing_order"
                             onClick={() => updateOrder(order.id, OrderStatus.PROCESSING)}>
-                            Processing
+                            Em processamento
                         </Button>
                         <Button
                             size="sm"
                             className="m-l-sm shipped_order"
                             onClick={() => updateOrder(order.id, OrderStatus.SHIPPED)}>
-                            Shipped
+                            Enviada
                         </Button>
-                    </div>
                 </div>
             </Col>
         </Row>

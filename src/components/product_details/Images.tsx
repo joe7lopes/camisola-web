@@ -16,7 +16,7 @@ const Images = ({ images }: IProps) => {
                         <div key={img.id} style={{ height: '14rem', textAlign: 'center'}} className="bg-white">
                             <img className="m-b-xs"
                                  alt=""
-                                 style={{ height: '100%', maxWidth: '100%' }}
+                                 style={{ maxHeight: '100%', maxWidth: '100%' }}
                                  src={img.url}
                                  onClick={() => setIndex(i)}
                             />
@@ -28,7 +28,7 @@ const Images = ({ images }: IProps) => {
                 <Carousel activeIndex={index} onSelect={(i: number) => setIndex(i)}>
                     {images.map((img, i) => (
                         <Carousel.Item key={i} style={{ height: '28rem', textAlign: 'center' }}>
-                            <img style={{ height: '100%', maxWidth: '100%' }}
+                            <img style={{ maxHeight: '100%', maxWidth: '100%' }}
                                  alt={img.name}
                                  src={img.url}
                             />

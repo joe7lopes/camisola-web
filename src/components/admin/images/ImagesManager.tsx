@@ -25,13 +25,12 @@ const ImagesManager = () => {
   const request = useSelector(imageManager);
   const dispatch = useDispatch();
   const [selectedImages, setSelectedImages] = useState<ISelectableImage[]>([]);
-  const [imagesToUpload, setImagesToUpload] = useState();
+  const [imagesToUpload, setImagesToUpload] = useState<any[]>([]);
   const [open, setOpen] = React.useState(false);
-
+  const inputFileRef = React.createRef<any>();
 
   useEffect(() => {
     if (request.error || request.data) {
-
       setOpen(true);
     }
   }, [request]);
@@ -62,6 +61,8 @@ const ImagesManager = () => {
 
   const onUpload = () => {
     dispatch(uploadImages(imagesToUpload));
+    setImagesToUpload([]);
+    inputFileRef.current.value = null;
   };
 
   const onDelete = () => {
@@ -76,13 +77,13 @@ const ImagesManager = () => {
             <div className="row">
                 <div className="m-b-md">
                     <input
+                        ref={inputFileRef}
                         type="file"
                         id="multi"
                         onChange={handleFileUpload}
                         multiple/>
                     <Button
-                        disabled={request.loading
-                        || (imagesToUpload === undefined || imagesToUpload.leading > 0)}
+                        disabled={request.loading || imagesToUpload.length <= 0}
                         onClick={onUpload}>Upload Image</Button>
                 </div>
 

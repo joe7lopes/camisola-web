@@ -14,24 +14,19 @@ export const getCartItems = createSelector(
   (cart) => cart.items,
 );
 
+export const getSubmittedOrder = createSelector(
+  [getCart],
+  (cart) => cart.submittedOrder,
+);
+
 export const showOrderCompleted = createSelector(
   [getCart],
-  (cart) => cart.isOrderPlacedSuccess,
-);
-
-export const isPlacingOrder = createSelector(
-  [getCart],
-  (cart) => cart.isOrderPlacedLoading,
-);
-
-export const isPlacingRejected = createSelector(
-  [getCart],
-  (cart) => cart.isOrderPlacedFailure,
+  (cart) => !!cart.submittedOrder.data,
 );
 
 export const getCompletedOrderId = createSelector(
   [getCart],
-  (cart) => cart.orderId,
+  (cart) => cart.submittedOrder.data,
 );
 
 const hasExtraCosts = (item: ICartItem) => item.stampingNumber || item.stampingName;

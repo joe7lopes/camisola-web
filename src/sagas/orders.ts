@@ -62,8 +62,9 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
   try {
     const { data } = yield call(api.post, '/api/orders', request);
     yield put(placeOrderFulfilled(data.orderId));
-  } catch (error) {
-    yield put(placeOrderRejected(error));
+  } catch (errors) {
+    const errorRef = errors.response.data[0].logref;
+    yield put(placeOrderRejected(errorRef));
   }
 }
 

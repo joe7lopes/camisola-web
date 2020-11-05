@@ -11,16 +11,14 @@ import {
   getCartItems,
   getCartTotal,
   getShippingCost,
-  isPlacingOrder,
-  isPlacingRejected,
+  getSubmittedOrder,
 } from '../../store/selectors';
 
 const CartContent = () => {
   const items = useSelector(getCartItems);
   const shippingCost = useSelector(getShippingCost);
   const total = useSelector(getCartTotal);
-  const showPlaceOrderLoading = useSelector(isPlacingOrder);
-  const isPlacingOrderFailed = useSelector(isPlacingRejected);
+  const { loading, error } = useSelector(getSubmittedOrder);
   const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
 
@@ -51,12 +49,13 @@ const CartContent = () => {
             <div>
                 <Form onSubmit={submit} noValidate validated={validated}>
                     <ShipmentAddress/>
-                    {isPlacingOrderFailed
+                    {error
                     && <Alert variant="danger">
-                        Erro, não foi possivel registar a sua encomenda. Tente mais tarde.
+                        Ops, não foi possivel registar a sua encomenda. Tente mais tarde.
+                        Erro : {error}
                     </Alert>
                     }
-                    {showPlaceOrderLoading ? renderLoadingButton() : renderPlaceOrderButton()}
+                    {loading ? renderLoadingButton() : renderPlaceOrderButton()}
                 </Form>
             </div>
     </>

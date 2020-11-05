@@ -37,10 +37,7 @@ export interface IUIState {
 export interface ICartState {
     items: ICartItem[],
     total: number,
-    isOrderPlacedLoading: boolean,
-    isOrderPlacedSuccess: boolean,
-    isOrderPlacedFailure: boolean,
-    orderId?: string
+    submittedOrder: IRequest,
 }
 
 export interface IAuthState {

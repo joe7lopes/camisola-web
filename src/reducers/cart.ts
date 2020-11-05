@@ -12,9 +12,9 @@ import { ICartState } from '../types';
 const INITIAL_STATE: ICartState = {
   items: [],
   total: 0,
-  isOrderPlacedLoading: false,
-  isOrderPlacedSuccess: false,
-  isOrderPlacedFailure: false,
+  submittedOrder: {
+    loading: false,
+  },
 };
 
 export default (state = INITIAL_STATE, { type, payload }: ICartAction) => {
@@ -30,13 +30,17 @@ export default (state = INITIAL_STATE, { type, payload }: ICartAction) => {
     case RESET_CART:
       return INITIAL_STATE;
     case PLACE_ORDER_PENDING:
-      return { ...state, isOrderPlacedLoading: true };
+      return { ...state, submittedOrder: { ...state.submittedOrder, loading: true } };
     case PLACE_ORDER_FULFILLED:
       return {
-        ...state, isOrderPlacedLoading: false, isOrderPlacedSuccess: true, orderId: payload,
+        ...state,
+        submittedOrder: { ...state.submittedOrder, loading: false, data: payload },
       };
     case PLACE_ORDER_REJECTED:
-      return { ...state, isOrderPlacedLoading: false, isOrderPlacedFailure: true };
+      return {
+        ...state,
+        submittedOrder: { ...state.submittedOrder, loading: false, error: payload },
+      };
     default:
       return state;
   }

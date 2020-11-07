@@ -1,1 +1,1 @@
-export { default as Orders } from './OrdersHOC';
+export { default as Orders } from './Orders';

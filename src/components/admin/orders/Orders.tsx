@@ -1,79 +1,97 @@
-import React, { useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
-import { IOrder, OrderStatus } from '../../../types';
+import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { useDispatch, useSelector } from 'react-redux';
+import { IOrder } from '../../../types';
+import { fetchOrders } from '../../../actions';
+import { getOrdersState } from '../../../store/selectors';
 import OrderDetails from './OrderDetails';
 
-interface IProps {
-    orders: IOrder[]
-}
 
-const Orders = ({ orders }: IProps) => {
-  const [showDetails, setShowDetails] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState();
+const Orders = () => {
+  const dispatch = useDispatch();
+  const { loading, orders } = useSelector(getOrdersState);
 
-  const showDetailsFor = (order: IOrder) => {
-    setShowDetails(!showDetails);
-    setSelectedOrder(order);
-  };
-
-  function getClassForStatus(status: OrderStatus) {
-    switch (status) {
-      case OrderStatus.RECEIVED:
-        return 'received_order';
-      case OrderStatus.PROCESSING:
-        return 'processing_order';
-      case OrderStatus.SHIPPED:
-        return 'shipped_order';
-      default:
-        return '';
-    }
-  }
+  useEffect(() => {
+    dispatch(fetchOrders());
+  }, [dispatch]);
 
   return (
-        <Table striped bordered hover>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>createdAt</th>
-            </tr>
-            </thead>
-            <tbody>
-            {orders.map((order) => (
-                <React.Fragment key={order.id}>
-                    <tr>
-                        <td>
-                            <DetailsButton
-                                orderId={order.id}
-                                onClick={() => showDetailsFor(order)}/>
-                        </td>
-                        <td>{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</td>
-                        <td className={getClassForStatus(order.status)}>{order.status}</td>
-                        <td>{order.total}</td>
-                        <td>{order.createdAt}</td>
-                    </tr>
-                    {showDetails && order.id === selectedOrder.id
-                    && <tr>
-                      <td colSpan={5}><OrderDetails order={order}/></td>
-                    </tr>
-                    }
-                </React.Fragment>
-            ))}
-            </tbody>
-        </Table>
+        <TableContainer component={Paper}>
+            {loading && <div>A carregar encomendas...</div>}
+            <Table aria-label="collapsible table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell/>
+                        <TableCell>#</TableCell>
+                        <TableCell align="right">Nome</TableCell>
+                        <TableCell align="right">Status</TableCell>
+                        <TableCell align="right">total</TableCell>
+                        <TableCell align="right">Criada em</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {orders && orders.map((order: IOrder) => (
+                      <Row key={order.id} order={order}/>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
   );
 };
 export default Orders;
 
-interface IDetailsButtonProps {
-    orderId: string,
-    onClick: () => void
-}
+const useRowStyles = makeStyles({
+  root: {
+    '& > *': {
+      borderBottom: 'unset',
+    },
+  },
+});
 
-const DetailsButton = ({ orderId, onClick }: IDetailsButtonProps) => (
-    <Button variant="link" onClick={onClick}>
-        {orderId}
-    </Button>
-);
+function Row(props: { order: IOrder }) {
+  const { order } = props;
+  const [open, setOpen] = React.useState(false);
+  const classes = useRowStyles();
+
+  return (
+        <React.Fragment>
+            <TableRow className={classes.root}>
+                <TableCell>
+                    <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                        {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                    </IconButton>
+                </TableCell>
+                <TableCell component="th" scope="row">{order.id}</TableCell>
+                <TableCell align="right">{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</TableCell>
+                <TableCell align="right">{order.status}</TableCell>
+                <TableCell align="right">{order.total}</TableCell>
+                <TableCell align="right">{order.createdAt}</TableCell>
+            </TableRow>
+             <TableRow>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Box margin={1}>
+                            <Typography variant="h6" gutterBottom component="div">
+                                Detalhes
+                            </Typography>
+                            <OrderDetails order={order}/>
+                        </Box>
+                    </Collapse>
+                </TableCell>
+             </TableRow>
+        </React.Fragment>
+  );
+}

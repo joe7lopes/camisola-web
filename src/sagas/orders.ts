@@ -27,7 +27,7 @@ function* fetchOrdersExec() {
   yield put(fetchOrdersPending());
   try {
     const { data } = yield call(api.get, '/api/orders');
-    yield put(fetchOrdersFulfilled(data.orders));
+    yield put(fetchOrdersFulfilled(data));
   } catch (error) {
     yield put(fetchOrdersRejected(error));
   }

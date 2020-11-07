@@ -21,9 +21,6 @@ import {
   RESET_PASSWORD_PENDING,
   RESET_PASSWORD_FULFILLED,
   RESET_PASSWORD_REJECTED,
-  FETCH_ORDERS_FULFILLED,
-  FETCH_ORDERS_REJECTED,
-  FETCH_ORDERS_PENDING,
   UPDATE_ORDER_STATUS_PENDING,
   UPDATE_ORDER_STATUS_FULFILLED,
   UPDATE_ORDER_STATUS_REJECTED,
@@ -46,7 +43,7 @@ interface IProps {
 const imageManagerInitialState = {
   loading: false,
   data: undefined,
-  error: undefined
+  error: undefined,
 };
 
 const INITIAL_STATE: IUIState = {
@@ -59,7 +56,6 @@ const INITIAL_STATE: IUIState = {
     isSignInSuccess: false,
   },
   admin: {
-    isFetchingOrders: false,
     isSavingNewProduct: false,
     isUpdatingProduct: false,
     isProductUpdated: false,
@@ -124,11 +120,6 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
       return { ...state, auth: { isResettingPassword: false } };
     case RESET_PASSWORD_REJECTED:
       return { ...state, auth: { isResettingPassword: false } };
-    case FETCH_ORDERS_PENDING:
-      return { ...state, admin: { isFetchingOrders: true } };
-    case FETCH_ORDERS_FULFILLED:
-    case FETCH_ORDERS_REJECTED:
-      return { ...state, admin: { isFetchingOrders: false } };
     case UPDATE_ORDER_STATUS_PENDING:
       return { ...state, admin: { isUpdatingOrderStatus: true } };
     case UPDATE_ORDER_STATUS_FULFILLED:

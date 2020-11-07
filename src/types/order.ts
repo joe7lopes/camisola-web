@@ -15,9 +15,9 @@ export interface IShippingAddress {
 }
 
 export interface IOrderItem {
-    productId: string
-    sizeId: string
-    stampingName? : string
+    productId: string,
+    sizeId: string,
+    stampingName? : string,
     stampingNumber? : string
 }
 
@@ -41,7 +41,7 @@ export interface IOrder {
     items: IFetchOrdersItemResponse[],
     shippingAddress: IShippingAddress,
     createdAt: string,
-    status: OrderStatus
+    status: OrderStatus,
     total: string
 }
 

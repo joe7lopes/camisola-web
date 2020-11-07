@@ -9,6 +9,8 @@ interface IRequest {
     error?: any
 }
 
+export interface IAdminOrders extends IRequest{}
+
 export interface IUIState {
     products: {
         isFetchingProducts?: boolean,
@@ -24,7 +26,6 @@ export interface IUIState {
         isSignInSuccess: boolean
     },
     admin: {
-        isFetchingOrders?: boolean,
         isSavingNewProduct: boolean,
         isSavingNewProductSuccess: boolean,
         isUpdatingProduct: boolean,
@@ -49,7 +50,6 @@ export interface IAuthState {
 }
 
 export interface IAdminState {
-    orders: [],
     images: IImage[]
 }
 
@@ -60,5 +60,6 @@ export interface IRootState {
     settings: ISettings,
     ui: IUIState,
     auth: IAuthState,
-    admin: IAdminState
+    admin: IAdminState,
+    adminOrders: IAdminOrders,
 }

@@ -14,7 +14,7 @@ class Api {
       (response) => response,
       (error) => {
         const { status } = error.response;
-        if (status === 401) {
+        if (status === 401 || status === 403) {
           store.dispatch(signOut());
         }
         return Promise.reject(error);

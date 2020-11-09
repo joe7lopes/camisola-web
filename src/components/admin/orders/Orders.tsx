@@ -77,7 +77,7 @@ function Row(props: { order: IOrder }) {
                 <TableCell component="th" scope="row">{order.id}</TableCell>
                 <TableCell align="right">{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</TableCell>
                 <TableCell align="right">{order.status}</TableCell>
-                <TableCell align="right">{order.total}</TableCell>
+                <TableCell align="right">{order.total} €</TableCell>
                 <TableCell align="right">{order.createdAt}</TableCell>
             </TableRow>
              <TableRow>

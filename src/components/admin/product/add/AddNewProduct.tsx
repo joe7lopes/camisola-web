@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
-import { createProduct, resetProductCreation } from '../../../../actions';
+import { createProduct } from '../../../../actions';
 import {
-  getAdminUIError,
   getSettingsCategories,
-  getSettingsSizes, isSavedProductSuccess,
-  isSavingNewProduct,
+  getSettingsSizes,
 } from '../../../../store/selectors';
 import {
   ICreateProduct, IImage, IProductCategory, IProductSize,
@@ -18,8 +15,8 @@ import ProductPrice from './ProductPrice';
 import { LoadingButton } from '../../../ui';
 import ProductImagesManagerModal from '../ProductImagesManagerModal';
 import Alert, { AlertType } from '../../../ui/Alert';
-import path from '../../../../routes/path';
 import RichText from '../../../ui/RichText';
+import { getAdminProduct } from '../../../../store/selectors/adminProduct';
 
 interface ICategories {
     name: string,
@@ -30,11 +27,8 @@ interface ICategories {
 const AddNewProduct = () => {
   const sizes = useSelector(getSettingsSizes);
   const categories = useSelector(getSettingsCategories);
-  const isSaving = useSelector(isSavingNewProduct);
-  const saveNewProductSuccess = useSelector(isSavedProductSuccess);
-  const error = useSelector(getAdminUIError);
+  const { loading, error, data } = useSelector(getAdminProduct);
   const dispatch = useDispatch();
-  const history = useHistory();
   const [availableSizes, setAvailableSizes] = useState<IProductSize[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ICategories[]>([]);
   const [images, setImages] = useState<IImage[]>([]);
@@ -43,14 +37,6 @@ const AddNewProduct = () => {
   const [defaultPrice, setDefaultPrice] = useState(30);
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
-
-  useEffect(() => {
-    if (saveNewProductSuccess) {
-      dispatch(resetProductCreation());
-      history.push(path.ADMIN_PRODUCTS);
-    }
-  }, [dispatch, saveNewProductSuccess, history]);
-
 
   useEffect(() => {
     setSelectedCategories(convertCategories(categories));
@@ -151,15 +137,15 @@ const AddNewProduct = () => {
                     <FormControl type="number" value={`${defaultPrice}`}
                                  onChange={(e: any) => setDefaultPrice(e.target.value)}/>
                 </InputGroup>
-                {(error || saveNewProductSuccess)
+                {(error || data)
                 && <Alert type={error ? AlertType.ERROR : AlertType.SUCCESS}>
                     {error ? `Error ao criar product ${error}` : 'Produto guardado'}
                 </Alert>}
                 <LoadingButton
                     type="submit"
                     className="m-t-lg"
-                    disabled={isSaving}
-                    isLoading={isSaving}
+                    disabled={loading}
+                    isLoading={loading}
                     size='lg'>
                     Salvar
                 </LoadingButton>

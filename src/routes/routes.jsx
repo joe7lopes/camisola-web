@@ -9,16 +9,10 @@ import {
   ClubPage,
   ProductDetail,
   Home,
-  AdminPanel,
-  Settings,
-  NewProduct,
   Cart,
-  Orders,
 } from '../components';
 
-import { Dashboard, ImagesManager } from '../components/admin';
-import ProductList from '../components/admin/product/ProductList';
-import EditProduct from '../components/admin/product/edit/EditProduct';
+import { Dashboard } from '../components/admin';
 
 import path from './path';
 import { fetchProducts, fetchSettings } from '../actions';
@@ -28,17 +22,11 @@ import ScrollToTop from './ScrollToTop';
 import NavigationHeaderRoute from './NavigationHeaderRoute';
 
 const {
+  ADMIN,
   PORTUGAL,
   BENFICA,
   PORTO,
   SPORTING,
-  SETTINGS,
-  CREATE_PRODUCT,
-  ADMIN_EDIT_PRODUCT,
-  ADMIN_PRODUCTS,
-  ADMIN,
-  ADMIN_ORDERS,
-  ADMIN_IMAGES,
   PRODUCT_DETAILS,
   CRIANCAS,
   OUTROS,
@@ -60,14 +48,7 @@ const Routes = () => (
             <NavigationHeaderRoute exact path={OUTROS} component={ClubPage}/>
             <NavigationHeaderRoute path={PRODUCT_DETAILS} component={ProductDetail}/>
             <NavigationHeaderRoute exact path={CART} component={Cart}/>
-            <AdminRoute path={CREATE_PRODUCT} component={NewProduct}/>
-            <AdminRoute path={ADMIN_EDIT_PRODUCT} component={EditProduct}/>
-            <AdminRoute path={ADMIN_PRODUCTS} component={ProductList}/>
-            <AdminRoute path={SETTINGS} component={Settings}/>
-            <AdminRoute path={ADMIN_ORDERS} component={Orders}/>
-            <AdminRoute path={ADMIN_IMAGES} component={ImagesManager}/>
-            <AdminRoute exact path={ADMIN} component={AdminPanel}/>
-            <AdminRoute exact path="/admin/dashboard" component={Dashboard}/>
+            <AdminRoute exact path={ADMIN} component={Dashboard}/>
             <Route exact path={LOGIN} component={LoginHOC}/>
             <Route>
                 <h3>No match</h3>

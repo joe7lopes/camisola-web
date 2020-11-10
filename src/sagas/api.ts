@@ -16,6 +16,7 @@ class Api {
         const { status } = error.response;
         if (status === 401 || status === 403) {
           store.dispatch(signOut());
+          localStorage.removeItem(USER_TOKEN);
         }
         return Promise.reject(error);
       },

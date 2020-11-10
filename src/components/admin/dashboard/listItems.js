@@ -6,15 +6,33 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import SportsSoccer from '@material-ui/icons/SportsSoccer';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import Image from '@material-ui/icons/Image';
-import Settings from '@material-ui/icons/Settings';
+import ListIcon from '@material-ui/icons/List';
+
+import List from '@material-ui/core/List';
+import Collapse from '@material-ui/core/Collapse';
+
+import {
+  ExpandLess,
+  ExpandMore,
+  Settings,
+  Image,
+  SportsSoccer,
+  AddCircle,
+} from '@material-ui/icons';
+
 import { content } from './dashboard';
 
-export const MainListItems = ({ onCLick }) => (
+export const MainListItems = ({ onCLick }) => {
+  const [open, setOpen] = React.useState(true);
+
+  const handleProductClick = () => {
+    setOpen(!open);
+  };
+
+  return (
     <div>
         <ListItem button onClick={() => onCLick(content.DASHBOARD)}>
             <ListItemIcon>
@@ -22,24 +40,47 @@ export const MainListItems = ({ onCLick }) => (
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItem>
+
         <ListItem button onClick={() => onCLick(content.ORDERS) }>
             <ListItemIcon>
                 <ShoppingCartIcon />
             </ListItemIcon>
             <ListItemText primary="Orders" />
         </ListItem>
-        <ListItem button onClick={() => onCLick(content.PRODUCTS) }>
+
+        <ListItem button onClick={handleProductClick}>
             <ListItemIcon>
                 <SportsSoccer />
             </ListItemIcon>
             <ListItemText primary="Produtos" />
+            {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+                <ListItem button style={{ paddingLeft: '2rem' }} onClick={() => onCLick(content.PRODUCTS)}>
+                    <ListItemIcon>
+                        <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Lista" />
+                </ListItem>
+            </List>
+            <List component="div" disablePadding>
+                <ListItem button style={{ paddingLeft: '2rem' }} onClick={() => onCLick(content.NEW_PRODUCT)}>
+                    <ListItemIcon>
+                        <AddCircle />
+                    </ListItemIcon>
+                    <ListItemText primary="Novo Produto" />
+                </ListItem>
+            </List>
+        </Collapse>
+
         <ListItem button onClick={() => onCLick(content.IMAGES) }>
             <ListItemIcon>
                 <Image />
             </ListItemIcon>
             <ListItemText primary="Images" />
         </ListItem>
+
         <div>por implementar</div>
         <ListItem button onClick={() => onCLick(content.SETTINGS) }>
             <ListItemIcon>
@@ -66,7 +107,8 @@ export const MainListItems = ({ onCLick }) => (
             <ListItemText primary="Integrations" />
         </ListItem>
     </div>
-);
+  );
+};
 
 export const secondaryListItems = (
     <div>

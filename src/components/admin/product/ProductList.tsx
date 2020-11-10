@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../../store/selectors';
-import path from '../../../routes/path';
 import ProductMiniatureCard from '../../ProductMiniatureCard';
 import EditProduct from './edit/EditProduct';
 import { IProduct } from '../../../types';
@@ -18,7 +16,6 @@ const ProductList = () => {
 
   return (
     <>
-            <Link to={path.CREATE_PRODUCT}>Adicionar Novo produto</Link>
             <h1 className="m-t-md">Produtos na loja</h1>
             <div className="row">
                 {products.map((p) => (

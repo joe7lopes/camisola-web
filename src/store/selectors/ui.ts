@@ -13,16 +13,6 @@ export const isFetchingProducts = createSelector(
   (ui) => ui.products.isFetchingProducts,
 );
 
-export const isSavingNewProduct = createSelector(
-  [getUI],
-  (ui) => ui.admin.isSavingNewProduct,
-);
-
-export const isSavedProductSuccess = createSelector(
-  [getUI],
-  (ui) => ui.admin.isSavingNewProductSuccess,
-);
-
 export const isUpdatingProduct = createSelector(
   [getUI],
   (ui) => ui.admin.isUpdatingProduct,

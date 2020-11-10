@@ -3,7 +3,7 @@ import {
 } from './index';
 import { IUser } from './auth';
 
-interface IRequest {
+export interface IRequest {
     loading: boolean,
     data?: any,
     error?: any
@@ -26,8 +26,6 @@ export interface IUIState {
         isSignInSuccess: boolean
     },
     admin: {
-        isSavingNewProduct: boolean,
-        isSavingNewProductSuccess: boolean,
         isUpdatingProduct: boolean,
         isProductUpdated: boolean,
         error?: string
@@ -62,4 +60,5 @@ export interface IRootState {
     auth: IAuthState,
     admin: IAdminState,
     adminOrders: IAdminOrders,
+    adminProduct: IRequest,
 }

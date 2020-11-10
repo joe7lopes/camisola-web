@@ -22,13 +22,14 @@ import Deposits from './deposits';
 import Orders1 from './orders1';
 import Orders from '../orders/Orders';
 import ProductList from '../product/ProductList';
-import { ImagesManager, Settings } from '../index';
+import { ImagesManager, NewProduct, Settings } from '../index';
 
 
 export const content = {
   DASHBOARD: 'dashboard',
   ORDERS: 'orders',
   PRODUCTS: 'products',
+  NEW_PRODUCT: 'new-product',
   IMAGES: 'images',
   SETTINGS: 'settings',
 };
@@ -56,6 +57,8 @@ export default function Dashboard() {
         return <Orders/>;
       case content.PRODUCTS:
         return <ProductList/>;
+      case content.NEW_PRODUCT:
+        return <NewProduct/>;
       case content.IMAGES:
         return <ImagesManager/>;
       case content.SETTINGS:

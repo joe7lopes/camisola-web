@@ -7,6 +7,7 @@ import ui from './ui';
 import auth from './auth';
 import admin from './admin';
 import adminOrders from './adminOrders';
+import adminProduct from './adminProduct';
 
 export default combineReducers({
   account,
@@ -17,4 +18,5 @@ export default combineReducers({
   auth,
   admin,
   adminOrders,
+  adminProduct,
 });

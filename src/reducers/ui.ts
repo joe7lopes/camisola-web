@@ -3,9 +3,6 @@ import {
   FETCH_PRODUCTS_REJECTED,
   FETCH_PRODUCTS_PENDING,
   FETCH_PRODUCTS_FULFILLED,
-  CREATE_PRODUCT_PENDING,
-  CREATE_PRODUCT_FULFILLED,
-  CREATE_PRODUCT_REJECTED,
   UPDATE_SETTINGS_PENDING,
   UPDATE_SETTINGS_FULFILLED,
   UPDATE_SETTINGS_REJECTED,
@@ -30,7 +27,7 @@ import {
   UPDATE_PRODUCT_REJECTED,
   UPLOAD_IMAGES_FULFILLED,
   UPLOAD_IMAGES_REJECTED,
-  UPLOAD_IMAGES_PENDING, RESET_PRODUCT_CREATION,
+  UPLOAD_IMAGES_PENDING,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -56,10 +53,8 @@ const INITIAL_STATE: IUIState = {
     isSignInSuccess: false,
   },
   admin: {
-    isSavingNewProduct: false,
     isUpdatingProduct: false,
     isProductUpdated: false,
-    isSavingNewProductSuccess: false,
   },
   imageManager: imageManagerInitialState,
 
@@ -85,10 +80,6 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
     case FETCH_PRODUCTS_FULFILLED:
     case FETCH_PRODUCTS_REJECTED:
       return handleProducts(state, { type, payload });
-    case CREATE_PRODUCT_PENDING:
-    case CREATE_PRODUCT_FULFILLED:
-    case CREATE_PRODUCT_REJECTED:
-    case RESET_PRODUCT_CREATION:
     case UPDATE_PRODUCT_PENDING:
     case UPDATE_PRODUCT_FULFILLED:
     case UPDATE_PRODUCT_REJECTED:
@@ -150,22 +141,6 @@ const handleProducts = (state: any, { type, payload }: any) => {
 
 const handleAdmin = (state: any, { type, payload }: any) => {
   switch (type) {
-    case CREATE_PRODUCT_PENDING:
-      return { ...state, admin: { ...state.admin, isSavingNewProduct: true } };
-    case CREATE_PRODUCT_FULFILLED:
-      // eslint-disable-next-line max-len
-      return { ...state, admin: { ...state.admin, isSavingNewProduct: false, isSavingNewProductSuccess: true } };
-    case CREATE_PRODUCT_REJECTED:
-      return { ...state, admin: { ...state.admin, isSavingNewProduct: false, error: payload } };
-    case RESET_PRODUCT_CREATION: {
-      // eslint-disable-next-line max-len
-      return {
-        ...state,
-        admin: {
-          ...state.admin, isSavingNewProduct: false, isSavingNewProductSuccess: false, error: undefined,
-        },
-      };
-    }
     case UPDATE_PRODUCT_PENDING:
       return { ...state, admin: { ...state.admin, isUpdatingProduct: true } };
     case UPDATE_PRODUCT_FULFILLED:

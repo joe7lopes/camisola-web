@@ -6,11 +6,13 @@ import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
+const reduxDebug = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null;
+
 const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(sagaMiddleware),
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    reduxDebug,
   ),
 );
 

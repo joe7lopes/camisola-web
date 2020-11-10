@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar, Nav, Container} from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavigationLink from './NavigationLink';
 import path from '../../routes/path';
@@ -22,21 +22,9 @@ headerLinks.set(OUTROS, 'Outros');
 headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
-const NavigationHeader = () =>
-// const user = useSelector(getUser);
-
-// const renderLogin = () => {
-//   if (user) {
-//     return <Link to={path.ACCOUNT}><div className="m-l-lg">{user?.firstName}</div> </Link>;
-//   }
-//   return <div className="m-l-lg"
-//   onClick={() => setLoginModalVisible(true)}> Login | registrar</div>;
-// };
-
-  (
-    <>
+const NavigationHeader = () => (
+  <>
             <div style={{ backgroundColor: 'white' }} className="m-b-xs">
-                <Container>
                 <Navbar
                     className="c-lock-width"
                     sticky="top"
@@ -88,13 +76,9 @@ const NavigationHeader = () =>
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         <ShoppingCart />
-                        <Navbar.Text>
-                            {/* {renderLogin()} */}
-                        </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>
-                </Container>
             </div>
-    </>
-  );
+  </>
+);
 export default NavigationHeader;

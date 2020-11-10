@@ -23,4 +23,4 @@ const prodStore = createStore(
 sagaMiddleware.run(rootSaga);
 
 const store = process.env.NODE_ENV === 'production' ? prodStore : devStore;
-export default store;
+export default prodStore;

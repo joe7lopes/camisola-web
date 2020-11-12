@@ -7,19 +7,14 @@ import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-// const devStore = createStore(
-//   rootReducer,
-//   compose(
-//     applyMiddleware(sagaMiddleware),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-//   ),
-// );
+const composeEnhancers = (process.env !== 'production'
+        && typeof window !== 'undefined'
+        && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+    || compose;
 
-const prodStore = createStore(
+export default createStore(
   rootReducer,
-  compose(applyMiddleware(sagaMiddleware)),
+  composeEnhancers(applyMiddleware(sagaMiddleware)),
 );
 
 sagaMiddleware.run(rootSaga);
-
-export default prodStore;

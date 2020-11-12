@@ -7,7 +7,7 @@ import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = (process.env !== 'production'
+const composeEnhancers = (process.env.NODE_ENV !== 'production'
         && typeof window !== 'undefined'
         && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
     || compose;

@@ -60,19 +60,27 @@ const Routes = () => (
 export default Routes;
 
 const Init = () => {
-  const trackingId = 'UA-125067015-3';
-  ReactGA.initialize(trackingId);
-  const location = useLocation();
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchSettings());
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  if (process.env.NODE_ENV === 'production') {
+    RecordAnalytics();
+  }
+
+  return null;
+};
+
+const RecordAnalytics = () => {
+  const trackingId = 'UA-125067015-3';
+  const location = useLocation();
+  ReactGA.initialize(trackingId);
   useEffect(() => {
     ReactGA.set({ page: location.pathname }); // Update the user's current page
     ReactGA.pageview(location.pathname); // Record a pageview for the given page
   }, [location]);
+
   return null;
 };

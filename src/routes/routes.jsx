@@ -20,6 +20,7 @@ import AdminRoute from './AdminRoute';
 import LoginHOC from '../components/auth/LoginHOC';
 import ScrollToTop from './ScrollToTop';
 import NavigationHeaderRoute from './NavigationHeaderRoute';
+import OrderSummary from '../components/order_summary/OrderSummary';
 
 const {
   ADMIN,
@@ -50,8 +51,9 @@ const Routes = () => (
             <NavigationHeaderRoute exact path={CART} component={Cart}/>
             <AdminRoute exact path={ADMIN} component={Dashboard}/>
             <Route exact path={LOGIN} component={LoginHOC}/>
+            <Route exact path="/account" component={OrderSummary}/>
             <Route>
-                <h3>No match</h3>
+                <h3> :( a pagina nao existe</h3>
             </Route>
         </Switch>
     </Router>

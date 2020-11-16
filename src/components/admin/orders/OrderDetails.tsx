@@ -20,12 +20,12 @@ const OrderDetails = ({ order }: IProps) => {
             <Col className="c-white-background">
                 <div>
                     <div><b>Nome:</b> {order.shippingAddress.firstName}</div>
-                    <div className="m-b-lg"><b>Apelido: </b>{order.shippingAddress.lastName}</div>
-                    <div><b>email: </b>{order.shippingAddress.email}</div>
-                    <div><b>telefone: </b>{order.shippingAddress.phone}</div>
-                    <div><b>morada: </b>{order.shippingAddress.address}</div>
-                    <div><b>cidade: </b>{order.shippingAddress.city}</div>
-                    <div><b>codigo postal:</b> {order.shippingAddress.city}</div>
+                    <div ><b>Apelido: </b>{order.shippingAddress.lastName}</div>
+                    <div className="m-b-lg"><b>email: </b>{order.shippingAddress.email}</div>
+                    <div><b>Etiqueta</b></div>
+                    <div>{order.shippingAddress.firstName}, {order.shippingAddress.phone} </div>
+                    <div>{order.shippingAddress.address} {order.shippingAddress.postCode},</div>
+                    <div>{order.shippingAddress.city}</div>
                 </div>
             </Col>
             <Col className="c-white-background">

@@ -20,46 +20,47 @@ const OrderDetails = ({ order }: IProps) => {
             <Col className="c-white-background">
                 <div>
                     <div><b>Nome:</b> {order.shippingAddress.firstName}</div>
-                    <div ><b>Apelido: </b>{order.shippingAddress.lastName}</div>
+                    <div><b>Apelido: </b>{order.shippingAddress.lastName}</div>
                     <div className="m-b-lg"><b>email: </b>{order.shippingAddress.email}</div>
-                    <div><b>Etiqueta</b></div>
-                    <div>{order.shippingAddress.firstName}, {order.shippingAddress.phone} </div>
-                    <div>{order.shippingAddress.address} {order.shippingAddress.postCode},</div>
-                    <div>{order.shippingAddress.city}</div>
+                    <h5>Etiqueta Endereço</h5>
+                    <div style={{ border: '1px solid black' }}>
+                        <div>{order.shippingAddress.firstName}, {order.shippingAddress.phone} </div>
+                        <div>{order.shippingAddress.address}</div>
+                        <div>{order.shippingAddress.postCode} {order.shippingAddress.city}</div>
+                    </div>
                 </div>
             </Col>
             <Col className="c-white-background">
-                <h5>Produtos</h5>
+                <h5>Etiquetas de Produto(s)</h5>
                 {order.items.map((item, index) => (
-                    <div key={index} className="m-b-lg">
-                        <div><b>Nome:</b> {item.productName}</div>
+                    <div key={index} className="m-b-md" style={{ border: '1px solid black' }}>
+                        <div>{item.productName}</div>
                         <div><b>Tamanho:</b> {item.size}</div>
-                        <div><b>Nome a Estampar:</b> {item.stampingName}</div>
-                        <div><b>Numero a Estampar:</b> {item.stampingNumber}</div>
+                        <div>{item.stampingName}{item.stampingNumber ? `, ${item.stampingNumber}` : ''}</div>
                     </div>
                 ))}
             </Col>
             <Col>
                 <div>
                     <div>Actualizar status:</div>
-                        <Button
-                            size="sm"
-                            className="received_order"
-                            onClick={() => updateOrder(order.id, OrderStatus.RECEIVED)}>
-                            Recebida
-                        </Button>
-                        <Button
-                            size="sm"
-                            className="m-l-sm processing_order"
-                            onClick={() => updateOrder(order.id, OrderStatus.PROCESSING)}>
-                            Em processamento
-                        </Button>
-                        <Button
-                            size="sm"
-                            className="m-l-sm shipped_order"
-                            onClick={() => updateOrder(order.id, OrderStatus.SHIPPED)}>
-                            Enviada
-                        </Button>
+                    <Button
+                        size="sm"
+                        className="received_order"
+                        onClick={() => updateOrder(order.id, OrderStatus.RECEIVED)}>
+                        Recebida
+                    </Button>
+                    <Button
+                        size="sm"
+                        className="m-l-sm processing_order"
+                        onClick={() => updateOrder(order.id, OrderStatus.PROCESSING)}>
+                        Em processamento
+                    </Button>
+                    <Button
+                        size="sm"
+                        className="m-l-sm shipped_order"
+                        onClick={() => updateOrder(order.id, OrderStatus.SHIPPED)}>
+                        Enviada
+                    </Button>
                 </div>
             </Col>
         </Row>

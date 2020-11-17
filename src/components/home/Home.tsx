@@ -8,8 +8,7 @@ import ShippingMethodBanner from './ShippingMethodBanner';
 import FacebookReviews from './FacebookReviews';
 import Footer from '../Footer';
 import ProductCarousel from './ProductCarousel';
-import path from "../../routes/path";
-// import ProductMiniatures from './ProductMiniatures';
+import path from '../../routes/path';
 
 const Home = () => {
   const history = useHistory();
@@ -23,8 +22,6 @@ const Home = () => {
           {benficaProducts.length > 0 && <ProductCarousel sectionName="Benfica" products={benficaProducts} onShowMore={() => history.push(path.BENFICA)}/>}
           {portoProducts.length > 0 && <ProductCarousel sectionName="Porto" products={portoProducts} onShowMore={() => history.push(path.PORTO)}/>}
           {sportingProducts.length > 0 && <ProductCarousel sectionName="Sporting" products={sportingProducts} onShowMore={() => history.push(path.SPORTING)}/>}
-          {/*<h3 className="m-t-md">Todos os produtos</h3>*/}
-          {/*<ProductMiniatures />*/}
         </Col>
         <Col xs={12} md={3} className="c-container">
           <WhatsApp className="m-b-sm" />

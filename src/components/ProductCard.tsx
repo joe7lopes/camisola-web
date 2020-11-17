@@ -19,8 +19,8 @@ const ProductCard = ({
             <div className="product_card_imageContainer">
                 <img src={image} alt={name}/>
             </div>
-            <Card.Body>
-                {name}
+            <Card.Body className="product_card body">
+                <div className="c10-product_card_title">{name}</div>
                 <h5>€{price}</h5>
             </Card.Body>
         </Card>

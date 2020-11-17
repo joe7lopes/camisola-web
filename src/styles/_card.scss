@@ -1,12 +1,16 @@
 @import './screen_sizes';
 
-$square: 205px;
+$square: 13rem;
 .product_card {
   width: $square;
   cursor: pointer;
 
   @media (max-width: $mobile_maxWith) {
     width: 100%;
+  }
+
+  .body {
+    padding: 0.25rem 1rem;
   }
 
 }
@@ -32,4 +36,29 @@ $square: 205px;
   //  height: auto;
   //  margin-right: 0;
   //}
+}
+
+//@mixin trim($numLines: null){
+//  @if $numLines != null {
+//    display:-webkit-box;
+//    -webkit-line-clamp:$numLines;
+//    -webkit-box-orient:vertical;
+//    overflow:hidden;
+//  }
+//  @else{
+//    text-overflow:ellipsis;
+//    white-space:nowrap;
+//    overflow:hidden;
+//    display:block;
+//  }
+//}
+
+.c10-product_card_title {
+  height: 48px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  /* <integer> values */
+  -webkit-line-clamp: 2;
 }

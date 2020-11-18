@@ -24,7 +24,7 @@ const OrderDetails = ({ order }: IProps) => {
                     <div className="m-b-lg"><b>email: </b>{order.shippingAddress.email}</div>
                     <h5>Etiqueta Endereço</h5>
                     <div style={{ border: '1px solid black' }}>
-                        <div>{order.shippingAddress.firstName}, {order.shippingAddress.phone} </div>
+                        <div>{order.shippingAddress.firstName} {order.shippingAddress.lastName}, {order.shippingAddress.phone}</div>
                         <div>{order.shippingAddress.address}</div>
                         <div>{order.shippingAddress.postCode} {order.shippingAddress.city}</div>
                     </div>

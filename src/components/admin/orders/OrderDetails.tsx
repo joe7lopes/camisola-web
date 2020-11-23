@@ -1,8 +1,12 @@
 import React from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import {
+  FormControl, Select, MenuItem, InputLabel,
+} from '@material-ui/core';
 import { IOrder, OrderStatus } from '../../../types';
 import { updateOrderStatus } from '../../../actions';
+import { orderStatusConfig } from './Orders';
 
 interface IProps {
     order: IOrder
@@ -43,24 +47,32 @@ const OrderDetails = ({ order }: IProps) => {
             <Col>
                 <div>
                     <div>Actualizar status:</div>
-                    <Button
-                        size="sm"
-                        className="received_order"
-                        onClick={() => updateOrder(order.id, OrderStatus.RECEIVED)}>
-                        Recebida
-                    </Button>
-                    <Button
-                        size="sm"
-                        className="m-l-sm processing_order"
-                        onClick={() => updateOrder(order.id, OrderStatus.PROCESSING)}>
-                        Em processamento
-                    </Button>
-                    <Button
-                        size="sm"
-                        className="m-l-sm shipped_order"
-                        onClick={() => updateOrder(order.id, OrderStatus.SHIPPED)}>
-                        Enviada
-                    </Button>
+                    <FormControl variant="filled">
+                        <InputLabel id="demo-simple-select-filled-label">Status</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-filled-label"
+                            id="demo-simple-select-filled"
+                            style={{ backgroundColor: orderStatusConfig[order.status].color }}
+                            value={order.status}
+                            onChange={(e: any) => updateOrder(order.id, e.target.value)}>
+                            <MenuItem value={OrderStatus.RECEIVED}
+                                      style={{ backgroundColor: orderStatusConfig[OrderStatus.RECEIVED].color }}>
+                                {orderStatusConfig[OrderStatus.RECEIVED].text}
+                            </MenuItem>
+                            <MenuItem value={OrderStatus.PROCESSING}
+                                      style={{ backgroundColor: orderStatusConfig[OrderStatus.PROCESSING].color }}>
+                                {orderStatusConfig[OrderStatus.PROCESSING].text}
+                            </MenuItem>
+                            <MenuItem value={OrderStatus.SHIPPED}
+                                      style={{ backgroundColor: orderStatusConfig[OrderStatus.SHIPPED].color }}>
+                                {orderStatusConfig[OrderStatus.SHIPPED].text}
+                            </MenuItem>
+                            <MenuItem value={OrderStatus.CANCELLED}
+                                      style={{ backgroundColor: orderStatusConfig[OrderStatus.CANCELLED].color }}>
+                                {orderStatusConfig[OrderStatus.CANCELLED].text}
+                            </MenuItem>
+                        </Select>
+                    </FormControl>
                 </div>
             </Col>
         </Row>

@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { useDispatch, useSelector } from 'react-redux';
-import { IOrder } from '../../../types';
+import { IOrder, OrderStatus } from '../../../types';
 import { fetchOrders } from '../../../actions';
 import { getOrdersState } from '../../../store/selectors';
 import OrderDetails from './OrderDetails';
@@ -60,6 +60,13 @@ const useRowStyles = makeStyles({
   },
 });
 
+export const orderStatusConfig = {
+  [OrderStatus.RECEIVED]: { text: 'Recebida', color: '#cfd3ce' },
+  [OrderStatus.PROCESSING]: { text: 'Em processamento', color: '#b8de6f' },
+  [OrderStatus.SHIPPED]: { text: 'Enviada', color: '#b2deec' },
+  [OrderStatus.CANCELLED]: { text: 'cancelada', color: '#ffda77' },
+};
+
 function Row(props: { order: IOrder }) {
   const { order } = props;
   const [open, setOpen] = React.useState(false);
@@ -75,7 +82,10 @@ function Row(props: { order: IOrder }) {
                 </TableCell>
                 <TableCell component="th" scope="row">{order.id}</TableCell>
                 <TableCell align="right">{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</TableCell>
-                <TableCell align="right">{order.status}</TableCell>
+                <TableCell align="right"
+                           style={{ backgroundColor: orderStatusConfig[order.status].color }}>
+                    {orderStatusConfig[order.status].text}
+                </TableCell>
                 <TableCell align="right">{order.total} €</TableCell>
                 <TableCell align="right">{order.createdAt}</TableCell>
             </TableRow>

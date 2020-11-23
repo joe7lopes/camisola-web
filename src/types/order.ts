@@ -2,6 +2,7 @@ export enum OrderStatus {
     RECEIVED="RECEIVED",
     PROCESSING = "PROCESSING",
     SHIPPED = "SHIPPED",
+    CANCELLED = "CANCELLED",
 }
 
 export interface IShippingAddress {

@@ -13,28 +13,19 @@ import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { MainListItems, secondaryListItems } from './listItems';
+import { useLocation } from 'react-router-dom';
+import { MainListItems } from './listItems';
 import Orders from '../orders/Orders';
 import ProductList from '../product/ProductList';
 import { ImagesManager, NewProduct, Settings } from '../index';
 import DashBoardContent from './DashboardContent';
 import { useStyles } from './styles';
-
-
-export const content = {
-  DASHBOARD: 'dashboard',
-  ORDERS: 'orders',
-  PRODUCTS: 'products',
-  NEW_PRODUCT: 'new-product',
-  IMAGES: 'images',
-  SETTINGS: 'settings',
-};
+import path from '../../../routes/path';
 
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
-  const [selectedContent, setSelectedContent] = useState(content.DASHBOARD);
-
+  const { pathname } = useLocation();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -43,22 +34,19 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  const handleOnClick = (clickedContent) => {
-    setSelectedContent(clickedContent);
-  };
-
-  const renderContent = (inContent) => {
-    switch (inContent) {
-      case content.ORDERS:
+  const renderContent = () => {
+    switch (pathname) {
+      case path.ADMIN_ORDERS:
         return <Orders/>;
-      case content.PRODUCTS:
+      case path.ADMIN_PRODUCTS:
         return <ProductList/>;
-      case content.NEW_PRODUCT:
+      case path.ADMIN_NEW_PRODUCT:
         return <NewProduct/>;
-      case content.IMAGES:
+      case path.ADMIN_IMAGES:
         return <ImagesManager/>;
-      case content.SETTINGS:
+      case path.ADMIN_SETTINGS:
         return <Settings/>;
+      case path.ADMIN_DASHBOARD:
       default:
         return <DashBoardContent/>;
     }
@@ -93,8 +81,7 @@ export default function Dashboard() {
                 classes={{
                   paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
                 }}
-                open={open}
-            >
+                open={open}>
                 <div className={classes.toolbarIcon}>
                     <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
@@ -102,15 +89,14 @@ export default function Dashboard() {
                 </div>
                 <Divider />
                 <List>
-                   <MainListItems onCLick={handleOnClick}/>
+                   <MainListItems />
                 </List>
                 <Divider />
-                <List>{secondaryListItems}</List>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    {renderContent(selectedContent)}
+                    {renderContent()}
                 </Container>
             </main>
         </div>

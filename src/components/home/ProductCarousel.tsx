@@ -17,7 +17,7 @@ interface IProps {
 const ProductCarousel = ({ sectionName, products, onShowMore }: IProps) => {
   const isLoading = useSelector(isFetchingProducts);
   if (isLoading) return <div>loading...</div>;
-  if (!isLoading && products.length < 1) return <div>Nao ha produtos</div>;
+  if (!isLoading && products.length < 1) return <div>Nao ha produtos disponiveis</div>;
   const numberOfProducts = window.innerWidth <= 576 ? 4 : 16;
   return (
         <div>

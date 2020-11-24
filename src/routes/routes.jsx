@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import {
-  Switch, Route, BrowserRouter as Router, useLocation,
+  BrowserRouter as Router, Route, Switch, useLocation,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import {
-  ClubPage,
-  ProductDetail,
-  Home,
-  Cart,
+  Cart, ClubPage, Home, ProductDetail,
 } from '../components';
 
 import { Dashboard } from '../components/admin';
@@ -22,35 +19,30 @@ import ScrollToTop from './ScrollToTop';
 import NavigationHeaderRoute from './NavigationHeaderRoute';
 import OrderSummary from '../components/order_summary/OrderSummary';
 
-const {
-  ADMIN,
-  PORTUGAL,
-  BENFICA,
-  PORTO,
-  SPORTING,
-  PRODUCT_DETAILS,
-  CRIANCAS,
-  OUTROS,
-  CART,
-  LOGIN,
-} = path;
-
 const Routes = () => (
     <Router>
         <Init/>
         <ScrollToTop/>
         <Switch>
             <NavigationHeaderRoute exact path={'/'} component={Home}/>
-            <NavigationHeaderRoute exact path={PORTUGAL} component={ClubPage}/>
-            <NavigationHeaderRoute exact path={BENFICA} component={ClubPage}/>
-            <NavigationHeaderRoute exact path={PORTO} component={ClubPage}/>
-            <NavigationHeaderRoute exact path={SPORTING} component={ClubPage}/>
-            <NavigationHeaderRoute exact path={CRIANCAS} component={ClubPage}/>
-            <NavigationHeaderRoute exact path={OUTROS} component={ClubPage}/>
-            <NavigationHeaderRoute path={PRODUCT_DETAILS} component={ProductDetail}/>
-            <NavigationHeaderRoute exact path={CART} component={Cart}/>
-            <AdminRoute exact path={ADMIN} component={Dashboard}/>
-            <Route exact path={LOGIN} component={LoginHOC}/>
+            <NavigationHeaderRoute exact path={path.PORTUGAL} component={ClubPage}/>
+            <NavigationHeaderRoute exact path={path.BENFICA} component={ClubPage}/>
+            <NavigationHeaderRoute exact path={path.PORTO} component={ClubPage}/>
+            <NavigationHeaderRoute exact path={path.SPORTING} component={ClubPage}/>
+            <NavigationHeaderRoute exact path={path.CRIANCAS} component={ClubPage}/>
+            <NavigationHeaderRoute exact path={path.OUTROS} component={ClubPage}/>
+            <NavigationHeaderRoute path={path.PRODUCT_DETAILS} component={ProductDetail}/>
+            <NavigationHeaderRoute exact path={path.CART} component={Cart}/>
+            {[
+              path.ADMIN_DASHBOARD,
+              path.ADMIN_PRODUCTS,
+              path.ADMIN_NEW_PRODUCT,
+              path.ADMIN_IMAGES,
+              path.ADMIN_SETTINGS,
+              path.ADMIN_ORDERS,
+              path.ADMIN,
+            ].map((url, index) => <AdminRoute exact path={url} component={Dashboard} key={index}/>)}
+            <Route exact path={path.LOGIN} component={LoginHOC}/>
             <Route exact path="/account" component={OrderSummary}/>
             <Route>
                 <h3> :( a pagina nao existe</h3>
@@ -77,12 +69,12 @@ const Init = () => {
 
 const RecordAnalytics = () => {
   const trackingId = 'UA-125067015-3';
-  const location = useLocation();
+  const { pathname } = useLocation();
   ReactGA.initialize(trackingId);
   useEffect(() => {
-    ReactGA.set({ page: location.pathname }); // Update the user's current page
-    ReactGA.pageview(location.pathname); // Record a pageview for the given page
-  }, [location]);
+    ReactGA.set({ page: pathname }); // Update the user's current page
+    ReactGA.pageview(pathname); // Record a pageview for the given page
+  }, [pathname]);
 
   return null;
 };

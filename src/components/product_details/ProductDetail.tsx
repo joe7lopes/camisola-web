@@ -1,22 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CustomizationSection from './CustomizationSection';
-import { IProduct, IRootState } from '../../types';
+import { IRootState } from '../../types';
 import Images from './Images';
-import path from '../../routes/path';
 
-interface IProps {
-    product: IProduct
-}
-
-const ProductDetail = ({ product }: IProps) => {
-  const history = useHistory();
+const ProductDetail = () => {
+  const { id } = useParams();
+  const product = useSelector((state:IRootState) => state.products.find((p) => p.id === id));
   if (!product) {
-    history.push(path.HOME);
-    return null;
+    return <div>loading...</div>;
   }
+
   return (
     <>
             <Row className="m-b-md">
@@ -35,9 +31,4 @@ const ProductDetail = ({ product }: IProps) => {
   );
 };
 
-const mapStateToProps = (state: IRootState, props: any) => ({
-  product: state.products.find((p) => p.id === props.match.params.id),
-});
-
-
-export default connect(mapStateToProps, null)(ProductDetail);
+export default ProductDetail;

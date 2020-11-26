@@ -42,6 +42,7 @@ function* fetchSettings() {
         { name: Category.SPORTING, displayName: 'Sporting' },
         { name: Category.CRIANCAS, displayName: 'Crianças' },
         { name: Category.OUTROS, displayName: 'Outros' },
+        { name: Category.PROMOCOES, displayName: 'Promoções' },
         { name: Category.CAMISOLAS, displayName: 'Camisolas' },
         { name: Category.FATOS_DE_TREINO, displayName: 'Fatos de treino' },
         { name: Category.EQUIPAMENTOS_CRIANCA, displayName: 'Equipamentos de Criança' },

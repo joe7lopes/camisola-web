@@ -31,6 +31,7 @@ const Routes = () => (
             <NavigationHeaderRoute exact path={path.SPORTING} component={ClubPage}/>
             <NavigationHeaderRoute exact path={path.CRIANCAS} component={ClubPage}/>
             <NavigationHeaderRoute exact path={path.OUTROS} component={ClubPage}/>
+            <NavigationHeaderRoute exact path={path.PROMOCOES} component={ClubPage}/>
             <NavigationHeaderRoute path={path.PRODUCT_DETAILS} component={ProductDetail}/>
             <NavigationHeaderRoute exact path={path.CART} component={Cart}/>
             {[

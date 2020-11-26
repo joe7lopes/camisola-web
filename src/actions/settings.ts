@@ -9,7 +9,7 @@ import {
   UPDATE_SETTINGS_REJECTED,
 } from './actionTypes';
 
-import { ISettings } from '../types';
+import { Category, ISettings } from '../types';
 
 export const fetchSettings = () => ({
   type: FETCH_SETTINGS,
@@ -46,4 +46,9 @@ export const updateSettingsFulfilled = (sizes: string[]) => ({
 export const updateSettingsRejected = (err: string) => ({
   type: UPDATE_SETTINGS_REJECTED,
   payload: err,
+});
+
+export const saveHomePageLayout = (orderedIds: string[], category: Category) => ({
+  type: 'SAVE_HOME_PAGE_LAYOUT',
+  payload: { category, productIds: orderedIds },
 });

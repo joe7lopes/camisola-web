@@ -38,8 +38,9 @@ const Routes = () => (
               path.ADMIN_PRODUCTS,
               path.ADMIN_NEW_PRODUCT,
               path.ADMIN_IMAGES,
-              path.ADMIN_SETTINGS,
               path.ADMIN_ORDERS,
+              path.ADMIN_SETTINGS,
+              path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT,
               path.ADMIN,
             ].map((url, index) => <AdminRoute exact path={url} component={Dashboard} key={index}/>)}
             <Route exact path={path.LOGIN} component={LoginHOC}/>

@@ -14,6 +14,7 @@ export default {
   ADMIN_NEW_PRODUCT: '/admin/new-product',
   ADMIN_IMAGES: '/admin/images',
   ADMIN_SETTINGS: '/admin/settings',
+  ADMIN_SETTINGS_HOME_PAGE_LAYOUT: '/admin/settings/home-page-layout',
   SETTINGS: '/admin/settings',
   PRODUCT_DETAILS: '/products/:id',
   ORDER_SUMMARY: (orderId) => `/orders/${orderId}`,

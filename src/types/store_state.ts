@@ -51,6 +51,12 @@ export interface IAdminState {
     images: IImage[]
 }
 
+export interface IHomePageLayout {
+    benficaProductsOrder: string[],
+    sportingProductsOrder: string[],
+    portoProductsOrder: string[]
+}
+
 export interface IRootState {
     account: IAccount,
     products: IProduct[],
@@ -61,4 +67,5 @@ export interface IRootState {
     admin: IAdminState,
     adminOrders: IAdminOrders,
     adminProduct: IRequest,
+    homePageLayout: IHomePageLayout,
 }

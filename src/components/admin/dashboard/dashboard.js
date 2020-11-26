@@ -21,6 +21,7 @@ import { ImagesManager, NewProduct, Settings } from '../index';
 import DashBoardContent from './DashboardContent';
 import { useStyles } from './styles';
 import path from '../../../routes/path';
+import HomePageLayout from '../settings/home_page_layout/HomePageLayout';
 
 export default function Dashboard() {
   const classes = useStyles();
@@ -46,6 +47,8 @@ export default function Dashboard() {
         return <ImagesManager/>;
       case path.ADMIN_SETTINGS:
         return <Settings/>;
+      case path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT:
+        return <HomePageLayout/>;
       case path.ADMIN_DASHBOARD:
       default:
         return <DashBoardContent/>;

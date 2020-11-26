@@ -5,3 +5,4 @@ export * from './cart';
 export * from './auth';
 export * from './admin';
 export * from './adminOrders';
+export * from './homePageLayout';

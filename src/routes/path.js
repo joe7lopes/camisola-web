@@ -6,6 +6,7 @@ export default {
   SPORTING: '/sporting',
   CRIANCAS: '/criancas',
   OUTROS: '/outros',
+  PROMOCOES: '/promocoes',
   ACCOUNT: '/account',
   ADMIN: '/admin',
   ADMIN_DASHBOARD: '/admin/dashboard',

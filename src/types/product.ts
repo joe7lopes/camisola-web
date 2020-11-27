@@ -21,6 +21,7 @@ export enum Category {
     FATOS_DE_TREINO = 'fatos_de_treino',
     EQUIPAMENTOS_CRIANCA = 'equipamento_crianca',
     OUTROS = 'outros',
+    PROMOCOES = 'promocoes',
 }
 
 export interface IProductCategory {

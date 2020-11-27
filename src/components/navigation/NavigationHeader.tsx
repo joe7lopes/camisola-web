@@ -11,6 +11,7 @@ const {
   SPORTING,
   PORTO,
   OUTROS,
+  PROMOCOES,
   CRIANCAS,
 } = path;
 const headerLinks = new Map();
@@ -19,6 +20,7 @@ headerLinks.set(PORTUGAL, 'Portugal');
 headerLinks.set(BENFICA, 'Benfica');
 headerLinks.set(SPORTING, 'Sporting');
 headerLinks.set(OUTROS, 'Outros');
+headerLinks.set(PROMOCOES, 'Promoções');
 headerLinks.set(PORTO, 'Porto');
 headerLinks.set(CRIANCAS, 'Crianças');
 
@@ -48,6 +50,10 @@ const NavigationHeader = () => (
                         <Nav className="mr-auto">
                             {/* not working when modal opens {renderLinks(keys)} */}
                             <NavigationLink
+                                displayName={headerLinks.get(PROMOCOES)}
+                                destination={PROMOCOES}
+                            />
+                            <NavigationLink
                                 displayName={headerLinks.get(PORTUGAL)}
                                 destination={PORTUGAL}
                             />
@@ -72,7 +78,6 @@ const NavigationHeader = () => (
                                 destination={OUTROS}
                             />
                         </Nav>
-
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         <ShoppingCart />

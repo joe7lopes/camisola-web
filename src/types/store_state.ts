@@ -51,10 +51,10 @@ export interface IAdminState {
     images: IImage[]
 }
 
-export interface IHomePageLayout {
-    benficaProductsOrder: string[],
-    sportingProductsOrder: string[],
-    portoProductsOrder: string[]
+export interface IUIAdminDashboardNotification {
+    loading: boolean,
+    data?: boolean,
+    error?: boolean
 }
 
 export interface IRootState {
@@ -67,5 +67,5 @@ export interface IRootState {
     admin: IAdminState,
     adminOrders: IAdminOrders,
     adminProduct: IRequest,
-    homePageLayout: IHomePageLayout,
+    uiAdminDashboardNotification: IUIAdminDashboardNotification,
 }

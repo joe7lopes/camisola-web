@@ -8,7 +8,7 @@ import auth from './auth';
 import admin from './admin';
 import adminOrders from './adminOrders';
 import adminProduct from './adminProduct';
-import homePageLayout from './homePageLayout';
+import uiAdminDashboardNotification from './uiAdminDashboardNotification';
 
 export default combineReducers({
   account,
@@ -20,5 +20,5 @@ export default combineReducers({
   admin,
   adminOrders,
   adminProduct,
-  homePageLayout,
+  uiAdminDashboardNotification,
 });

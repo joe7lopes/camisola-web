@@ -3,10 +3,11 @@ import {
   FETCH_SETTINGS_FULFILLED,
   FETCH_SETTINGS_PENDING,
   FETCH_SETTINGS_REJECTED,
-  UPDATE_SETTINGS,
-  UPDATE_SETTINGS_FULFILLED,
-  UPDATE_SETTINGS_PENDING,
-  UPDATE_SETTINGS_REJECTED,
+  RESET_UI_ADMIN_DASHBOARD,
+  SAVE_HOME_PAGE_LAYOUT,
+  SAVE_SETTINGS_FULFILLED,
+  SAVE_SETTINGS_PENDING,
+  SAVE_SETTINGS_REJECTED,
 } from './actionTypes';
 
 import { Category, ISettings } from '../types';
@@ -29,26 +30,25 @@ export const fetchSettingsRejected = (err:string) => ({
   payload: err,
 });
 
-export const updateSettings = (settings: ISettings) => ({
-  type: UPDATE_SETTINGS,
+export const saveSettingsPending = () => ({
+  type: SAVE_SETTINGS_PENDING,
+});
+
+export const saveSettingsFulfilled = (settings: ISettings) => ({
+  type: SAVE_SETTINGS_FULFILLED,
   payload: settings,
 });
 
-export const updateSettingsPending = () => ({
-  type: UPDATE_SETTINGS_PENDING,
-});
-
-export const updateSettingsFulfilled = (sizes: string[]) => ({
-  type: UPDATE_SETTINGS_FULFILLED,
-  payload: sizes,
-});
-
-export const updateSettingsRejected = (err: string) => ({
-  type: UPDATE_SETTINGS_REJECTED,
+export const saveSettingsRejected = (err: string) => ({
+  type: SAVE_SETTINGS_REJECTED,
   payload: err,
 });
 
 export const saveHomePageLayout = (orderedIds: string[], category: Category) => ({
-  type: 'SAVE_HOME_PAGE_LAYOUT',
+  type: SAVE_HOME_PAGE_LAYOUT,
   payload: { category, productIds: orderedIds },
+});
+
+export const resetUIAdminDashBoard = () => ({
+  type: RESET_UI_ADMIN_DASHBOARD,
 });

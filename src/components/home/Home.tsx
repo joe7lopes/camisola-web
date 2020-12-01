@@ -3,10 +3,9 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import {
-  getBenficaProducts,
   getBenficaProductsForHomePage,
-  getPortoProducts,
-  getSportingProducts
+  getPortoProductsForHomePage,
+  getSportingProductsForHomePage,
 } from '../../store/selectors';
 import WhatsApp from './WhatsApp';
 import ShippingMethodBanner from './ShippingMethodBanner';
@@ -18,9 +17,8 @@ import path from '../../routes/path';
 const Home = () => {
   const history = useHistory();
   const benficaProducts = useSelector(getBenficaProductsForHomePage);
-  const portoProducts = useSelector(getPortoProducts);
-  const sportingProducts = useSelector(getSportingProducts);
-  console.log("render home again");
+  const portoProducts = useSelector(getPortoProductsForHomePage);
+  const sportingProducts = useSelector(getSportingProductsForHomePage);
   return (
     <div>
       <Row>

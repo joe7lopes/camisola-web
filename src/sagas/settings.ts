@@ -1,29 +1,32 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import {
+  call, put, takeLatest, select,
+} from 'redux-saga/effects';
 
 import {
   FETCH_SETTINGS,
+  SAVE_HOME_PAGE_LAYOUT,
   fetchSettingsFulfilled,
   fetchSettingsPending,
   fetchSettingsRejected,
-  UPDATE_SETTINGS,
-  updateSettingsFulfilled,
-  updateSettingsPending,
-  updateSettingsRejected,
+  saveSettingsFulfilled,
+  saveSettingsRejected,
+  saveSettingsPending,
+  fetchSettings,
 } from '../actions';
 
-import {Category, ISaveSizesAction, ISettings} from '../types';
+import { Category, IRootState, ISettings } from '../types';
 import api from './api';
 
 /*
  * +++Executers+++
  */
 
-function* fetchSettings() {
+function* fetchSettingsExec() {
   yield put(fetchSettingsPending());
 
   try {
-    // const { data } = yield call(api.get, '/api/settings');
-    const data: ISettings = {
+    const { data } = yield call(api.get, '/api/settings');
+    const settings: ISettings = {
       sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL',
         '1-2 anos',
         '3-4 anos',
@@ -47,20 +50,41 @@ function* fetchSettings() {
         { name: Category.FATOS_DE_TREINO, displayName: 'Fatos de treino' },
         { name: Category.EQUIPAMENTOS_CRIANCA, displayName: 'Equipamentos de Criança' },
       ],
+
+      ...data,
     };
-    yield put(fetchSettingsFulfilled(data));
+
+    yield put(fetchSettingsFulfilled(settings));
   } catch (err) {
     yield put(fetchSettingsRejected(err));
   }
 }
 
-function* updateSettingsExec({ payload }: ISaveSizesAction) {
-  yield put(updateSettingsPending());
+function* saveHomePageLayoutExec({ payload }: any) {
+  yield put(saveSettingsPending());
+  const settings = yield select((state: IRootState) => state.settings);
+  let homePageLayout;
+  if (payload.category === Category.BENFICA) {
+    homePageLayout = { ...settings.homePageLayout, benficaProductsOrder: payload.productIds };
+  } else if (payload.category === Category.SPORTING) {
+    homePageLayout = { ...settings.homePageLayout, sportingProductsOrder: payload.productIds };
+  } else if (payload.category === Category.PORTO) {
+    homePageLayout = { ...settings.homePageLayout, portoProductsOrder: payload.productIds };
+  } else {
+    homePageLayout = settings.homePageLayout;
+  }
+
+  const newSettings = {
+    ...settings,
+    homePageLayout,
+  };
+
   try {
-    const { data } = yield call(api.put, '/api/settings', payload);
-    yield put(updateSettingsFulfilled(data));
-  } catch (err) {
-    yield put(updateSettingsRejected(err));
+    const { data } = yield call(api.post, '/api/settings', newSettings);
+    yield put(saveSettingsFulfilled(data));
+    yield put(fetchSettings());
+  } catch (error) {
+    yield put(saveSettingsRejected(error));
   }
 }
 
@@ -69,9 +93,11 @@ function* updateSettingsExec({ payload }: ISaveSizesAction) {
  */
 
 export function* watchFetchSettings() {
-  yield takeLatest(FETCH_SETTINGS, fetchSettings);
+  yield takeLatest([
+    FETCH_SETTINGS,
+  ], fetchSettingsExec);
 }
 
-export function* watchUpdateSettings() {
-  yield takeLatest(UPDATE_SETTINGS, updateSettingsExec);
+export function* watchSaveHomePageLayout() {
+  yield takeLatest(SAVE_HOME_PAGE_LAYOUT, saveHomePageLayoutExec);
 }

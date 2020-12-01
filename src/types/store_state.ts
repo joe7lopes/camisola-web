@@ -51,6 +51,12 @@ export interface IAdminState {
     images: IImage[]
 }
 
+export interface IUIAdminDashboardNotification {
+    loading: boolean,
+    data?: boolean,
+    error?: boolean
+}
+
 export interface IRootState {
     account: IAccount,
     products: IProduct[],
@@ -61,4 +67,5 @@ export interface IRootState {
     admin: IAdminState,
     adminOrders: IAdminOrders,
     adminProduct: IRequest,
+    uiAdminDashboardNotification: IUIAdminDashboardNotification,
 }

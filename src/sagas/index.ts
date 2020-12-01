@@ -1,6 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
 
-import { watchFetchSettings, watchUpdateSettings } from './settings';
+import {
+  watchFetchSettings,
+  watchSaveHomePageLayout,
+} from './settings';
 import {
   watchFetchProducts,
   watchCreateNewProduct,
@@ -33,7 +36,7 @@ import {
 export default function* rootSaga() {
   yield all([
     fork(watchFetchSettings),
-    fork(watchUpdateSettings),
+    fork(watchSaveHomePageLayout),
     fork(watchUploadImages),
     fork(watchFetchImages),
     fork(watchDeleteImages),

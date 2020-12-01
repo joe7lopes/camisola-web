@@ -3,12 +3,6 @@ import {
   FETCH_PRODUCTS_REJECTED,
   FETCH_PRODUCTS_PENDING,
   FETCH_PRODUCTS_FULFILLED,
-  UPDATE_SETTINGS_PENDING,
-  UPDATE_SETTINGS_FULFILLED,
-  UPDATE_SETTINGS_REJECTED,
-  FETCH_SETTINGS_PENDING,
-  FETCH_SETTINGS_FULFILLED,
-  FETCH_SETTINGS_REJECTED,
   SIGN_UP_PENDING,
   SIGN_UP_REJECTED,
   SIGN_UP_FULFILLED,
@@ -62,20 +56,6 @@ const INITIAL_STATE: IUIState = {
 
 export default (state = INITIAL_STATE, { type, payload }: IProps) => {
   switch (type) {
-    case FETCH_SETTINGS_PENDING:
-      return { ...state, settings: { ...state.settings, isFetchingSettings: true } };
-    case FETCH_SETTINGS_FULFILLED:
-      return { ...state, settings: { ...state.settings, isFetchingSettings: false } };
-    case FETCH_SETTINGS_REJECTED:
-      return { ...state, settings: { ...state.settings, isFetchingSettings: false, err: payload } };
-    case UPDATE_SETTINGS_PENDING:
-      return { ...state, settings: { ...state.settings, isUpdatingSettings: true } };
-    case UPDATE_SETTINGS_FULFILLED:
-      return { ...state, settings: { ...state.settings, isUpdatingSettings: false } };
-    case UPDATE_SETTINGS_REJECTED: {
-      const newSettings = { ...state.settings, isUpdatingSettings: false, error: payload };
-      return { ...state, settings: newSettings };
-    }
     case FETCH_PRODUCTS_PENDING:
     case FETCH_PRODUCTS_FULFILLED:
     case FETCH_PRODUCTS_REJECTED:

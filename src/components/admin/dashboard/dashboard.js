@@ -14,6 +14,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { MainListItems } from './listItems';
 import Orders from '../orders/Orders';
 import ProductList from '../product/ProductList';
@@ -21,11 +25,19 @@ import { ImagesManager, NewProduct, Settings } from '../index';
 import DashBoardContent from './DashboardContent';
 import { useStyles } from './styles';
 import path from '../../../routes/path';
+import HomePageLayout from '../settings/home_page_layout/HomePageLayout';
+import { requestStatus } from '../../../store/selectors';
+import { resetUIAdminDashBoard } from '../../../actions';
+import Alert, {AlertType} from '../../ui/Alert';
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(true);
+  const { loading, success, error } = useSelector(requestStatus);
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -46,6 +58,8 @@ export default function Dashboard() {
         return <ImagesManager/>;
       case path.ADMIN_SETTINGS:
         return <Settings/>;
+      case path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT:
+        return <HomePageLayout/>;
       case path.ADMIN_DASHBOARD:
       default:
         return <DashBoardContent/>;
@@ -96,6 +110,16 @@ export default function Dashboard() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
+                    <Backdrop open={loading} style={{ zIndex: 100, color: '#fff' }}>
+                        <CircularProgress color="inherit" />
+                    </Backdrop>
+                    <Snackbar
+                        open={!!success || !!error} autoHideDuration={6000}
+                        onClose={() => dispatch(resetUIAdminDashBoard())}>
+                        <Alert type={success ? AlertType.SUCCESS : AlertType.ERROR}>
+                            {success ? 'Alteracoes guardadas' : `Error ao guardar alteracoes ${error}`}
+                        </Alert>
+                    </Snackbar>
                     {renderContent()}
                 </Container>
             </main>

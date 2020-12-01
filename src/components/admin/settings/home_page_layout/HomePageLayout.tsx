@@ -8,9 +8,9 @@ import { saveHomePageLayout } from '../../../../actions';
 
 export default function HomePageLayout() {
   const dispatch = useDispatch();
-  const benficaProducts = useSelector(getBenficaProductsForHomePage).slice(0, 12);
-  const portoProducts = useSelector(getPortoProducts).slice(0, 12);
-  const sportingProducts = useSelector(getSportingProducts).slice(0, 12);
+  const benficaProducts = useSelector(getBenficaProductsForHomePage);
+  const portoProducts = useSelector(getPortoProducts);
+  const sportingProducts = useSelector(getSportingProducts);
 
   if (benficaProducts.length < 1 || portoProducts.length < 1 || sportingProducts.length < 1) {
     return <div> loading...</div>;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
 interface IProps {
@@ -11,11 +11,10 @@ interface IProps {
 
 const ProductCard = ({
   id, name, price, image,
-}: IProps) => {
-  const history = useHistory();
-  return (
-        <Card className="product_card"
-              onClick={() => history.push(`/products/${id}`)}>
+}: IProps) => (
+      <Link className="text-body"
+          to={`/products/${id}`}>
+        <Card className="product_card">
             <div className="product_card_imageContainer">
                 <img src={image} alt={name}/>
             </div>
@@ -24,7 +23,7 @@ const ProductCard = ({
                 <h5>€{price}</h5>
             </Card.Body>
         </Card>
-  );
-};
+      </Link>
+);
 
 export default ProductCard;

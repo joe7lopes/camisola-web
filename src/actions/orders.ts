@@ -16,8 +16,9 @@ import {
   ICartItem, IOrder, IShippingAddress, OrderStatus,
 } from '../types';
 
-export const fetchOrders = () => ({
+export const fetchOrders = (page: number, pageSize: number) => ({
   type: FETCH_ORDERS,
+  payload: { page, pageSize },
 });
 
 export const fetchOrdersPending = () => ({

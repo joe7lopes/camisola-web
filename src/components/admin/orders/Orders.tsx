@@ -1,36 +1,46 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { useDispatch, useSelector } from 'react-redux';
-import { IOrder, OrderStatus } from '../../../types';
-import { fetchOrders } from '../../../actions';
+import TableCell from '@material-ui/core/TableCell';
+import TableBody from '@material-ui/core/TableBody';
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
+import OrderRow from './OrderRow';
 import { getOrdersState } from '../../../store/selectors';
-import OrderDetails from './OrderDetails';
-
+import { fetchOrders } from '../../../actions';
+import { IOrder, OrderStatus } from '../../../types';
+import TablePaginationActions from './TablePaginationActions';
 
 const Orders = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const dispatch = useDispatch();
-  const { loading, orders } = useSelector(getOrdersState);
+  const { loading, orders, totalElements } = useSelector(getOrdersState);
 
   useEffect(() => {
-    dispatch(fetchOrders());
-  }, [dispatch]);
+    dispatch(fetchOrders(page, rowsPerPage));
+  }, [dispatch, rowsPerPage, page]);
+
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    setPage(newPage);
+  };
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  if (!orders || loading) return <div>Loading...</div>;
 
   return (
         <TableContainer component={Paper}>
-            {loading && <div>A carregar encomendas...</div>}
-            <Table aria-label="collapsible table">
+            <Table aria-label="collapsible custom pagination table">
                 <TableHead>
                     <TableRow>
                         <TableCell/>
@@ -42,23 +52,34 @@ const Orders = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {orders && orders.map((order: IOrder) => (
-                      <Row key={order.id} order={order}/>
+                    {rowsPerPage > 0 && orders.map((order: IOrder) => (
+                        <OrderRow key={order.id} order={order}/>
                     ))}
                 </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 15, 20, { label: 'All', value: -1 }]}
+                            colSpan={3}
+                            count={totalElements}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            SelectProps={{
+                              inputProps: { 'aria-label': 'rows per page' },
+                              native: true,
+                            }}
+                            onChangePage={handleChangePage}
+                            onChangeRowsPerPage={handleChangeRowsPerPage}
+                            ActionsComponent={TablePaginationActions}
+                        />
+                    </TableRow>
+                </TableFooter>
             </Table>
         </TableContainer>
   );
 };
 export default Orders;
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
-    },
-  },
-});
 
 export const orderStatusConfig = {
   [OrderStatus.RECEIVED]: { text: 'Recebida', color: '#cfd3ce' },
@@ -66,38 +87,3 @@ export const orderStatusConfig = {
   [OrderStatus.SHIPPED]: { text: 'Enviada', color: '#b2deec' },
   [OrderStatus.CANCELLED]: { text: 'cancelada', color: '#ffda77' },
 };
-
-function Row(props: { order: IOrder }) {
-  const { order } = props;
-  const [open, setOpen] = React.useState(false);
-  const classes = useRowStyles();
-
-  return (
-        <React.Fragment>
-            <TableRow className={classes.root}>
-                <TableCell>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                        {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
-                    </IconButton>
-                </TableCell>
-                <TableCell component="th" scope="row">{order.id}</TableCell>
-                <TableCell align="right">{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</TableCell>
-                <TableCell align="right"
-                           style={{ backgroundColor: orderStatusConfig[order.status].color }}>
-                    {orderStatusConfig[order.status].text}
-                </TableCell>
-                <TableCell align="right">{order.total} €</TableCell>
-                <TableCell align="right">{order.createdAt}</TableCell>
-            </TableRow>
-             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box margin={1}>
-                            <OrderDetails order={order}/>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-             </TableRow>
-        </React.Fragment>
-  );
-}

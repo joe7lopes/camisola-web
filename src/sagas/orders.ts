@@ -23,10 +23,11 @@ import { ICreateOrderRequest } from '../types';
 * +++Executers+++
 */
 
-function* fetchOrdersExec() {
+function* fetchOrdersExec(action: any) {
   yield put(fetchOrdersPending());
   try {
-    const { data } = yield call(api.get, '/api/orders');
+    const { page, pageSize } = action.payload;
+    const { data } = yield call(api.get, `/api/orders?page=${page}&pageSize=${pageSize}`);
     yield put(fetchOrdersFulfilled(data));
   } catch (error) {
     yield put(fetchOrdersRejected(error));
@@ -39,7 +40,7 @@ function* updateOrderStatusExec(action: any) {
   try {
     yield call(api.post, `/api/orders/${orderId}`, { status });
     yield put(updateOrderStatusFulfilled());
-    yield put(fetchOrders());
+    yield put(fetchOrders(0, 20));
   } catch (error) {
     yield put(updateOrderStatusRejected(error));
   }

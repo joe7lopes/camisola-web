@@ -71,8 +71,9 @@ export const updateOrderStatusPending = () => ({
   type: UPDATE_ORDER_STATUS_PENDING,
 });
 
-export const updateOrderStatusFulfilled = () => ({
+export const updateOrderStatusFulfilled = (orderId: string, status: OrderStatus) => ({
   type: UPDATE_ORDER_STATUS_FULFILLED,
+  payload: { orderId, status },
 });
 
 export const updateOrderStatusRejected = (error: string) => ({

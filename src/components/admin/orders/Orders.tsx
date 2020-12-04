@@ -11,7 +11,7 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import OrderRow from './OrderRow';
 import { getOrdersState } from '../../../store/selectors';
-import { fetchOrders } from '../../../actions';
+import { fetchOrders, updateOrderStatus } from '../../../actions';
 import { IOrder, OrderStatus } from '../../../types';
 import TablePaginationActions from './TablePaginationActions';
 
@@ -36,6 +36,10 @@ const Orders = () => {
     setPage(0);
   };
 
+  const handleOnOrderStatusChanged = (orderId: string, status: OrderStatus) => {
+    dispatch(updateOrderStatus(orderId, status));
+  };
+
   if (!orders || loading) return <div>Loading...</div>;
 
   return (
@@ -53,7 +57,10 @@ const Orders = () => {
                 </TableHead>
                 <TableBody>
                     {rowsPerPage > 0 && orders.map((order: IOrder) => (
-                        <OrderRow key={order.id} order={order}/>
+                        <OrderRow
+                            key={order.id}
+                            order={order}
+                            handleUpdateOrder={handleOnOrderStatusChanged}/>
                     ))}
                 </TableBody>
                 <TableFooter>

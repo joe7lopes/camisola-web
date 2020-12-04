@@ -2,6 +2,7 @@ import {
   FETCH_ORDERS_FULFILLED,
   FETCH_ORDERS_PENDING,
   FETCH_ORDERS_REJECTED,
+  UPDATE_ORDER_STATUS_FULFILLED,
 } from '../actions';
 import { IAdminOrders } from '../types';
 
@@ -19,6 +20,13 @@ export default (state = INITIAL_STATE, { type, payload }: any) => {
       return { ...state, loading: false, data: payload };
     case FETCH_ORDERS_REJECTED:
       return { ...state, loading: false, error: payload };
+    case UPDATE_ORDER_STATUS_FULFILLED: {
+      const copy = state.data.content;
+      const index = copy.findIndex((e: any) => e.id === payload.orderId);
+      if (index === -1) return state;
+      copy[index].status = payload.status;
+      return { ...state, data: { ...state.data, content: copy } };
+    }
     default:
       return state;
   }

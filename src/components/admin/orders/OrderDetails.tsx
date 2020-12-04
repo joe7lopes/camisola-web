@@ -1,22 +1,19 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
 import {
   FormControl, Select, MenuItem, InputLabel,
 } from '@material-ui/core';
 import { IOrder, OrderStatus } from '../../../types';
-import { updateOrderStatus } from '../../../actions';
 import { orderStatusConfig } from './Orders';
 
 interface IProps {
-    order: IOrder
+    order: IOrder,
+    handleUpdateOrder: (orderId: string, status: OrderStatus) => void
 }
 
-const OrderDetails = ({ order }: IProps) => {
-  const dispatch = useDispatch();
-
+const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
   const updateOrder = (orderId: string, status: OrderStatus) => {
-    dispatch(updateOrderStatus(orderId, status));
+    handleUpdateOrder(orderId, status);
   };
 
   return (

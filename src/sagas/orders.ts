@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
-  FETCH_ORDERS, fetchOrders,
+  FETCH_ORDERS,
   fetchOrdersFulfilled,
   fetchOrdersPending,
   fetchOrdersRejected,
@@ -39,8 +39,7 @@ function* updateOrderStatusExec(action: any) {
   const { orderId, status } = action.payload;
   try {
     yield call(api.post, `/api/orders/${orderId}`, { status });
-    yield put(updateOrderStatusFulfilled());
-    yield put(fetchOrders(0, 20));
+    yield put(updateOrderStatusFulfilled(orderId, status));
   } catch (error) {
     yield put(updateOrderStatusRejected(error));
   }

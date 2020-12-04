@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import OrderDetails from './OrderDetails';
 import { orderStatusConfig } from './Orders';
-import { IOrder } from '../../../types';
+import { IOrder, OrderStatus } from '../../../types';
 
 const useRowStyles = makeStyles({
   root: {
@@ -19,9 +19,13 @@ const useRowStyles = makeStyles({
   },
 });
 
-export default function OrderRow(props: { order: IOrder }) {
-  const { order } = props;
-  const [open, setOpen] = React.useState(false);
+interface IProps {
+    order: IOrder,
+    handleUpdateOrder: (orderId: string, status: OrderStatus) => void
+}
+
+export default function OrderRow({ order, handleUpdateOrder }: IProps) {
+  const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
   return (
@@ -45,7 +49,7 @@ export default function OrderRow(props: { order: IOrder }) {
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
-                            <OrderDetails order={order}/>
+                            <OrderDetails order={order} handleUpdateOrder={handleUpdateOrder}/>
                         </Box>
                     </Collapse>
                 </TableCell>

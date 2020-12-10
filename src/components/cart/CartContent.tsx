@@ -55,6 +55,7 @@ const CartContent = () => {
                         Erro : {error}
                     </Alert>
                     }
+                    <div className="text-muted">(Pagamento feito no acto da entrega)</div>
                     {loading ? renderLoadingButton() : renderPlaceOrderButton()}
                 </Form>
             </div>
@@ -80,7 +81,7 @@ const renderPlaceOrderButton = () => (
     <Button
         className="m-t-md m-b-lg m-l-lg"
         size="lg" type="submit">
-        Finalizar compra
+        Encomendar
     </Button>
 );
 

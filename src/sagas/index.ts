@@ -15,6 +15,7 @@ import {
 import { watchAddToCart } from './cart';
 import {
   watchFetchOrders,
+  watchFetchOrdersWithCriteria,
   watchPlaceOrder,
   watchUpdateOrderStatus,
 } from './orders';
@@ -47,6 +48,7 @@ export default function* rootSaga() {
     fork(watchUpdateProduct),
     fork(watchDeleteProduct),
     fork(watchFetchOrders),
+    fork(watchFetchOrdersWithCriteria),
     fork(watchPlaceOrder),
     fork(watchUpdateOrderStatus),
     fork(watchAddToCart),

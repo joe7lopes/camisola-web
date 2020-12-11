@@ -11,9 +11,12 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import OrderRow from './OrderRow';
 import { getOrdersState } from '../../../store/selectors';
-import { fetchOrders, updateOrderStatus } from '../../../actions';
+import {
+  fetchOrders, fetchOrdersWithCriteria, SearchCriteria, updateOrderStatus,
+} from '../../../actions';
 import { IOrder, OrderStatus } from '../../../types';
 import TablePaginationActions from './TablePaginationActions';
+import OrderSearch from './OrderSearch';
 
 const Orders = () => {
   const [page, setPage] = useState(0);
@@ -26,6 +29,8 @@ const Orders = () => {
     dispatch(fetchOrders(page, rowsPerPage));
   }, [dispatch, rowsPerPage, page]);
 
+  if (!orders || loading) return <div>Loading...</div>;
+
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
@@ -35,54 +40,58 @@ const Orders = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   const handleOnOrderStatusChanged = (orderId: string, status: OrderStatus) => {
     dispatch(updateOrderStatus(orderId, status));
   };
 
-  if (!orders || loading) return <div>Loading...</div>;
+  const handleOnSearch = (searchCriteria: SearchCriteria) => {
+    dispatch(fetchOrdersWithCriteria(searchCriteria));
+  };
 
   return (
-        <TableContainer component={Paper}>
-            <Table aria-label="collapsible custom pagination table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell/>
-                        <TableCell>#</TableCell>
-                        <TableCell align="right">Nome</TableCell>
-                        <TableCell align="right">Status</TableCell>
-                        <TableCell align="right">total</TableCell>
-                        <TableCell align="right">Criada em</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rowsPerPage > 0 && orders.map((order: IOrder) => (
-                        <OrderRow
-                            key={order.id}
-                            order={order}
-                            handleUpdateOrder={handleOnOrderStatusChanged}/>
-                    ))}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 15, 20, { label: 'All', value: -1 }]}
-                            colSpan={3}
-                            count={totalElements}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            SelectProps={{
-                              inputProps: { 'aria-label': 'rows per page' },
-                              native: true,
-                            }}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                        />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
+    <>
+            <OrderSearch onSearch={handleOnSearch}/>
+            <TableContainer component={Paper}>
+                <Table aria-label="collapsible custom pagination table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell/>
+                            <TableCell>#</TableCell>
+                            <TableCell align="right">Nome</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="right">total</TableCell>
+                            <TableCell align="right">Criada em</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rowsPerPage > 0 && orders.map((order: IOrder) => (
+                            <OrderRow
+                                key={order.id}
+                                order={order}
+                                handleUpdateOrder={handleOnOrderStatusChanged}/>
+                        ))}
+                    </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 15, 20, { label: 'All', value: -1 }]}
+                                colSpan={3}
+                                count={totalElements}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                SelectProps={{
+                                  inputProps: { 'aria-label': 'rows per page' },
+                                  native: true,
+                                }}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
+                </Table>
+            </TableContainer>
+    </>
   );
 };
 export default Orders;

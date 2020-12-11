@@ -23,8 +23,8 @@ class Api {
     );
   }
 
-  get(url: string) {
-    return axios.get(url);
+  get(url: string, config?: any) {
+    return axios.get(url, config);
   }
 
   post(url: string, data: any) {

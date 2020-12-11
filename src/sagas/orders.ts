@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   FETCH_ORDERS,
+  FETCH_ORDERS_WITH_CRITERIA,
   fetchOrdersFulfilled,
   fetchOrdersPending,
   fetchOrdersRejected,
@@ -28,6 +29,18 @@ function* fetchOrdersExec(action: any) {
   try {
     const { page, pageSize } = action.payload;
     const { data } = yield call(api.get, `/api/orders?page=${page}&pageSize=${pageSize}`);
+    yield put(fetchOrdersFulfilled(data));
+  } catch (error) {
+    yield put(fetchOrdersRejected(error));
+  }
+}
+
+function* fetchOrdersWithCriteriaExec(action: any) {
+  yield put(fetchOrdersPending());
+  try {
+    const { criteria } = action.payload;
+    const params = { params: { ...criteria } };
+    const { data } = yield call(api.get, '/api/orders', params);
     yield put(fetchOrdersFulfilled(data));
   } catch (error) {
     yield put(fetchOrdersRejected(error));
@@ -74,6 +87,10 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
 
 export function* watchFetchOrders() {
   yield takeLatest(FETCH_ORDERS, fetchOrdersExec);
+}
+
+export function* watchFetchOrdersWithCriteria() {
+  yield takeLatest(FETCH_ORDERS_WITH_CRITERIA, fetchOrdersWithCriteriaExec);
 }
 
 export function* watchUpdateOrderStatus() {

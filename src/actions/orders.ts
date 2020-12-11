@@ -3,6 +3,7 @@ import {
   FETCH_ORDERS_FULFILLED,
   FETCH_ORDERS_PENDING,
   FETCH_ORDERS_REJECTED,
+  FETCH_ORDERS_WITH_CRITERIA,
   PLACE_ORDER,
   PLACE_ORDER_FULFILLED,
   PLACE_ORDER_PENDING,
@@ -16,9 +17,20 @@ import {
   ICartItem, IOrder, IShippingAddress, OrderStatus,
 } from '../types';
 
+export type SearchCriteria = {
+  orderId: string,
+  name: string,
+  createdAt?: string
+}
+
 export const fetchOrders = (page: number, pageSize: number) => ({
   type: FETCH_ORDERS,
   payload: { page, pageSize },
+});
+
+export const fetchOrdersWithCriteria = (criteria: SearchCriteria) => ({
+  type: FETCH_ORDERS_WITH_CRITERIA,
+  payload: { criteria },
 });
 
 export const fetchOrdersPending = () => ({

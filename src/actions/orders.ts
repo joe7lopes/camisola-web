@@ -20,6 +20,7 @@ import {
 export type SearchCriteria = {
   orderId: string,
   name: string,
+  phone: string,
   createdAt?: string
 }
 

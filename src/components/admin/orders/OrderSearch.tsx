@@ -13,6 +13,7 @@ interface IProps {
 export default function OrderSearch({ onSearch } : IProps) {
   const [orderId, setOrderId] = useState();
   const [name, setName] = useState();
+  const [phone, setPhone] = useState();
   const [createdAt, setCreatedAt] = useState();
 
   const handleFormSubmit = (e: any) => {
@@ -20,6 +21,7 @@ export default function OrderSearch({ onSearch } : IProps) {
     onSearch({
       orderId,
       name,
+      phone,
       createdAt: createdAt ? new Date(createdAt).toISOString() : undefined,
     });
   };
@@ -31,6 +33,7 @@ export default function OrderSearch({ onSearch } : IProps) {
             <Grid container justify="space-around" className="p-lg">
             <TextField label="Encomenda #" value={orderId || ''} onChange={(e) => setOrderId(e.target.value)}/>
             <TextField label="Nome" value={name || ''} onChange={(e) => setName(e.target.value)} />
+            <TextField label="Telefone" value={phone || ''} onChange={(e) => setPhone(e.target.value)} />
               <TextField
                   label="Criada em"
                   type="date"

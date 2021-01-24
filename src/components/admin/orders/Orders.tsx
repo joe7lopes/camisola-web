@@ -12,7 +12,10 @@ import TablePagination from '@material-ui/core/TablePagination';
 import OrderRow from './OrderRow';
 import { getOrdersState } from '../../../store/selectors';
 import {
-  fetchOrders, fetchOrdersWithCriteria, SearchCriteria, updateOrderStatus,
+  fetchOrders,
+  fetchOrdersWithCriteria,
+  SearchCriteria,
+  updateOrder,
 } from '../../../actions';
 import { IOrder, OrderStatus } from '../../../types';
 import TablePaginationActions from './TablePaginationActions';
@@ -40,8 +43,8 @@ const Orders = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const handleOnOrderStatusChanged = (orderId: string, status: OrderStatus) => {
-    dispatch(updateOrderStatus(orderId, status));
+  const handleOnOrderChanged = (updatedOrder: IOrder) => {
+    dispatch(updateOrder(updatedOrder));
   };
 
   const handleOnSearch = (searchCriteria: SearchCriteria) => {
@@ -68,7 +71,7 @@ const Orders = () => {
                             <OrderRow
                                 key={order.id}
                                 order={order}
-                                handleUpdateOrder={handleOnOrderStatusChanged}/>
+                                handleUpdateOrder={handleOnOrderChanged}/>
                         ))}
                     </TableBody>
                     <TableFooter>

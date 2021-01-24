@@ -11,14 +11,14 @@ import {
   placeOrderFulfilled,
   placeOrderPending,
   placeOrderRejected,
-  UPDATE_ORDER_STATUS,
-  updateOrderStatusFulfilled,
-  updateOrderStatusPending,
-  updateOrderStatusRejected,
+  UPDATE_ORDER,
+  updateOrderFulfilled,
+  updateOrderPending,
+  updateOrderRejected,
 } from '../actions';
 
 import api from './api';
-import { ICreateOrderRequest } from '../types';
+import {ICreateOrderRequest, IOrder} from '../types';
 
 /*
 * +++Executers+++
@@ -47,14 +47,14 @@ function* fetchOrdersWithCriteriaExec(action: any) {
   }
 }
 
-function* updateOrderStatusExec(action: any) {
-  yield put(updateOrderStatusPending());
-  const { orderId, status } = action.payload;
+function* updateOrderExec({ payload }: {type:string, payload:IOrder}) {
+  yield put(updateOrderPending());
+  const { id } = payload;
   try {
-    yield call(api.post, `/api/orders/${orderId}`, { status });
-    yield put(updateOrderStatusFulfilled(orderId, status));
+    yield call(api.put, `/api/orders/${id}`, { ...payload });
+    yield put(updateOrderFulfilled({ ...payload }));
   } catch (error) {
-    yield put(updateOrderStatusRejected(error));
+    yield put(updateOrderRejected(error));
   }
 }
 
@@ -93,8 +93,8 @@ export function* watchFetchOrdersWithCriteria() {
   yield takeLatest(FETCH_ORDERS_WITH_CRITERIA, fetchOrdersWithCriteriaExec);
 }
 
-export function* watchUpdateOrderStatus() {
-  yield takeLatest(UPDATE_ORDER_STATUS, updateOrderStatusExec);
+export function* watchUpdateOrder() {
+  yield takeLatest(UPDATE_ORDER.REQUESTED, updateOrderExec);
 }
 
 export function* watchPlaceOrder() {

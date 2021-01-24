@@ -41,8 +41,9 @@ export interface IOrder {
     id: string,
     items: IFetchOrdersItemResponse[],
     shippingAddress: IShippingAddress,
-    createdAt: string,
     status: OrderStatus,
+    privateNote: string;
+    createdAt: string,
     total: string
 }
 

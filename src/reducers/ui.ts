@@ -12,16 +12,13 @@ import {
   RESET_PASSWORD_PENDING,
   RESET_PASSWORD_FULFILLED,
   RESET_PASSWORD_REJECTED,
-  UPDATE_ORDER_STATUS_PENDING,
-  UPDATE_ORDER_STATUS_FULFILLED,
-  UPDATE_ORDER_STATUS_REJECTED,
   SIGN_OUT_FULFILLED,
   UPDATE_PRODUCT_PENDING,
   UPDATE_PRODUCT_FULFILLED,
   UPDATE_PRODUCT_REJECTED,
   UPLOAD_IMAGES_FULFILLED,
   UPLOAD_IMAGES_REJECTED,
-  UPLOAD_IMAGES_PENDING,
+  UPLOAD_IMAGES_PENDING, UPDATE_ORDER,
 } from '../actions';
 
 import { IUIState } from '../types';
@@ -91,11 +88,11 @@ export default (state = INITIAL_STATE, { type, payload }: IProps) => {
       return { ...state, auth: { isResettingPassword: false } };
     case RESET_PASSWORD_REJECTED:
       return { ...state, auth: { isResettingPassword: false } };
-    case UPDATE_ORDER_STATUS_PENDING:
-      return { ...state, admin: { isUpdatingOrderStatus: true } };
-    case UPDATE_ORDER_STATUS_FULFILLED:
-    case UPDATE_ORDER_STATUS_REJECTED:
-      return { ...state, admin: { isUpdatingOrderStatus: false } };
+    case UPDATE_ORDER.PENDING:
+      return { ...state, admin: { isUpdatingOrder: true } };
+    case UPDATE_ORDER.FULFILLED:
+    case UPDATE_ORDER.REJECTED:
+      return { ...state, admin: { isUpdatingOrder: false } };
     default:
       return state;
   }

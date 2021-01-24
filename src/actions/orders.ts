@@ -7,14 +7,10 @@ import {
   PLACE_ORDER,
   PLACE_ORDER_FULFILLED,
   PLACE_ORDER_PENDING,
-  PLACE_ORDER_REJECTED,
-  UPDATE_ORDER_STATUS,
-  UPDATE_ORDER_STATUS_FULFILLED,
-  UPDATE_ORDER_STATUS_PENDING,
-  UPDATE_ORDER_STATUS_REJECTED,
+  PLACE_ORDER_REJECTED, UPDATE_ORDER,
 } from './actionTypes';
 import {
-  ICartItem, IOrder, IShippingAddress, OrderStatus,
+  ICartItem, IOrder, IShippingAddress,
 } from '../types';
 
 export type SearchCriteria = {
@@ -75,21 +71,12 @@ export const placeOrderRejected = (error: string) => ({
   payload: error,
 });
 
-export const updateOrderStatus = (orderId: string, status: OrderStatus) => ({
-  type: UPDATE_ORDER_STATUS,
-  payload: { orderId, status },
-});
 
-export const updateOrderStatusPending = () => ({
-  type: UPDATE_ORDER_STATUS_PENDING,
-});
+export function action(type: string, payload = {}, callback:void) {
+  return { type, payload, callback };
+}
 
-export const updateOrderStatusFulfilled = (orderId: string, status: OrderStatus) => ({
-  type: UPDATE_ORDER_STATUS_FULFILLED,
-  payload: { orderId, status },
-});
-
-export const updateOrderStatusRejected = (error: string) => ({
-  type: UPDATE_ORDER_STATUS_REJECTED,
-  payload: error,
-});
+export const updateOrder = (updatedOrder:IOrder) => action(UPDATE_ORDER.REQUESTED, { ...updatedOrder });
+export const updateOrderPending = () => action(UPDATE_ORDER.PENDING, {});
+export const updateOrderFulfilled = (updatedOrder:IOrder) => action(UPDATE_ORDER.FULFILLED, { ...updatedOrder });
+export const updateOrderRejected = (error: string) => action(UPDATE_ORDER.REJECTED, { error });

@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import OrderDetails from './OrderDetails';
 import { orderStatusConfig } from './Orders';
-import { IOrder, OrderStatus } from '../../../types';
+import { IOrder } from '../../../types';
 
 const useRowStyles = makeStyles({
   root: {
@@ -21,7 +21,7 @@ const useRowStyles = makeStyles({
 
 interface IProps {
     order: IOrder,
-    handleUpdateOrder: (orderId: string, status: OrderStatus) => void
+    handleUpdateOrder: (updatedOrder: IOrder) => void
 }
 
 export default function OrderRow({ order, handleUpdateOrder }: IProps) {

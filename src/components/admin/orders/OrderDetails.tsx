@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import {
-  FormControl, Select, MenuItem, InputLabel,
+  FormControl, Select, MenuItem, InputLabel, TextareaAutosize, Button,
 } from '@material-ui/core';
 import { IOrder, OrderStatus } from '../../../types';
 import { orderStatusConfig } from './Orders';
 
 interface IProps {
     order: IOrder,
-    handleUpdateOrder: (orderId: string, status: OrderStatus) => void
+    handleUpdateOrder: (updatedOrder: IOrder) => void
 }
 
 const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
-  const updateOrder = (orderId: string, status: OrderStatus) => {
-    handleUpdateOrder(orderId, status);
+  const [privateNote, setPrivateNote] = useState(order.privateNote);
+
+  const updateOrder = (status: OrderStatus, note: string) => {
+    const updatedOrder = {
+      ...order,
+      status,
+      privateNote: note,
+    };
+
+    handleUpdateOrder(updatedOrder);
   };
 
   return (
-        <Row>
+        <Row className="m-t-lg">
             <Col className="c-white-background">
                 <div>
                     <div><b>Nome:</b> {order.shippingAddress.firstName}</div>
@@ -51,7 +59,7 @@ const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
                             id="demo-simple-select-filled"
                             style={{ backgroundColor: orderStatusConfig[order.status].color }}
                             value={order.status}
-                            onChange={(e: any) => updateOrder(order.id, e.target.value)}>
+                            onChange={(e: any) => updateOrder(e.target.value, order.privateNote)}>
                             <MenuItem value={OrderStatus.RECEIVED}
                                       style={{ backgroundColor: orderStatusConfig[OrderStatus.RECEIVED].color }}>
                                 {orderStatusConfig[OrderStatus.RECEIVED].text}
@@ -70,6 +78,21 @@ const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
                             </MenuItem>
                         </Select>
                     </FormControl>
+                    <div className="m-t-md">
+                        <TextareaAutosize
+                            rowsMin={3}
+                            placeholder="Notas"
+                            value={privateNote}
+                            onChange={(ev) => setPrivateNote(ev.target.value)}/>
+                    </div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        type="button"
+                        onClick={() => updateOrder(order.status, privateNote)}>
+                        Save
+                    </Button>
                 </div>
             </Col>
         </Row>

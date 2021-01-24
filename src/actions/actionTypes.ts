@@ -3,6 +3,14 @@ const _PENDING = '_PENDING';
 const _FULFILLED = '_FULFILLED';
 const _REJECTED = '_REJECTED';
 
+
+export function createRequestTypes(base: string) {
+  return ['REQUESTED', 'PENDING', 'FULFILLED', 'REJECTED'].reduce((acc:any, type) => {
+    acc[type] = `${base}_${type}`;
+    return acc;
+  }, {});
+}
+
 // Settings
 export const FETCH_SETTINGS = 'FETCH_SETTINGS';
 export const FETCH_SETTINGS_PENDING = FETCH_SETTINGS + _PENDING;
@@ -72,10 +80,7 @@ export const PLACE_ORDER_PENDING = PLACE_ORDER + _PENDING;
 export const PLACE_ORDER_FULFILLED = PLACE_ORDER + _FULFILLED;
 export const PLACE_ORDER_REJECTED = PLACE_ORDER + _REJECTED;
 
-export const UPDATE_ORDER_STATUS = 'UPDATE_ORDER_STATUS';
-export const UPDATE_ORDER_STATUS_PENDING = UPDATE_ORDER_STATUS + _PENDING;
-export const UPDATE_ORDER_STATUS_FULFILLED = UPDATE_ORDER_STATUS + _FULFILLED;
-export const UPDATE_ORDER_STATUS_REJECTED = UPDATE_ORDER_STATUS + _REJECTED;
+export const UPDATE_ORDER = createRequestTypes('UPDATE_ORDER');
 
 // AUTH
 export const SIGN_IN = 'SIGN_IN';

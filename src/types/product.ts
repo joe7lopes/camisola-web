@@ -11,6 +11,7 @@ export interface IProductSize {
     price: number
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export enum Category {
     PORTUGAL = 'portugal',
     BENFICA = 'benfica',
@@ -36,6 +37,7 @@ export interface IProduct {
     sizes: IProductSize[],
     images: IImage[],
     customizable: boolean,
+    visible: boolean,
     defaultPrice: number,
     description: string
 }
@@ -46,6 +48,7 @@ export interface ICreateProduct {
     sizes: IProductSize[],
     images: string[],
     isCustomizable: boolean,
+    isVisible: boolean,
     defaultPrice: number,
     description: string
 }
@@ -57,6 +60,7 @@ export interface IUpdateProduct {
     sizes: IProductSize[],
     imageIds: string[],
     isCustomizable: boolean,
+    isVisible: boolean,
     defaultPrice: number,
     description: string,
 }

@@ -27,5 +27,5 @@ export default ClubPage;
 
 
 const filterProducts = (category: string, products: IProduct[]) => products
-  .filter((p) => p.categories
+  .filter((p) => p.visible && p.categories
     .filter((c) => c === category).length > 0);

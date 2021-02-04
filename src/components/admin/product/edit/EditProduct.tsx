@@ -21,6 +21,7 @@ interface IProps {
 
 const EditProduct = ({ product }: IProps) => {
   const [isCustomizable, setIsCustomizable] = useState(product.customizable);
+  const [isVisible, setIsVisible] = useState(product.visible);
   const [defaultPrice, setDefaultPrice] = useState(product.defaultPrice);
   const [productName, setProductName] = useState(product.name);
   const [categories, setCategories] = useState(product.categories);
@@ -46,6 +47,7 @@ const EditProduct = ({ product }: IProps) => {
       sizes,
       imageIds,
       isCustomizable,
+      isVisible,
       defaultPrice,
       description,
     };
@@ -105,6 +107,12 @@ const EditProduct = ({ product }: IProps) => {
                     <InputGroup.Checkbox
                         checked={isCustomizable}
                         onChange={() => setIsCustomizable(!isCustomizable)}/>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    Produto visivel ?
+                    <InputGroup.Checkbox
+                        checked={isVisible}
+                        onChange={() => setIsVisible(!isVisible)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>

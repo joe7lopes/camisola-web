@@ -34,6 +34,7 @@ const AddNewProduct = () => {
   const [images, setImages] = useState<IImage[]>([]);
   const [description, setDescription] = useState('');
   const [isCustomizable, setIsCustomizable] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [defaultPrice, setDefaultPrice] = useState(30);
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
@@ -58,6 +59,7 @@ const AddNewProduct = () => {
       sizes: availableSizes,
       images: imageIds,
       isCustomizable,
+      isVisible,
       defaultPrice,
       description,
     };
@@ -129,6 +131,12 @@ const AddNewProduct = () => {
                     <InputGroup.Checkbox
                         checked={isCustomizable}
                         onChange={() => setIsCustomizable(!isCustomizable)}/>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    Produto visivel ?
+                    <InputGroup.Checkbox
+                        checked={isVisible}
+                        onChange={() => setIsVisible(!isVisible)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>

@@ -9,6 +9,7 @@ import admin from './admin';
 import adminOrders from './adminOrders';
 import adminProduct from './adminProduct';
 import uiAdminDashboardNotification from './uiAdminDashboardNotification';
+import facebookReviewsLogin from '../components/admin/facebook/reducer';
 
 export default combineReducers({
   account,
@@ -21,4 +22,5 @@ export default combineReducers({
   adminOrders,
   adminProduct,
   uiAdminDashboardNotification,
+  facebookReviewsLogin,
 });

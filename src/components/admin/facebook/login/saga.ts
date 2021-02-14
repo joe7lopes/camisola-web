@@ -5,7 +5,7 @@ import {
   updateFbTokenPending,
   updateFbTokenRejected,
 } from './actions';
-import api from '../../../sagas/api';
+import api from '../../../../sagas/api';
 
 function* updateFbTokenExec({ payload } : any) {
   yield put(updateFbTokenPending());

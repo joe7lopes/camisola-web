@@ -1,4 +1,4 @@
-import { action, createRequestTypes } from '../../../actions';
+import { action, createRequestTypes } from '../../../../actions';
 
 // eslint-disable-next-line import/prefer-default-export
 export const UPDATE_FB_TOKEN = createRequestTypes('UPDATE_FB_TOKEN');

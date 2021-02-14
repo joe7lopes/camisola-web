@@ -9,7 +9,7 @@ import {
 } from '../../store/selectors';
 import WhatsApp from './WhatsApp';
 import ShippingMethodBanner from './ShippingMethodBanner';
-import FacebookReviews from './FacebookReviews';
+import FacebookReviews from './facebook/FacebookReviews';
 import Footer from '../Footer';
 import ProductCarousel from './ProductCarousel';
 import path from '../../routes/path';

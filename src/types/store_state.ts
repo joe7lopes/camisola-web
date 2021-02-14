@@ -9,7 +9,8 @@ export interface IRequest {
     error?: any
 }
 
-export interface IAdminOrders extends IRequest{}
+export interface IAdminOrders extends IRequest {
+}
 
 export interface IUIState {
     products: {
@@ -30,7 +31,7 @@ export interface IUIState {
         isProductUpdated: boolean,
         error?: string
     },
-    imageManager:IRequest
+    imageManager: IRequest
 }
 
 export interface ICartState {
@@ -57,6 +58,21 @@ export interface IUIAdminDashboardNotification {
     error?: boolean
 }
 
+export interface IFacebookReview {
+    created_time: string,
+    review_text: string
+}
+
+export interface IFacebookReviews {
+    reviews: IFacebookReview[],
+    loading: boolean,
+    error?: string
+}
+
+export interface IHomePage {
+    facebookReviews: IFacebookReviews
+}
+
 export interface IRootState {
     account: IAccount,
     products: IProduct[],
@@ -68,4 +84,5 @@ export interface IRootState {
     adminOrders: IAdminOrders,
     adminProduct: IRequest,
     uiAdminDashboardNotification: IUIAdminDashboardNotification,
+    homePage: IHomePage,
 }

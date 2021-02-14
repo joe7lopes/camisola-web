@@ -12,7 +12,7 @@ import {
 import { Dashboard } from '../components/admin';
 
 import path from './path';
-import { fetchProducts, fetchSettings } from '../actions';
+import { fetchProducts, fetchSettings, fetchFbReviews } from '../actions';
 import AdminRoute from './AdminRoute';
 import LoginHOC from '../components/auth/LoginHOC';
 import ScrollToTop from './ScrollToTop';
@@ -60,6 +60,7 @@ const Init = () => {
   useEffect(() => {
     dispatch(fetchSettings());
     dispatch(fetchProducts());
+    dispatch(fetchFbReviews());
   }, [dispatch]);
 
   if (process.env.NODE_ENV === 'production') {

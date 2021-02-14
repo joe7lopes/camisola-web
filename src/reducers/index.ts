@@ -9,6 +9,8 @@ import admin from './admin';
 import adminOrders from './adminOrders';
 import adminProduct from './adminProduct';
 import uiAdminDashboardNotification from './uiAdminDashboardNotification';
+import adminNew from '../components/admin/adminReducer';
+import homePage from '../components/home/reducer';
 
 export default combineReducers({
   account,
@@ -21,4 +23,6 @@ export default combineReducers({
   adminOrders,
   adminProduct,
   uiAdminDashboardNotification,
+  adminNew,
+  homePage,
 });

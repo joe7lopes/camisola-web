@@ -34,6 +34,9 @@ import {
   watchUploadImages,
 } from './images';
 
+import { watchUpdateFBToken } from '../components/admin/facebook/login/saga';
+import { watchFetchFbReviews } from '../components/home/facebook/saga';
+
 export default function* rootSaga() {
   yield all([
     fork(watchFetchSettings),
@@ -56,5 +59,7 @@ export default function* rootSaga() {
     fork(watchSignOut),
     fork(watchSignUp),
     fork(watchResetPassword),
+    fork(watchUpdateFBToken),
+    fork(watchFetchFbReviews),
   ]);
 }

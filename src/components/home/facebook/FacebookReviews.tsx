@@ -21,7 +21,7 @@ const FacebookReviews = () => {
   };
 
   const facebookLink = (text: string) => (
-        <a href="https://www.facebook.com/Camisola10-Geral-105428654698416"
+        <a href="https://www.facebook.com/Camisola10-Geral-105428654698416/reviews"
            target="_blank"
            rel="noopener noreferrer">
             {text}

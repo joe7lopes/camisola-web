@@ -13,6 +13,7 @@ import {
   getShippingCost,
   getSubmittedOrder,
 } from '../../store/selectors';
+import { IShippingAddress } from '../../types';
 
 const CartContent = () => {
   const items = useSelector(getCartItems);
@@ -26,9 +27,11 @@ const CartContent = () => {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity()) {
-      const shippingAddress: any = [...form.elements]
+      const shippingAddress: IShippingAddress = [...form.elements]
         .filter((el) => el.name)
         .reduce((acc, curr) => ({ ...acc, [curr.name]: curr.value }), {});
+
+      shippingAddress.email = shippingAddress.email.trim();
 
       dispatch(placeOrder(items, shippingAddress));
     }

@@ -66,7 +66,6 @@ const ShipmentAddress = () => (
             </InputGroup>
           </Col>
         </Row>
-      {/* <Form.Check type="checkbox" name="createAccount" label="Crie conta, habilite-se a ganhar um vale de desconto." /> */}
       </Card.Body>
     </Card>
 );

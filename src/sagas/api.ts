@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store/index';
-import { signOut } from '../actions';
+import { signOut } from '../components/admin/auth/actions';
 
 const USER_TOKEN = 'camisola10-u-token';
 class Api {

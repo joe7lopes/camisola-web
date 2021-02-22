@@ -21,19 +21,13 @@ import {
 } from './orders';
 
 import {
-  watchResetPassword,
-  watchSignIn,
-  watchSignOut,
-  watchSignUp,
-} from './auth';
-
-import {
   watchDeleteImages,
   watchFetchImages,
   watchImagesChanges,
   watchUploadImages,
 } from './images';
 
+import { watchSignIn } from '../components/admin/auth/saga';
 import { watchUpdateFBToken } from '../components/admin/facebook/login/saga';
 import { watchFetchFbReviews } from '../components/home/facebook/saga';
 
@@ -56,9 +50,7 @@ export default function* rootSaga() {
     fork(watchUpdateOrder),
     fork(watchAddToCart),
     fork(watchSignIn),
-    fork(watchSignOut),
-    fork(watchSignUp),
-    fork(watchResetPassword),
+    // fork(watchSignOut),
     fork(watchUpdateFBToken),
     fork(watchFetchFbReviews),
   ]);

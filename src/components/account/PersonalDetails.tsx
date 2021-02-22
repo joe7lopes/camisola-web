@@ -2,12 +2,13 @@ import React from 'react';
 import {
   InputGroup, FormControl, Card, Row, Col,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { ShippingAddress } from '../ui';
-import { getUser } from '../../store/selectors';
 
 const PersonalDetails = () => {
-  const user = useSelector(getUser);
+  // const user = useSelector(getUser);
+  const user = {
+    firstName: 'fisss', lastName: 'asd', email: 'asdsd', phone: 'adsd',
+  };
   return (
         <Card>
             <Card.Body>

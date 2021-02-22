@@ -40,9 +40,6 @@ const INITIAL_STATE: IUIState = {
   settings: {
     isFetchingSettings: true,
   },
-  auth: {
-    isSignInSuccess: false,
-  },
   admin: {
     isUpdatingProduct: false,
     isProductUpdated: false,

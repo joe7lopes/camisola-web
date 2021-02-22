@@ -2,8 +2,6 @@ import React from 'react';
 import {
   InputGroup, FormControl, Row, Col,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { getUser } from '../../store/selectors';
 
 interface IProps {
     readonly?: boolean
@@ -12,7 +10,7 @@ interface IProps {
 const ShippingAddress = ({
   readonly = false,
 }: IProps) => {
-  const user = useSelector(getUser);
+  const user = { address: { street: 'street', city: 'city', postalCode: '223' } };
   return (
     <>
             <InputGroup className="mb-3">

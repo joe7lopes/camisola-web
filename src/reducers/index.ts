@@ -4,7 +4,6 @@ import account from './account';
 import products from './products';
 import cart from './cart';
 import ui from './ui';
-import auth from './auth';
 import admin from './admin';
 import adminOrders from './adminOrders';
 import adminProduct from './adminProduct';
@@ -18,7 +17,6 @@ export default combineReducers({
   settings,
   cart,
   ui,
-  auth,
   admin,
   adminOrders,
   adminProduct,

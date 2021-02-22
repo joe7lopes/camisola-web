@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Row, Col, ListGroup } from 'react-bootstrap';
+// import { useDispatch } from 'react-redux';
 import path from '../../routes/path';
 import ProfileImage from './ProfileImage';
 import OrderHistory from './OrderHistory';
 import AccountDetails from './AccountDetails';
-import {useDispatch} from "react-redux";
-import {signOut} from "../../actions";
 
 enum Tab {
   ORDERS = 'Encomendas',
@@ -15,13 +14,13 @@ enum Tab {
 }
 
 const Account = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useHistory();
   const [activeTab, setActiveTab] = useState(Tab.ORDERS);
 
   const handleTabChanged = (tab: Tab) => {
-    if(tab === Tab.LOGOUT){
-      dispatch(signOut());
+    if (tab === Tab.LOGOUT) {
+      // dispatch(signOut());
       history.push(path.HOME);
     }
     setActiveTab(tab);
@@ -38,10 +37,10 @@ const Account = () => {
                   key={tab}
                   action
                   active={activeTab === tab}
-                  onClick={()=>handleTabChanged(tab)}>
+                  onClick={() => handleTabChanged(tab)}>
                   {tab}
                 </ListGroup.Item>
-              ))}
+            ))}
           </ListGroup>
         </Col>
         <Col>{renderComponent(activeTab)}</Col>

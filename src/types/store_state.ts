@@ -1,7 +1,12 @@
 import {
-  IAccount, ICartItem, IImage, IProduct, ISettings,
+  IAccount,
+  ICartItem,
+  IImage,
+  IProduct,
+  ISettings,
 } from './index';
-import { IUser } from './auth';
+
+import { IAdminNew } from '../components/admin/adminReducer';
 
 export interface IRequest {
     loading: boolean,
@@ -20,12 +25,6 @@ export interface IUIState {
         isUpdatingSettings?: boolean,
         isFetchingSettings: boolean
     },
-    auth: {
-        isSigningUp?: boolean,
-        isSigningIn?: boolean,
-        isResettingPassword?: boolean,
-        isSignInSuccess: boolean
-    },
     admin: {
         isUpdatingProduct: boolean,
         isProductUpdated: boolean,
@@ -38,14 +37,6 @@ export interface ICartState {
     items: ICartItem[],
     total: number,
     submittedOrder: IRequest,
-}
-
-export interface IAuthState {
-    token?: string,
-    signUpError?: string,
-    signInError?: string,
-    resetPasswordError?: string,
-    user?: IUser
 }
 
 export interface IAdminState {
@@ -79,8 +70,8 @@ export interface IRootState {
     cart: ICartState,
     settings: ISettings,
     ui: IUIState,
-    auth: IAuthState,
     admin: IAdminState,
+    adminNew: IAdminNew,
     adminOrders: IAdminOrders,
     adminProduct: IRequest,
     uiAdminDashboardNotification: IUIAdminDashboardNotification,

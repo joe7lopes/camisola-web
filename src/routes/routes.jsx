@@ -14,7 +14,7 @@ import { Dashboard } from '../components/admin';
 import path from './path';
 import { fetchProducts, fetchSettings, fetchFbReviews } from '../actions';
 import AdminRoute from './AdminRoute';
-import LoginHOC from '../components/auth/LoginHOC';
+import Login from '../components/auth/Login';
 import ScrollToTop from './ScrollToTop';
 import NavigationHeaderRoute from './NavigationHeaderRoute';
 import OrderSummary from '../components/order_summary/OrderSummary';
@@ -44,7 +44,7 @@ const Routes = () => (
               path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT,
               path.ADMIN,
             ].map((url, index) => <AdminRoute exact path={url} component={Dashboard} key={index}/>)}
-            <Route exact path={path.LOGIN} component={LoginHOC}/>
+            <Route exact path={path.LOGIN} component={Login}/>
             <Route exact path="/account" component={OrderSummary}/>
             <Route>
                 <h3> :( a pagina nao existe</h3>

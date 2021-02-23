@@ -40,7 +40,7 @@ const Orders = () => {
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(parseInt(event.target.value, 50));
     setPage(0);
   };
   const handleOnOrderChanged = (updatedOrder: IOrder) => {
@@ -77,7 +77,7 @@ const Orders = () => {
                     <TableFooter>
                         <TableRow>
                             <TablePagination
-                                rowsPerPageOptions={[5, 10, 15, 20, { label: 'All', value: -1 }]}
+                                rowsPerPageOptions={[10, 15, 50, { label: 'All', value: -1 }]}
                                 colSpan={3}
                                 count={totalElements}
                                 rowsPerPage={rowsPerPage}

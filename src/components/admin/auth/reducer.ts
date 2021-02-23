@@ -1,4 +1,4 @@
-import {SIGN_IN_ADMIN, SIGN_OUT_ADMIN} from './actions';
+import { SIGN_IN_ADMIN, SIGN_OUT_ADMIN } from './actions';
 
 export interface IAdminAuth {
   loading: boolean,
@@ -8,7 +8,7 @@ export interface IAdminAuth {
 
 const INITIAL_STATE : IAdminAuth = {
   loading: false,
-  token: undefined,
+  token: localStorage.getItem('camisola10-u-token') || undefined,
   error: undefined,
 };
 

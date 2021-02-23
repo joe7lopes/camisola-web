@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { LoadingButton } from '../ui';
 import { signIn } from '../admin/auth/actions';
 import { IRootState } from '../../types';
@@ -12,14 +12,11 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const history = useHistory();
   const { token, loading, error } = useSelector((state:IRootState) => state.adminNew.auth);
 
-  useEffect(() => {
-    if (token) {
-      history.push(path.ADMIN);
-    }
-  }, [token, history]);
+  if (token) {
+    return <Redirect to={path.ADMIN} />;
+  }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();

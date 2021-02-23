@@ -2,21 +2,20 @@ import axios from 'axios';
 import store from '../store/index';
 import { signOut } from '../components/admin/auth/actions';
 
-const USER_TOKEN = 'camisola10-u-token';
 class Api {
   constructor() {
     axios.defaults.headers['Content-Type'] = 'application/json';
     axios.defaults.timeout = 5000;
-    const token = localStorage.getItem(USER_TOKEN);
+    const token = localStorage.getItem('camisola10-u-token');
     if (token) axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
     axios.interceptors.response.use(
       (response) => response,
-      (error) => {
+      async (error) => {
         const { status } = error.response;
         if (status === 401 || status === 403) {
-          store.dispatch(signOut());
-          localStorage.removeItem(USER_TOKEN);
+          await store.dispatch(signOut());
+          localStorage.removeItem('camisola10-u-token');
         }
         return Promise.reject(error);
       },

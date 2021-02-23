@@ -23,7 +23,7 @@ import OrderSearch from './OrderSearch';
 
 const Orders = () => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(30);
 
   const dispatch = useDispatch();
   const { loading, orders, totalElements } = useSelector(getOrdersState);
@@ -40,7 +40,7 @@ const Orders = () => {
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 50));
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
   const handleOnOrderChanged = (updatedOrder: IOrder) => {
@@ -77,7 +77,7 @@ const Orders = () => {
                     <TableFooter>
                         <TableRow>
                             <TablePagination
-                                rowsPerPageOptions={[10, 15, 50, { label: 'All', value: -1 }]}
+                                rowsPerPageOptions={[30, 40, 50, { label: 'All', value: -1 }]}
                                 colSpan={3}
                                 count={totalElements}
                                 rowsPerPage={rowsPerPage}

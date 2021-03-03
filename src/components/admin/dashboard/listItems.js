@@ -82,6 +82,12 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary="Settings" />
         </ListItem>
+        <ListItem button onClick={() => history.push(path.ADMIN_DISCOUNTS) }>
+            <ListItemIcon>
+                <Settings />
+            </ListItemIcon>
+            <ListItemText primary="Descontos" />
+        </ListItem>
     </div>
   );
 };

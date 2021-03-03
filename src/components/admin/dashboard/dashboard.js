@@ -29,6 +29,7 @@ import HomePageLayout from '../settings/home_page_layout/HomePageLayout';
 import { requestStatus } from '../../../store/selectors';
 import { resetUIAdminDashBoard } from '../../../actions';
 import Alert, {AlertType} from '../../ui/Alert';
+import Discounts from "../discounts/Discounts";
 
 export default function Dashboard() {
   const classes = useStyles();
@@ -60,7 +61,8 @@ export default function Dashboard() {
         return <Settings/>;
       case path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT:
         return <HomePageLayout/>;
-      case path.ADMIN_DASHBOARD:
+      case path.ADMIN_DISCOUNTS:
+        return <Discounts/>;
       default:
         return <DashBoardContent/>;
     }

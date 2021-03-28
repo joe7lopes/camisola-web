@@ -27,7 +27,7 @@ const CartContent = () => {
   const isBlank = (value: string) => !value || value === '';
   const isEmail = (value: string) => {
     if (isBlank(value)) return true;
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(value.toLowerCase());
   };
 
@@ -53,7 +53,7 @@ const CartContent = () => {
 
   const isFormValid = () => {
     for (const field in form) {
-        // @ts-ignore
+      // @ts-ignore
       if (!form[field].isValid) {
         return false;
       }
@@ -64,7 +64,7 @@ const CartContent = () => {
   const submit = (event: any) => {
     event.preventDefault();
     if (isFormValid()) {
-        // @ts-ignore
+      // @ts-ignore
       const shippingAddress: IShippingAddress = _.mapValues(form, (obj) => obj.value);
       shippingAddress.email = shippingAddress.email.trim();
 

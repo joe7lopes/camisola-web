@@ -6,10 +6,24 @@ export interface IHomePageLayout {
     portoProductsOrder: string[]
 }
 
-export interface ISettings {
+export interface IBadge {
+    id: string,
+    image?: string,
+    name: string
+}
+
+export interface IProductSettings {
+    badges: IBadge[],
+    categories:IProductCategory[],
+    prices: {
+        stampingExtraCost: number,
+        productDefaultPrice: number,
+        shippingCost: number
+    },
     sizes: string[],
-    stampingExtraCost: number,
-    productDefaultPrice: number,
-    productCategories:IProductCategory[],
+}
+
+export interface ISettings {
+    productSettings: IProductSettings,
     homePageLayout: IHomePageLayout
 }

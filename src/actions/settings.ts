@@ -1,54 +1,24 @@
 import {
-  FETCH_SETTINGS,
-  FETCH_SETTINGS_FULFILLED,
-  FETCH_SETTINGS_PENDING,
-  FETCH_SETTINGS_REJECTED,
-  RESET_UI_ADMIN_DASHBOARD,
-  SAVE_HOME_PAGE_LAYOUT,
-  SAVE_SETTINGS_FULFILLED,
-  SAVE_SETTINGS_PENDING,
-  SAVE_SETTINGS_REJECTED,
+    RESET_UI_ADMIN_DASHBOARD,
 } from './actionTypes';
 
-import { Category, ISettings } from '../types';
+import {action, createRequestTypes} from '../actions';
 
-export const fetchSettings = () => ({
-  type: FETCH_SETTINGS,
-});
+import {ISettings} from '../types';
 
-export const fetchSettingsPending = () => ({
-  type: FETCH_SETTINGS_PENDING,
-});
+export const FETCH_SETTINGS = createRequestTypes('FETCH_SETTINGS');
+export const SAVE_SETTINGS = createRequestTypes('SAVE_SETTINGS');
 
-export const fetchSettingsFulfilled = (settings: ISettings) => ({
-  type: FETCH_SETTINGS_FULFILLED,
-  payload: settings,
-});
+export const fetchSettings = () => action(FETCH_SETTINGS.REQUESTED, undefined);
+export const fetchSettingsPending = () => action(FETCH_SETTINGS.PENDING, undefined);
+export const fetchSettingsFulfilled = (settings: ISettings) => action(FETCH_SETTINGS.FULFILLED, {settings});
+export const fetchSettingsRejected = (error: string) => action(FETCH_SETTINGS.REJECTED, {error});
 
-export const fetchSettingsRejected = (err:string) => ({
-  type: FETCH_SETTINGS_REJECTED,
-  payload: err,
-});
-
-export const saveSettingsPending = () => ({
-  type: SAVE_SETTINGS_PENDING,
-});
-
-export const saveSettingsFulfilled = (settings: ISettings) => ({
-  type: SAVE_SETTINGS_FULFILLED,
-  payload: settings,
-});
-
-export const saveSettingsRejected = (err: string) => ({
-  type: SAVE_SETTINGS_REJECTED,
-  payload: err,
-});
-
-export const saveHomePageLayout = (orderedIds: string[], category: Category) => ({
-  type: SAVE_HOME_PAGE_LAYOUT,
-  payload: { category, productIds: orderedIds },
-});
+export const saveSettings = (settings: ISettings) => action(SAVE_SETTINGS.REQUESTED, {settings});
+export const saveSettingsPending = () => action(SAVE_SETTINGS.PENDING, undefined);
+export const saveSettingsFulfilled = (settings: ISettings) => action(SAVE_SETTINGS.FULFILLED, {settings});
+export const saveSettingsRejected = (error: string) => action(SAVE_SETTINGS.REJECTED, {error});
 
 export const resetUIAdminDashBoard = () => ({
-  type: RESET_UI_ADMIN_DASHBOARD,
+    type: RESET_UI_ADMIN_DASHBOARD,
 });

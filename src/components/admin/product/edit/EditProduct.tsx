@@ -3,48 +3,57 @@ import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Autocomplete } from '@material-ui/lab';
+import { TextField } from '@material-ui/core';
 import { IProduct, IUpdateProduct } from '../../../../types';
 import { LoadingButton } from '../../../ui';
 import { deleteProduct, updateProduct } from '../../../../actions';
 import {
-  getAdminUIError, getSettingsSizes, isUpdateProductSuccess, isUpdatingProduct,
+  getBadges,
+  getSettingsCategories,
+  getSettingsSizes,
+  isUpdatingProduct,
 } from '../../../../store/selectors';
 import Alert, { AlertType } from '../../../ui/Alert';
-import ProductCategorySelector from './ProductCategorySelector';
-import ProductSizeSelector from './ProductSizeSelector';
 import ProductImagesManagerModal from '../ProductImagesManagerModal';
 import RichText from '../../../ui/RichText';
+import { getAdminProduct } from '../../../../store/selectors/adminProduct';
 
 interface IProps {
     product: IProduct
 }
 
 const EditProduct = ({ product }: IProps) => {
+  const dispatch = useDispatch();
+  const availableSizes = useSelector(getSettingsSizes);
+  const availableCategories = useSelector(getSettingsCategories).map((c) => c.name);
+  const allBadges = useSelector(getBadges);
+  const isUpdating = useSelector(isUpdatingProduct);
+  const { error, data } = useSelector(getAdminProduct);
   const [isCustomizable, setIsCustomizable] = useState(product.customizable);
   const [isVisible, setIsVisible] = useState(product.visible);
   const [defaultPrice, setDefaultPrice] = useState(product.defaultPrice);
   const [productName, setProductName] = useState(product.name);
   const [categories, setCategories] = useState(product.categories);
+  const [badges, setBadges] = useState(product.badges);
   const [images, setImages] = useState(product.images);
   const [description, setDescription] = useState(product.description);
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
-  const [sizes, setSizes] = useState(product.sizes);
-  const availableSizes = useSelector(getSettingsSizes);
-  const isUpdating = useSelector(isUpdatingProduct);
-  const error = useSelector(getAdminUIError);
-  const success = useSelector(isUpdateProductSuccess);
-  const dispatch = useDispatch();
+  const [sizes, setSizes] = useState(product.sizes.map((s) => s.size));
+
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
 
     const imageIds = images.map((img) => img.id);
+    const newSizes = sizes.map((s) => ({ size: s, price: defaultPrice }));
 
     const newProduct: IUpdateProduct = {
       id: product.id,
       name: productName,
       categories,
-      sizes,
+      sizes: newSizes,
+      badges,
       imageIds,
       isCustomizable,
       isVisible,
@@ -77,15 +86,41 @@ const EditProduct = ({ product }: IProps) => {
                         value={productName}
                         onChange={(e: any) => setProductName(e.target.value)}/>
                 </Form.Group>
-                <h3 className="m-t-lg m-b-lg">categorias</h3>
-                <ProductCategorySelector
-                    selectedCategories={product.categories}
-                    onChange={(categories1) => setCategories(categories1)}/>
-                <h3 className="m-t-lg m-b-lg">Sizes</h3>
-                <ProductSizeSelector
-                    availableSizes={availableSizes}
-                    selectedSizes={product.sizes}
-                    onChange={(sizes1) => setSizes(sizes1)}/>
+
+                <div className="m-t-lg">
+                    <Autocomplete
+                        multiple
+                        options={availableCategories}
+                        value={categories}
+                        onChange={(e, value) => setCategories(value)}
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="categories"/>
+                        )}
+                    />
+                </div>
+                <div className="m-t-lg">
+                    <Autocomplete
+                        multiple
+                        options={availableSizes}
+                        value={sizes}
+                        onChange={(e, value) => setSizes(value)}
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="sizes"/>
+                        )}
+                    />
+                </div>
+                <div className="m-t-lg">
+                    <Autocomplete
+                        multiple
+                        options={allBadges}
+                        value={badges}
+                        getOptionLabel={(option) => option.name}
+                        onChange={(e, value) => setBadges(value)}
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="Badges"/>
+                        )}
+                    />
+                </div>
                 <Button
                     className="m-t-lg m-b-lg"
                     onClick={() => setImagesModalVisible(true)}>
@@ -102,6 +137,7 @@ const EditProduct = ({ product }: IProps) => {
                         text={description}
                         onChange={setDescription}/>
                 </Form.Group>
+
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox
@@ -116,7 +152,7 @@ const EditProduct = ({ product }: IProps) => {
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text>Preço a mostrar</InputGroup.Text>
+                        <InputGroup.Text>Preço</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl type="number" value={`${defaultPrice}`}
                                  onChange={(e: any) => setDefaultPrice(e.target.value)}/>
@@ -129,8 +165,9 @@ const EditProduct = ({ product }: IProps) => {
                     size='lg'>
                     Update
                 </LoadingButton>
-                {(error || success) && <Alert type={error ? AlertType.ERROR : AlertType.SUCCESS}>
-                    {error ? `Error updating product ${error}` : 'Produto actualizado'}
+                {(error || data)
+                && <Alert type={error ? AlertType.ERROR : AlertType.SUCCESS}>
+                    {error ? `Error ao criar product ${error}` : 'Produto guardado'}
                 </Alert>}
             </Form>
         </div>

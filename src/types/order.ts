@@ -1,3 +1,5 @@
+import {IBadge} from "./settings";
+
 export enum OrderStatus {
     RECEIVED="RECEIVED",
     PROCESSING = "PROCESSING",
@@ -19,7 +21,8 @@ export interface IOrderItem {
     productId: string,
     sizeId: string,
     stampingName? : string,
-    stampingNumber? : string
+    stampingNumber? : string,
+    badges?: IBadge[]
 }
 
 export interface ICreateOrderRequest {
@@ -35,6 +38,7 @@ interface IFetchOrdersItemResponse {
     size:string,
     stampingName:string,
     stampingNumber:string,
+    badges?:IBadge[],
 }
 
 export interface IOrder {

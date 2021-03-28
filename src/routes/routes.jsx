@@ -38,6 +38,7 @@ const Routes = () => (
               path.ADMIN_DASHBOARD,
               path.ADMIN_PRODUCTS,
               path.ADMIN_NEW_PRODUCT,
+              path.ADMIN_PRODUCTS_CONFIG,
               path.ADMIN_IMAGES,
               path.ADMIN_ORDERS,
               path.ADMIN_SETTINGS,

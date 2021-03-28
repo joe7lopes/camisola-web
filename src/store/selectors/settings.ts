@@ -11,22 +11,32 @@ const settingsState = (state: IRootState) => state.settings;
 
 export const getSettingsSizes = createSelector(
   [settingsState],
-  (settings) => settings.sizes,
+  (settings) => settings.productSettings.sizes,
 );
 
 export const getSettingsCategories = createSelector(
   [settingsState],
-  (settings) => settings.productCategories,
+  (settings) => settings.productSettings.categories,
 );
 
 export const getStampingExtraCost = createSelector(
   [settingsState],
-  (settings) => settings.stampingExtraCost,
+  (settings) => settings.productSettings.prices.stampingExtraCost,
+);
+
+export const getSettingsDefaultProductPrice = createSelector(
+  [settingsState],
+  (settings) => settings.productSettings.prices.productDefaultPrice,
 );
 
 export const getShippingCost = createSelector(
   [settingsState],
-  () => 5,
+  (settings) => settings.productSettings.prices.shippingCost,
+);
+
+export const getBadges = createSelector(
+  [settingsState],
+  (settings) => settings.productSettings.badges,
 );
 
 // home page layout

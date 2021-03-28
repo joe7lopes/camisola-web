@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import settings from './settings';
 import account from './account';
 import products from './products';
 import cart from './cart';
@@ -10,6 +9,7 @@ import adminProduct from './adminProduct';
 import uiAdminDashboardNotification from './uiAdminDashboardNotification';
 import adminNew from '../components/admin/adminReducer';
 import homePage from '../components/home/reducer';
+import settings from '../components/admin/settings/reducer';
 
 export default combineReducers({
   account,

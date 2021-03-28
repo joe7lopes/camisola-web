@@ -2,7 +2,7 @@ import { IRequest } from '../types';
 import {
   CREATE_PRODUCT_FULFILLED,
   CREATE_PRODUCT_PENDING,
-  CREATE_PRODUCT_REJECTED,
+  CREATE_PRODUCT_REJECTED, DELETE_PRODUCT_FULFILLED,
   RESET_PRODUCT_CREATION,
 } from '../actions';
 
@@ -20,6 +20,8 @@ export default (state = INITIAL_STATE, { type, payload }: any) => {
       return { ...state, loading: false, data: payload };
     case CREATE_PRODUCT_REJECTED:
       return { ...state, loading: false, error: payload };
+    case DELETE_PRODUCT_FULFILLED:
+      return { ...state, loading: false, data: true };
     case RESET_PRODUCT_CREATION:
       return INITIAL_STATE;
     default:

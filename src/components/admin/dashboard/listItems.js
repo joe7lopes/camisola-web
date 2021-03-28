@@ -68,6 +68,14 @@ export const MainListItems = () => {
                     <ListItemText primary="Novo Produto" />
                 </ListItem>
             </List>
+            <List component="div" disablePadding>
+                <ListItem button style={{ paddingLeft: '2rem' }} onClick={() => history.push(path.ADMIN_PRODUCTS_CONFIG)}>
+                    <ListItemIcon>
+                        <Settings />
+                    </ListItemIcon>
+                    <ListItemText primary="Configuração" />
+                </ListItem>
+            </List>
         </Collapse>
 
         <ListItem button onClick={() => history.push(path.ADMIN_IMAGES) }>

@@ -25,9 +25,8 @@ export const Stamping = ({ onNameChange, onNumberChange }: IStamptingProps) => {
 
   return (
   <React.Fragment>
-    <div className="m-b-sm c-text-sm">(estampagem opcional +12€)</div>
-    <Form.Group>
-      <Form.Label className="c-label">Nome <span className="text-muted">(máx. {MAX_NAME_LENGTH})</span></Form.Label>
+    <Form.Group className="m-t-md">
+      <Form.Label className="">Nome <span className="text-muted">(máx. {MAX_NAME_LENGTH})</span></Form.Label>
       <Form.Control
         type="text"
         placeholder="Nome a estampar"
@@ -36,7 +35,7 @@ export const Stamping = ({ onNameChange, onNumberChange }: IStamptingProps) => {
       />
     </Form.Group>
     <Form.Group>
-      <Form.Label className="c-label">Numero <span className="text-muted">(máx. {MAX_NUMBER_LENGTH})</span></Form.Label>
+      <Form.Label className="">Número <span className="text-muted">(máx. {MAX_NUMBER_LENGTH})</span></Form.Label>
       <Form.Control
         type="text"
         placeholder="Numero a estampar"

@@ -65,6 +65,7 @@ function* placeOrder({ payload }: IPlaceOrderAction) {
     sizeId: item.size.id || '',
     stampingName: item.stampingName,
     stampingNumber: item.stampingNumber,
+    badges: item.badges,
   }));
 
   const request: ICreateOrderRequest = {

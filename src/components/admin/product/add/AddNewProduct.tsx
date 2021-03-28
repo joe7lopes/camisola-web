@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
+import { Autocomplete } from '@material-ui/lab';
+import { TextField } from '@material-ui/core';
 import { createProduct } from '../../../../actions';
 import {
+  getBadges,
   getSettingsCategories,
   getSettingsSizes,
 } from '../../../../store/selectors';
 import {
-  ICreateProduct, IImage, IProductCategory, IProductSize,
+  IBadge,
+  ICreateProduct, IImage, IProductSize,
 } from '../../../../types';
-import ProductPrice from './ProductPrice';
 import { LoadingButton } from '../../../ui';
 import ProductImagesManagerModal from '../ProductImagesManagerModal';
 import Alert, { AlertType } from '../../../ui/Alert';
@@ -27,10 +30,12 @@ interface ICategories {
 const AddNewProduct = () => {
   const sizes = useSelector(getSettingsSizes);
   const categories = useSelector(getSettingsCategories);
+  const badges = useSelector(getBadges);
   const { loading, error, data } = useSelector(getAdminProduct);
   const dispatch = useDispatch();
-  const [availableSizes, setAvailableSizes] = useState<IProductSize[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ICategories[]>([]);
+  const [selectedBadges, setSelectedBadges] = useState<IBadge[]>([]);
   const [images, setImages] = useState<IImage[]>([]);
   const [description, setDescription] = useState('');
   const [isCustomizable, setIsCustomizable] = useState(false);
@@ -39,25 +44,23 @@ const AddNewProduct = () => {
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
 
-  useEffect(() => {
-    setSelectedCategories(convertCategories(categories));
-    setAvailableSizes(convertSizes(sizes));
-  }, [categories, sizes]);
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
 
     const newCategories = selectedCategories
-      .filter((c) => c.checked)
       .map((c) => c.name);
+
+    const newSizes: IProductSize[] = selectedSizes.map((s) => ({ size: s, price: defaultPrice }));
 
     const imageIds = images.map((img) => img.id);
 
     const newProduct: ICreateProduct = {
       name: productName,
       categories: newCategories,
-      sizes: availableSizes,
+      sizes: newSizes,
       images: imageIds,
+      badges: selectedBadges,
       isCustomizable,
       isVisible,
       defaultPrice,
@@ -67,22 +70,16 @@ const AddNewProduct = () => {
     dispatch(createProduct(newProduct));
   };
 
-  const handleOnPriceChanged = (newPrice: number, index: number) => {
-    const priceToUpdate = { ...availableSizes[index] };
-    priceToUpdate.price = newPrice;
-    const newPriceSizes = [...availableSizes];
-    newPriceSizes[index] = priceToUpdate;
-    setAvailableSizes(newPriceSizes);
+  const handleOnSizesChanged = (values: any) => {
+    setSelectedSizes(values);
   };
 
-  const handleOnPriceSizeDelete = (priceToDelete: IProductSize) => {
-    setAvailableSizes(availableSizes.filter((p) => p !== priceToDelete));
+  const handleOnCategoryChanged = (values: any) => {
+    setSelectedCategories(values);
   };
 
-  const handleOnCategoryChanged = (index: number) => {
-    const newCategories = [...selectedCategories];
-    newCategories[index].checked = !newCategories[index].checked;
-    setSelectedCategories(newCategories);
+  const handleOnBadgeChanged = (values: any) => {
+    setSelectedBadges(values);
   };
 
   return (
@@ -96,43 +93,60 @@ const AddNewProduct = () => {
                     <Form.Control required type="text" placeholder="Nome do produto"
                                   onChange={(e: any) => setProductName(e.target.value)}/>
                 </Form.Group>
-                <ProductPrice
-                    priceSize={availableSizes}
-                    handleOnPriceChanged={handleOnPriceChanged}
-                    handleOnDelete={handleOnPriceSizeDelete}
-                />
-               <div>
-                   <Button onClick={() => setImagesModalVisible(true)}>show Images</Button>
-                   <ProductImagesManagerModal
-                       visible={imagesModalVisible}
-                       onClose={() => setImagesModalVisible(false)}
-                       productImages={images}
-                       onSelect={setImages}
-                   />
-               </div>
-                <h3 className="m-t-lg m-b-lg">categorias</h3>
-                {selectedCategories.map((c, i) => (
-                    <div key={c.name}>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Checkbox
-                                    checked={c.checked}
-                                    onChange={() => handleOnCategoryChanged(i)}/>
-                            </InputGroup.Prepend>
-                            <FormControl aria-label="Text input with checkbox" value={c.name} readOnly/>
-                        </InputGroup>
-                    </div>
-                ))}
+                <div className="m-t-lg">
+                    <Autocomplete
+                        multiple
+                        options={sizes}
+                        onChange={(e, value) => handleOnSizesChanged(value)}
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="Tamanhos"/>
+                        )}
+                    />
+                    <span className="text-muted">Ex: XS, S, M</span>
+                </div>
+                <div className="m-t-lg">
+                    <Button onClick={() => setImagesModalVisible(true)}>Images</Button>
+                    <ProductImagesManagerModal
+                        visible={imagesModalVisible}
+                        onClose={() => setImagesModalVisible(false)}
+                        productImages={images}
+                        onSelect={setImages}
+                    />
+                </div>
+                <div className="m-t-lg m-b-lg">
+                    <Autocomplete
+                        multiple
+                        options={categories}
+                        getOptionLabel={(option) => option.name}
+                        onChange={(e, value) => handleOnCategoryChanged(value)}
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="Categorias"/>
+                        )}
+                    />
+                    <span className="text-muted">Ex: Benfica, camisolas, fatos de treino</span>
+                </div>
+                <div className="m-t-lg m-b-lg">
+                    <Autocomplete
+                        multiple
+                        options={badges}
+                        getOptionLabel={(option) => option.name}
+                        onChange={(e, value) => handleOnBadgeChanged(value)}
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="Badges"/>
+                        )}
+                    />
+                    <span className="text-muted">Ex: liga nos, etc..</span>
+                </div>
                 <RichText
                     text={description}
                     onChange={setDescription}/>
-                <InputGroup className="mb-3">
+                <InputGroup className="m-t-lg m-b-md">
                     Produto estampavel ?
                     <InputGroup.Checkbox
                         checked={isCustomizable}
                         onChange={() => setIsCustomizable(!isCustomizable)}/>
                 </InputGroup>
-                <InputGroup className="mb-3">
+                <InputGroup className="m-b-md">
                     Produto visivel ?
                     <InputGroup.Checkbox
                         checked={isVisible}
@@ -140,9 +154,9 @@ const AddNewProduct = () => {
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text>Preço a mostrar</InputGroup.Text>
+                        <InputGroup.Text>Preço</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl type="number" value={`${defaultPrice}`}
+                    <FormControl required type="number" value={`${defaultPrice}`}
                                  onChange={(e: any) => setDefaultPrice(e.target.value)}/>
                 </InputGroup>
                 {(error || data)
@@ -162,9 +176,5 @@ const AddNewProduct = () => {
   );
 };
 
-const convertSizes = (sizes: string[]) => sizes.map((size) => ({ size, price: 30 }));
-
-const convertCategories = (categories: IProductCategory[]) => categories
-  .map((c) => ({ ...c, checked: false }));
 
 export default AddNewProduct;

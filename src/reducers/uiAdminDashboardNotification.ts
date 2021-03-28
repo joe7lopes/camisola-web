@@ -1,8 +1,6 @@
 import {
   RESET_UI_ADMIN_DASHBOARD,
-  SAVE_SETTINGS_FULFILLED,
-  SAVE_SETTINGS_PENDING,
-  SAVE_SETTINGS_REJECTED,
+  SAVE_SETTINGS,
 } from '../actions';
 import { IUIAdminDashboardNotification } from '../types';
 
@@ -16,11 +14,11 @@ export default (state = INITIAL_STATE, { type, payload }: any) => {
   switch (type) {
     case RESET_UI_ADMIN_DASHBOARD:
       return INITIAL_STATE;
-    case SAVE_SETTINGS_PENDING:
+    case SAVE_SETTINGS.PENDING:
       return { ...state, loading: true };
-    case SAVE_SETTINGS_FULFILLED:
+    case SAVE_SETTINGS.FULFILLED:
       return { ...state, loading: false, data: payload };
-    case SAVE_SETTINGS_REJECTED:
+    case SAVE_SETTINGS.REJECTED:
       return { ...state, loading: false, error: payload };
     default:
       return state;

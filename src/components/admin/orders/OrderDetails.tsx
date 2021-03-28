@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import {
   FormControl, Select, MenuItem, InputLabel, TextareaAutosize, Button,
 } from '@material-ui/core';
-import { IOrder, OrderStatus } from '../../../types';
+import {IBadge, IOrder, OrderStatus} from '../../../types';
 import { orderStatusConfig } from './Orders';
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
-  const [privateNote, setPrivateNote] = useState(order.privateNote);
+  const [privateNote, setPrivateNote] = useState(order.privateNote || "");
 
   const updateOrder = (status: OrderStatus, note: string) => {
     const updatedOrder = {
@@ -23,6 +23,10 @@ const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
 
     handleUpdateOrder(updatedOrder);
   };
+
+  const renderBadges = (badges: IBadge[]) => {
+      return badges.map((badge)=> badge.name).join(",");
+  }
 
   return (
         <Row className="m-t-lg">
@@ -45,7 +49,8 @@ const OrderDetails = ({ order, handleUpdateOrder }: IProps) => {
                     <div key={index} className="m-b-md" style={{ border: '1px solid black' }}>
                         <div>{item.productName}</div>
                         <div><b>Tamanho:</b> {item.size}</div>
-                        <div>{item.stampingName}{item.stampingNumber ? `, ${item.stampingNumber}` : ''}</div>
+                        {item.badges && item.badges.length >0 && <div><b>badges:</b> {renderBadges(item.badges)}</div>}
+                        <div><b>Nome, numero: </b>{item.stampingName}{item.stampingNumber ? `, ${item.stampingNumber}` : ''}</div>
                     </div>
                 ))}
             </Col>

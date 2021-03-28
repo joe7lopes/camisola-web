@@ -1,3 +1,5 @@
+import { IBadge } from './settings';
+
 export interface IImage {
     id: string,
     name: string,
@@ -36,6 +38,7 @@ export interface IProduct {
     categories: string[],
     sizes: IProductSize[],
     images: IImage[],
+    badges: IBadge[],
     customizable: boolean,
     visible: boolean,
     defaultPrice: number,
@@ -47,6 +50,7 @@ export interface ICreateProduct {
     categories: string[],
     sizes: IProductSize[],
     images: string[],
+    badges: IBadge[],
     isCustomizable: boolean,
     isVisible: boolean,
     defaultPrice: number,
@@ -58,6 +62,7 @@ export interface IUpdateProduct {
     name: string,
     categories: string[],
     sizes: IProductSize[],
+    badges: IBadge[],
     imageIds: string[],
     isCustomizable: boolean,
     isVisible: boolean,

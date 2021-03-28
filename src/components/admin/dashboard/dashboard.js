@@ -28,7 +28,8 @@ import path from '../../../routes/path';
 import HomePageLayout from '../settings/home_page_layout/HomePageLayout';
 import { requestStatus } from '../../../store/selectors';
 import { resetUIAdminDashBoard } from '../../../actions';
-import Alert, {AlertType} from '../../ui/Alert';
+import Alert, { AlertType } from '../../ui/Alert';
+import ProductsConfig from '../product/config/ProductsConfig';
 
 export default function Dashboard() {
   const classes = useStyles();
@@ -54,6 +55,8 @@ export default function Dashboard() {
         return <ProductList/>;
       case path.ADMIN_NEW_PRODUCT:
         return <NewProduct/>;
+      case path.ADMIN_PRODUCTS_CONFIG:
+        return <ProductsConfig/>;
       case path.ADMIN_IMAGES:
         return <ImagesManager/>;
       case path.ADMIN_SETTINGS:

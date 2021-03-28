@@ -3,6 +3,7 @@ import {
   Button, Col, Figure, Row,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Chip } from '@material-ui/core';
 import { removeCartItem } from '../../actions';
 import { ICartItem } from '../../types';
 import { getStampingExtraCost } from '../../store/selectors';
@@ -17,6 +18,17 @@ const CartItem = ({ readOnly = false, item }: IProps) => {
   const dispatch = useDispatch();
   const stampingCost = useSelector(getStampingExtraCost);
   const hasExtras = item.stampingName || item.stampingNumber;
+
+  const renderBadges = () => {
+    if (!item.badges || item.badges.length <= 0) return null;
+    return <div> Badges:
+            {item.badges.map((badge) => (
+                <Chip key={badge.id}
+                      style={{ marginLeft: '4px' }}
+                      size="small" label={badge.name}/>))}
+        </div>;
+  };
+
   return (
         <Row className="m-b-md">
             <Col xs md="auto">
@@ -33,10 +45,11 @@ const CartItem = ({ readOnly = false, item }: IProps) => {
                     <div className="m-b-sm c-text-bold">{item.product.name}</div>
                     <div>Preço {item.size.price}€</div>
                     <div className="m-b-sm">Tamanho: <span className="m-b-sm c-text-bold">{item.size.size}</span></div>
+                    {renderBadges()}
                     {hasExtras && <div className="text-muted">Estampagem + {stampingCost} euros</div>}
                     {item.stampingName && <div>Nome: <span className="c-text-bold">{item.stampingName}</span></div>}
                     {item.stampingNumber
-                    && <div>Numero: <span className="c-text-bold">{item.stampingNumber}</span></div>}
+                    && <div>Número: <span className="c-text-bold">{item.stampingNumber}</span></div>}
 
                 </div>
             </Col>

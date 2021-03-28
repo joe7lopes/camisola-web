@@ -13,6 +13,7 @@ export default {
   ADMIN_ORDERS: '/admin/orders',
   ADMIN_PRODUCTS: '/admin/products',
   ADMIN_NEW_PRODUCT: '/admin/new-product',
+  ADMIN_PRODUCTS_CONFIG: '/admin/products-config',
   ADMIN_IMAGES: '/admin/images',
   ADMIN_SETTINGS: '/admin/settings',
   ADMIN_SETTINGS_HOME_PAGE_LAYOUT: '/admin/settings/home-page-layout',

@@ -11,7 +11,7 @@ export const sendButtonClickEvent = (buttonLabel: string) => {
 
 export const sendProductAdd = (productId: string, name: string, category: string, variant: string, price:number, quantity: number ) => {
   const ga = ReactGA.ga()
-  ga('ec:setAction','addProduct', {               // Provide product details in an productFieldObject.
+  ga('ec:addProduct', {               // Provide product details in an productFieldObject.
     'id': productId,                   // Product ID (string).
     'name': name, // Product name (string).
     'category': category,            // Product category (string).

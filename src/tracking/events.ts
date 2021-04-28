@@ -3,8 +3,8 @@ import ReactGA from 'react-ga';
 // eslint-disable-next-line import/prefer-default-export
 export const sendButtonClickEvent = (buttonLabel: string) => {
   ReactGA.event({
-    category: 'Button',
-    action: 'click',
+    category: 'CTA',
+    action: 'Click',
     label: buttonLabel,
   });
 };

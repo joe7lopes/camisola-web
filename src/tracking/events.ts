@@ -19,7 +19,7 @@ export const sendProductAdd = (productId: string, name: string, category: string
     price,                 // Product price (number).
     quantity                     // Product quantity (number).
   });
-  debugger;
+
 }
 
 export const sentPurchase = (orderId:string, revenue: string, shippingCost: string) => {

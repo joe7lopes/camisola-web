@@ -24,7 +24,7 @@ export const showOrderCompleted = createSelector(
   (cart) => !!cart.submittedOrder.data,
 );
 
-export const getCompletedOrderId = createSelector(
+export const getCompletedOrder = createSelector(
   [getCart],
   (cart) => cart.submittedOrder.data,
 );

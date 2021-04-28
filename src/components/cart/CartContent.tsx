@@ -10,15 +10,18 @@ import { placeOrder } from '../../actions';
 import OrderCompleted from './OrderCompleted';
 
 import {
-  getCartItems,
-  getCartTotal,
-  getShippingCost,
-  getSubmittedOrder,
+    getCartItems,
+    getCartTotal,
+    getShippingCost,
+    getSubmittedOrder,
+    showOrderCompleted,
 } from '../../store/selectors';
 import { IShippingAddress } from '../../types';
+import {sendProductAdd} from "../../tracking/events";
 
 const CartContent = () => {
   const dispatch = useDispatch();
+  const isOrderCompleted = useSelector(showOrderCompleted);
   const items = useSelector(getCartItems);
   const shippingCost = useSelector(getShippingCost);
   const total = useSelector(getCartTotal);
@@ -68,13 +71,17 @@ const CartContent = () => {
       const shippingAddress: IShippingAddress = _.mapValues(form, (obj) => obj.value);
       shippingAddress.email = shippingAddress.email.trim();
 
+      items.forEach((item) => {
+          sendProductAdd(item.product.id,item.product.name, item.product.categories.join(","), item.size.size, item.size.price, 1);
+      });
+
       dispatch(placeOrder(items, shippingAddress));
     }
   };
 
   return (
     <>
-            <OrderCompleted/>
+        {isOrderCompleted && <OrderCompleted/>}
             <div className="c-container">
                 <CartItems
                     items={items}

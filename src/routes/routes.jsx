@@ -74,7 +74,8 @@ const Init = () => {
 const RecordAnalytics = () => {
   const trackingId = 'UA-125067015-3';
   const { pathname } = useLocation();
-  ReactGA.initialize(trackingId);
+  ReactGA.initialize(trackingId, {debug: true});
+  ReactGA.plugin.require('ec');
   useEffect(() => {
     ReactGA.set({ page: pathname }); // Update the user's current page
     ReactGA.pageview(pathname); // Record a pageview for the given page

@@ -11,18 +11,17 @@ interface IProps {
 }
 
 export default function OrderSearch({ onSearch } : IProps) {
-  const [orderId, setOrderId] = useState();
+  // const [orderId, setOrderId] = useState();
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
-  const [createdAt, setCreatedAt] = useState();
+  // const [createdAt, setCreatedAt] = useState();
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
     onSearch({
-      orderId,
       name,
       phone,
-      createdAt: createdAt ? new Date(createdAt).toISOString() : undefined,
+      // createdAt: createdAt ? new Date(createdAt).toISOString() : undefined,
     });
   };
 
@@ -31,16 +30,16 @@ export default function OrderSearch({ onSearch } : IProps) {
 
           <form noValidate autoComplete="off" onSubmit={handleFormSubmit}>
             <Grid container justify="space-around" className="p-lg">
-            <TextField label="Encomenda #" value={orderId || ''} onChange={(e) => setOrderId(e.target.value)}/>
+            {/*<TextField label="Encomenda #" value={orderId || ''} onChange={(e) => setOrderId(e.target.value)}/>*/}
             <TextField label="Nome" value={name || ''} onChange={(e) => setName(e.target.value)} />
             <TextField label="Telefone" value={phone || ''} onChange={(e) => setPhone(e.target.value)} />
-              <TextField
-                  label="Criada em"
-                  type="date"
-                  InputLabelProps={{ shrink: true }}
-                  value={createdAt || ''}
-                  onChange={(e) => setCreatedAt(e.target.value)}
-              />
+              {/*<TextField*/}
+              {/*    label="Criada em"*/}
+              {/*    type="date"*/}
+              {/*    InputLabelProps={{ shrink: true }}*/}
+              {/*    value={createdAt || ''}*/}
+              {/*    onChange={(e) => setCreatedAt(e.target.value)}*/}
+              {/*/>*/}
               <Button
                   variant="contained"
                   color="primary"

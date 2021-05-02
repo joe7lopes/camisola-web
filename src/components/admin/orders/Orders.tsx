@@ -48,7 +48,7 @@ const Orders = () => {
   };
 
   const handleOnSearch = (searchCriteria: SearchCriteria) => {
-    dispatch(fetchOrdersWithCriteria(searchCriteria));
+    dispatch(fetchOrdersWithCriteria(page, rowsPerPage,searchCriteria));
   };
 
   return (

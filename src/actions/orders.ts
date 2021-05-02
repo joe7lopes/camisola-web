@@ -14,10 +14,10 @@ import {
 } from '../types';
 
 export type SearchCriteria = {
-  orderId: string,
+  // orderId: string,
   name: string,
   phone: string,
-  createdAt?: string
+  // createdAt?: string
 }
 
 export const fetchOrders = (page: number, pageSize: number) => ({
@@ -25,9 +25,9 @@ export const fetchOrders = (page: number, pageSize: number) => ({
   payload: { page, pageSize },
 });
 
-export const fetchOrdersWithCriteria = (criteria: SearchCriteria) => ({
+export const fetchOrdersWithCriteria = (page: number, pageSize: number, criteria: SearchCriteria) => ({
   type: FETCH_ORDERS_WITH_CRITERIA,
-  payload: { criteria },
+  payload: { page, pageSize, criteria },
 });
 
 export const fetchOrdersPending = () => ({

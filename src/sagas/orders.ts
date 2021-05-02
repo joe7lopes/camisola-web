@@ -38,9 +38,9 @@ function* fetchOrdersExec(action: any) {
 function* fetchOrdersWithCriteriaExec(action: any) {
   yield put(fetchOrdersPending());
   try {
-    const { criteria } = action.payload;
+    const { page, pageSize, criteria } = action.payload;
     const params = { params: { ...criteria } };
-    const { data } = yield call(api.get, '/api/orders', params);
+    const { data } = yield call(api.get, `/api/orders?page=${page}&pageSize=${pageSize}`, params);
     yield put(fetchOrdersFulfilled(data));
   } catch (error) {
     yield put(fetchOrdersRejected(error));

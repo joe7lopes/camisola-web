@@ -70,6 +70,7 @@ const CartContent = () => {
       // @ts-ignore
       const shippingAddress: IShippingAddress = _.mapValues(form, (obj) => obj.value);
       shippingAddress.email = shippingAddress.email.trim();
+      shippingAddress.phone = shippingAddress.phone.trim();
 
       items.forEach((item) => {
           sendProductAdd(item.product.id,item.product.name, item.product.categories.join(","), item.size.size, item.size.price, 1);

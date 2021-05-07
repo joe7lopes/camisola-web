@@ -69,8 +69,8 @@ const CartContent = () => {
     if (isFormValid()) {
       // @ts-ignore
       const shippingAddress: IShippingAddress = _.mapValues(form, (obj) => obj.value);
-      shippingAddress.email = shippingAddress.email.trim();
-      shippingAddress.phone = shippingAddress.phone.trim();
+      shippingAddress.email = shippingAddress.email.replace(/\s/g,'');
+      shippingAddress.phone = shippingAddress.phone.replace(/\s/g,'');
 
       items.forEach((item) => {
           sendProductAdd(item.product.id,item.product.name, item.product.categories.join(","), item.size.size, item.size.price, 1);

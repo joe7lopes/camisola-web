@@ -34,6 +34,7 @@ const Routes = () => (
             <NavigationHeaderRoute exact path={path.PROMOCOES} component={ClubPage}/>
             <NavigationHeaderRoute path={path.PRODUCT_DETAILS} component={ProductDetail}/>
             <NavigationHeaderRoute exact path={path.CART} component={Cart}/>
+            <Route exact path={path.LOGIN} component={Login}/>
             {[
               path.ADMIN_DASHBOARD,
               path.ADMIN_PRODUCTS,
@@ -45,7 +46,6 @@ const Routes = () => (
               path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT,
               path.ADMIN,
             ].map((url, index) => <AdminRoute exact path={url} component={Dashboard} key={index}/>)}
-            <Route exact path={path.LOGIN} component={Login}/>
             <Route exact path="/account" component={OrderSummary}/>
             <Route>
                 <h3> :( a pagina nao existe</h3>

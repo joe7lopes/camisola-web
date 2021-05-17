@@ -7,14 +7,16 @@ import { signIn } from '../admin/auth/actions';
 import { IRootState } from '../../types';
 import Alert, { AlertType } from '../ui/Alert';
 import path from '../../routes/path';
+import { isLoggedIn } from '../admin/auth/selector';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const { token, loading, error } = useSelector((state:IRootState) => state.adminNew.auth);
+  const { loading, error } = useSelector((state:IRootState) => state.adminNew.auth);
+  const isUserLoggedIn = useSelector(isLoggedIn);
 
-  if (token) {
+  if (isUserLoggedIn) {
     return <Redirect to={path.ADMIN} />;
   }
 

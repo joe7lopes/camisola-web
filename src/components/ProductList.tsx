@@ -20,6 +20,7 @@ const ProductList = ({ title, products }: IProps) => (
                     name={p.name}
                     price={p.defaultPrice}
                     image={getDefaultImage(p.images)}
+                    preBooking={p.preBooking}
                 />
             ))}
         </Row>

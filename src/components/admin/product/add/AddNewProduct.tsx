@@ -40,6 +40,7 @@ const AddNewProduct = () => {
   const [description, setDescription] = useState('');
   const [isCustomizable, setIsCustomizable] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isPreBooking, setIsPrebooking] = useState(false);
   const [defaultPrice, setDefaultPrice] = useState(30);
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
@@ -63,6 +64,7 @@ const AddNewProduct = () => {
       badges: selectedBadges,
       isCustomizable,
       isVisible,
+      preBooking: isPreBooking,
       defaultPrice,
       description,
     };
@@ -151,6 +153,12 @@ const AddNewProduct = () => {
                     <InputGroup.Checkbox
                         checked={isVisible}
                         onChange={() => setIsVisible(!isVisible)}/>
+                </InputGroup>
+                <InputGroup className="m-b-md">
+                    Pré reserva ?
+                    <InputGroup.Checkbox
+                        checked={isPreBooking}
+                        onChange={() => setIsPrebooking(!isPreBooking)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>

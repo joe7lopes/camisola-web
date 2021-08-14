@@ -32,6 +32,7 @@ const EditProduct = ({ product }: IProps) => {
   const { error, data } = useSelector(getAdminProduct);
   const [isCustomizable, setIsCustomizable] = useState(product.customizable);
   const [isVisible, setIsVisible] = useState(product.visible);
+  const [isPreBooking, setIsPreBooking] = useState(product.preBooking);
   const [defaultPrice, setDefaultPrice] = useState(product.defaultPrice);
   const [productName, setProductName] = useState(product.name);
   const [categories, setCategories] = useState(product.categories);
@@ -57,6 +58,7 @@ const EditProduct = ({ product }: IProps) => {
       imageIds,
       isCustomizable,
       isVisible,
+      preBooking: isPreBooking,
       defaultPrice,
       description,
     };
@@ -149,6 +151,12 @@ const EditProduct = ({ product }: IProps) => {
                     <InputGroup.Checkbox
                         checked={isVisible}
                         onChange={() => setIsVisible(!isVisible)}/>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    Pré reserva ?
+                    <InputGroup.Checkbox
+                        checked={isPreBooking}
+                        onChange={() => setIsPreBooking(!isPreBooking)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>

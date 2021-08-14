@@ -42,7 +42,9 @@ export interface IProduct {
     customizable: boolean,
     visible: boolean,
     defaultPrice: number,
-    description: string
+    description: string,
+    preBooking:boolean
+
 }
 
 export interface ICreateProduct {
@@ -53,6 +55,7 @@ export interface ICreateProduct {
     badges: IBadge[],
     isCustomizable: boolean,
     isVisible: boolean,
+    preBooking: boolean,
     defaultPrice: number,
     description: string
 }
@@ -66,6 +69,7 @@ export interface IUpdateProduct {
     imageIds: string[],
     isCustomizable: boolean,
     isVisible: boolean,
+    preBooking: boolean,
     defaultPrice: number,
     description: string,
 }

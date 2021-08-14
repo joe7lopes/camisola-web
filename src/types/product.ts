@@ -5,6 +5,7 @@ export interface IImage {
     name: string,
     url: string,
     default: boolean,
+    lastModified: string,
 }
 
 export interface IProductSize {

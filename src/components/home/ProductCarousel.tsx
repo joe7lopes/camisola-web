@@ -32,7 +32,7 @@ const ProductCarousel = ({ sectionName, products, onShowMore }: IProps) => {
                     name={p.name}
                     price={p.defaultPrice}
                     image={getDefaultImage(p.images)}
-                    preBooking={p.preBooking}
+                    preBooking={p.prebooking}
                 />)}
             </div>
             <div style={{ textAlign: 'center', marginTop: '0.25rem' }}>

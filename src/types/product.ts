@@ -40,12 +40,11 @@ export interface IProduct {
     sizes: IProductSize[],
     images: IImage[],
     badges: IBadge[],
-    customizable: boolean,
-    visible: boolean,
     defaultPrice: number,
     description: string,
-    preBooking:boolean
-
+    visible: boolean,
+    customizable: boolean,
+    prebooking:boolean
 }
 
 export interface ICreateProduct {
@@ -54,11 +53,11 @@ export interface ICreateProduct {
     sizes: IProductSize[],
     images: string[],
     badges: IBadge[],
-    isCustomizable: boolean,
-    isVisible: boolean,
-    preBooking: boolean,
     defaultPrice: number,
     description: string
+    customizable: boolean,
+    visible: boolean,
+    prebooking: boolean,
 }
 
 export interface IUpdateProduct {
@@ -68,9 +67,9 @@ export interface IUpdateProduct {
     sizes: IProductSize[],
     badges: IBadge[],
     imageIds: string[],
-    isCustomizable: boolean,
-    isVisible: boolean,
-    preBooking: boolean,
     defaultPrice: number,
     description: string,
+    customizable: boolean,
+    visible: boolean,
+    prebooking: boolean,
 }

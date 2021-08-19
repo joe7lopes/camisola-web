@@ -38,12 +38,12 @@ const AddNewProduct = () => {
   const [selectedBadges, setSelectedBadges] = useState<IBadge[]>([]);
   const [images, setImages] = useState<IImage[]>([]);
   const [description, setDescription] = useState('');
-  const [isCustomizable, setIsCustomizable] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [isPreBooking, setIsPrebooking] = useState(false);
   const [defaultPrice, setDefaultPrice] = useState(30);
   const [productName, setProductName] = useState('');
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
+  const [customizable, setCustomizable] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [prebooking, setPrebooking] = useState(false);
 
 
   const handleOnSubmit = (event: any) => {
@@ -62,9 +62,9 @@ const AddNewProduct = () => {
       sizes: newSizes,
       images: imageIds,
       badges: selectedBadges,
-      isCustomizable,
-      isVisible,
-      preBooking: isPreBooking,
+      customizable,
+      visible,
+      prebooking,
       defaultPrice,
       description,
     };
@@ -145,20 +145,20 @@ const AddNewProduct = () => {
                 <InputGroup className="m-t-lg m-b-md">
                     Produto estampavel ?
                     <InputGroup.Checkbox
-                        checked={isCustomizable}
-                        onChange={() => setIsCustomizable(!isCustomizable)}/>
+                        checked={customizable}
+                        onChange={() => setCustomizable(!customizable)}/>
                 </InputGroup>
                 <InputGroup className="m-b-md">
                     Produto visivel ?
                     <InputGroup.Checkbox
-                        checked={isVisible}
-                        onChange={() => setIsVisible(!isVisible)}/>
+                        checked={visible}
+                        onChange={() => setVisible(!visible)}/>
                 </InputGroup>
                 <InputGroup className="m-b-md">
                     Pré reserva ?
                     <InputGroup.Checkbox
-                        checked={isPreBooking}
-                        onChange={() => setIsPrebooking(!isPreBooking)}/>
+                        checked={prebooking}
+                        onChange={() => setPrebooking(!prebooking)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>

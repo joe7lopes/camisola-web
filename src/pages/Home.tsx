@@ -6,13 +6,13 @@ import {
   getBenficaProductsForHomePage,
   getPortoProductsForHomePage,
   getSportingProductsForHomePage,
-} from '../../store/selectors';
-import WhatsApp from './WhatsApp';
-import ShippingMethodBanner from './ShippingMethodBanner';
-import FacebookReviews from './facebook/FacebookReviews';
-import Footer from '../Footer';
-import ProductCarousel from './ProductCarousel';
-import path from '../../routes/path';
+} from '../store/selectors';
+import WhatsApp from '../components/home/WhatsApp';
+import ShippingMethodBanner from '../components/home/ShippingMethodBanner';
+import FacebookReviews from '../components/home/facebook/FacebookReviews';
+import Footer from '../components/Footer';
+import ProductCarousel from '../components/home/ProductCarousel';
+import path from '../routes/path';
 
 const Home = () => {
   const history = useHistory();

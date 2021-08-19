@@ -30,8 +30,6 @@ const EditProduct = ({ product }: IProps) => {
   const allBadges = useSelector(getBadges);
   const isUpdating = useSelector(isUpdatingProduct);
   const { error, data } = useSelector(getAdminProduct);
-  const [isCustomizable, setIsCustomizable] = useState(product.customizable);
-  const [isVisible, setIsVisible] = useState(product.visible);
   const [defaultPrice, setDefaultPrice] = useState(product.defaultPrice);
   const [productName, setProductName] = useState(product.name);
   const [categories, setCategories] = useState(product.categories);
@@ -40,7 +38,9 @@ const EditProduct = ({ product }: IProps) => {
   const [description, setDescription] = useState(product.description);
   const [imagesModalVisible, setImagesModalVisible] = useState(false);
   const [sizes, setSizes] = useState(product.sizes.map((s) => s.size));
-
+  const [customizable, setCustomizable] = useState(product.customizable);
+  const [visible, setVisible] = useState(product.visible);
+  const [prebooking, setPreBooking] = useState(product.prebooking);
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
@@ -55,10 +55,11 @@ const EditProduct = ({ product }: IProps) => {
       sizes: newSizes,
       badges,
       imageIds,
-      isCustomizable,
-      isVisible,
       defaultPrice,
       description,
+      customizable,
+      visible,
+      prebooking,
     };
 
     dispatch(updateProduct(newProduct));
@@ -141,14 +142,20 @@ const EditProduct = ({ product }: IProps) => {
                 <InputGroup className="mb-3">
                     Produto estampavel ?
                     <InputGroup.Checkbox
-                        checked={isCustomizable}
-                        onChange={() => setIsCustomizable(!isCustomizable)}/>
+                        checked={customizable}
+                        onChange={() => setCustomizable(!customizable)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     Produto visivel ?
                     <InputGroup.Checkbox
-                        checked={isVisible}
-                        onChange={() => setIsVisible(!isVisible)}/>
+                        checked={visible}
+                        onChange={() => setVisible(!visible)}/>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    Pré reserva ?
+                    <InputGroup.Checkbox
+                        checked={prebooking}
+                        onChange={() => setPreBooking(!prebooking)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>

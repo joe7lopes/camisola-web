@@ -30,6 +30,7 @@ import {
 import {watchSignIn} from '../components/admin/auth/saga';
 import {watchUpdateFBToken} from '../components/admin/facebook/login/saga';
 import {watchFetchFbReviews} from '../components/home/facebook/saga';
+import {watchFetchPreBookingsReport} from "../pages/admin/reports/prebooking/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -45,6 +46,7 @@ export default function* rootSaga() {
         fork(watchUpdateProduct),
         fork(watchDeleteProduct),
         fork(watchFetchOrders),
+        fork(watchFetchPreBookingsReport),
         fork(watchFetchOrdersWithCriteria),
         fork(watchPlaceOrder),
         fork(watchUpdateOrder),

@@ -30,6 +30,7 @@ import { requestStatus } from '../../../store/selectors';
 import { resetUIAdminDashBoard } from '../../../actions';
 import Alert, { AlertType } from '../../ui/Alert';
 import ProductsConfig from '../product/config/ProductsConfig';
+import PrebookingReport from "../../../pages/admin/reports/prebooking/PrebookingReport";
 
 export default function Dashboard() {
   const classes = useStyles();
@@ -51,6 +52,8 @@ export default function Dashboard() {
     switch (pathname) {
       case path.ADMIN_ORDERS:
         return <Orders/>;
+        case path.ADMIN_ORDERS_REPORTS_PREBOOKING:
+        return <PrebookingReport/>
       case path.ADMIN_PRODUCTS:
         return <ProductList/>;
       case path.ADMIN_NEW_PRODUCT:

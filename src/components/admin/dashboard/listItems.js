@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ListIcon from '@material-ui/icons/List';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 import List from '@material-ui/core/List';
 import Collapse from '@material-ui/core/Collapse';
@@ -22,10 +23,11 @@ import {
 import path from '../../../routes/path';
 
 export const MainListItems = () => {
-  const [open, setOpen] = React.useState(true);
+  const [openProducts, setOpenProducts] = React.useState(true);
+  const [openOrders, setOpenOrders] = React.useState(true);
   const history = useHistory();
   const handleProductClick = () => {
-    setOpen(!open);
+    setOpenProducts(!openProducts);
   };
 
   return (
@@ -37,21 +39,32 @@ export const MainListItems = () => {
             <ListItemText primary="Dashboard" />
         </ListItem>
 
-        <ListItem button onClick={() => history.push(path.ADMIN_ORDERS) }>
+        <ListItem button onClick={() => {setOpenOrders(!openOrders); history.push(path.ADMIN_ORDERS) }}>
             <ListItemIcon>
                 <ShoppingCartIcon />
             </ListItemIcon>
             <ListItemText primary="Orders" />
+            {openOrders ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
+        <Collapse in={openOrders} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+                <ListItem button style={{ paddingLeft: '2rem' }} onClick={() => history.push(path.ADMIN_ORDERS_REPORTS_PREBOOKING)}>
+                    <ListItemIcon>
+                        <AssessmentIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Pré-reservas" />
+                </ListItem>
+            </List>
+        </Collapse>
 
         <ListItem button onClick={handleProductClick}>
             <ListItemIcon>
                 <SportsSoccer />
             </ListItemIcon>
             <ListItemText primary="Produtos" />
-            {open ? <ExpandLess /> : <ExpandMore />}
+            {openProducts ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={openProducts} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
                 <ListItem button style={{ paddingLeft: '2rem' }} onClick={() => history.push(path.ADMIN_PRODUCTS)}>
                     <ListItemIcon>

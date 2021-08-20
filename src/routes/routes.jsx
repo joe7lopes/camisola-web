@@ -42,6 +42,7 @@ const Routes = () => (
               path.ADMIN_PRODUCTS_CONFIG,
               path.ADMIN_IMAGES,
               path.ADMIN_ORDERS,
+              path.ADMIN_ORDERS_REPORTS_PREBOOKING,
               path.ADMIN_SETTINGS,
               path.ADMIN_SETTINGS_HOME_PAGE_LAYOUT,
               path.ADMIN,
@@ -65,14 +66,15 @@ const Init = () => {
   }, [dispatch]);
 
   if (process.env.NODE_ENV === 'production') {
-    RecordAnalytics();
+    RecordAnalyticsWithTrackingID('UA-125067015-3');
+  }else {
+      RecordAnalyticsWithTrackingID('fake');
   }
 
   return null;
 };
 
-const RecordAnalytics = () => {
-  const trackingId = 'UA-125067015-3';
+const RecordAnalyticsWithTrackingID = (trackingId) => {
   const { pathname } = useLocation();
   ReactGA.initialize(trackingId);
   ReactGA.plugin.require('ec');

@@ -6,7 +6,7 @@ import {
   ISettings,
 } from './index';
 
-import { IAdminNew } from '../components/admin/adminReducer';
+import { IAdminNew } from '../pages/admin/adminReducer';
 
 export interface IRequest {
     loading: boolean,

@@ -7,7 +7,7 @@ import admin from './admin';
 import adminOrders from './adminOrders';
 import adminProduct from './adminProduct';
 import uiAdminDashboardNotification from './uiAdminDashboardNotification';
-import adminNew from '../components/admin/adminReducer';
+import adminNew from '../pages/admin/adminReducer';
 import homePage from '../components/home/reducer';
 import settings from '../components/admin/settings/reducer';
 

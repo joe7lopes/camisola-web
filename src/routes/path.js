@@ -11,6 +11,7 @@ export default {
   ADMIN: '/admin',
   ADMIN_DASHBOARD: '/admin/dashboard',
   ADMIN_ORDERS: '/admin/orders',
+  ADMIN_ORDERS_REPORTS_PREBOOKING: '/admin/orders/reports/prebooking',
   ADMIN_PRODUCTS: '/admin/products',
   ADMIN_NEW_PRODUCT: '/admin/new-product',
   ADMIN_PRODUCTS_CONFIG: '/admin/products-config',
